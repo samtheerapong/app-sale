@@ -44,14 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function ($model) {
                             return '<span class="badge" style="background-color:' . $model->color . ';"><b>' . $model->name . '</b></span>';
                         },
-                        'filter' => Html::activeDropDownList($searchModel, 'id', ArrayHelper::map(Status::find()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => 'ทั้งหมด...'])
+                        'filter' => Html::activeDropDownList($searchModel, 'id', ArrayHelper::map(Status::find()->all(), 'id', 'name'), ['class' => 'form-control', 'prompt' => Yii::t('app', 'Select...')])
                     ],
                     // 'color',
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        'options' => ['style' => 'width:120px;'],
-                        'buttonOptions' => ['class' => 'btn btn-default'],
-                        'template' => '<div class="btn-group btn-group-sm text-center" role="group"> {view} {update} {delete}</div>'
+                        'headerOptions' => ['style' => 'width: 140px;'],
+                        'contentOptions' => ['class' => 'text-center'],
+                        'buttonOptions' => ['class' => 'btn btn-outline-secondary btn-sm'],
+                        'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
+                        'urlCreator' => function ($action, $model, $key, $index, $column) {
+                            return Url::toRoute([$action, 'id' => $model->id]);
+                        }
                     ],
                 ],
             ]); ?>

@@ -22,7 +22,7 @@ class ProductsController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -40,6 +40,10 @@ class ProductsController extends Controller
     {
         $searchModel = new ProductsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+
+         $dataProvider->pagination = [
+            'pageSize' => 10, // Number of items per page
+        ];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

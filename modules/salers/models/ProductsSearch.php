@@ -46,6 +46,10 @@ class ProductsSearch extends Products
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            // เรียงล่าสุดก่อน จาก id
+            'sort' => ['defaultOrder' => [
+                'id' => SORT_DESC,
+            ]]
         ]);
 
         $this->load($params);

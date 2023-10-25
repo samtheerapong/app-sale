@@ -5,16 +5,25 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'language' => 'th',
     'name' => 'Sale Apps',
+    'language' => 'th',
     'timezone' => 'Asia/Bangkok',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        [
+            'class' => 'app\components\LanguageSelector',
+            'supportedLanguages' => ['en-US', 'th-TH'], //กำหนดรายการภาษาที่ support หรือใช้ได้
+        ]
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        'shop' => [
+            'class' => 'app\modules\shop\Module',
+        ],
         'salers' => [
             'class' => 'app\modules\salers\module',
         ],
@@ -28,6 +37,10 @@ $config = [
         ]
     ],
     'components' => [
+        'cart' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            // You can configure additional options for the cart component here.
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'GbdSobHCCVl8HGf0tYx4KYX7Fq0f6IkA',
@@ -42,11 +55,27 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    // 'sourceLanguage' => 'en-US',
+                ],
+            ],
+        ],
         'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
-            'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@app/mail', // Customize this based on your project structure
+            'useFileTransport' => false, // Set this to false to enable email sending
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp-mail.outlook.com', // Hotmail SMTP server
+                'username' => 'northernfood.it@hotmail.com', // Your Hotmail/Outlook email address
+                'password' => 'Nfc@053673985', // Your Hotmail/Outlook password
+                'port' => '587', // The SMTP server port for Hotmail
+                'encryption' => 'tls', // Use TLS encryption (required for Hotmail)
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -57,6 +86,7 @@ $config = [
                 ],
             ],
         ],
+
         'db' => $db,
         'urlManager' => [
             'class' => 'yii\web\UrlManager',

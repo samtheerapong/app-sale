@@ -33,6 +33,7 @@ class Products extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['sku', 'name', 'unit','active'], 'required'],
             [['image', 'description'], 'string'],
             [['active'], 'integer'],
             [['sku', 'name', 'unit'], 'string', 'max' => 255],
@@ -46,12 +47,12 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'sku' => Yii::t('app', 'รหัสสินค้า'),
-            'name' => Yii::t('app', 'ชื่อสินค้า'),
-            'unit' => Yii::t('app', 'หน่วยนับ'),
-            'image' => Yii::t('app', 'รูปภาพ'),
-            'description' => Yii::t('app', 'รายละเอียด'),
-            'active' => Yii::t('app', 'Active'),
+            'sku' => Yii::t('app', 'sku'),
+            'name' => Yii::t('app', 'name'),
+            'unit' => Yii::t('app', 'unit'),
+            'image' => Yii::t('app', 'image'),
+            'description' => Yii::t('app', 'description'),
+            'active' => Yii::t('app', 'active'),
         ];
     }
 
@@ -64,4 +65,13 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrdersItem::class, ['products_id' => 'id']);
     }
+
+    function getStatusActive($active) {
+        if ($active == 0) {
+            return '<i class="glyphicon glyphicon-remove"></i> <span class="text-danger">' . Yii::t('app', 'Not Actived') . '</span>';
+        } else {
+            return '<i class="glyphicon glyphicon-ok"></i> <span class="text-success">' . Yii::t('app', 'Actived') . '</span>';
+        }
+    }
+    
 }

@@ -11,7 +11,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="products-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3><?= Html::encode($this->title) ?></h3>
+    <p>
+        <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+    </p>
 
     <?= $this->render('_form', [
         'model' => $model,
