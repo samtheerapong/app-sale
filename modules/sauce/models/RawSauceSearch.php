@@ -1,0 +1,100 @@
+<?php
+
+namespace app\modules\sauce\models;
+
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use app\modules\sauce\models\RawSauce;
+
+/**
+ * RawSauceSearch represents the model behind the search form of `app\modules\sauce\models\RawSauce`.
+ */
+class RawSauceSearch extends RawSauce
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['id', 'tank_id', 'simple_id', 'created_by', 'updated_by'], 'integer'],
+            [['code', 'reccord_date', 'remask', 'created_at', 'updated_at'], 'safe'],
+            [['ph', 'nacl_t1', 'nacl_t2', 'nacl_t_avr', 'nacl_p1', 'nacl_p2', 'nacl_p_avr', 'tn_t1', 'th_t2', 'tn_t_avr', 'tn_p1', 'tn_p2', 'th_p_avr', 'cal', 'alc_t', 'alc_p', 'ppm', 'brix'], 'number'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = RawSauce::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            // เรียงล่าสุดก่อน จาก id
+            'sort' => ['defaultOrder' => [
+                // 'id' => 'DESC'
+                'id' => SORT_DESC,
+            ]]
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'reccord_date' => $this->reccord_date,
+            'tank_id' => $this->tank_id,
+            'simple_id' => $this->simple_id,
+            'ph' => $this->ph,
+            'nacl_t1' => $this->nacl_t1,
+            'nacl_t2' => $this->nacl_t2,
+            'nacl_t_avr' => $this->nacl_t_avr,
+            'nacl_p1' => $this->nacl_p1,
+            'nacl_p2' => $this->nacl_p2,
+            'nacl_p_avr' => $this->nacl_p_avr,
+            'tn_t1' => $this->tn_t1,
+            'th_t2' => $this->th_t2,
+            'tn_t_avr' => $this->tn_t_avr,
+            'tn_p1' => $this->tn_p1,
+            'tn_p2' => $this->tn_p2,
+            'th_p_avr' => $this->th_p_avr,
+            'cal' => $this->cal,
+            'alc_t' => $this->alc_t,
+            'alc_p' => $this->alc_p,
+            'ppm' => $this->ppm,
+            'brix' => $this->brix,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'created_by' => $this->created_by,
+            'updated_by' => $this->updated_by,
+        ]);
+
+        $query->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'remask', $this->remask]);
+
+        return $dataProvider;
+    }
+}

@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => 'Sale Apps',
+    'name' => 'NFC Application',
     'language' => 'th',
     'timezone' => 'Asia/Bangkok',
     'basePath' => dirname(__DIR__),
@@ -21,6 +21,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        'sauce' => [
+            'class' => 'app\modules\sauce\Module',
+        ],
         'shop' => [
             'class' => 'app\modules\shop\Module',
         ],
@@ -37,6 +40,13 @@ $config = [
         ]
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                   '@app/views' => '@app/views/adminlte/'
+                ],
+            ],
+       ],
         'cart' => [
             'class' => 'yz\shoppingcart\ShoppingCart',
             // You can configure additional options for the cart component here.
@@ -64,19 +74,7 @@ $config = [
                 ],
             ],
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@app/mail', // Customize this based on your project structure
-            'useFileTransport' => false, // Set this to false to enable email sending
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp-mail.outlook.com', // Hotmail SMTP server
-                'username' => 'northernfood.it@hotmail.com', // Your Hotmail/Outlook email address
-                'password' => 'Nfc@053673985', // Your Hotmail/Outlook password
-                'port' => '587', // The SMTP server port for Hotmail
-                'encryption' => 'tls', // Use TLS encryption (required for Hotmail)
-            ],
-        ],
+       
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
