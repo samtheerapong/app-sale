@@ -103,7 +103,16 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ])
                     ],
-                    //'ph',
+                    // 'ph',
+                    [
+                        'attribute' => 'ph',
+                        'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'options' => ['style' => 'width:120px;'],
+                        'value' => function ($model) {
+                            return $model->ph;
+                        },
+                    ],
                     //'nacl_t1',
                     //'nacl_t2',
                     // 'nacl_t_avr',
@@ -111,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'nacl_t_avr',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:150px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->nacl_t_avr;
                         },
@@ -123,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'nacl_p_avr',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:150px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->nacl_p_avr;
                         },
@@ -135,7 +144,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'tn_t_avr',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:140px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->tn_t_avr;
                         },
@@ -147,7 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'th_p_avr',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:140px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->th_p_avr;
                         },
@@ -157,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'cal',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:80px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->cal;
                         },
@@ -167,7 +176,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'alc_t',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:140px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->alc_t;
                         },
@@ -177,7 +186,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'alc_p',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:140px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->alc_p;
                         },
@@ -187,7 +196,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'ppm',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:130px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->ppm;
                         },
@@ -197,7 +206,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'brix',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:100px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return $model->brix;
                         },

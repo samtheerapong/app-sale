@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-12">
                     <div class="card border-secondary">
                         <div class="card-header text-white bg-secondary">
-                            <?= Yii::t('app', 'Reccord') ?>
+                            <?= Yii::t('app', 'Record') ?>
                         </div>
                         <div class="card-body">
                             <?= $form->field($model, 'code')->hiddenInput()->label(false); ?>
@@ -148,7 +148,7 @@ use yii\widgets\ActiveForm;
                         <div class="col-md-2">
                             <div class="card border-secondary">
                                 <div class="card-header text-white bg-secondary">
-                                    <?= Yii::t('app', 'CAL') ?>
+                                    <?= Yii::t('app', 'Color') ?>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

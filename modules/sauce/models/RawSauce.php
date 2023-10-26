@@ -89,7 +89,7 @@ class RawSauce extends \yii\db\ActiveRecord
             'tn_p1' => Yii::t('app', 'TN 1%'),
             'tn_p2' => Yii::t('app', 'TN 2%'),
             'th_p_avr' => Yii::t('app', 'TN Average (P)'),
-            'cal' => Yii::t('app', 'Cal'),
+            'cal' => Yii::t('app', 'Color'),
             'alc_t' => Yii::t('app', 'Alcohol (T)'),
             'alc_p' => Yii::t('app', 'Alcohol (P)'),
             'ppm' => Yii::t('app', 'PPM'),
