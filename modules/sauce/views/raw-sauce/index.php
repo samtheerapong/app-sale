@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'simple_id',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:100px;'],
+                        'options' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->simple->color . ';"><b>' . $model->simple->code . '</b></span></h5>';
                         },
