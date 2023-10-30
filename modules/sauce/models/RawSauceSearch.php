@@ -53,7 +53,7 @@ class RawSauceSearch extends RawSauce
             'query' => $query,
             // เรียงล่าสุดก่อน จาก id
             'sort' => ['defaultOrder' => [
-                // 'id' => 'DESC'
+                // 'id' => 'ACE'
                 'id' => SORT_DESC,
             ]]
         ]);

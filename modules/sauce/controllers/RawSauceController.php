@@ -149,33 +149,35 @@ class RawSauceController extends Controller
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 
+
     public function actionReport1()
     {
         $connection = Yii::$app->db;
         $data = $connection->createCommand('
-        SELECT year(t.reccord_date) as yy,
-        month(t.reccord_date) as mm,
-        COUNT(t.AN) as cnt
-        FROM raw_sauce t
-        GROUP BY yy, mm
-        ORDER BY yy, mm
+        SELECT t.reccord_date as date, year(t.reccord_date) as yy, month(t.reccord_date) as mm, day(t.reccord_date) as dd, (t.ph) as ph
+            FROM raw_sauce t
+            WHERE month(t.reccord_date) = 10
+            ORDER BY date ASC
+
     ')->queryAll();
+
 
         // Prepare data for the chart
         $yy = [];
         $mm = [];
-        $cnt = [];
+        $ph = [];
 
         foreach ($data as $d) {
             $yy[] = $d['yy'];
-            $mm[] = $d['yy'] . '-' . $d['mm'];
-            $cnt[] = $d['cnt'] * 1; // Convert to integer
+            // $mm[] = $d['dd'] . '-' . $d['mm'] . '-' . $d['yy'];
+            $mm[] = $d['date'];
+            $ph[] = $d['ph'] * 1; // x1 เพื่อ Convert เป็น เลข
         }
 
         $dataProvider = new ArrayDataProvider([
             'allModels' => $data,
             'sort' => [
-                'attributes' => ['yy', 'mm', 'cnt'],
+                'attributes' => ['dd', 'mm', 'yy', 'ph'],
             ],
         ]);
 
@@ -183,7 +185,7 @@ class RawSauceController extends Controller
             'dataProvider' => $dataProvider,
             'yy' => $yy,
             'mm' => $mm,
-            'cnt' => $cnt,
+            'ph' => $ph,
         ]);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-$this->title = 'จำนวนผู้ป่วยในแยกรายเดือน';
+$this->title = ' ค่า PH';
 $this->params['breadcrumbs'][] = $this->title;
 
 use yii\grid\GridView;
@@ -10,28 +10,29 @@ use miloschuman\highcharts\Highcharts;
     <div class="panel-heading">
         <h3 class="panel-title">
             <i class="glyphicon glyphicon-signal"></i>
-            จำนวนผู้ป่วยในแยกรายเดือน
+            ค่า PH
         </h3>
     </div>
     <div class="panel-body">
         <?php
         echo Highcharts::widget([
             'options' => [
-                'title' => ['text' => 'จำนวนผู้ป่วยในแยกรายเดือน'],
+                'title' => ['text' => ' ค่า PH'],
                 'xAxis' => [
                     'categories' => $mm
                 ],
                 'yAxis' => [
-                    'title' => ['text' => 'จำนวน(คน)']
+                    'title' => ['text' => 'ค่า']
                 ],
                 'series' => [
                     [
                         'type' => 'line',
-                        'name' => 'CNT',
-                        'data' => $cnt,
+                        'name' => 'PH',
+                        'data' => $ph,
                     ]
                 ]
             ]
         ]);
         ?>
     </div>
+</div>
