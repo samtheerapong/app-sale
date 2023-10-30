@@ -3,6 +3,7 @@
 namespace app\modules\sauce\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\BaseActiveRecord;
 
@@ -43,28 +44,30 @@ use yii\db\BaseActiveRecord;
  */
 class RawSauce extends \yii\db\ActiveRecord
 {
-    // public function behaviors()
-    // {
-    //     return [
-    //         [
-    //             'class' => TimestampBehavior::class,
-    //             'attributes' => [
-    //                 self::EVENT_BEFORE_INSERT => ['created_at'],
-    //                 self::EVENT_BEFORE_UPDATE => ['updated_at'],
-    //             ],
-    //             'value' => function () {
-    //                 return date('Y-m-d H:i:s');
-    //             },
-    //         ],
-    //         [
-    //             'class' => BlameableBehavior::class,
-    //             'attributes' => [
-    //                 BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_by', 'updated_by'],
-    //                 BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_by'],
-    //             ],
-    //         ],
-    //     ];
-    // }
+    public $month;
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    self::EVENT_BEFORE_INSERT => ['created_at'],
+                    self::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => function () {
+                    return date('Y-m-d H:i:s');
+                },
+            ],
+            // [
+            //     'class' => BlameableBehavior::class,
+            //     'attributes' => [
+            //         BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_by', 'updated_by'],
+            //         BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_by'],
+            //     ],
+            // ],
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -81,9 +84,10 @@ class RawSauce extends \yii\db\ActiveRecord
     {
         return [
             [['reccord_date', 'created_at', 'updated_at'], 'safe'],
+            [['reccord_date'], 'date', 'format' => 'php:Y-m-d'],
             [['tank_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
             [['ph', 'nacl_t1', 'nacl_t2', 'nacl_t_avr', 'nacl_p1', 'nacl_p2', 'nacl_p_avr', 'tn_t1', 'th_t2', 'tn_t_avr', 'tn_p1', 'tn_p2', 'tn_p_avr', 'col', 'alc_t', 'alc_p', 'ppm', 'brix'], 'number'],
-            [['remask','batch'], 'string', 'max' => 255],
+            [['remask', 'batch'], 'string', 'max' => 255],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => Type::class, 'targetAttribute' => ['type_id' => 'id']],
             [['tank_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tank::class, 'targetAttribute' => ['tank_id' => 'id']],
         ];
@@ -157,8 +161,8 @@ class RawSauce extends \yii\db\ActiveRecord
 
     public function calculateNaclAverages()
     {
-        // $sumNaclT = $this->nacl_t1 + $this->nacl_t2;
-        // $this->nacl_t_avr = $sumNaclT / 2;
+        $sumNaclT = $this->nacl_t1 + $this->nacl_t2;
+        $this->nacl_t_avr = $sumNaclT / 2;
 
         $sumNaclP = $this->nacl_p1 + $this->nacl_p2;
         $this->nacl_p_avr = $sumNaclP / 2;
@@ -166,14 +170,15 @@ class RawSauce extends \yii\db\ActiveRecord
 
     public function calculateTnAverages()
     {
-        // $sumTnT = $this->tn_t1 + $this->th_t2;
-        // $this->tn_t_avr = $sumTnT / 2;
+        $sumTnT = $this->tn_t1 + $this->th_t2;
+        $this->tn_t_avr = $sumTnT / 2;
 
         $sumTnP = $this->tn_p1 + $this->tn_p2;
         $this->tn_p_avr = $sumTnP / 2;
     }
 
-    public function shortdate($date) {
+    public function shortdate($date)
+    {
         return date('Y-m-d', strtotime($date));
     }
 }

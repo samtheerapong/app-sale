@@ -9,6 +9,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use kartik\grid\GridView;
+use kartik\widgets\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
 
@@ -21,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="raw-sauce-index">
 
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Raw Sauce'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -29,8 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
+    <!-- <?= $this->render('_search', ['model' => $searchModel]); ?> -->
 
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">
@@ -49,22 +48,84 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
+                    //    'reccord_date:date',
                     [
-                        'attribute' => 'reccord_date',
-                        'format' => 'date',
-                        'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:200px;'],
+                        'attribute' => 'year',
+                        'format' => 'html',
+                        'options' => ['style' => 'width:60px'],
                         'value' => function ($model) {
-                            return $model->reccord_date;
+                            return $model->year ?? '';
                         },
-
+                        'filter' => ArrayHelper::map(RawSauce::find()->select('YEAR(reccord_date) AS year')->distinct()->asArray()->all(), 'year', 'year'),
                     ],
+                    [
+                        'attribute' => 'month',
+                        'format' => 'date',
+                        'options' => ['style' => 'width:200px'],
+                        'value' => function ($model) {
+                            return $model->reccord_date ?? '';
+                        },
+                        'filter' => ArrayHelper::map(
+                            RawSauce::find()
+                                ->select('MONTH(reccord_date) AS month')
+                                ->distinct()
+                                ->orderBy('month')
+                                ->asArray()
+                                ->all(),
+                            'month',
+                            // 'month',
+                            function ($model) {
+                                return Yii::$app->formatter->asDate("2023-{$model['month']}-01", 'MMMM');
+                            }
+                        ),
+                    ],
+
+                    // [
+                    //     'attribute' => 'reccord_date',
+                    //     'options' => ['style' => 'width:150px'],
+                    //     'contentOptions' => ['class' => 'text-center'], // จัดตรงกลาง
+                    //     'format' => 'date',
+                    //     'value' => function ($model) {
+                    //         return $model->reccord_date ?? '';
+                    //     },
+                    //     'filter' => DatePicker::widget([
+                    //         'model' => $searchModel,
+                    //         'attribute' => 'reccord_date',
+                    //         'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                    //         'pluginOptions' => [
+                    //             'format' => 'yyyy-mm-dd',
+                    //             'autoclose' => true,
+                    //         ]
+                    //     ]),
+                    // ],
+                    // [
+                    //     'attribute' => 'year',
+                    //     'value' => function ($model) {
+                    //         return $model->year ?? '';
+                    //     },
+                    //     'filter' => ArrayHelper::map(RawSauce::find()->select('YEAR(reccord_date) AS year')->distinct()->asArray()->all(), 'year', 'year'),
+                    // ],
+
+                    // [
+                    //     'attribute' => 'created_at',
+                    //     'format' => 'date',
+                    //     'filter' => DatePicker::widget([
+                    //         'model' => $searchModel,
+                    //         'attribute' => 'reccord_date_start',
+                    //         'attribute2' => 'reccord_date_end',
+                    //         'language' => 'th',
+                    //         'pluginOptions' => [
+                    //             'format' => 'yyyy-mm-dd',
+                    //             'autoclose' => true,
+                    //         ]
+                    //     ]),
+                    // ],
 
                     [
                         'attribute' => 'tank_id',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:200px;'],
+                        'options' => ['style' => 'width:130px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->tank->color . ';"><b>' . $model->tank->code . '</b></span></h5>';
                         },
@@ -84,7 +145,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'type_id',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:200px;'],
+                        'options' => ['style' => 'width:130px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->type->color . ';"><b>' . $model->type->code . '</b></span></h5>';
                         },
@@ -191,7 +252,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->brix;
                         },
                     ],
-                   
+
                     [
                         'class' => 'kartik\grid\ActionColumn',
                         'headerOptions' => ['style' => 'width: 120px;'],

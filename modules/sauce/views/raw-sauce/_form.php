@@ -31,11 +31,12 @@ use yii\widgets\ActiveForm;
                             <div class="row">
 
                                 <div class="col-md-6">
+
                                     <?= $form->field($model, 'reccord_date')->widget(
                                         DatePicker::class,
                                         [
                                             'language' => 'th',
-                                            'options' => ['placeholder' => Yii::t('app', 'Select...'), 'required' => true],
+                                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
                                             'pluginOptions' => [
                                                 'format' => 'yyyy-mm-dd',
                                                 'todayHighlight' => true,
@@ -76,7 +77,7 @@ use yii\widgets\ActiveForm;
                                 <div class="col-md-4">
                                     <?= $form->field($model, 'ph')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
