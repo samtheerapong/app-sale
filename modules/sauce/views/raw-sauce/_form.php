@@ -1,6 +1,6 @@
 <?php
 
-use app\modules\sauce\models\Simple;
+use app\modules\sauce\models\type;
 use app\modules\sauce\models\Tank;
 use kartik\widgets\DatePicker;
 use kartik\widgets\Select2;
@@ -27,17 +27,15 @@ use yii\widgets\ActiveForm;
                             <?= Yii::t('app', 'Record') ?>
                         </div>
                         <div class="card-body">
-                            <?= $form->field($model, 'code')->hiddenInput()->label(false); ?>
+                            <?= $form->field($model, 'batch')->hiddenInput()->label(false); ?>
                             <div class="row">
-                                <div class="col-md-3 col-sm-12">
+
+                                <div class="col-md-6">
                                     <?= $form->field($model, 'reccord_date')->widget(
                                         DatePicker::class,
                                         [
                                             'language' => 'th',
-                                            'options' => [
-                                                'placeholder' => Yii::t('app', 'Select...'),
-                                                'required' => true,
-                                            ],
+                                            'options' => ['placeholder' => Yii::t('app', 'Select...'), 'required' => true],
                                             'pluginOptions' => [
                                                 'format' => 'yyyy-mm-dd',
                                                 'todayHighlight' => true,
@@ -46,21 +44,27 @@ use yii\widgets\ActiveForm;
                                         ]
                                     ); ?>
                                 </div>
-                                <div class="col-md-3 col-sm-4">
+
+                                <div class="col-md-6">
+                                    <?= $form->field($model, 'batch')->textInput(['maxlength' => true]) ?>
+                                </div>
+
+                                <div class="col-md-4">
                                     <?= $form->field($model, 'tank_id')->widget(Select2::class, [
                                         'language' => 'th',
                                         'data' => ArrayHelper::map(Tank::find()->all(), 'id', 'code'),
-                                        'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                                        'options' => ['placeholder' => Yii::t('app', 'Select...'), 'required' => true],
                                         'pluginOptions' => [
                                             'allowClear' => true
                                         ],
                                     ]);
                                     ?>
                                 </div>
-                                <div class="col-md-3 col-sm-4">
-                                    <?= $form->field($model, 'simple_id')->widget(Select2::class, [
+
+                                <div class="col-md-4">
+                                    <?= $form->field($model, 'type_id')->widget(Select2::class, [
                                         'language' => 'th',
-                                        'data' => ArrayHelper::map(Simple::find()->all(), 'id', 'code'),
+                                        'data' => ArrayHelper::map(type::find()->all(), 'id', 'code'),
                                         'options' => ['placeholder' => Yii::t('app', 'Select...')],
                                         'pluginOptions' => [
                                             'allowClear' => true
@@ -68,9 +72,11 @@ use yii\widgets\ActiveForm;
                                     ]);
                                     ?>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
+
+                                <div class="col-md-4">
                                     <?= $form->field($model, 'ph')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -136,7 +142,7 @@ use yii\widgets\ActiveForm;
                                             <?= $form->field($model, 'tn_p2')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '0.01']) ?>
                                         </div>
                                         <div class="col-md-4 col-sm-4">
-                                            <?= $form->field($model, 'th_p_avr')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '0.01', 'disabled' => true]) ?>
+                                            <?= $form->field($model, 'tn_p_avr')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '0.01', 'disabled' => true]) ?>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +159,7 @@ use yii\widgets\ActiveForm;
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <?= $form->field($model, 'cal')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '0.01']) ?>
+                                            <?= $form->field($model, 'col')->textInput(['maxlength' => true, 'type' => 'number', 'step' => '0.01']) ?>
                                         </div>
                                     </div>
                                 </div>

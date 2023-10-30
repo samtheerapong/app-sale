@@ -11,15 +11,19 @@ use app\modules\sauce\models\RawSauce;
  */
 class RawSauceSearch extends RawSauce
 {
+    public $reccord_date_start; // Add this property
+    public $reccord_date_end;   // Add this property
+
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'tank_id', 'simple_id', 'created_by', 'updated_by'], 'integer'],
-            [['code', 'reccord_date', 'remask', 'created_at', 'updated_at'], 'safe'],
-            [['ph', 'nacl_t1', 'nacl_t2', 'nacl_t_avr', 'nacl_p1', 'nacl_p2', 'nacl_p_avr', 'tn_t1', 'th_t2', 'tn_t_avr', 'tn_p1', 'tn_p2', 'th_p_avr', 'cal', 'alc_t', 'alc_p', 'ppm', 'brix'], 'number'],
+            [['id', 'tank_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
+            [['batch', 'reccord_date', 'remask', 'created_at', 'updated_at'], 'safe'],
+            [['ph', 'nacl_t1', 'nacl_t2', 'nacl_t_avr', 'nacl_p1', 'nacl_p2', 'nacl_p_avr', 'tn_t1', 'th_t2', 'tn_t_avr', 'tn_p1', 'tn_p2', 'tn_p_avr', 'col', 'alc_t', 'alc_p', 'ppm', 'brix'], 'number'],
         ];
     }
 
@@ -42,7 +46,7 @@ class RawSauceSearch extends RawSauce
     public function search($params)
     {
         $query = RawSauce::find();
-
+    
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -62,12 +66,14 @@ class RawSauceSearch extends RawSauce
             return $dataProvider;
         }
 
+        // $query->andFilterWhere(['between', 'reccord_date', $this->reccord_date_start, $this->reccord_date_end]);
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'reccord_date' => $this->reccord_date,
             'tank_id' => $this->tank_id,
-            'simple_id' => $this->simple_id,
+            'type_id' => $this->type_id,
             'ph' => $this->ph,
             'nacl_t1' => $this->nacl_t1,
             'nacl_t2' => $this->nacl_t2,
@@ -80,8 +86,8 @@ class RawSauceSearch extends RawSauce
             'tn_t_avr' => $this->tn_t_avr,
             'tn_p1' => $this->tn_p1,
             'tn_p2' => $this->tn_p2,
-            'th_p_avr' => $this->th_p_avr,
-            'cal' => $this->cal,
+            'tn_p_avr' => $this->tn_p_avr,
+            'col' => $this->col,
             'alc_t' => $this->alc_t,
             'alc_p' => $this->alc_p,
             'ppm' => $this->ppm,
@@ -92,7 +98,7 @@ class RawSauceSearch extends RawSauce
             'updated_by' => $this->updated_by,
         ]);
 
-        $query->andFilterWhere(['like', 'code', $this->code])
+        $query->andFilterWhere(['like', 'batch', $this->batch])
             ->andFilterWhere(['like', 'remask', $this->remask]);
 
         return $dataProvider;

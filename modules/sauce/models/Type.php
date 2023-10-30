@@ -5,7 +5,7 @@ namespace app\modules\sauce\models;
 use Yii;
 
 /**
- * This is the model class for table "simple".
+ * This is the model class for table "type".
  *
  * @property int $id
  * @property string|null $code
@@ -15,14 +15,14 @@ use Yii;
  *
  * @property RawSauce[] $rawSauces
  */
-class Simple extends \yii\db\ActiveRecord
+class Type extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'simple';
+        return 'type';
     }
 
     /**
@@ -58,15 +58,15 @@ class Simple extends \yii\db\ActiveRecord
      */
     public function getRawSauces()
     {
-        return $this->hasMany(RawSauce::class, ['simple_id' => 'id']);
+        return $this->hasMany(RawSauce::class, ['type_id' => 'id']);
     }
 
     /**
      * {@inheritdoc}
-     * @return SimpleQuery the active query used by this AR class.
+     * @return typeQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new SimpleQuery(get_called_class());
+        return new typeQuery(get_called_class());
     }
 }

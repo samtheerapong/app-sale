@@ -3,11 +3,11 @@
 namespace app\modules\sauce\models;
 
 /**
- * This is the ActiveQuery class for [[Simple]].
+ * This is the ActiveQuery class for [[type]].
  *
- * @see Simple
+ * @see type
  */
-class SimpleQuery extends \yii\db\ActiveQuery
+class TypeQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class SimpleQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Simple[]|array
+     * @return type[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class SimpleQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Simple|array|null
+     * @return type|array|null
      */
     public function one($db = null)
     {

@@ -4,6 +4,8 @@ namespace app\modules\sauce\controllers;
 
 use app\modules\sauce\models\RawSauce;
 use app\modules\sauce\models\RawSauceSearch;
+use Yii;
+use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -40,7 +42,7 @@ class RawSauceController extends Controller
     {
         $searchModel = new RawSauceSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-        
+
         $dataProvider->pagination = [
             'pageSize' => 20, // Number of items per page
         ];
@@ -145,5 +147,43 @@ class RawSauceController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionReport1()
+    {
+        $connection = Yii::$app->db;
+        $data = $connection->createCommand('
+        SELECT year(t.reccord_date) as yy,
+        month(t.reccord_date) as mm,
+        COUNT(t.AN) as cnt
+        FROM raw_sauce t
+        GROUP BY yy, mm
+        ORDER BY yy, mm
+    ')->queryAll();
+
+        // Prepare data for the chart
+        $yy = [];
+        $mm = [];
+        $cnt = [];
+
+        foreach ($data as $d) {
+            $yy[] = $d['yy'];
+            $mm[] = $d['yy'] . '-' . $d['mm'];
+            $cnt[] = $d['cnt'] * 1; // Convert to integer
+        }
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $data,
+            'sort' => [
+                'attributes' => ['yy', 'mm', 'cnt'],
+            ],
+        ]);
+
+        return $this->render('report1', [
+            'dataProvider' => $dataProvider,
+            'yy' => $yy,
+            'mm' => $mm,
+            'cnt' => $cnt,
+        ]);
     }
 }
