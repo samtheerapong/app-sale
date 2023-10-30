@@ -22,6 +22,7 @@ use yii\helpers\Url;
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Sauce</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                 <li><a href="<?= Url::toRoute('/sauce/raw-sauce/index'); ?>" class="dropdown-item">Raw Soy Sauce Record</a></li>
+                <li><a href="<?= Url::toRoute('/sauce/raw-sauce/report1'); ?>" class="dropdown-item">Report 1</a></li>
                 <li><a href="#" class="dropdown-item">Some other action</a></li>
                 <li><?= Html::a('Sign out', ['site/logout'], ['data-method' => 'post', 'class' => 'dropdown-item']) ?></li>
 
