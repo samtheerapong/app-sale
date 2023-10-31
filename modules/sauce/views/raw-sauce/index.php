@@ -49,15 +49,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     //    'reccord_date:date',
-                    [
-                        'attribute' => 'year',
-                        'format' => 'html',
-                        'options' => ['style' => 'width:60px'],
-                        'value' => function ($model) {
-                            return $model->year ?? '';
-                        },
-                        'filter' => ArrayHelper::map(RawSauce::find()->select('YEAR(reccord_date) AS year')->distinct()->asArray()->all(), 'year', 'year'),
-                    ],
+                    // [
+                    //     'attribute' => 'year',
+                    //     'format' => 'html',
+                    //     'options' => ['style' => 'width:60px'],
+                    //     'value' => function ($model) {
+                    //         return $model->year ?? '';
+                    //     },
+                    //     'filter' => ArrayHelper::map(RawSauce::find()->select('YEAR(reccord_date) AS year')->distinct()->asArray()->all(), 'year', 'year'),
+                    // ],
                     [
                         'attribute' => 'month',
                         'format' => 'date',
@@ -127,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['class' => 'text-center'],
                         'options' => ['style' => 'width:130px;'],
                         'value' => function ($model) {
-                            return '<h5><span class="badge" style="background-color:' . $model->tank->color . ';"><b>' . $model->tank->code . '</b></span></h5>';
+                            return '<h5><span class="badge" style="background-color:' . $model->tank0->color . ';"><b>' . $model->tank0->code . '</b></span></h5>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['class' => 'text-center'],
                         'options' => ['style' => 'width:130px;'],
                         'value' => function ($model) {
-                            return '<h5><span class="badge" style="background-color:' . $model->type->color . ';"><b>' . $model->type->code . '</b></span></h5>';
+                            return '<h5><span class="badge" style="background-color:' . $model->type0->color . ';"><b>' . $model->type0->code . '</b></span></h5>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,

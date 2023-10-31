@@ -3,6 +3,7 @@
 namespace app\modules\sauce\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "tank".
@@ -69,4 +70,5 @@ class Tank extends \yii\db\ActiveRecord
     {
         return new TankQuery(get_called_class());
     }
+
 }

@@ -45,7 +45,13 @@ use yii\db\BaseActiveRecord;
 class RawSauce extends \yii\db\ActiveRecord
 {
     public $month;
-    
+
+    // Report1
+    public $selectTank;
+    public $selectType;
+    public $selectMonth;
+    public $selectYear;
+
     public function behaviors()
     {
         return [
@@ -127,6 +133,8 @@ class RawSauce extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_by' => Yii::t('app', 'Updated By'),
+            'selectTank' => Yii::t('app', 'Select Tank'),
+            'selectType' => Yii::t('app', 'Select Type'),
         ];
     }
 
@@ -135,7 +143,7 @@ class RawSauce extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery|typeQuery
      */
-    public function getType()
+    public function getType0()
     {
         return $this->hasOne(type::class, ['id' => 'type_id']);
     }
@@ -145,7 +153,7 @@ class RawSauce extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery|TankQuery
      */
-    public function getTank()
+    public function getTank0()
     {
         return $this->hasOne(Tank::class, ['id' => 'tank_id']);
     }
@@ -180,5 +188,63 @@ class RawSauce extends \yii\db\ActiveRecord
     public function shortdate($date)
     {
         return date('Y-m-d', strtotime($date));
+    }
+
+    public function getReport1Data($tankId, $typeId)
+    {
+        $connection = Yii::$app->db;
+        $data = $connection->createCommand('
+            SELECT 
+                t.reccord_date as date, 
+                year(t.reccord_date) as yy, 
+                month(t.reccord_date) as mm, 
+                day(t.reccord_date) as dd,
+                t.ph as ph,
+                t.tank_id as tank,
+                t.type_id as type,
+                t.nacl_p_avr as nacl,
+                t.tn_p_avr as tn,
+                t.col as col,
+                t.alc_p as alc,
+                t.ppm as ppm,
+                t.brix as brix
+            FROM raw_sauce t
+            WHERE t.tank_id = :selectTank
+            AND t.type_id = :selectType
+            ORDER BY date ASC
+        ')->bindValues([':selectTank' => $tankId, ':selectType' => $typeId])->queryAll();
+
+        $mm = [];
+        $ph = [];
+        $nacl = [];
+        $tn = [];
+        $col = [];
+        $alc = [];
+        $ppm = [];
+        $brix = [];
+
+        foreach ($data as $dp) {
+            $yy[] = $dp['yy'];
+            $mm[] = $dp['date'];
+            $ph[] = $dp['ph'] * 1;
+            $nacl[] = $dp['nacl'] * 1;
+            $tn[] = $dp['tn'] * 1;
+            $col[] = $dp['col'] * 1;
+            $alc[] = $dp['alc'] * 1;
+            $ppm[] = $dp['ppm'] * 1;
+            $brix[] = $dp['brix'] * 1;
+        }
+
+        // echo $tankId . $typeId;
+        return [
+            'mm' => $mm,
+            'ph' => $ph,
+            'nacl' => $nacl,
+            'tn' => $tn,
+            'col' => $col,
+            'alc' => $alc,
+            'ppm' => $ppm,
+            'brix' => $brix,
+        ];
     }
 }

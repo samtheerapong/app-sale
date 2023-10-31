@@ -15,6 +15,9 @@ use yii\filters\VerbFilter;
  */
 class RawSauceController extends Controller
 {
+
+    // public $selectMonth = 10;
+
     /**
      * @inheritDoc
      */
@@ -152,40 +155,40 @@ class RawSauceController extends Controller
 
     public function actionReport1()
     {
-        $connection = Yii::$app->db;
-        $data = $connection->createCommand('
-        SELECT t.reccord_date as date, year(t.reccord_date) as yy, month(t.reccord_date) as mm, day(t.reccord_date) as dd, (t.ph) as ph
-            FROM raw_sauce t
-            WHERE month(t.reccord_date) = 10
-            ORDER BY date ASC
+        $model = new RawSauce();
+        $reportData = [];
+        $mm = $ph = $nacl = $tn = $col = $alc = $ppm = $brix = [];
 
-    ')->queryAll();
+        if ($model->load(Yii::$app->request->post()) && isset(Yii::$app->request->post('RawSauce')['selectTank']) && isset(Yii::$app->request->post('RawSauce')['selectType'])) {
+            $tankId = Yii::$app->request->post('RawSauce')['selectTank'];
+            $typeId = Yii::$app->request->post('RawSauce')['selectType'];
+            // ตรวจสอบว่าค่าถูกส่งมาหรือไม่
+            // ทำสิ่งที่คุณต้องการกับ $tankId และ $typeId ต่อที่นี่
 
+            $reportData = $model->getReport1Data($tankId, $typeId);
 
-        // Prepare data for the chart
-        $yy = [];
-        $mm = [];
-        $ph = [];
-
-        foreach ($data as $d) {
-            $yy[] = $d['yy'];
-            // $mm[] = $d['dd'] . '-' . $d['mm'] . '-' . $d['yy'];
-            $mm[] = $d['date'];
-            $ph[] = $d['ph'] * 1; // x1 เพื่อ Convert เป็น เลข
+            $mm = $reportData['mm'];
+            $ph = $reportData['ph'];
+            $nacl = $reportData['nacl'];
+            $tn = $reportData['tn'];
+            $col = $reportData['col'];
+            $alc = $reportData['alc'];
+            $ppm = $reportData['ppm'];
+            $brix = $reportData['brix'];
         }
 
-        $dataProvider = new ArrayDataProvider([
-            'allModels' => $data,
-            'sort' => [
-                'attributes' => ['dd', 'mm', 'yy', 'ph'],
-            ],
-        ]);
 
         return $this->render('report1', [
-            'dataProvider' => $dataProvider,
-            'yy' => $yy,
+            'model' => $model,
+            'reportData' => $reportData,
             'mm' => $mm,
             'ph' => $ph,
+            'nacl' => $nacl,
+            'tn' => $tn,
+            'col' => $col,
+            'alc' => $alc,
+            'ppm' => $ppm,
+            'brix' => $brix,
         ]);
     }
 }

@@ -13,87 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="report1">
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
-            <?= Yii::t('app', 'Report Selector') ?>
-        </div>
-        <div class="card-body">
-            <?php $form = ActiveForm::begin(); ?>
-
-            <div class="row">
-                <div class="col-md-3">
-                    <?= $form->field($model, 'tank_id')->widget(Select2::class, [
-                        'language' => 'th',
-                        'data' => ArrayHelper::map(Tank::find()->all(), 'id', 'code'),
-                        'options' => ['placeholder' => Yii::t('app', 'Select...'), 'required' => true],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);
-                    ?>
-                </div>
-
-                <div class="col-md-3">
-                    <?= $form->field($model, 'type_id')->widget(Select2::class, [
-                        'language' => 'th',
-                        'data' => ArrayHelper::map(Type::find()->all(), 'id', 'code'),
-                        'options' => ['placeholder' => Yii::t('app', 'Select...')],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);
-                    ?>
-                </div>
-
-                <div class="col-md-3">
-
-                    <?= $form->field($model, 'mm')->dropDownList([
-                        '' => '',
-                        '1' => 'มกราคม',
-                        '2' => 'กุมภาพันธ์',
-                        '3' => 'มีนาคม',
-                        '4' => 'เมษายน',
-                        '5' => 'พฤษภาคม',
-                        '6' => 'มิถุนายน',
-                        '7' => 'กรกฎาคม',
-                        '8' => 'สิงหาคม',
-                        '9' => 'กันยายน',
-                        '10' => 'ตุลาคม',
-                        '11' => 'พฤศจิกายน',
-                        '12' => 'ธันวาคม',
-                    ])->label(Yii::t('app', 'Month')); ?>
-                </div>
-
-                <div class="col-md-3">
-
-                    <?= $form->field($model, 'yy')->dropDownList([
-                        '' => '',
-                        '2022' => '2022',
-                        '2023' => '2023',
-                        '2024' => '2024',
-                        '2025' => '2025',
-                        // '2026' => '2026',
-                        // '2027' => '2027',
-                        // '2028' => '2028',
-                        // '2029' => '2029',
-                        // '2030' => '2030',
-                        // '2031' => '2031',
-                        // '2032' => '2032',
-
-                    ])->label(Yii::t('app', 'Month')); ?>
-                </div>
-
-
-                <div class="form-group">
-                    <?= Html::submitButton('<i class="fa fa-area-chart" aria-hidden="true"></i> ' . Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
-                </div>
-
-                <?php ActiveForm::end(); ?>
-            </div>
-        </div>
-    </div>
-
-
 
     <!-- Display the chart below the form -->
     <div class="card border-secondary">
@@ -106,19 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => [
                     'title' => ['text' => Yii::t('app', 'pH Charts')],
                     'xAxis' => [
-                        'categories' => $mm
+                        'categories' => $mm,
                     ],
                     'yAxis' => [
-                        'title' => ['text' => Yii::t('app', 'Value')]
+                        'title' => ['text' => Yii::t('app', 'Value')],
                     ],
                     'series' => [
                         [
                             'type' => 'line',
-                            'name' => '%',
+                            'name' => 'pH', // Change this name to reflect the data being plotted
                             'data' => $ph,
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ]);
             ?>
         </div>

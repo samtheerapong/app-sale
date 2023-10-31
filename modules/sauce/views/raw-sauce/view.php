@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\modules\sauce\models\RawSauce $model */
 
-$this->title = $model->tank->code . ' | ' . $model->type->code . ' | ' . $model->batch;
+$this->title = $model->tank0->code . ' | ' . $model->type0->code . ' | ' . $model->batch;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Raw Sauces'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'tank_id',
                                 'format' => 'html',
                                 'value' => function ($model) {
-                                    return '<span class="badge" style="background-color:' . $model->tank->color . '; color:#fff;"><b>' . $model->tank->code . '</b></span>';
+                                    return '<span class="badge" style="background-color:' . $model->tank0->color . '; color:#fff;"><b>' . $model->tank0->code . '</b></span>';
                                 },
                             ],
 
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'type_id',
                                 'format' => 'html',
                                 'value' => function ($model) {
-                                    return '<span class="badge" style="background-color:' . $model->type->color . '; color:#fff;"><b>' . $model->type->code . '</b></span>';
+                                    return '<span class="badge" style="background-color:' . $model->type0->color . '; color:#fff;"><b>' . $model->type0->code . '</b></span>';
                                 },
                             ],
                             // 'ph',

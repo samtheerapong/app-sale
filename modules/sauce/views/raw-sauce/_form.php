@@ -1,6 +1,6 @@
 <?php
 
-use app\modules\sauce\models\type;
+use app\modules\sauce\models\Type;
 use app\modules\sauce\models\Tank;
 use kartik\widgets\DatePicker;
 use kartik\widgets\Select2;
@@ -65,7 +65,7 @@ use yii\widgets\ActiveForm;
                                 <div class="col-md-4">
                                     <?= $form->field($model, 'type_id')->widget(Select2::class, [
                                         'language' => 'th',
-                                        'data' => ArrayHelper::map(type::find()->all(), 'id', 'code'),
+                                        'data' => ArrayHelper::map(Type::find()->all(), 'id', 'code'),
                                         'options' => ['placeholder' => Yii::t('app', 'Select...')],
                                         'pluginOptions' => [
                                             'allowClear' => true

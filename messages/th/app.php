@@ -51,4 +51,5 @@ return [
     'PPM' => 'ค่าความขุ่น',
     'Brix' => '%Brix',
     'Remask' => 'Remask',
+    'Submit' => 'ส่ง',
 ];
