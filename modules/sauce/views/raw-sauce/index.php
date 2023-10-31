@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Raw Sauce'), ['create'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
     <?php Pjax::begin(); ?>
-    <!-- <?= $this->render('_search', ['model' => $searchModel]); ?> -->
+    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">

@@ -89,6 +89,7 @@ class RawSauce extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['selectTank','selectType'], 'required'],
             [['reccord_date', 'created_at', 'updated_at'], 'safe'],
             [['reccord_date'], 'date', 'format' => 'php:Y-m-d'],
             [['tank_id', 'type_id', 'created_by', 'updated_by'], 'integer'],

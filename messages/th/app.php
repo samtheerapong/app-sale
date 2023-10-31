@@ -25,13 +25,20 @@ return [
     'unit' => 'หน่วยนับ',
     'image' => 'รูปภาพ',
     'description' => 'รายละเอียด',
+    'Configuration' => 'กำหนดค่า',
+    'Report' => 'รายงาน',
+    'Record Sauce' => 'บันทึกคุณภาพ',
+    'Raw Soy Sauce Record' => 'บันทึกคุณภาพซีอิ๊วดิบ',
 
 
     // RawSauce
+    'Raw Sauce' => 'ซีอิ๊วดิบ',
     'Batch' => 'Batch',
     'Reccord Date' => 'Date',
-    'Tank' => 'Tank',
-    'Type' => 'Type',
+    'Tank' => 'ถัง',
+    'Type' => 'ชนิด',
+    'Code' => 'รหัส',
+    'Name' => 'ชื่อ',
     'PH' => 'PH',
     'NaCL Time 1' => 'Nacl #1',
     'NaCL Time 2' => 'Nacl #2',
