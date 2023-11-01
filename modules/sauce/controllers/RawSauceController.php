@@ -159,13 +159,18 @@ class RawSauceController extends Controller
         $reportData = [];
         $mm = $ph = $nacl = $tn = $col = $alc = $ppm = $brix = [];
 
-        if ($model->load(Yii::$app->request->post()) && isset(Yii::$app->request->post('RawSauce')['selectTank']) && isset(Yii::$app->request->post('RawSauce')['selectType'])) {
+        if ($model->load(Yii::$app->request->post()) 
+        && isset(Yii::$app->request->post('RawSauce')['selectTank']) 
+        && isset(Yii::$app->request->post('RawSauce')['selectType'])
+        && isset(Yii::$app->request->post('RawSauce')['selectYear'])
+        ) {
             $tankId = Yii::$app->request->post('RawSauce')['selectTank'];
             $typeId = Yii::$app->request->post('RawSauce')['selectType'];
+            $yearId = Yii::$app->request->post('RawSauce')['selectYear'];
             // ตรวจสอบว่าค่าถูกส่งมาหรือไม่
-            // ทำสิ่งที่คุณต้องการกับ $tankId และ $typeId ต่อที่นี่
+          
 
-            $reportData = $model->getReport1Data($tankId, $typeId);
+            $reportData = $model->getReport1Data($tankId, $typeId, $yearId);
 
             $mm = $reportData['mm'];
             $ph = $reportData['ph'];

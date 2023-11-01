@@ -5,16 +5,16 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\modules\sauce\models\RawSauce $model */
 
-$this->title = Yii::t('app', 'Update Raw Sauce: {name}', [
-    'name' => $model->id,
-]);
+$this->title = Yii::t('app', 'Update').'  ' . Yii::t('app', 'Record Sauce');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Raw Sauces'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="raw-sauce-update">
 
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
+    <p>
+        <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+    </p>
 
     <?= $this->render('_form', [
         'model' => $model,

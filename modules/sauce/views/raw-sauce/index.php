@@ -24,12 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-    <?= Html::a(Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
     <?php Pjax::begin(); ?>
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">
@@ -48,16 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-                    //    'reccord_date:date',
-                    // [
-                    //     'attribute' => 'year',
-                    //     'format' => 'html',
-                    //     'options' => ['style' => 'width:60px'],
-                    //     'value' => function ($model) {
-                    //         return $model->year ?? '';
-                    //     },
-                    //     'filter' => ArrayHelper::map(RawSauce::find()->select('YEAR(reccord_date) AS year')->distinct()->asArray()->all(), 'year', 'year'),
-                    // ],
+
                     [
                         'attribute' => 'month',
                         'format' => 'date',
@@ -75,51 +67,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'month',
                             // 'month',
                             function ($model) {
-                                return Yii::$app->formatter->asDate("2023-{$model['month']}-01", 'MMMM');
+                                return Yii::$app->formatter->asDate("0000-{$model['month']}-01", 'MMMM');
                             }
                         ),
                     ],
-
-                    // [
-                    //     'attribute' => 'reccord_date',
-                    //     'options' => ['style' => 'width:150px'],
-                    //     'contentOptions' => ['class' => 'text-center'], // จัดตรงกลาง
-                    //     'format' => 'date',
-                    //     'value' => function ($model) {
-                    //         return $model->reccord_date ?? '';
-                    //     },
-                    //     'filter' => DatePicker::widget([
-                    //         'model' => $searchModel,
-                    //         'attribute' => 'reccord_date',
-                    //         'options' => ['placeholder' => Yii::t('app', 'Select...')],
-                    //         'pluginOptions' => [
-                    //             'format' => 'yyyy-mm-dd',
-                    //             'autoclose' => true,
-                    //         ]
-                    //     ]),
-                    // ],
-                    // [
-                    //     'attribute' => 'year',
-                    //     'value' => function ($model) {
-                    //         return $model->year ?? '';
-                    //     },
-                    //     'filter' => ArrayHelper::map(RawSauce::find()->select('YEAR(reccord_date) AS year')->distinct()->asArray()->all(), 'year', 'year'),
-                    // ],
-
-                    // [
-                    //     'attribute' => 'created_at',
-                    //     'format' => 'date',
-                    //     'filter' => DatePicker::widget([
-                    //         'model' => $searchModel,
-                    //         'attribute' => 'reccord_date_start',
-                    //         'attribute2' => 'reccord_date_end',
-                    //         'language' => 'th',
-                    //         'pluginOptions' => [
-                    //             'format' => 'yyyy-mm-dd',
-                    //             'autoclose' => true,
-                    //         ]
-                    //     ]),
-                    // ],
 
                     [
                         'attribute' => 'tank_id',

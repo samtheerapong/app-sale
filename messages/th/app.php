@@ -13,7 +13,7 @@ return [
     'URL copied to clipboard.' => 'คัดลอก URL ไปยังคลิปบอร์ดแล้ว',
     'Are you sure you want to delete this item?' => 'คุณแน่ใจหรือว่าต้องการลบรายการนี้หรือไม่?',
 
-    // Products
+
     'Products' => 'สินค้า',
     'Create Products' => 'เพิ่มข้อมูลา',
     'Update Products' => 'แก้ไขข้อมูล',
@@ -24,14 +24,17 @@ return [
     'name' => 'ชื่อสินค้า',
     'unit' => 'หน่วยนับ',
     'image' => 'รูปภาพ',
+
+
+    'Save' => 'บันทึก',
+    'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',
     'Configuration' => 'กำหนดค่า',
     'Report' => 'รายงาน',
+    'Search' => 'ค้นหา',
+    'Reset' => 'ล้าง',
     'Record Sauce' => 'บันทึกคุณภาพ',
     'Raw Soy Sauce Record' => 'บันทึกคุณภาพซีอิ๊วดิบ',
-
-
-    // RawSauce
     'Raw Sauce' => 'ซีอิ๊วดิบ',
     'Batch' => 'Batch',
     'Reccord Date' => 'Date',
@@ -59,4 +62,11 @@ return [
     'Brix' => '%Brix',
     'Remask' => 'Remask',
     'Submit' => 'ส่ง',
+    'Choose a year' => 'เลือกปี',
+    'Choose a month' => 'เลือกเดือน',
+    'Choose a Tank' => 'เลือกถัง',
+    'Choose a Type' => 'เลือกชนิด',
+    'Select All' => 'ทั้งหมด',
+    'Report Selector' => 'ตัวเลือกรายงาน',
+    'Report Charts' => 'แผนภูมิและกราฟ',
 ];

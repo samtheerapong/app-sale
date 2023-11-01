@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Report Charts';
+$this->title = Yii::t('app', 'Report Charts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

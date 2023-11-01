@@ -89,9 +89,9 @@ class RawSauce extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['selectTank','selectType'], 'required'],
+            // [['selectTank','selectType'], 'required'],
             [['reccord_date', 'created_at', 'updated_at'], 'safe'],
-            [['reccord_date'], 'date', 'format' => 'php:Y-m-d'],
+            // [['reccord_date'], 'date', 'format' => 'php:Y-m-d'],
             [['tank_id', 'type_id', 'created_by', 'updated_by'], 'integer'],
             [['ph', 'nacl_t1', 'nacl_t2', 'nacl_t_avr', 'nacl_p1', 'nacl_p2', 'nacl_p_avr', 'tn_t1', 'th_t2', 'tn_t_avr', 'tn_p1', 'tn_p2', 'tn_p_avr', 'col', 'alc_t', 'alc_p', 'ppm', 'brix'], 'number'],
             [['remask', 'batch'], 'string', 'max' => 255],
@@ -134,8 +134,12 @@ class RawSauce extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_by' => Yii::t('app', 'Updated By'),
-            'selectTank' => Yii::t('app', 'Select Tank'),
-            'selectType' => Yii::t('app', 'Select Type'),
+            'selectTank' => Yii::t('app', 'Choose a Tank'),
+            'selectType' => Yii::t('app', 'Choose a Type'),
+            'selectYear' => Yii::t('app', 'Choose a year'),
+            'selectMonth' => Yii::t('app', 'Choose a month'),
+            'year' => Yii::t('app', 'Choose a year'),
+            'month' => Yii::t('app', 'Choose a month'),
         ];
     }
 
@@ -191,9 +195,10 @@ class RawSauce extends \yii\db\ActiveRecord
         return date('Y-m-d', strtotime($date));
     }
 
-    public function getReport1Data($tankId, $typeId)
+    public function getReport1Data($tankId, $typeId, $yearId)
     {
         $connection = Yii::$app->db;
+
         $data = $connection->createCommand('
             SELECT 
                 t.reccord_date as date, 
@@ -212,8 +217,11 @@ class RawSauce extends \yii\db\ActiveRecord
             FROM raw_sauce t
             WHERE t.tank_id = :selectTank
             AND t.type_id = :selectType
+            AND year(t.reccord_date) = :selectYear
             ORDER BY date ASC
-        ')->bindValues([':selectTank' => $tankId, ':selectType' => $typeId])->queryAll();
+        ')->bindValues([':selectTank' => $tankId, ':selectType' => $typeId, ':selectYear' => $yearId])->queryAll();
+
+
 
         $mm = [];
         $ph = [];

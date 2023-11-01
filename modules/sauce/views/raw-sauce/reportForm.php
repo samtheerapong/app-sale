@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\sauce\models\RawSauce;
 use app\modules\sauce\models\Tank;
 use app\modules\sauce\models\Type;
 use yii\helpers\Html;
@@ -24,32 +25,52 @@ use yii\helpers\ArrayHelper;
             ]); ?>
 
             <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($model, 'selectTank')->widget(Select2::class, [
-                        'language' => 'th',
-                        'data' => ArrayHelper::map(Tank::find()->all(), 'id', 'code'),
-                        'options' => ['placeholder' => Yii::t('app', 'Select...'), 'required' => true],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);
-                    ?>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'selectYear')->dropDownList(
+                        ArrayHelper::map(
+                            RawSauce::find()
+                                ->select('YEAR(reccord_date) AS year')
+                                ->distinct()
+                                ->orderBy(['year' => SORT_ASC])
+                                ->asArray()
+                                ->all(),
+                            'year',
+                            'year'
+                        ),
+                        ['prompt' => Yii::t('app', 'Select All')]
+                    ) ?>
+
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'selectTank')->dropDownList(
+                        ArrayHelper::map(Tank::find()->all(), 'id', 'code'),
+                        [
+                            'prompt' => Yii::t('app', 'Select All'),
+                            'options' => [
+                                'required' => true,
+                            ],
+                        ]
+                    ) ?>
+
+
                 </div>
 
-                <div class="col-md-6">
-                    <?= $form->field($model, 'selectType')->widget(Select2::class, [
-                        'language' => 'th',
-                        'data' => ArrayHelper::map(Type::find()->all(), 'id', 'code'),
-                        'options' => ['placeholder' => Yii::t('app', 'Select...')],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);
-                    ?>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'selectType')->dropDownList(
+                        ArrayHelper::map(Type::find()->all(), 'id', 'code'),
+                        [
+                            'prompt' => Yii::t('app', 'Select All'),
+                            'options' => [
+                                'required' => true,
+                            ],
+                        ]
+                    ) ?>
+
                 </div>
 
                 <div class="form-group">
                     <?= Html::submitButton('<i class="fa fa-area-chart" aria-hidden="true"></i> ' . Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/report1'], ['class' => 'btn btn-outline-secondary']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
