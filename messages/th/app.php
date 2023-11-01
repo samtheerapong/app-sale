@@ -12,6 +12,9 @@ return [
     'Select...' => 'เลือก...',
     'URL copied to clipboard.' => 'คัดลอก URL ไปยังคลิปบอร์ดแล้ว',
     'Are you sure you want to delete this item?' => 'คุณแน่ใจหรือว่าต้องการลบรายการนี้หรือไม่?',
+    'Save' => 'บันทึก',
+    'Search' => 'ค้นหา',
+    'Reset' => 'ล้าง',
 
 
     'Products' => 'สินค้า',
@@ -26,15 +29,15 @@ return [
     'image' => 'รูปภาพ',
 
 
-    'Save' => 'บันทึก',
+    'Raw Soy Sauce' => 'ซีอิ๊วดิบ',
     'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',
     'Configuration' => 'กำหนดค่า',
-    'Report' => 'รายงาน',
-    'Search' => 'ค้นหา',
-    'Reset' => 'ล้าง',
+    'Report 1' => 'รายงาน 1',
+    'Report 2' => 'รายงาน 2',
     'Record Sauce' => 'บันทึกคุณภาพ',
     'Raw Soy Sauce Record' => 'บันทึกคุณภาพซีอิ๊วดิบ',
+    'Moromi Quality Report' => 'บันทึกคุณภาพซีโมโรมิ',
     'Raw Sauce' => 'ซีอิ๊วดิบ',
     'Batch' => 'Batch',
     'Reccord Date' => 'Date',
@@ -69,4 +72,10 @@ return [
     'Select All' => 'ทั้งหมด',
     'Report Selector' => 'ตัวเลือกรายงาน',
     'Report Charts' => 'แผนภูมิและกราฟ',
+    'Report Select Tank' => 'กราฟรายงานตามถัง',
+    'Report Select Type' => 'กราฟรายงานตามชนิด',
+
+
+    'Moromi' => 'โมโรมิ',
+    'Moromi Record' => 'บันทึกคุณภาพโมโรมิ',
 ];

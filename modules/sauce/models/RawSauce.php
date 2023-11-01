@@ -174,28 +174,23 @@ class RawSauce extends \yii\db\ActiveRecord
 
     public function calculateNaclAverages()
     {
-        $sumNaclT = $this->nacl_t1 + $this->nacl_t2;
-        $this->nacl_t_avr = $sumNaclT / 2;
-
-        $sumNaclP = $this->nacl_p1 + $this->nacl_p2;
-        $this->nacl_p_avr = $sumNaclP / 2;
+        $this->nacl_t_avr = ($this->nacl_t1 + $this->nacl_t2) / 2;
+        $this->nacl_p_avr = ($this->nacl_p1 + $this->nacl_p2) / 2;
     }
 
     public function calculateTnAverages()
     {
-        $sumTnT = $this->tn_t1 + $this->th_t2;
-        $this->tn_t_avr = $sumTnT / 2;
-
-        $sumTnP = $this->tn_p1 + $this->tn_p2;
-        $this->tn_p_avr = $sumTnP / 2;
+        $this->tn_t_avr = ($this->tn_t1 + $this->th_t2) / 2;
+        $this->tn_p_avr = ($this->tn_p1 + $this->tn_p2) / 2;
     }
 
-    public function shortdate($date)
-    {
-        return date('Y-m-d', strtotime($date));
-    }
+    // public function shortdate($date)
+    // {
+    //     return date('Y-m-d', strtotime($date));
+    // }
 
-    public function getReport1Data($tankId, $typeId, $yearId)
+
+    public function getReport2Data($tankId, $typeId, $yearId)
     {
         $connection = Yii::$app->db;
 
@@ -221,7 +216,63 @@ class RawSauce extends \yii\db\ActiveRecord
             ORDER BY date ASC
         ')->bindValues([':selectTank' => $tankId, ':selectType' => $typeId, ':selectYear' => $yearId])->queryAll();
 
+        $mm = [];
+        $ph = [];
+        $nacl = [];
+        $tn = [];
+        $col = [];
+        $alc = [];
+        $ppm = [];
+        $brix = [];
 
+        foreach ($data as $dp) {
+            $yy[] = $dp['yy'];
+            $mm[] = $dp['date'];
+            $ph[] = $dp['ph'] * 1;
+            $nacl[] = $dp['nacl'] * 1;
+            $tn[] = $dp['tn'] * 1;
+            $col[] = $dp['col'] * 1;
+            $alc[] = $dp['alc'] * 1;
+            $ppm[] = $dp['ppm'] * 1;
+            $brix[] = $dp['brix'] * 1;
+        }
+
+        return [
+            'mm' => $mm,
+            'ph' => $ph,
+            'nacl' => $nacl,
+            'tn' => $tn,
+            'col' => $col,
+            'alc' => $alc,
+            'ppm' => $ppm,
+            'brix' => $brix,
+        ];
+    }
+
+    public function getReport1Data($typeId, $yearId)
+    {
+        $connection = Yii::$app->db;
+
+        $data = $connection->createCommand('
+            SELECT 
+                t.reccord_date as date, 
+                year(t.reccord_date) as yy, 
+                month(t.reccord_date) as mm, 
+                day(t.reccord_date) as dd,
+                t.ph as ph,
+                t.tank_id as tank,
+                t.type_id as type,
+                t.nacl_p_avr as nacl,
+                t.tn_p_avr as tn,
+                t.col as col,
+                t.alc_p as alc,
+                t.ppm as ppm,
+                t.brix as brix
+            FROM raw_sauce t
+            WHERE t.type_id = :selectType
+            AND year(t.reccord_date) = :selectYear
+            ORDER BY date ASC
+        ')->bindValues([':selectType' => $typeId, ':selectYear' => $yearId])->queryAll();
 
         $mm = [];
         $ph = [];
@@ -244,7 +295,6 @@ class RawSauce extends \yii\db\ActiveRecord
             $brix[] = $dp['brix'] * 1;
         }
 
-        // echo $tankId . $typeId;
         return [
             'mm' => $mm,
             'ph' => $ph,

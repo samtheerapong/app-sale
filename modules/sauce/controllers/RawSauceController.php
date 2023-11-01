@@ -153,7 +153,7 @@ class RawSauceController extends Controller
     }
 
 
-    public function actionReport1()
+    public function actionReport2()
     {
         $model = new RawSauce();
         $reportData = [];
@@ -170,7 +170,49 @@ class RawSauceController extends Controller
             // ตรวจสอบว่าค่าถูกส่งมาหรือไม่
           
 
-            $reportData = $model->getReport1Data($tankId, $typeId, $yearId);
+            $reportData = $model->getReport2Data($tankId, $typeId, $yearId);
+
+            $mm = $reportData['mm'];
+            $ph = $reportData['ph'];
+            $nacl = $reportData['nacl'];
+            $tn = $reportData['tn'];
+            $col = $reportData['col'];
+            $alc = $reportData['alc'];
+            $ppm = $reportData['ppm'];
+            $brix = $reportData['brix'];
+        }
+
+
+        return $this->render('report2', [
+            'model' => $model,
+            'reportData' => $reportData,
+            'mm' => $mm,
+            'ph' => $ph,
+            'nacl' => $nacl,
+            'tn' => $tn,
+            'col' => $col,
+            'alc' => $alc,
+            'ppm' => $ppm,
+            'brix' => $brix,
+        ]);
+    }
+
+    public function actionReport1()
+    {
+        $model = new RawSauce();
+        $reportData = [];
+        $mm = $ph = $nacl = $tn = $col = $alc = $ppm = $brix = [];
+
+        if ($model->load(Yii::$app->request->post()) 
+        && isset(Yii::$app->request->post('RawSauce')['selectType'])
+        && isset(Yii::$app->request->post('RawSauce')['selectYear'])
+        ) {
+            $typeId = Yii::$app->request->post('RawSauce')['selectType'];
+            $yearId = Yii::$app->request->post('RawSauce')['selectYear'];
+            // ตรวจสอบว่าค่าถูกส่งมาหรือไม่
+          
+
+            $reportData = $model->getReport1Data($typeId, $yearId);
 
             $mm = $reportData['mm'];
             $ph = $reportData['ph'];

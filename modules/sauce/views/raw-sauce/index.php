@@ -112,15 +112,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                     ],
 
-                    [
-                        'attribute' => 'batch',
-                        'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:200px;'],
-                        'value' => function ($model) {
-                            return $model->batch;
-                        },
-                    ],
+                    // [
+                    //     'attribute' => 'batch',
+                    //     'format' => 'html',
+                    //     'contentOptions' => ['class' => 'text-center'],
+                    //     'options' => ['style' => 'width:200px;'],
+                    //     'value' => function ($model) {
+                    //         return $model->batch;
+                    //     },
+                    // ],
 
                     [
                         'attribute' => 'ph',

@@ -3,13 +3,17 @@
 use miloschuman\highcharts\Highcharts;
 use yii\widgets\Pjax;
 
-$this->title = Yii::t('app', 'Report Select Type');
+$this->title = Yii::t('app', 'Report Select Tank');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="report2">
+<div class="report1">
+
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('report1Form', ['model' => $model]); ?>
+
+    <?php echo $this->render('report2Form', ['model' => $model]); ?>
+
+
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">
             <?= Yii::t('app', 'pH Charts') ?>
@@ -205,6 +209,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
         </div>
     </div>
+
     <?php Pjax::end(); ?>
+
     
 </div>

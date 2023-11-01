@@ -21,11 +21,11 @@ use yii\helpers\ArrayHelper;
         </div>
         <div class="card-body">
             <?php $form = ActiveForm::begin([
-                'action' => ['raw-sauce/report1'], // ต้องเปลี่ยน controllerName เป็นชื่อของคอนโทรลเลอร์ที่เกี่ยวข้อง
+                'action' => ['raw-sauce/report2'], // ต้องเปลี่ยน controllerName เป็นชื่อของคอนโทรลเลอร์ที่เกี่ยวข้อง
             ]); ?>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <?= $form->field($model, 'selectYear')->dropDownList(
                         ArrayHelper::map(
                             RawSauce::find()
@@ -41,7 +41,7 @@ use yii\helpers\ArrayHelper;
                     ) ?>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <?= $form->field($model, 'selectTank')->dropDownList(
                         ArrayHelper::map(Tank::find()->all(), 'id', 'code'),
                         [
@@ -55,7 +55,7 @@ use yii\helpers\ArrayHelper;
 
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <?= $form->field($model, 'selectType')->dropDownList(
                         ArrayHelper::map(Type::find()->all(), 'id', 'code'),
                         [
@@ -65,18 +65,16 @@ use yii\helpers\ArrayHelper;
                             ],
                         ]
                     ) ?>
-
                 </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('<i class="fa fa-area-chart" aria-hidden="true"></i> ' . Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/report1'], ['class' => 'btn btn-outline-secondary']) ?>
-                </div>
-
-                <?php ActiveForm::end(); ?>
             </div>
+
+            <div class="form-group">
+                <?= Html::submitButton('<i class="fa fa-area-chart" aria-hidden="true"></i> ' . Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/report1'], ['class' => 'btn btn-outline-secondary']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
-
-
 </div>
+

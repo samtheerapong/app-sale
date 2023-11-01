@@ -26,7 +26,7 @@ use kartik\form\ActiveForm;
             ]);
             ?>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <?= $form->field($model, 'year')->dropDownList(
                         ArrayHelper::map(
                             RawSauce::find()
@@ -44,7 +44,7 @@ use kartik\form\ActiveForm;
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <?php //echo $form->field($model, 'month')->textInput(['type' => 'number','placeholder' => Yii::t('app', 'Month')]) 
                     ?>
                     <?= $form->field($model, 'month')->dropDownList(
@@ -78,7 +78,7 @@ use kartik\form\ActiveForm;
                 <div class="col-md-12">
                     <div class="form-group">
                         <?= Html::submitButton('<i class="fas fa-search"></i> ' . Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-                        <?= Html::resetButton('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+                        <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/index'], ['class' => 'btn btn-outline-secondary']) ?>
                     </div>
                 </div>
             </div>

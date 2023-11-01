@@ -50,17 +50,24 @@
                     // ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
                     // ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
                     // ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                    ['label' => Yii::t('app', 'Record Sauce'), 'header' => true],
-                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    ['label' => Yii::t('app', 'Create New'), 'url' => ['/sauce/raw-sauce/create'], 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    ['label' => Yii::t('app', 'Report'), 'url' => ['/sauce/raw-sauce/report1'], 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    [
-                        'label' => Yii::t('app', 'Configuration'),
-                        'items' => [
-                            ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/tank/index'], 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                            ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                        ]
-                    ],
+
+                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'header' => true],
+                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                    ['label' => Yii::t('app', 'Create New'), 'url' => ['/sauce/raw-sauce/create'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-file-import'],
+                    ['label' => Yii::t('app', 'Report Select Type'), 'url' => ['/sauce/raw-sauce/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                    ['label' => Yii::t('app', 'Report Select Tank'), 'url' => ['/sauce/raw-sauce/report2'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+
+                    ['label' => Yii::t('app', 'Moromi Quality Report'), 'header' => true],
+                    ['label' => Yii::t('app', 'Moromi Record'), 'url' => ['/sauce/moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                    ['label' => Yii::t('app', 'Create New'), 'url' => ['/sauce/moromi/create'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-file-import'],
+                    ['label' => Yii::t('app', 'Report'), 'url' => ['/sauce/moromi/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+
+                    ['label' => Yii::t('app', 'Configuration'), 'header' => true],
+                    ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/tank/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-boxes-stacked'],
+                    ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
+                    ['label' => Yii::t('app', 'Users'), 'url' => ['/users/users/index'], 'iconStyle' => 'fa', 'icon' => 'user'],
+                    ['label' => Yii::t('app', 'Permission'), 'url' => ['/users/permission/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-eye-slash'],
+
                     // ['label' => 'LABELS', 'header' => true],
                     // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
                     // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
