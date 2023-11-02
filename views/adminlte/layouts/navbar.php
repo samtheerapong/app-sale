@@ -21,7 +21,8 @@ use yii\helpers\Url;
         <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?= Yii::t('app', 'Raw Soy Sauce') ?></a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                <li><a href="<?= Url::toRoute('/sauce/raw-sauce/index'); ?>" class="dropdown-item"><?= Yii::t('app', 'Raw Soy Sauce Record') ?></a></li>
+                <li><a href="<?= Url::toRoute('/sauce/raw-sauce/index'); ?>" class="dropdown-item"><?= Yii::t('app', 'Record Table') ?></a></li>
+                <li><a href="<?= Url::toRoute('/sauce/raw-sauce/index2'); ?>" class="dropdown-item"><?= Yii::t('app', 'Record Card') ?></a></li>
                 <li><a href="<?= Url::toRoute('/sauce/raw-sauce/create'); ?>" class="dropdown-item"><?= Yii::t('app', 'Create New') ?></a></li>
                 <li><a href="<?= Url::toRoute('/sauce/raw-sauce/report1'); ?>" class="dropdown-item"><?= Yii::t('app', 'Report Select Type') ?></a></li>
                 <li><a href="<?= Url::toRoute('/sauce/raw-sauce/report2'); ?>" class="dropdown-item"><?= Yii::t('app', 'Report Select Tank') ?></a></li>

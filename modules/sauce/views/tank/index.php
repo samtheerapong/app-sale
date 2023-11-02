@@ -17,44 +17,50 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tank-index">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
 
     <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+        <div class="card-header text-white bg-primary">
             <?= Html::encode($this->title) ?>
         </div>
         <div class="card-body">
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-
-                    // 'id',
-                    'code',
-                    'name',
-                    // 'description',
-                    'color',
-                    [
-                        'class' => 'kartik\grid\ActionColumn',
-                        'headerOptions' => ['style' => 'width: 120px;'],
-                        'contentOptions' => ['class' => 'text-center'],
-                        'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
-                        'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
-                        'urlCreator' => function ($action, $model, $key, $index, $column) {
-                            return Url::toRoute([$action, 'id' => $model->id]);
-                        }
-                    ],
-                ],
-            ]); ?>
-
-            <?php Pjax::end(); ?>
-
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
         </div>
     </div>
+
+    <div class="row ">
+        <?php foreach ($dataProvider->getModels() as $model) : ?>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <div class="card-header" style="background-color: <?= $model->color ?>; color: #FFFFFF;">
+                        <h5><?= Html::encode($model->code) ?></h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><?= Yii::t('app', 'Name') ?> : <?= Html::encode($model->name) ?></p>
+                        <p class="card-text"><?= Yii::t('app', 'Description') ?> : <?= Html::encode($model->description) ?></p>
+                        <!-- <p class="card-text"><?= Html::encode($model->color) ?></p> -->
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="btn-group btn-group-xs" role="group">
+                            <?= Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'View'), 'aria-label' => Yii::t('app', 'View')]) ?>
+                            <?= Html::a('<i class="fas fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'Update'), 'aria-label' => Yii::t('app', 'Update')]) ?>
+                            <?= Html::a('<i class="fas fa-trash-can"></i>', ['delete', 'id' => $model->id], [
+                                'class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'Delete'), 'aria-label' => Yii::t('app', 'Delete'),
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+
+    <?php Pjax::end(); ?>
 </div>

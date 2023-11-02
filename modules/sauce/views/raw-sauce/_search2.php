@@ -18,7 +18,7 @@ use kartik\form\ActiveForm;
     <div class="card">
         <div class="card-body">
             <?php $form = ActiveForm::begin([
-                'action' => ['index'],
+                'action' => ['index2'],
                 'method' => 'get',
                 'options' => [
                     'data-pjax' => 12
@@ -26,7 +26,7 @@ use kartik\form\ActiveForm;
             ]);
             ?>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?= $form->field($model, 'year')->dropDownList(
                         ArrayHelper::map(
                             RawSauce::find()
@@ -44,7 +44,7 @@ use kartik\form\ActiveForm;
 
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?php //echo $form->field($model, 'month')->textInput(['type' => 'number','placeholder' => Yii::t('app', 'Month')]) 
                     ?>
                     <?= $form->field($model, 'month')->dropDownList(
@@ -62,23 +62,30 @@ use kartik\form\ActiveForm;
                             11 => 'พฤศจิกายน',
                             12 => 'ธันวาคม',
                         ],
-                        ['prompt' => Yii::t('app', 'เลือกทั้งหมด')]
+                        ['prompt' => Yii::t('app', 'Select All')]
                     ) ?>
 
                 </div>
                 <div class="col-md-3">
-                    <?php // echo $form->field($model, 'tank_id')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(Tank::find()->all(), 'id', 'code'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]);
+                    <?= $form->field($model, 'tank_id')->dropDownList(
+                        ArrayHelper::map(Tank::find()->all(), 'id', 'code'),
+                        ['prompt' => Yii::t('app', 'Select All')]
+                    )
                     ?>
                 </div>
                 <div class="col-md-3">
-                    <?php // echo $form->field($model, 'type_id')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(Type::find()->all(), 'id', 'code'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]);
+                    <?= $form->field($model, 'type_id')->dropDownList(
+                        ArrayHelper::map(Type::find()->all(), 'id', 'code'),
+                        ['prompt' => Yii::t('app', 'Select All')]
+                    )
                     ?>
+
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <?= Html::submitButton('<i class="fas fa-search"></i> ' . Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-                        <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['index'], ['class' => 'btn btn-outline-secondary']) ?>
+                        <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['index2'], ['class' => 'btn btn-outline-secondary']) ?>
                     </div>
                 </div>
             </div>

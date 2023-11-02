@@ -4,6 +4,7 @@ namespace app\modules\sauce\controllers;
 
 use app\modules\sauce\models\RawSauce;
 use app\modules\sauce\models\RawSauceSearch;
+use app\modules\sauce\models\RawSauce2Search;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\Controller;
@@ -51,6 +52,17 @@ class RawSauceController extends Controller
         ];
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionIndex2()
+    {
+        $searchModel = new RawSauce2Search();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('index2', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -159,16 +171,17 @@ class RawSauceController extends Controller
         $reportData = [];
         $mm = $ph = $nacl = $tn = $col = $alc = $ppm = $brix = [];
 
-        if ($model->load(Yii::$app->request->post()) 
-        && isset(Yii::$app->request->post('RawSauce')['selectTank']) 
-        && isset(Yii::$app->request->post('RawSauce')['selectType'])
-        && isset(Yii::$app->request->post('RawSauce')['selectYear'])
+        if (
+            $model->load(Yii::$app->request->post())
+            && isset(Yii::$app->request->post('RawSauce')['selectTank'])
+            && isset(Yii::$app->request->post('RawSauce')['selectType'])
+            && isset(Yii::$app->request->post('RawSauce')['selectYear'])
         ) {
             $tankId = Yii::$app->request->post('RawSauce')['selectTank'];
             $typeId = Yii::$app->request->post('RawSauce')['selectType'];
             $yearId = Yii::$app->request->post('RawSauce')['selectYear'];
             // ตรวจสอบว่าค่าถูกส่งมาหรือไม่
-          
+
 
             $reportData = $model->getReport2Data($tankId, $typeId, $yearId);
 
@@ -203,14 +216,15 @@ class RawSauceController extends Controller
         $reportData = [];
         $mm = $ph = $nacl = $tn = $col = $alc = $ppm = $brix = [];
 
-        if ($model->load(Yii::$app->request->post()) 
-        && isset(Yii::$app->request->post('RawSauce')['selectType'])
-        && isset(Yii::$app->request->post('RawSauce')['selectYear'])
+        if (
+            $model->load(Yii::$app->request->post())
+            && isset(Yii::$app->request->post('RawSauce')['selectType'])
+            && isset(Yii::$app->request->post('RawSauce')['selectYear'])
         ) {
             $typeId = Yii::$app->request->post('RawSauce')['selectType'];
             $yearId = Yii::$app->request->post('RawSauce')['selectYear'];
             // ตรวจสอบว่าค่าถูกส่งมาหรือไม่
-          
+
 
             $reportData = $model->getReport1Data($typeId, $yearId);
 

@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="raw-sauce-create">
 
     <p>
-        <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= $this->render('_form', [

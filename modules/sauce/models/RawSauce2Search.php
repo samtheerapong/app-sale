@@ -9,7 +9,7 @@ use app\modules\sauce\models\RawSauce;
 /**
  * RawSauceSearch represents the model behind the search form of `app\modules\sauce\models\RawSauce`.
  */
-class RawSauceSearch extends RawSauce
+class RawSauce2Search extends RawSauce
 {
     public $reccord_date_start; // Add this property
     public $reccord_date_end;   // Add this property
@@ -53,13 +53,18 @@ class RawSauceSearch extends RawSauce
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            // เรียงล่าสุดก่อน จาก id
-            'pagination' => false, // Disable pagination
-            'sort' => ['defaultOrder' => [
-                // 'id' => 'ACE'
-                'id' => SORT_DESC,
-            ]]
+            'pagination' => [
+                'pageSize' => 12, // Set the number of items per page to 12
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'tank_id' => SORT_ASC, // Ascending order for tank_id
+                    'type_id' => SORT_ASC, // Ascending order for type_id
+                    'reccord_date' => SORT_DESC, // Descending order for record_date
+                ],
+            ],
         ]);
+
 
         $this->load($params);
 
@@ -111,7 +116,7 @@ class RawSauceSearch extends RawSauce
             ->andFilterWhere(['like', 'reccord_date', $this->reccord_date])
             ->andFilterWhere(['like', 'remask', $this->remask]);
 
-        $query->andFilterWhere(['between', 'reccord_date', $this->reccord_date_start, $this->reccord_date_end]);
+        // $query->andFilterWhere(['between', 'reccord_date', $this->reccord_date_start, $this->reccord_date_end]);
 
         return $dataProvider;
     }

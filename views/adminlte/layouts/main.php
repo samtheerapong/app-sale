@@ -40,7 +40,7 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
         }
     </style>
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed">
 <?php $this->beginBody() ?>
 
 <div class="wrapper">

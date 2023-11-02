@@ -4,6 +4,7 @@ return [
     'actions' => 'ดำเนินการ',
     'Create New' => 'เพิ่มข้อมูลใหม่',
     'Table of' => 'ตารางแสดงข้อมูล',
+    'View' => 'ดู',
     'Update' => 'แก้ไข',
     'Delete' => 'ลบ',
     'Detail of' => 'รายละเอียดของ',
@@ -15,6 +16,8 @@ return [
     'Save' => 'บันทึก',
     'Search' => 'ค้นหา',
     'Reset' => 'ล้าง',
+    'First' => 'หน้าแรก',
+    'Last' => 'หน้าสุดท้าย',
 
 
     'Products' => 'สินค้า',
@@ -29,6 +32,8 @@ return [
     'image' => 'รูปภาพ',
 
 
+    'Record Table' => 'ตารางบันทึก',
+    'Record Card' => 'การ์ดบันทึก',
     'Raw Soy Sauce' => 'ซีอิ๊วดิบ',
     'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',
@@ -40,7 +45,7 @@ return [
     'Moromi Quality Report' => 'บันทึกคุณภาพซีโมโรมิ',
     'Raw Sauce' => 'ซีอิ๊วดิบ',
     'Batch' => 'Batch',
-    'Reccord Date' => 'Date',
+    'Record Date' => 'วันที่บันทึก',
     'Tank' => 'ถัง',
     'Type' => 'ชนิด',
     'Code' => 'รหัส',
@@ -65,6 +70,7 @@ return [
     'Brix' => '%Brix',
     'Remask' => 'Remask',
     'Submit' => 'ส่ง',
+    'Description' => 'รายละเอียด',
     'Choose a year' => 'เลือกปี',
     'Choose a month' => 'เลือกเดือน',
     'Choose a Tank' => 'เลือกถัง',

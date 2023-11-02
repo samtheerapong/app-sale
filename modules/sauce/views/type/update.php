@@ -12,8 +12,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="type-update">
 
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
-
+    <p>
+        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
+    </p>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

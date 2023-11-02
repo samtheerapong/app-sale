@@ -15,8 +15,8 @@ use yii\helpers\ArrayHelper;
 
 <div class="raw-sauce-form">
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-primary">
+        <div class="card-header text-white bg-primary">
             <?= Yii::t('app', 'Report Selector') ?>
         </div>
         <div class="card-body">
