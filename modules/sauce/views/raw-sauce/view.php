@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div style="display: flex; justify-content: space-between;">
         <p>
-            <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Record Card'),['index2'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('<i class="fas fa-table"></i> ' . Yii::t('app', 'Record Table'),['index'], ['class' => 'btn btn-primary']) ?>
         </p>
 
         <p style="text-align: right;">
