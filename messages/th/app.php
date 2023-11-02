@@ -32,8 +32,8 @@ return [
     'image' => 'รูปภาพ',
 
 
-    'Record Table' => 'ตารางบันทึก',
-    'Record Card' => 'การ์ดบันทึก',
+    'Record Table' => 'บันทึกคุณภาพซีอิ้วดิบ (ตาราง)',
+    'Record Card' => 'บันทึกคุณภาพซีอิ้วดิบ (การ์ด)',
     'Raw Soy Sauce' => 'ซีอิ๊วดิบ',
     'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',

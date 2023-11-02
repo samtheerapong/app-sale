@@ -34,10 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="card-text"><?= Yii::t('app', 'Record Date') ?>: <?= Yii::$app->formatter->asDate($model->reccord_date, 'd MMMM YYYY') ?></p>
                         <p class="card-text"><?= Yii::t('app', 'Type') ?>: <span class="badge" style="background-color: <?= $model->type0->color ?>;"><b><?= Html::encode($model->type0->code) ?></b></span></p>
                         <p class="card-text"><?= Yii::t('app', 'pH') ?>: <?= $model->ph < 4.6 ? '<span class="text" style="color:#C70039">' . $model->ph . '</span>' : '<span class="text">' . $model->ph . '</span>' ?></p>
-                        <p class="card-text"><?= Yii::t('app', 'NaCl') ?>: <?= $model->nacl_p_avr > 18 ? '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>' : '<span class="text">' . $model->nacl_p_avr . '</span>' ?></p>
-                        <p class="card-text"><?= Yii::t('app', 'TN') ?>: <?= $model->tn_p_avr < 1.5 ? '<span class="text" style="color:#C70039">' . $model->tn_p_avr . '</span>' : '<span class="text">' . $model->tn_p_avr . '</span>' ?></p>
+                        <p class="card-text"><?= Yii::t('app', '%NaCl') ?>: <?= $model->nacl_p_avr > 18 ? '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>' : '<span class="text">' . $model->nacl_p_avr . '</span>' ?></p>
+                        <p class="card-text"><?= Yii::t('app', '%TN') ?>: <?= $model->tn_p_avr < 1.5 ? '<span class="text" style="color:#C70039">' . $model->tn_p_avr . '</span>' : '<span class="text">' . $model->tn_p_avr . '</span>' ?></p>
                         <p class="card-text"><?= Yii::t('app', 'Color') ?>: <?= $model->col ?></p>
-                        <p class="card-text"><?= Yii::t('app', 'Alcohol Percentage') ?>: <?= $model->alc_p ?></p>
+                        <p class="card-text"><?= Yii::t('app', '%Alcohol') ?>: <?= $model->alc_p ?></p>
                         <p class="card-text"><?= Yii::t('app', 'PPM') ?>: <?= $model->ppm ?></p>
                         <p class="card-text"><?= Yii::t('app', 'Brix') ?>: <?= $model->brix ?></p>
                     </div>
