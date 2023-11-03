@@ -34,13 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h5>
                                 <?= Html::encode($model->repair_code) ?>
                                 <?php if ($model->urgency == 3) : ?>
-                                    <span class="badge badge-blink" style="background-color: <?= $model->urgency0->color ?>; color: #fff;">
+                                    <span class="badge" style="background-color: <?= $model->urgency0->color ?>; color: #fff;">
                                         <?= Html::encode($model->urgency0->name) ?>
                                     </span>
                                 <?php endif; ?>
 
                                 <?php if ($model->priority == 3) : ?>
-                                    <span class="badge" style="background-color: <?= $model->priority0->color ?>; color: #fff;">
+                                    <span class="badge badge-blink" style="background-color: <?= $model->priority0->color ?>; color: #fff;">
                                         <?= Html::encode($model->priority0->name) ?>
                                     </span>
                                 <?php endif; ?>

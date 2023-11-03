@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 03, 2023 at 10:02 AM
+-- Generation Time: Nov 03, 2023 at 03:29 PM
 -- Server version: 5.7.39
--- PHP Version: 7.4.9
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -130,7 +130,13 @@ CREATE TABLE `job_status` (
 --
 
 INSERT INTO `job_status` (`id`, `code`, `name`, `detail`, `color`) VALUES
-(1, 'Request', 'Request', NULL, '#555555');
+(1, 'Request', 'แจ้งงาน', 'แจ้งงานโดยผู้ใช้งาน', '#952323'),
+(2, 'Approved-D', 'หัวหน้างานอนุมัติ', 'หัวหน้างานอนุมัติ', '#0000ff'),
+(3, 'Engineering', 'ดำเนินการ', 'อยู่ในขั้นตอนขออนุมัติซ่อมของแผนกวิศวกรรม', '#ff9900'),
+(4, 'Approved-E', 'อนุมัติเข้าซ่อม', 'ผู้จัดการแผนกวิศวกรรมอนุมัติ', '#9900ff'),
+(5, 'Success', 'ปิดงาน', 'งานซ่อมสำเร็จ ปิดงาน', '#274e13'),
+(6, 'Postponed', 'เลื่อน', 'เลื่อนการซ่อมออกไป', '#ff00ff'),
+(7, 'Canceled', 'ยกเลิก', 'ยกเลิกโดยผู้ใช้งาน', '#434343');
 
 -- --------------------------------------------------------
 
@@ -283,7 +289,7 @@ CREATE TABLE `priority` (
 INSERT INTO `priority` (`id`, `code`, `name`, `detail`, `color`) VALUES
 (1, 'Low', 'ต่ำ', 'Low', NULL),
 (2, 'MID', 'กลาง', 'medium', NULL),
-(3, 'HIGHT', 'สูง', NULL, NULL);
+(3, 'HIGHT', 'สำคัญมาก', NULL, '#FE0000');
 
 -- --------------------------------------------------------
 
@@ -946,9 +952,18 @@ CREATE TABLE `request_repair` (
 --
 
 INSERT INTO `request_repair` (`id`, `repair_code`, `created_at`, `updated_at`, `created_by`, `updated_by`, `priority`, `urgency`, `created_date`, `request_department`, `request_title`, `request_detail`, `request_date`, `broken_date`, `locations_id`, `remask`, `images`, `approver`, `approve_date`, `approve_comment`, `job_status_id`, `ref`) VALUES
-(1, 'RP-6611-0001', '2023-11-03', NULL, 1, NULL, 1, 1, '2023-11-03', NULL, 'Test', 'Test', '2023-11-04', '2023-11-01', 1, NULL, NULL, NULL, '2023-11-06', NULL, 1, NULL),
-(2, 'RP-6610-0001', NULL, NULL, NULL, NULL, 2, 1, '2023-11-10', 1, 'Test Title', '', '2023-11-03', '2023-11-03', 2, '', '', NULL, NULL, NULL, 1, 'HFDRGfPtx9'),
-(3, 'frrhBtfJ88', NULL, NULL, NULL, NULL, 2, 2, '2023-11-02', 1, 'Test Title', '', '2023-11-04', '2023-10-30', 2, '', NULL, NULL, NULL, NULL, 1, '6LyvVV8SUI');
+(1, 'RP-6611-0001', '2023-11-03', NULL, 1, NULL, 2, 3, '2023-11-03', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', 'Test', '2023-11-04', '2023-11-01', 1, '', NULL, NULL, '2023-11-06', NULL, 1, ''),
+(2, 'RP-6611-0002', '2023-11-03', NULL, 2, NULL, 2, 1, '2023-11-10', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-11-03', '2023-11-03', 2, '', '', NULL, NULL, NULL, 2, 'HFDRGfPtx9'),
+(3, 'RP-6611-0003', '2023-11-03', NULL, 4, NULL, 3, 3, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 1, '', NULL, NULL, NULL, NULL, 3, '6LyvVV8SUI'),
+(4, 'RP-6611-0004', '2023-11-03', NULL, 4, NULL, 1, 2, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 2, '', NULL, NULL, NULL, NULL, 7, '6LyvVV8SUI'),
+(5, 'RP-6611-0005', '2023-11-03', NULL, 3, NULL, 3, 2, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 1, '', NULL, NULL, NULL, NULL, 3, '6LyvVV8SUI'),
+(6, 'RP-6611-0006', '2023-11-03', NULL, 1, NULL, 1, 3, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 2, '', NULL, NULL, NULL, NULL, 4, '6LyvVV8SUI'),
+(7, 'RP-6611-0007', '2023-11-03', NULL, 2, NULL, 3, 2, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 1, '', NULL, NULL, NULL, NULL, 2, '6LyvVV8SUI'),
+(8, 'RP-6611-0008', '2023-11-03', NULL, 3, NULL, 2, 3, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 2, '', NULL, NULL, NULL, NULL, 1, '6LyvVV8SUI'),
+(9, 'RP-6611-0009', '2023-11-03', NULL, 3, NULL, 2, 2, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 2, '', NULL, NULL, NULL, NULL, 4, '6LyvVV8SUI'),
+(10, 'RP-6611-0010', '2023-11-03', NULL, 2, NULL, 3, 3, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 1, '', NULL, NULL, NULL, NULL, 5, '6LyvVV8SUI'),
+(11, 'RP-6611-0011', '2023-11-03', NULL, 1, NULL, 2, 1, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 2, '', NULL, NULL, NULL, NULL, 7, '6LyvVV8SUI'),
+(12, 'RP-6611-0012', '2023-11-03', NULL, 4, NULL, 1, 2, '2023-11-02', 1, 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '', '2023-10-31', '2023-10-30', 1, '', NULL, NULL, NULL, NULL, 5, '6LyvVV8SUI');
 
 -- --------------------------------------------------------
 
@@ -1055,7 +1070,7 @@ CREATE TABLE `urgency` (
 INSERT INTO `urgency` (`id`, `code`, `name`, `detail`, `color`) VALUES
 (1, 'minor', 'น้อย', NULL, NULL),
 (2, 'normal', 'ปกติ', NULL, NULL),
-(3, 'major', 'มาก', NULL, NULL);
+(3, 'major', 'ด่วน', NULL, '#FE0000');
 
 -- --------------------------------------------------------
 
@@ -1079,8 +1094,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password_hash`, `email`, `english_name`, `thai_name`, `phone`, `active`) VALUES
-(1, 'tawatchai', 'tawatchai', 'tawatchai@email.com', 'Tawatchai', 'ธวัชชัย', NULL, 1),
-(2, 'suphat', 'suphat', 'suphat@email.com', 'Suphat', 'สุุพัฒน์', NULL, 1);
+(1, 'theerapong', '123', 'theerapong@email.com', 'theerapong Khanta', 'ธีรพงศ์ ขันตา', NULL, 1),
+(2, 'araya', '123', 'suphat@email.com', 'araya theppota', 'อารยา เทพโพธา', NULL, 1),
+(3, 'benjarat', '123', NULL, 'benjarat khongchanan', 'เบญจรัตน์ คงชำนาญ', NULL, NULL),
+(4, 'chadaporn', '123', NULL, 'chadaporn kaewkham', 'ชฎาภรณ์ แก้วคำ', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1258,7 +1275,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `job_status`
 --
 ALTER TABLE `job_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -1318,7 +1335,7 @@ ALTER TABLE `raw_sauce`
 -- AUTO_INCREMENT for table `request_repair`
 --
 ALTER TABLE `request_repair`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -1348,7 +1365,7 @@ ALTER TABLE `urgency`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `work_order`
