@@ -16,8 +16,8 @@ return [
     'Save' => 'บันทึก',
     'Search' => 'ค้นหา',
     'Reset' => 'ล้าง',
-    'First' => 'หน้าแรก',
-    'Last' => 'หน้าสุดท้าย',
+    'First' => 'First',
+    'Last' => 'Last',
 
 
     'Products' => 'สินค้า',
