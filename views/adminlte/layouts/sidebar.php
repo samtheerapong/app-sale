@@ -36,21 +36,6 @@
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    // [
-                    //     'label' => 'Starter Pages',
-                    //     'icon' => 'tachometer-alt',
-                    //     'badge' => '<span class="right badge badge-info">2</span>',
-                    //     'items' => [
-                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                    //     ]
-                    // ],
-                    // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    // ['label' => 'Record', 'header' => true],
-                    // ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    // ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    // ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-
                     ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'header' => true],
                     ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
                     ['label' => Yii::t('app', 'Create New'), 'url' => ['/sauce/raw-sauce/create'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-file-import'],
@@ -68,10 +53,6 @@
                     ['label' => Yii::t('app', 'Users'), 'url' => ['/users/users/index'], 'iconStyle' => 'fa', 'icon' => 'user'],
                     ['label' => Yii::t('app', 'Permission'), 'url' => ['/users/permission/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-eye-slash'],
 
-                    // ['label' => 'LABELS', 'header' => true],
-                    // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    // ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
                 ],
             ]);
             ?>

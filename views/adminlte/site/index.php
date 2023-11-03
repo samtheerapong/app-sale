@@ -7,17 +7,14 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
 <div class="container-fluid">
 
- 
-
     <div class="row mt-2">
-
         <div class="col-md-3 col-sm-6">
             <div class="card mb-2">
                 <img class="card-img-top" src="images/koji.jpg" alt="Card image cap">
                 <div class="card-body">
                     <a href="<?= Url::toRoute(['/sauce/koji/tank/index']); ?>">
-                    <h5 class="card-title mb-2"><i class="fa-solid fa-road-barrier"></i> <b>โคจิ <br>(FM-QC-38)</b></h5>
-                        
+                        <h5 class="card-title mb-2"><i class="fa-solid fa-road-barrier"></i> <b>โคจิ <br>(FM-QC-38)</b></h5>
+
                     </a>
                     <!-- <p class="card-text text-center">วัตถุดิบอันได้แก่ ถั่วเหลืองนึ่งสุก ข้าวสาลีหรือข้าวสารคั่วบดและหัวเชื้อรา (Aspergillus oryzae) จะถูกผสมและส่งเข้าไปเพาะเลี้ยงเชื้อราในห้องทีมีการควบคุมอุณหภูมิ และ ความชื้นที่เหมาะสมเป็นเวลา 2 วัน เชื้อราจะผลิตเส้นใยห่อหุ้มวัตถุดิบซึ่งเรียกว่าโคจิ</p> -->
                 </div>

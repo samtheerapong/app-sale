@@ -21,6 +21,12 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        'general' => [
+            'class' => 'app\modules\general\Module',
+        ],
+        'engineer' => [
+            'class' => 'app\modules\engineer\Module',
+        ],
         'sauce' => [
             'class' => 'app\modules\sauce\Module',
         ],
