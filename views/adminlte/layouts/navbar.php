@@ -84,6 +84,26 @@ use yii\helpers\Url;
             </ul>
         </li>
 
+        <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?= Yii::t('app', 'EN') ?></a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                <!-- Koji submenu -->
+                <li><a href="<?= Url::toRoute('/engineer/request-repair/index'); ?>" class="dropdown-item"><?= Yii::t('app', 'Request Repair') ?></a></li>
+               
+
+                <li class="dropdown-divider"></li>
+
+                <!-- Configuration submenu -->
+                <li class="dropdown-submenu dropdown-hover">
+                    <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle"><?= Yii::t('app', 'Configuration') ?></a>
+                    <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
+                        <li><a href="<?= Url::toRoute(['/sauce/koji/tank/index']); ?>" class="dropdown-item"><?= Yii::t('app', 'Tank') ?></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+
 
     </ul>
 

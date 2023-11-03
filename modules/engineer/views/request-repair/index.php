@@ -3,35 +3,59 @@
 
 use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /** @var yii\web\View $this */
 /** @var app\modules\sauce\models\RawSauceSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Raw Soy Sauce Record');
+$this->title = Yii::t('app', 'Request Repair');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="raw-sauce-index">
     <p>
-        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'New Request'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php Pjax::begin(); ?>
 
     <div class="row">
-        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); 
+        ?>
     </div>
 
     <div class="row">
         <?php
         foreach ($dataProvider->getModels() as $model) : ?>
-            <div class="col-xl-2 col-lg-3 col-md-4 ol-sm-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <h5><?= Html::encode($model->repair_code) ?></h5>
+            <div class="col-lg-3 col-md-4 ol-sm-6">
+                <div class="card mb-2">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                        <a href="<?= Url::toRoute(['view', 'id' => $model->id]); ?>" class="link-light">
+                            <h5>
+                                <?= Html::encode($model->repair_code) ?>
+                                <?php if ($model->urgency == 3) : ?>
+                                    <span class="badge badge-blink" style="background-color: <?= $model->urgency0->color ?>; color: #fff;">
+                                        <?= Html::encode($model->urgency0->name) ?>
+                                    </span>
+                                <?php endif; ?>
+
+                                <?php if ($model->priority == 3) : ?>
+                                    <span class="badge" style="background-color: <?= $model->priority0->color ?>; color: #fff;">
+                                        <?= Html::encode($model->priority0->name) ?>
+                                    </span>
+                                <?php endif; ?>
+                            </h5>
+                        </a>
+
                     </div>
                     <div class="card-body">
-                       
+                        <!-- <p class="card-text"><b><?= Yii::t('app', 'Date') ?></b> : <?= Html::encode(Yii::$app->formatter->asDate($model->created_at, 'dd MMMM YYYY')) ?></p> -->
+                        <p class="card-text"><b><?= Yii::t('app', 'Request Date') ?></b> : <?= Html::encode(Yii::$app->formatter->asDate($model->request_date, 'dd MMMM YYYY')) ?></p>
+                        <p class="card-text"><b><?= Yii::t('app', 'Title') ?></b> : <?= Html::encode(substr($model->request_title, 0, 30)) ?></p>
+                        <p class="card-text"><b><?= Yii::t('app', 'Request By') ?></b> : <?= Html::encode($model->createdBy->thai_name) ?></p>
+                        <p class="card-text"><b><?= Yii::t('app', 'Department') ?></b> : <?= Html::encode($model->departments->name) ?></p>
+                        <p class="card-text"><b><?= Yii::t('app', 'Location') ?></b> : <?= Html::encode($model->locations->name) ?></p>
+                        <p class="card-text"><b><?= Yii::t('app', 'Status') ?></b> : <?= Html::encode($model->jobStatus->name) ?></p>
                     </div>
                     <div class="card-footer text-center">
                         <div class="btn-group btn-group-xs" role="group">

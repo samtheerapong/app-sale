@@ -3,8 +3,10 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\assets\AppAsset;
 use yii\helpers\Html;
 
+AppAsset::register($this);
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
 \hail812\adminlte3\assets\AdminLteAsset::register($this);
 \hail812\adminlte3\assets\PluginAsset::register($this)->add('sweetalert2');
@@ -41,7 +43,7 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
     </style>
 </head>
 <!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
-<body class="hold-transition sidebar-mini idebar-collapse">
+<body class="idebar-collapse sidebar-collapse layout-navbar-fixed layout-footer-fixed">
 <?php $this->beginBody() ?>
 
 <div class="wrapper">

@@ -6,6 +6,7 @@ use app\modules\general\models\Departments;
 use app\modules\general\models\Locations;
 use app\modules\general\models\Priority;
 use app\modules\general\models\Urgency;
+use app\modules\general\models\Users;
 use Yii;
 
 /**
@@ -64,6 +65,7 @@ class RequestRepair extends \yii\db\ActiveRecord
             [['request_department'], 'exist', 'skipOnError' => true, 'targetClass' => Departments::class, 'targetAttribute' => ['request_department' => 'id']],
             [['job_status_id'], 'exist', 'skipOnError' => true, 'targetClass' => JobStatus::class, 'targetAttribute' => ['job_status_id' => 'id']],
             [['locations_id'], 'exist', 'skipOnError' => true, 'targetClass' => Locations::class, 'targetAttribute' => ['locations_id' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -103,7 +105,7 @@ class RequestRepair extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPriority()
+    public function getPriority0()
     {
         return $this->hasOne(Priority::class, ['id' => 'priority']);
     }
@@ -113,10 +115,21 @@ class RequestRepair extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getUrgency()
+    public function getUrgency0()
     {
         return $this->hasOne(Urgency::class, ['id' => 'urgency']);
     }
+
+    /**
+     * Gets query for [[Departments]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDepartments()
+    {
+        return $this->hasOne(Departments::class, ['id' => 'request_department']);
+    }
+
 
     /**
      * Gets query for [[JobStatus]].
@@ -147,5 +160,14 @@ class RequestRepair extends \yii\db\ActiveRecord
     {
         return $this->hasMany(WorkOrder::class, ['request_repair_id' => 'id']);
     }
-    
+
+    /**
+     * Gets query for [[CreatedBy]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(Users::class, ['id' => 'created_by']);
+    }
 }
