@@ -18,7 +18,7 @@ class RequestRepairSearch extends RequestRepair
     {
         return [
             [['id', 'created_by', 'updated_by', 'priority', 'urgency', 'locations_id', 'approver', 'job_status_id'], 'integer'],
-            [['repair_code', 'created_at', 'updated_at', 'created_date', 'request_department', 'request_title', 'request_detail', 'request_date', 'broken_date', 'remask', 'images', 'approve_date', 'approve_comment', 'ref'], 'safe'],
+            [['repair_code', 'created_at', 'updated_at', 'created_date', 'request_department', 'request_title', 'request_detail', 'request_date', 'broken_date', 'remask', 'docs', 'approve_date', 'approve_comment', 'ref'], 'safe'],
         ];
     }
 
@@ -79,7 +79,7 @@ class RequestRepairSearch extends RequestRepair
             ->andFilterWhere(['like', 'request_title', $this->request_title])
             ->andFilterWhere(['like', 'request_detail', $this->request_detail])
             ->andFilterWhere(['like', 'remask', $this->remask])
-            ->andFilterWhere(['like', 'images', $this->images])
+            ->andFilterWhere(['like', 'docs', $this->docs])
             ->andFilterWhere(['like', 'approve_comment', $this->approve_comment])
             ->andFilterWhere(['like', 'ref', $this->ref]);
 

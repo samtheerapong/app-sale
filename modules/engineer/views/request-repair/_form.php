@@ -5,9 +5,11 @@ use app\modules\general\models\Locations;
 use app\modules\general\models\Priority;
 use app\modules\general\models\Urgency;
 use kartik\widgets\DatePicker;
+use kartik\widgets\FileInput;
 use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
@@ -17,7 +19,7 @@ use yii\widgets\ActiveForm;
 
 <div class="request-repair-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
     <div class="row">
         <div class="col-md-12">
@@ -138,11 +140,31 @@ use yii\widgets\ActiveForm;
                             <?= $form->field($model, 'remask')->textarea(['rows' => 2]) ?>
                         </div>
                     </div>
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-md-12">
-                            <?= $form->field($model, 'images')->textarea(['rows' => 2]) ?>
+                            <div class="form-group field-upload_files">
+                                <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
+                                <div>
+                                    <?= FileInput::widget([
+                                        'name' => 'upload_ajax[]',
+                                        'options' => ['multiple' => true, 'accept' => 'image/*'], //'accept' => 'image/*' หากต้องเฉพาะ image
+                                        'pluginOptions' => [
+                                            'overwriteInitial' => false,
+                                            'initialPreviewShowDelete' => true,
+                                            'initialPreview' => $initialPreview,
+                                            'initialPreviewConfig' => $initialPreviewConfig,
+                                            'uploadUrl' => Url::to(['/engineer/request-repair/upload-ajax']),
+                                            'uploadExtraData' => [
+                                                'ref' => $model->ref,
+                                            ],
+                                            'maxFileCount' => 100
+                                        ]
+                                    ]);
+                                    ?>
+                                </div>
+                            </div>
                         </div>
-                    </div> -->
+                    </div>
 
                     <?= $form->field($model, 'ref')->hiddenInput()->label(false) ?>
                 </div>
@@ -160,7 +182,7 @@ use yii\widgets\ActiveForm;
             </div>
         </div>
     </div>
-    
+
     <?php ActiveForm::end(); ?>
 
 </div>

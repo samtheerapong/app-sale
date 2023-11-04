@@ -43,16 +43,21 @@ $config = [
             // message source
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
-        ]
+        ],
+        'gallery' => 'dosamigos\gallery\Module',
     ],
     'components' => [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                   '@app/views' => '@app/views/adminlte/'
+                    '@app/views' => '@app/views/adminlte/'
                 ],
             ],
-       ],
+        ],
+        'image' => [
+            'class' => 'yii\image\ImageDriver',
+            'driver' => 'GD',  //GD or Imagick
+        ],
         'cart' => [
             'class' => 'yz\shoppingcart\ShoppingCart',
             // You can configure additional options for the cart component here.
@@ -80,7 +85,7 @@ $config = [
                 ],
             ],
         ],
-       
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

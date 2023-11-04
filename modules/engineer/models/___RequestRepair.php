@@ -222,6 +222,7 @@ class RequestRepair extends \yii\db\ActiveRecord
         return $this->hasOne(Users::class, ['id' => 'updated_by']);
     }
 
+    //********** Upload Path*/
     public static function getUploadPath()
     {
         return Yii::getAlias('@webroot') . '/' . self::UPLOAD_FOLDER . '/';
@@ -232,18 +233,102 @@ class RequestRepair extends \yii\db\ActiveRecord
         return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/';
     }
 
-    public function getThumbnails($ref, $id)
+    //********** List Downloads */
+    public function listDownloadFiles($type)
     {
-        $uploadFiles   = Uploads::find()->where(['ref' => $ref])->all();
+        $docs_file = ''; // เริ่มต้นตัวแปรเป็นสตริงว่าง
+        if ($type === 'docs') { // ตรวจสอบประเภท
+            $data = $this->docs; // นำข้อมูลมาจาก $this->docs ในกรณีนี้
+            $files = Json::decode($data);
+
+            if (is_array($files)) {
+                $docs_file = '<ul>';
+                foreach ($files as $key => $value) {
+                    // ใช้ pathinfo เพื่อรับข้อมูลของไฟล์
+                    $fileInfo = pathinfo($value);
+
+                    if (isset($fileInfo['extension'])) {
+                        $extension = strtolower($fileInfo['extension']);
+
+                        if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                            // นี่คือรูปภาพ
+                            $docs_file .= $this->listImages($key, $value);
+                        } else {
+                            // ไม่ใช่รูปภาพ
+                            $docs_file .= '<li>' . $this->listFiles($key, $value) . '</li>';
+                        }
+                    }
+                }
+                $docs_file .= '</ul>';
+            }
+        }
+
+        return $docs_file;
+    }
+
+    public function listImages($key, $value)
+    {
+        $image = Html::img(['/engineer/request-repair/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value], ['class' => 'img-thumbnail', 'alt' => 'Image', 'style' => 'height: 200px;']);
+        $fullSize = Html::a($image, ['/engineer/request-repair/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value], ['target' => '_blank']);
+        return $fullSize;
+    }
+
+
+    public function listFiles($key, $value)
+    {
+        $files = Html::a($value, ['/engineer/request-repair/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value]);
+        return $files;
+    }
+
+    //********** initialPreview */    
+    public function isImage($filePath)
+    {
+        return @is_array(getimagesize($filePath)) ? true : false;
+    }
+
+    public function initialPreview($data, $field, $type = 'file')
+    {
+        $initial = [];
+        $files = Json::decode($data);
+        if (is_array($files)) {
+            foreach ($files as $key => $value) {
+                $filePath = self::getUploadUrl() . $this->repair_code . '/' . $value;
+                $filePathDownload = self::getUploadUrl() . $this->repair_code . '/' . $value;
+
+                $isImage = $this->isImage($filePath);
+
+                if ($type == 'file') {
+                    $initial[] = "<div class='file-preview-other'><h2><i class='glyphicon glyphicon-file'></i></h2></div>";
+                } elseif ($type == 'config') {
+                    $initial[] = [
+                        'caption' => $value,
+                        'width'  => '120px',
+                        'url'    => Url::to(['deletefile', 'id' => $this->id, 'fileName' => $key, 'field' => $field]),
+                        'key'    => $key
+                    ];
+                } else {
+                    if ($isImage) {
+                        $file = Html::img($filePath, ['class' => 'file-preview-image', 'alt' => $this->file_name, 'title' => $this->file_name]);
+                    } else {
+                        $file = Html::a('View File', $filePathDownload, ['target' => '_blank']);
+                    }
+                    $initial[] = $file;
+                }
+            }
+        }
+        return $initial;
+    }
+
+    public static function getThumbnails($repair_code)
+    {
+        $uploadFiles = self::find()->where(['repair_code' => $repair_code])->all();
         $preview = [];
         foreach ($uploadFiles as $file) {
+            $fileName = $file->docs; // Define and initialize $fileName here
             $preview[] = [
-                'url' => self::getUploadUrl(true) . $ref . '/' . $file->real_filename,
-                'src' => self::getUploadUrl(true) . $ref . '/thumbnail/' . $file->real_filename,
-                'options' => [
-                    'style' => 'width: 250px; margin: 2px;',
-                ]
-
+                'url' => self::getUploadUrl(true) . $repair_code . '/' . $fileName,
+                'src' => self::getUploadUrl(true) . $repair_code . '/thumbnail/' . $fileName,
+                'options' => ['title' => $repair_code]
             ];
         }
         return $preview;
