@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div style="display: flex; justify-content: space-between;">
             <p>
-                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'),['index'], ['class' => 'btn btn-primary']) ?>
             </p>
 
             <p style="text-align: right;">
