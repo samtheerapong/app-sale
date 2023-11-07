@@ -7,7 +7,7 @@ use app\modules\general\models\Locations;
 use app\modules\general\models\Priority;
 use app\modules\general\models\Uploads;
 use app\modules\general\models\Urgency;
-use app\modules\general\models\Users;
+use app\models\User;
 use kartik\helpers\Html;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -15,6 +15,8 @@ use yii\helpers\FileHelper;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use dosamigos\gallery\Gallery;
+use yii\behaviors\BlameableBehavior;
+use yii\db\BaseActiveRecord;
 
 /**
  * This is the model class for table "request_repair".
@@ -64,13 +66,13 @@ class RequestRepair extends \yii\db\ActiveRecord
                     return date('Y-m-d H:i:s');
                 },
             ],
-            // [
-            //     'class' => BlameableBehavior::class,
-            //     'attributes' => [
-            //         BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_by', 'updated_by'],
-            //         BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_by'],
-            //     ],
-            // ],
+            [
+                'class' => BlameableBehavior::class,
+                'attributes' => [
+                    BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_by', 'updated_by'],
+                    BaseActiveRecord::EVENT_BEFORE_UPDATE => ['updated_by'],
+                ],
+            ],
             // [
             //     'class' => 'mdm\autonumber\Behavior',
             //     'attribute' => 'repair_code', // required
@@ -104,7 +106,7 @@ class RequestRepair extends \yii\db\ActiveRecord
             [['request_department'], 'exist', 'skipOnError' => true, 'targetClass' => Departments::class, 'targetAttribute' => ['request_department' => 'id']],
             [['job_status_id'], 'exist', 'skipOnError' => true, 'targetClass' => JobStatus::class, 'targetAttribute' => ['job_status_id' => 'id']],
             [['locations_id'], 'exist', 'skipOnError' => true, 'targetClass' => Locations::class, 'targetAttribute' => ['locations_id' => 'id']],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => Users::class, 'targetAttribute' => ['created_by' => 'id']],
+            // [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
             [['docs'], 'file', 'maxFiles' => 10, 'skipOnEmpty' => true]
             // [['docs'], 'file', 'extensions' => 'png, jpg, jpeg, gif', 'maxFiles' => 10],
         ];
@@ -209,7 +211,7 @@ class RequestRepair extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(Users::class, ['id' => 'created_by']);
+        return $this->hasOne(User::class, ['id' => 'created_by']);
     }
 
     /**
@@ -219,7 +221,7 @@ class RequestRepair extends \yii\db\ActiveRecord
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(Users::class, ['id' => 'updated_by']);
+        return $this->hasOne(User::class, ['id' => 'updated_by']);
     }
 
     public static function getUploadPath()

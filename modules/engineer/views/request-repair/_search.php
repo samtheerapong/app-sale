@@ -1,5 +1,14 @@
 <?php
 
+use app\models\User;
+use app\modules\engineer\models\JobStatus;
+use app\modules\engineer\models\RequestRepair;
+use app\modules\general\models\Locations;
+use app\modules\general\models\Priority;
+use app\modules\general\models\Urgency;
+use app\modules\salers\models\Status;
+use kartik\widgets\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -9,64 +18,90 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="request-repair-search">
+    <div class="card">
+        <div class="card-body">
+            <?php $form = ActiveForm::begin([
+                'action' => ['index'],
+                'method' => 'get',
+                'options' => [
+                    'data-pjax' => 12
+                ],
+            ]);
+            ?>
+            <div class="row">
+                <div class="col-md-2">
+                    <?= $form->field($model, 'repair_code')->textInput(['placeholder' => Yii::t('app', 'Select All')]) ?>
 
-    <?php $form = ActiveForm::begin([
-        'action' => ['index'],
-        'method' => 'get',
-        'options' => [
-            'data-pjax' => 1
-        ],
-    ]); ?>
+                </div>
 
-    <?= $form->field($model, 'id') ?>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'created_by')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(User::find()->where(['status' => 10])->all(), 'id', 'thai_name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select All')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
 
-    <?= $form->field($model, 'repair_code') ?>
+                </div>
 
-    <?= $form->field($model, 'created_at') ?>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'priority')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(Priority::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select All')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
+                </div>
 
-    <?= $form->field($model, 'updated_at') ?>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'urgency')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(Urgency::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select All')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
+                </div>
 
-    <?= $form->field($model, 'created_by') ?>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'locations_id')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(Locations::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select All')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
+                </div>
 
-    <?php // echo $form->field($model, 'updated_by') ?>
+                <div class="col-md-2">
+                    <?= $form->field($model, 'job_status_id')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(JobStatus::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select All')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
+                </div>
+            </div>
 
-    <?php // echo $form->field($model, 'priority') ?>
-
-    <?php // echo $form->field($model, 'urgency') ?>
-
-    <?php // echo $form->field($model, 'created_date') ?>
-
-    <?php // echo $form->field($model, 'request_department') ?>
-
-    <?php // echo $form->field($model, 'request_title') ?>
-
-    <?php // echo $form->field($model, 'request_detail') ?>
-
-    <?php // echo $form->field($model, 'request_date') ?>
-
-    <?php // echo $form->field($model, 'broken_date') ?>
-
-    <?php // echo $form->field($model, 'locations_id') ?>
-
-    <?php // echo $form->field($model, 'remask') ?>
-
-    <?php // echo $form->field($model, 'images') ?>
-
-    <?php // echo $form->field($model, 'approver') ?>
-
-    <?php // echo $form->field($model, 'approve_date') ?>
-
-    <?php // echo $form->field($model, 'approve_comment') ?>
-
-    <?php // echo $form->field($model, 'job_status_id') ?>
-
-    <?php // echo $form->field($model, 'ref') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+            <div class="form-group">
+                <?= Html::submitButton('<i class="fas fa-search"></i> ' . Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['index'], ['class' => 'btn btn-outline-secondary']) ?>
+            </div>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>
