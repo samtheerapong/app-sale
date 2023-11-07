@@ -37,13 +37,15 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
     <?php $this->head() ?>
     <style>
         * {
-            font-family: 'Chakra Petch', sans-serif;
-            /* font-family: 'Kanit', sans-serif; */
+            /* font-family: 'Chakra Petch', sans-serif; */
+            font-family: 'Kanit', sans-serif;
         }
     </style>
 </head>
 <!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
-<body class="idebar-collapse sidebar-collapse layout-navbar-fixed layout-footer-fixed">
+<!-- <body class="sidebar-collapse sidebar-collapse layout-navbar-fixed layout-footer-fixed"> -->
+<!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
+<body class="hold-transition sidebar-mini"> 
 <?php $this->beginBody() ?>
 
 <div class="wrapper">

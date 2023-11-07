@@ -34,7 +34,7 @@ return [
 
     'Record Table' => 'ตารางบันทึกคุณภาพซีอิ้วดิบ',
     'Record Card' => 'บันทึกคุณภาพซีอิ้วดิบ',
-    'Raw Soy Sauce' => 'ซีอิ๊วดิบ (FM-QC-19)',
+    'Raw Soy Sauce' => 'ซีอิ๊วดิบ',
     'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',
     'Configuration' => 'กำหนดค่า',
@@ -82,11 +82,11 @@ return [
     'Report Select Type' => 'กราฟรายงานตามชนิด',
 
 
-    'Koji' => 'โคจิ (FM-QC-38)',
+    'Koji' => 'โคจิ',
     'Moromi' => 'โมโรมิ',
 
 
-    'Moromi' => 'โมโรมิ (FM-QC-18)',
+    'Moromi' => 'โมโรมิ',
     'Moromi Record' => 'บันทึกคุณภาพโมโรมิ',
 
 

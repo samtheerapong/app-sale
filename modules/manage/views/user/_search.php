@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var app\modules\general\models\UsersSearch $model */
+/** @var app\modules\manage\models\UserSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="users-search">
+<div class="user-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,17 +19,25 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'username') ?>
 
+    <?= $form->field($model, 'auth_key') ?>
+
     <?= $form->field($model, 'password_hash') ?>
 
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'password_reset_token') ?>
 
-    <?= $form->field($model, 'english_name') ?>
+    <?php // echo $form->field($model, 'email') ?>
 
-    <?php // echo $form->field($model, 'thai_name') ?>
+    <?php // echo $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'phone') ?>
+    <?php // echo $form->field($model, 'role') ?>
 
-    <?php // echo $form->field($model, 'active') ?>
+    <?php // echo $form->field($model, 'rule') ?>
+
+    <?php // echo $form->field($model, 'department') ?>
+
+    <?php // echo $form->field($model, 'created_at') ?>
+
+    <?php // echo $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

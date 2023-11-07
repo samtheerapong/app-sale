@@ -21,6 +21,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        'manage' => [
+            'class' => 'app\modules\manage\Module',
+        ],
         'general' => [
             'class' => 'app\modules\general\Module',
         ],
@@ -37,11 +40,7 @@ $config = [
             'class' => 'app\modules\salers\module',
         ],
         'gridview' =>  [
-            'class' => '\kartik\grid\Module'
-            // enter optional module parameters below - only if you need to  
-            // use your own export download action or custom translation 
-            // message source
-            // 'downloadAction' => 'gridview/export/download',
+            'class' => '\kartik\grid\Module',
             // 'i18n' => []
         ],
         'gallery' => 'dosamigos\gallery\Module',
@@ -94,6 +93,13 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
         ],
 
         'db' => $db,

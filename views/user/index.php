@@ -1,6 +1,6 @@
 <?php
 
-
+use app\models\User;
 use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="raw-sauce-index">
     <div class="row">
         <p>
-            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'New Request'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New User'), ['create'], ['class' => 'btn btn-primary']) ?>
         </p>
         <?php Pjax::begin(); ?>
 
@@ -29,42 +29,53 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <?php
             foreach ($dataProvider->getModels() as $model) : ?>
-                <div class="col-lg-3 col-md-4 ol-sm-6">
+                <div class="col-xl-3 col-md-4 col-sm-6">
                     <div class="card mb-2">
-                        <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                        <div class="card-header" style="background-color: 
+                        <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>
+                        ; color: #fff;">
                             <a href="<?= Url::toRoute(['view', 'id' => $model->id]); ?>" class="link-light">
                                 <h5>
-                                    <?= Html::encode($model->repair_code) ?>
-                                    <?php if ($model->urgency == 3) : ?>
-                                        <span class="badge" style="background-color: <?= $model->urgency0->color ?>; color: #fff;">
-                                            <?= Html::encode($model->urgency0->name) ?>
-                                        </span>
-                                    <?php endif; ?>
+                                    <?= Html::encode($model->username) ?> :
 
-                                    <?php if ($model->priority == 3) : ?>
-                                        <span class="badge badge-blink" style="background-color: <?= $model->priority0->color ?>; color: #fff;">
-                                            <?= Html::encode($model->priority0->name) ?>
-                                        </span>
-                                    <?php endif; ?>
+                                    <small>
+                                        <?= Html::encode($model->thai_name ?? '') ?>
+                                    </small>
                                 </h5>
                             </a>
                         </div>
 
                         <div class="card-body">
-                            <p class="card-text"><b><?= Yii::t('app', 'Request Date') ?></b> : <?= Html::encode(Yii::$app->formatter->asDate($model->request_date, 'dd MMMM YYYY')) ?></p>
-                            
-                            <?php
-                            $truncatedTitle = Html::encode(mb_substr($model->request_title, 0, 40, 'UTF-8'));
-                            if (mb_strlen($model->request_title, 'UTF-8') > 40) {
-                                $truncatedTitle .= '...';
-                            }
-                            ?>
-                            <p class="card-text"><b><?= Yii::t('app', 'Title') ?></b> : <?= $truncatedTitle ?></p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Request By') ?></b> : <?= Html::encode($model->createdBy->id) ?></p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Department') ?></b> : <?= Html::encode($model->departments->name) ?></p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Location') ?></b> : <?= Html::encode($model->locations->name) ?></p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Status') ?></b> : <span class="badge" style="color: <?= $model->jobStatus->color ?>; font-size: 16px;"><?= Html::encode($model->jobStatus->name) ?></span></p>
+
+
+                            <p class="card-text"><b><?= Yii::t('app', 'Username') ?></b> : <?= Html::encode($model->username) ?></p>
+                            <p class="card-text"><b><?= Yii::t('app', 'Thai Name') ?></b> : <?= Html::encode($model->thai_name) ?></p>
+                            <p class="card-text"><b><?= Yii::t('app', 'Email') ?></b> : <?= \yii\helpers\Html::a($model->email, 'mailto:' . $model->email) ?></p>
+                            <p class="card-text"><b><?= Yii::t('app', 'Location') ?></b> : <?= Html::encode($model->username) ?></p>
+
+                            <p class="card-text"><b><?= Yii::t('app', 'Status') ?></b> :
+                                <span class="badge" style="color: <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>; font-size: 16px;"><?= $model->status === User::STATUS_ACTIVE ? 'Active' : 'Not Active' ?></span>
                             </p>
+
+                            <p class="card-text"><b><?= Yii::t('app', 'Role') ?></b> :
+                                <?php
+                                if ($model->role === User::ROLE_ADMIN) {
+                                    echo 'Admin';
+                                } elseif ($model->role === User::ROLE_MANAGER) {
+                                    echo 'Manager';
+                                } elseif ($model->role === User::ROLE_QA) {
+                                    echo 'QA';
+                                } elseif ($model->role === User::ROLE_SALE) {
+                                    echo 'Sale';
+                                } else {
+                                    echo 'User';
+                                }
+                                ?>
+                            </p>
+
+                            <p class="card-text"><b><?= Yii::t('app', 'Created At') ?></b> : <?= Html::encode(Yii::$app->formatter->asDate($model->created_at, 'dd MMMM YYYY')) ?></p>
+
+
                         </div>
 
                         <div class="card-footer text-center">

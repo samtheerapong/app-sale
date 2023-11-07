@@ -14,6 +14,10 @@ $config = [
         '@tests' => '@app/tests',
     ],
     'components' => [
+        'authManager'=>[
+            'class'=>'dektrium\rbac\components\DbManager'
+        ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

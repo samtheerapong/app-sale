@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 04, 2023 at 09:51 AM
+-- Generation Time: Nov 07, 2023 at 09:58 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -39,7 +39,7 @@ CREATE TABLE `auto_number` (
 --
 
 INSERT INTO `auto_number` (`group`, `number`, `optimistic_lock`, `update_time`) VALUES
-('RP-6611-????', 1, 1, 1699090597);
+('RP-6611-????', 2, 1, 1699336454);
 
 -- --------------------------------------------------------
 
@@ -196,7 +196,20 @@ CREATE TABLE `migration` (
 --
 
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
-('m000000_000000_base', 1698154637);
+('m130524_201442_init', 1699339433),
+('m140209_132017_init', 1699340426),
+('m140403_174025_create_account_table', 1699339569),
+('m140504_113157_update_tables', 1699339569),
+('m140504_130429_create_token_table', 1699339570),
+('m140506_102106_rbac_init', 1699339963),
+('m140830_171933_fix_ip_field', 1699339570),
+('m140830_172703_change_account_table_name', 1699339570),
+('m141222_110026_update_ip_field', 1699339570),
+('m170907_052038_rbac_add_index_on_auth_assignment_user_id', 1699339963),
+('m180523_151638_rbac_updates_indexes_without_prefix', 1699339963),
+('m190124_110200_add_verification_token_column_to_user_table', 1699339433),
+('m200409_110543_rbac_update_mssql_trigger', 1699339963),
+('m231107_015704_create_user_profile', 1699328910);
 
 -- --------------------------------------------------------
 
@@ -972,7 +985,8 @@ CREATE TABLE `request_repair` (
 --
 
 INSERT INTO `request_repair` (`id`, `repair_code`, `created_at`, `updated_at`, `created_by`, `updated_by`, `priority`, `urgency`, `created_date`, `request_department`, `request_title`, `request_detail`, `request_date`, `broken_date`, `locations_id`, `remask`, `docs`, `approver`, `approve_date`, `approve_comment`, `job_status_id`, `ref`) VALUES
-(1, 'RP-6611-0001', '2023-11-04', '2023-11-04', 1, NULL, 2, 2, '2023-11-04', 1, 'Lorem ipsum is placeholder text commonly', '', '2023-11-04', '2023-11-02', 1, '', NULL, NULL, NULL, NULL, 1, 'WWLUmMFqBYC7s8pdZLPa6-');
+(1, 'RP-6611-0001', '2023-11-04', '2023-11-04', 1, NULL, 2, 2, '2023-11-04', 1, 'Lorem ipsum is placeholder text commonly', '', '2023-11-04', '2023-11-02', 1, '', NULL, NULL, NULL, NULL, 1, 'WWLUmMFqBYC7s8pdZLPa6-'),
+(2, 'RP-6611-0002', '2023-11-07', NULL, 1, NULL, 2, 2, '2023-11-07', 1, 'Lorem ipsum is placeholder text commonly', 'Lorem ipsum is placeholder text commonly', '2023-12-01', '2023-12-01', 1, '', NULL, NULL, NULL, NULL, 1, 'PCAY74OIPhHxQ-6gqjWb4Y');
 
 -- --------------------------------------------------------
 
@@ -1082,7 +1096,8 @@ INSERT INTO `uploads` (`upload_id`, `ref`, `file_name`, `real_filename`, `create
 (4, 'WWLUmMFqBYC7s8pdZLPa6-', 'IMG_1423.jpeg', '1f831ba1ab1219fe4e7f7ab03e46094f.jpeg', '2023-11-04 09:41:03', NULL),
 (6, 'WWLUmMFqBYC7s8pdZLPa6-', 'image.jpg', 'b586732f42e1c1356a702ea243784f21.jpg', '2023-11-04 09:43:28', NULL),
 (7, 'WWLUmMFqBYC7s8pdZLPa6-', 'IMG_7444.jpg', 'ecd8c66a9f93df046c04394ce98dde9d.jpg', '2023-11-04 09:46:36', NULL),
-(9, 'WWLUmMFqBYC7s8pdZLPa6-', 'IMG_7558.jpg', '7078d32fdbeb89aa2cd7801b3b8dff02.jpg', '2023-11-04 09:48:01', NULL);
+(9, 'WWLUmMFqBYC7s8pdZLPa6-', 'IMG_7558.jpg', '7078d32fdbeb89aa2cd7801b3b8dff02.jpg', '2023-11-04 09:48:01', NULL),
+(10, 'PCAY74OIPhHxQ-6gqjWb4Y', 'IMG_7473.jpg', '6187b8653810db1105dd7fb146fbc2c4.jpg', '2023-11-07 05:54:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -1110,29 +1125,58 @@ INSERT INTO `urgency` (`id`, `code`, `name`, `detail`, `color`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) DEFAULT NULL COMMENT 'USERNAME',
-  `password_hash` varchar(255) DEFAULT NULL COMMENT 'PASSWORD',
-  `email` varchar(255) DEFAULT NULL COMMENT 'EMAIL',
-  `english_name` varchar(255) DEFAULT NULL COMMENT 'ชื่อ-สกุล (อังกฤษ)',
-  `thai_name` varchar(255) DEFAULT NULL COMMENT 'ชื่อ-สกุล (ไทย)',
-  `phone` varchar(45) DEFAULT NULL COMMENT 'เบอร์ติดต่อ',
-  `active` int(11) DEFAULT NULL COMMENT 'Active'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `thai_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'ชื่อ-สกุล',
+  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  `verification_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `role` smallint(6) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `users` (`id`, `username`, `password_hash`, `email`, `english_name`, `thai_name`, `phone`, `active`) VALUES
-(1, 'theerapong', '123', 'theerapong@email.com', 'theerapong Khanta', 'ธีรพงศ์ ขันตา', NULL, 1),
-(2, 'araya', '123', 'suphat@email.com', 'araya theppota', 'อารยา เทพโพธา', NULL, 1),
-(3, 'benjarat', '123', NULL, 'benjarat khongchanan', 'เบญจรัตน์ คงชำนาญ', NULL, NULL),
-(4, 'chadaporn', '123', NULL, 'chadaporn kaewkham', 'ชฎาภรณ์ แก้วคำ', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `thai_name`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `verification_token`, `role`) VALUES
+(1, 'admin', 'ผู้ดูแลระบบ', '2tzscTHLNpS0rJlIJx_Uz1qZnvi6yS_q', '$2y$13$YjwG6MXUIcpOyoMmzX9fDuXo854gmWBxG8SuzInWi4MSr9jZ.91Di', NULL, 'admin@admin.com', 10, 1689666356, 1699347807, 'SA3gozOob2BBbQR0Ue5t4mJQpoyb0gcp_1689666356', 10),
+(2, 'demo', 'ทดสอบระบบ', 'lJsMEFiO-XjqJrVhH2aDcjXyrP0oC0vy', '$2y$13$9cR6h5aFzqkDiaIYP4DQYuywLj.cgAyUBuIexfQNZCqaJQ.T/Zxfi', NULL, 'demo@demo.com', 9, 1689756005, 1698802154, 'sfLH5psKTa0wMf7dH-kiSrkNcSPqn9OD_1689756005', 1),
+(3, 'onanong', 'อรอนงค์ ชมภู', '2bj5VmZ1PEwJDerqRsj3fhE8i2zvsVZq', '$2y$13$08zXpjOdJu83tT84JNqebe3SMFVctXSfynLDfss3sFMiveC7tPEUS', NULL, 'chumphu2538@gmail.com', 10, 1689759317, 1698802205, '9NqfkSJcx8KkIodMLNCeH9HLqhOUmcxw_1689759317', 10),
+(4, 'phitchai', 'พิชญ์ชัย พิชญ์ชานุวัฒน์', 'yJwBMulOJv3IDmDkCXrdYZ-VMEw_zwLZ', '$2y$13$wGZx2YliuaqG5mjrTzY4AupjPJBT15DBgnkqqj8MiCcwCT6z1PJl.', NULL, 'qc.northernfoodcomplex@gmail.com', 10, 1689759339, 1698802005, '4Zgy1uVGJvXg2nZOAHcFCSj0NK0Ll3Ze_1689759339', 10),
+(5, 'prakaiwan', 'ประกายวรรณ เทพมณี', 'y2RYhV3E1NG68CUaa8svzBknRdbCTO79', '$2y$13$Skm6AuVq/Qi/E2r6BouzBOn.3GR8aJT5.iaHIpr2KCDsJLUPKU8B2', NULL, 'prakaiwan4213@gmail.com', 10, 1689759362, 1698801031, '2qNZk71gb01_K-bdCiscD38z36G9exZH_1689759362', 10),
+(6, 'sale', 'ฝ่ายขาย', 'EHSvx6uElywR8fG2XRQ_xKE4sups-8cO', '$2y$13$0UZFJxx7tUAPdy972cvXEejPhldI17L0Ld7C3KnSKUk7KTLYVUP0y', NULL, 'sale@nfc.com', 10, 1689759388, 1691648993, '9ZnxmSRzPpvLgxD0MPSamdokpcp_eMul_1689759388', 8),
+(7, 'planning', 'ฝ่ายวางแผน', 'JWT4BgIkYF4TIN62mLaKv5iL0uLMn7C9', '$2y$13$g08zQ7xjXISzs99kS2yApuOCRcV6QpMOfdzNAwYY8fP9N96pEuAye', NULL, 'planning@localhost.com', 9, 1689759413, 1698802241, '7xCjBXE9xNLx1gWqKX2LaVex2ah0IWt4_1689759413', 1),
+(8, 'production', 'ฝ่ายผลิต', 'FjE8vrSWJ1uVTanpvQJDnpq_OiUySrzg', '$2y$13$Oa3U4rEqDwN8W0ytkDHCjuPw8CW4d44l9tEWbi3N3myBogr4mmzBy', NULL, 'production@localhost.com', 9, 1689759430, 1698802250, 'qNJ-e9RkWlfqvHqmvmSsItU1rlpb_D3j_1689759430', 1),
+(9, 'watsara', 'วรรษรา หลวงเป็ง', 'XEPSPmb7Bt0oI_tklPUc5Uh4Jq4HM4Ig', '$2y$13$5iA/KWda5k7mbunRRwdNUOXn62jWJ/Ipoc.CzW3XYr69iVHThV1yC', NULL, 'watsara.nfc@gmail.com', 10, 1690430330, 1698802368, 't1iesBNA9TNHWotQHvGzbLCVhrK6LF9O_1690430330', 1),
+(10, 'somsak', 'สมศักดิ์ ชาญเกียรติก้อง', '3tiUcswenYgRTZTfuvfv_Tv4V7BXwAcn', '$2y$13$RaVMZpvieW5IfdwpInG4JejNTn8rb7rTCluwPUDO6R8kAJBj1l7D.', NULL, 'somsak@northernfoodcomplex.com', 10, 1691631165, 1698802378, 'Pj5G3y6R8VeykAb0cyXVIHChtnlpquo9_1691631165', 5),
+(11, 'peeranai', 'พีรนัย โสทรทวีพงศ์', 'G3b3XCgv3uFzzly7jDX0cJXzNm45qoUV', '$2y$13$5gM/232mFQdlLwbqiQOdE.n2zbN3cLuDGdhIsTK0USk.ASVILRPZy', NULL, 'peeranai@northernfoodcomplex.com', 10, 1691631423, 1698802383, 'HmjAFfcWByo3VbwpZDD9qeBA-shqds8q_1691631423', 5),
+(12, 'theerapong', 'ธีรพงศ์ ขันตา', 'tWXwJZ5JEXbWCN0M-0zpCouAUJcL5BwZ', '$2y$13$WG5mTZIZ4ZcL3BoA/vA/7urFzlU2xQ2g4NU29gJegyCCcIte0TCP.', NULL, 'theerapong.khan@gmail.com', 10, 1691639318, 1698802141, NULL, 1),
+(14, 'yosaporn', 'ยศพร พยัคฆญาติ', 'GOI-0AQj0nAYGBIpppuSe-O3IK4OSs2h', '$2y$13$gnj.Vuf7hYLvMcPCesdU4eXqC4GAZR0iwhYbvBcVxlPNnTvB9mmji', NULL, 'ypayakayat@yahoo.com', 10, 1692180393, 1698802389, NULL, 1),
+(15, 'sawika', 'สาวิกา พินิจ', 'GOI-0AQj0nAYGBIpppuSe-O3IK4OSs2h', '$2y$13$ggQkc27TiQ2iQSAW6jcr3OpNGzVRjsE5/etsA7BeM5MubC/RwnhP.', NULL, 'sawika_pinit@yahoo.co.th', 10, 1692180393, 1698982636, NULL, 1),
+(16, 'premmika', 'เปรมมิกา พินิจ', 'GOI-0AQj0nAYGBIpppuSe-O3IK4OSs2h', '$2y$13$JNF9k6WursfrumEFcQkYCO1aM6Ikced40Zwsa0wIaOtrGDTBM/Y0y', NULL, 'pinit@yahoo.co.th', 10, 1692180393, 1698802398, NULL, 1),
+(17, 'charinee', 'ชาริณี จันต๊ะนาเขต', 'wLQMbhfIHnG07ZHdPZA2IGb5JfIWjm37', '$2y$13$jbb8tfUMLQNpU40y65.1yei8N.iKlbQ5JZg7HA6fFABmc7wvDqyjy', NULL, 'charinee@localhost.com', 10, 1698800364, 1698802269, NULL, 9),
+(18, 'benjarat', 'เบญจรัตน์ คงชำนาญ', '-WVnwHhiOWQdUJ3KYypIVVJ1WgFO_NUv', '$2y$13$q4n53.fViyRFwgVoxnWiw.PwWLsY4uuWLRetp8iTIypiYFqcXCJ/W', NULL, 'khongchanan1996@gmail.com', 10, 1698800565, 1698800782, NULL, 9),
+(19, 'natthawat', 'ณัฐวัฒน์ วรรณราช', 'Kb6gw6VW_6c9O_CAnGJPnhsX85rF9zyx', '$2y$13$El.F4z5hUULPGAorAABTSObuecQ88VldJxIPZkIT8pRY79tZHuRG2', NULL, 'coi.northernfoodcomplex@gmail.com', 10, 1698800639, 1698802110, NULL, 9),
+(20, 'thaksin', 'ทักษิณ อินทรศิลา', 'TZGAEflaZm143CsHlFjJZMMYZdKQeMVE', '$2y$13$BwKpULbKpy7h4gpHinfdJelEu3LEtHGC.mEKhvZWmD1HJlThpFuuq', NULL, 'notethaksin@hotmail.com', 10, 1698800733, 1698800733, NULL, 1),
+(21, 'chadaporn', 'ชฎาภรณ์ แก้วคำ', '7HasNWHP_M5-W_fBPDKb1M_0sXyd2Dsc', '$2y$13$O66yoesXcMWn1fNB3AUmiubpNRcH9q/VDv5ARGQT3aMjLU8fIr.7a', NULL, 'kaewkhamchadaporn@gmail.com', 10, 1698801098, 1698801127, NULL, 1),
+(22, 'araya', 'อารยา เทพโพธา', 'iOtjB0XK4SiRHsuOwg_vudd0epMz0wHW', '$2y$13$FwNHx5QgPEdvr3fO9TksmOQXoc/YN/fKpbMXvy5ehf/8WBdiMGVnS', NULL, 'araya.thep@gmail.com', 10, 1698801169, 1698801169, NULL, 1),
+(23, 'suphot', 'สุพจน์ ช่างฆ้อง', 'vGAi-pbCSZLcDRzbxOZ5w9sPllCdSFQq', '$2y$13$dvgxE11A.6VlEWx2ZF6ODeijXkZI01I2cTcsF30DFG0n5MYoPKioa', NULL, 'changkhong.8777@gmail.com', 10, 1698801231, 1698801231, NULL, 1),
+(24, 'suriya', 'สุริยา สมเพชร', 'BACKO9VW3y79pLaoZvOiQtX3OWZzuDQI', '$2y$13$BtJJseMYMycRgZMLsg1Rd.h7cJzilYsTpnyiUdlgxWDK8SwPfXt8S', NULL, 'suriyasompatch@gmail.com', 10, 1698801309, 1698801309, NULL, 1),
+(25, 'yotsapon', 'ยศพนธ์ โพธิ', 'wmyXWYgzYvewSqTMmgf9CFDD_ryIM5nl', '$2y$13$SbsFYkqKBTQ3990SGOBnsOOl4Ad7LmnnIZMvz7Now6e/onXWuY70K', NULL, 'yotsapon@localhost.com', 10, 1698801387, 1698802283, NULL, 1),
+(26, 'sutahatai', 'ศุทธหทัย ชุูกำลัง', 'LFeQidH3yohyJ3Qc1MOKuZJm27IAZFH0', '$2y$13$kNAosJDYUybr2UHmB02W.edEc8AoY8XJqWs7/FcpbF./0wtnPwZVO', NULL, 'rd.northernfoodcomplex@gmail.com', 10, 1698801460, 1698801460, NULL, 1),
+(27, 'phannipha', 'พรรณ์นิภา พิพัฒน์ธัชพร', 'I4QgffOFLAp2wWgH0d5rBIWF-CCeG_4k', '$2y$13$1WGGnfxnKfgORW2jhudi4e9Nbh0ZhZOgrpXjaWnjba82XZQFwHyhK', NULL, 'pipat.pannipa@gmail.com', 10, 1698801550, 1698917307, NULL, 8),
+(28, 'jiraporn', 'จิราภรณ์ กาบแก้ว', 'w0GFJQICSa2Ad9453hYPNUMf6Svm1WdX', '$2y$13$hiVIDOSOelsK3/XPYDH0KOFvgUFHLK9uDkZ814owQSIRvnBw.idFi', NULL, 'planning@northernfoodcomplex.com', 10, 1698801621, 1698801621, NULL, 1),
+(29, 'taweekiat', 'ทวีเกียรติ คำเทพ', 'tjJu-rUAKYmyXN6v5wZxaESahe2EYKwx', '$2y$13$829fqk8R5kYhEHoVcozHP.RXSixc9NkkSWQU5X.Vo12E.AUstI9S2', NULL, 'd.taweekiat@gmail.com', 10, 1698801681, 1698801681, NULL, 1),
+(30, 'kunrathon', 'กุลธร ดอนมูล', 'qD0mmuOHZ6ZNXs81dppLg3VBB1fQTrcn', '$2y$13$ox0loKGJwrz6bVgn8/MHne1/E8G5AMoTkiqSaVoNpyxGA5cUitIbG', NULL, 'pd03.nfc@gmail.com', 10, 1698801766, 1698801795, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1290,10 +1334,13 @@ ALTER TABLE `urgency`
   ADD UNIQUE KEY `code_UNIQUE` (`code`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `user`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `password_reset_token` (`password_reset_token`);
 
 --
 -- Indexes for table `work_order`
@@ -1382,7 +1429,7 @@ ALTER TABLE `raw_sauce`
 -- AUTO_INCREMENT for table `request_repair`
 --
 ALTER TABLE `request_repair`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -1406,7 +1453,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `urgency`
@@ -1415,10 +1462,10 @@ ALTER TABLE `urgency`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `work_order`

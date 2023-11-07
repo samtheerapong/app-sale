@@ -1,24 +1,24 @@
 <?php
 
-use app\modules\general\models\Users;
+use app\modules\manage\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\modules\general\models\UsersSearch $searchModel */
+/** @var app\modules\manage\models\UserSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="users-index">
+<div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Users'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -31,15 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'username',
+            'auth_key',
             'password_hash',
-            'email:email',
-            'english_name',
-            //'thai_name',
-            //'phone',
-            //'active',
+            'password_reset_token',
+            //'email:email',
+            //'status',
+            //'role',
+            //'rule',
+            //'department',
+            //'created_at',
+            //'updated_at',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Users $model, $key, $index, $column) {
+                'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
