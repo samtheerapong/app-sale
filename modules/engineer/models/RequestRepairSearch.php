@@ -46,6 +46,11 @@ class RequestRepairSearch extends RequestRepair
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC, // เรียงลำดับตามคอลัมน์ "id" ล่าสุดขึ้นก่อน
+                ],
+            ],
         ]);
 
         $this->load($params);
