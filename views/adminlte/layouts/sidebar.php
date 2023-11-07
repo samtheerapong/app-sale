@@ -52,6 +52,16 @@
                     ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
                     ['label' => Yii::t('app', 'Users'), 'url' => ['/users/users/index'], 'iconStyle' => 'fa', 'icon' => 'user'],
                     ['label' => Yii::t('app', 'Permission'), 'url' => ['/users/permission/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-eye-slash'],
+                    Yii::$app->user->isGuest ?
+                        ['label' => 'Login', 'url' => ['/user/security/login']] :
+                        [
+                            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                            'url' => ['/user/security/logout'],
+                            'linkOptions' => ['data-method' => 'post']
+                        ],
+                    ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
+
+
 
                 ],
             ]);

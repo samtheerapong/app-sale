@@ -21,6 +21,26 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        // ระบบ Admins
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu'
+        ],
+
+        // User
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            // 'class' => 'app\modules\yii2-user\Module',
+            'enableUnconfirmedLogin' => false,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+
+        'manage' => [
+            'class' => 'app\modules\manage\Module',
+        ],
         'general' => [
             'class' => 'app\modules\general\Module',
         ],
@@ -46,7 +66,18 @@ $config = [
         ],
         'gallery' => 'dosamigos\gallery\Module',
     ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            // '*',
+            'admin/*',
+            'user/*',
+            // '*', //Allow All For Dev
+        ]
+    ],
+
     'components' => [
+
         'view' => [
             'theme' => [
                 'pathMap' => [
@@ -70,7 +101,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            // 'identityClass' => 'app\models\User',
+            'identityClass' => 'dektrium\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -94,6 +126,13 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
         ],
 
         'db' => $db,
