@@ -8,6 +8,7 @@ use app\modules\general\models\Priority;
 use app\modules\general\models\Uploads;
 use app\modules\general\models\Urgency;
 use app\modules\general\models\Users;
+use app\modules\manage\models\User;
 use kartik\helpers\Html;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -209,7 +210,7 @@ class RequestRepair extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(Users::class, ['id' => 'created_by']);
+        return $this->hasOne(User::class, ['id' => 'created_by']);
     }
 
     /**

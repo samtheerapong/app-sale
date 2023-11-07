@@ -21,23 +21,6 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
-        // ระบบ Admins
-        'admin' => [
-            'class' => 'mdm\admin\Module',
-            'layout' => 'left-menu'
-        ],
-
-        // User
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            // 'class' => 'app\modules\yii2-user\Module',
-            'enableUnconfirmedLogin' => false,
-            'confirmWithin' => 21600,
-            'cost' => 12,
-            'admins' => ['admin']
-        ],
-        'rbac' => 'dektrium\rbac\RbacWebModule',
-
         'manage' => [
             'class' => 'app\modules\manage\Module',
         ],
@@ -57,24 +40,12 @@ $config = [
             'class' => 'app\modules\salers\module',
         ],
         'gridview' =>  [
-            'class' => '\kartik\grid\Module'
-            // enter optional module parameters below - only if you need to  
-            // use your own export download action or custom translation 
-            // message source
-            // 'downloadAction' => 'gridview/export/download',
+            'class' => '\kartik\grid\Module',
             // 'i18n' => []
         ],
         'gallery' => 'dosamigos\gallery\Module',
     ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            '*',
-        ]
-    ],
-
     'components' => [
-
         'view' => [
             'theme' => [
                 'pathMap' => [
@@ -98,8 +69,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            // 'identityClass' => 'app\models\User',
-            'identityClass' => 'dektrium\user\models\User',
+            'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
