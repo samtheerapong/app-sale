@@ -88,7 +88,7 @@ class RequestRepairController extends Controller
                 $model->repair_code = AutoNumber::generate('RP-' . (date('y') + 43) . date('m') . '-????'); // Auto Number
 
                 $model->job_status_id = 1;
-                $model->created_by = 1;  // temp data
+                // $model->created_by = 1;  // temp data
 
                 // $this->CreateDir($folderName); // create folder name ค่าของ repair_code
                 $this->Uploads(false);

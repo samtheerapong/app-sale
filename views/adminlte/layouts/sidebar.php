@@ -8,19 +8,11 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= $assetDir ?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">DEMO</a>
-            </div>
-        </div>
+     
 
         <!-- SidebarSearch Form -->
         <!-- href be escaped -->
-        <!-- <div class="form-inline">
+        <div class="form-inline  mt-2 pb-1 d-flex">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -29,7 +21,7 @@
                     </button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -44,7 +36,7 @@
                     ],
                     [
                         'label' => Yii::t('app', 'QC'),
-                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-red',
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-c text-red',
                         'items' => [
                             [
                                 'label' => Yii::t('app', 'Koji'),
@@ -104,7 +96,7 @@
 
                     [
                         'label' => 'QA',
-                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-red',
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-a text-red',
                         'items' => [
                             [
                                 'label' => Yii::t('app', 'DAR'),
@@ -312,11 +304,25 @@
                         ]
                     ],
 
-                  
-
-
-
-
+                  // Systems
+                  [
+                    'label' => Yii::t('app', 'System'),
+                    'header' => true
+                ],
+                [
+                    'label' => Yii::t('app', 'Setings'),
+                    'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs text-red',
+                    'items' => [
+                        ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                        [
+                            'label' => Yii::t('app', 'Configuration'),
+                            'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                            'items' => [
+                                ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                            ]
+                        ],
+                    ]
+                ],
 
                    
                 ],

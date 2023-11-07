@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                             ?>
                             <p class="card-text"><b><?= Yii::t('app', 'Title') ?></b> : <?= $truncatedTitle ?></p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Request By') ?></b> : <?= Html::encode($model->createdBy->id) ?></p>
+                            <p class="card-text"><b><?= Yii::t('app', 'Request By') ?></b> : <?= $model->created_by ? $model->createdBy->thai_name : ''; ?></p>
                             <p class="card-text"><b><?= Yii::t('app', 'Department') ?></b> : <?= Html::encode($model->departments->name) ?></p>
                             <p class="card-text"><b><?= Yii::t('app', 'Location') ?></b> : <?= Html::encode($model->locations->name) ?></p>
                             <p class="card-text"><b><?= Yii::t('app', 'Status') ?></b> : <span class="badge" style="color: <?= $model->jobStatus->color ?>; font-size: 16px;"><?= Html::encode($model->jobStatus->name) ?></span></p>
