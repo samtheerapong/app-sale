@@ -36,33 +36,289 @@
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'header' => true],
-                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
-                    ['label' => Yii::t('app', 'Create New'), 'url' => ['/sauce/raw-sauce/create'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-file-import'],
-                    ['label' => Yii::t('app', 'Report Select Type'), 'url' => ['/sauce/raw-sauce/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
-                    ['label' => Yii::t('app', 'Report Select Tank'), 'url' => ['/sauce/raw-sauce/report2'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
 
-                    ['label' => Yii::t('app', 'Moromi Quality Report'), 'header' => true],
-                    ['label' => Yii::t('app', 'Moromi Record'), 'url' => ['/sauce/moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
-                    ['label' => Yii::t('app', 'Create New'), 'url' => ['/sauce/moromi/create'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-file-import'],
-                    ['label' => Yii::t('app', 'Report'), 'url' => ['/sauce/moromi/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                    // QC
+                    [
+                        'label' => Yii::t('app', 'Quality Control'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'QC'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-red',
+                        'items' => [
+                            [
+                                'label' => Yii::t('app', 'Koji'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Create'), 'url' => ['/sauce/koji/create'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                                    ['label' => Yii::t('app', 'koji Record'), 'url' => ['/sauce/koji/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                                    ['label' => Yii::t('app', 'Koji Report'), 'url' => ['/sauce/koji/report'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-pie-chart'],
+                                    [
+                                        'label' => Yii::t('app', 'Configuration'),
+                                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                        'items' => [
+                                            ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/tank/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-boxes-stacked'],
+                                            ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
+                                        ]
+                                    ],
+                                ]
+                            ],
 
-                    ['label' => Yii::t('app', 'Configuration'), 'header' => true],
-                    ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/tank/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-boxes-stacked'],
-                    ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
-                    ['label' => Yii::t('app', 'Users'), 'url' => ['/users/users/index'], 'iconStyle' => 'fa', 'icon' => 'user'],
-                    ['label' => Yii::t('app', 'Permission'), 'url' => ['/users/permission/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-eye-slash'],
-                    Yii::$app->user->isGuest ?
-                        ['label' => 'Login', 'url' => ['/user/security/login']] :
-                        [
-                            'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/user/security/logout'],
-                            'linkOptions' => ['data-method' => 'post']
-                        ],
-                    ['label' => 'Register', 'url' => ['/user/registration/register'], 'visible' => Yii::$app->user->isGuest]
+                            [
+                                'label' => Yii::t('app', 'Moromi'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/Moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                                    ['label' => Yii::t('app', 'Report Select Type'), 'url' => ['/sauce/Moromi/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                                    ['label' => Yii::t('app', 'Report Select Tank'), 'url' => ['/sauce/Moromi/report2'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                                    [
+                                        'label' => Yii::t('app', 'Configuration'),
+                                        'iconStyle' => 'far',
+                                        'items' => [
+                                            ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/tank/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-boxes-stacked'],
+                                            ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
+                                        ]
+                                    ],
+                                ]
+                            ],
+
+                            [
+                                'label' => Yii::t('app', 'Raw Sauce'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                                    ['label' => Yii::t('app', 'Report Select Type'), 'url' => ['/sauce/raw-sauce/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                                    ['label' => Yii::t('app', 'Report Select Tank'), 'url' => ['/sauce/raw-sauce/report2'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                                    [
+                                        'label' => Yii::t('app', 'Configuration'),
+                                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-gears text-green',
+                                        'items' => [
+                                            ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/tank/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-boxes-stacked'],
+                                            ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/type/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
+                                        ]
+                                    ],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                    [
+                        'label' => 'QA',
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-red',
+                        'items' => [
+                            [
+                                'label' => Yii::t('app', 'DAR'),
+                                'iconStyle' => 'far',
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                                ]
+                            ],
+                            [
+                                'label' => Yii::t('app', 'Certificate'),
+                                'iconStyle' => 'far',
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                                ]
+                            ],
+                            [
+                                'label' => Yii::t('app', 'Products Spec'),
+                                'iconStyle' => 'far',
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                                ]
+                            ],
+                            [
+                                'label' => Yii::t('app', 'Raw Material'),
+                                'iconStyle' => 'far',
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                                ]
+                            ],
+                            [
+                                'label' => Yii::t('app', 'Process Flow'),
+                                'iconStyle' => 'far',
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                                ]
+                            ],
+                            [
+                                'label' => Yii::t('app', 'NCR'),
+                                'iconStyle' => 'far',
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                                ]
+                            ],
+                        ]
+                    ],
+
+
+                      // EN
+                      [
+                        'label' => Yii::t('app', 'Engineering'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Request Repair'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => Yii::t('app', 'EN Store'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                    // AC
+                    [
+                        'label' => Yii::t('app', 'Accounting'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Fixed Assets'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                    // HR
+                    [
+                        'label' => Yii::t('app', 'Human Resource'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Leave Online'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                    // IT
+                    [
+                        'label' => Yii::t('app', 'Information Technology'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Job Online'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => Yii::t('app', 'IT Assets'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => Yii::t('app', 'IT Store'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                     // PD
+                     [
+                        'label' => Yii::t('app', 'Production'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Check Sheet'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                  
 
 
 
+
+
+                   
                 ],
             ]);
             ?>
