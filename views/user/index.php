@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <?php
             foreach ($dataProvider->getModels() as $model) : ?>
-                <div class="col-md-3 ol-sm-6">
+                <div class="col-xl-3 col-md-4 col-sm-6">
                     <div class="card mb-2">
                         <div class="card-header" style="background-color: 
                         <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>
