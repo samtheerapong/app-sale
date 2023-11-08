@@ -64,15 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php endforeach; ?>
                     </div>
                     <div class="col-md-12">
-                        <?= LinkPager::widget([
-                            'pagination' => $dataProvider->pagination,
-                            'maxButtonCount' => 5,
-                            'firstPageLabel' => Yii::t('app', 'First'),
-                            'lastPageLabel' => Yii::t('app', 'Last'),
-                            'options' => ['class' => 'pagination justify-content-center'],
-                            'linkContainerOptions' => ['class' => 'page-item'],
-                            'linkOptions' => ['class' => 'page-link'],
-                        ]); ?>
+                        <?= $model->generatePaginationLinks($dataProvider) ?>
                     </div>
                 </div>
             </div>
