@@ -182,7 +182,7 @@
                         ]
                     ],
                     [
-                        'label' => Yii::t('app', 'EN Store'),
+                        'label' => Yii::t('app', 'Machine history'),
                         'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
                         'items' => [
                             ['label' => Yii::t('app', 'Demo'), 'url' => ['/demo'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-plus'],
