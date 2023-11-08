@@ -18,6 +18,8 @@ return [
     'Reset' => 'ล้าง',
     'First' => 'First',
     'Last' => 'Last',
+    'OK' => 'ตกลง',
+    'Cancel' => 'ตกลง',
 
 
     'Products' => 'สินค้า',
@@ -113,4 +115,15 @@ return [
     'Created By' => 'สร้างโดย',
     'Updated By' => 'ปรับปรุงโดย',
     'Docs' => 'แนบไฟล์',
+    'Approve' => 'อนุมัติ',
+    'Approval' => 'การอนุมัติ',
+    'Approve By' => 'อนุมัติโดย',
+    'Status' => 'สถานะ',
+    'Location' => 'สถานที่',
+    'Department' => 'แผนก',
+    'Request By' => 'ผู้ร้องขอ',
+    'Title' => 'เรื่อง',
+    'New Request' => 'เพิ่มการแจ้งซ่อม',
+    'Request Repair' => 'ระบบแจ้งซ่อม',
+    'Waiting for approval' => 'รอการอนุมัติ',
 ];

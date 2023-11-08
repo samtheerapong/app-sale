@@ -134,6 +134,32 @@ class RequestRepairController extends Controller
         ]);
     }
 
+
+    // Approval
+    public function actionApprove($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->approver = Yii::$app->user->identity->id; //ดึง id จาก ผู้ใช้ Login เข้ามา
+
+        $model->job_status_id = 2; // กำหนดให้ สถานะเป็น อนุมัติ
+
+        if ($model->approve_date === null) {
+            $model->approve_date = date('Y-m-d');
+        }  // หาก ไม่มีข้อมูล ให้ แสดงวันที่ปัจจุบัน
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                // return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        return $this->render('approved', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Deletes an existing RequestRepair model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

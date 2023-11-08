@@ -16,10 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div style="display: flex; justify-content: space-between;">
             <p>
-                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'),['index'], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
             </p>
 
             <p style="text-align: right;">
+
+                <?= Html::a('<i class="fa-solid fa-thumbs-up"></i> ' . Yii::t('app', 'Approve'), ['approve', 'id' => $model->id], ['class' => 'btn btn-success',  'aria-label' => Yii::t('app', 'Approve')]) ?>
                 <?= Html::a('<i class="fas fa-edit"></i> ' . Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
 
                 <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -143,7 +145,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
 
-                <!-- <div class="card border-secondary">
+                <div class="card border-secondary">
                     <div class="card-header text-white bg-secondary">
                         <?= Yii::t('app', 'Approver') ?>
                     </div>
@@ -156,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'label' => Yii::t('app', 'Approver'),
                                     'format' => 'html',
                                     'value' => function ($model) {
-                                        return $model->approver ? $model->createdBy->thai_name : Yii::t('app', 'Waiting for approval');
+                                        return $model->approver ? $model->approveBy->thai_name : Yii::t('app', 'Waiting for approval');
                                     },
                                 ],
                                 [
@@ -176,7 +178,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ]) ?>
                     </div>
-                </div> -->
+                </div>
 
             </div>
         </div>
