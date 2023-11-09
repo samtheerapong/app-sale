@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="row">
                         <?php foreach ($dataProvider->getModels() as $model) : ?>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                                 <div class="card mb-2">
                                     <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                                         <a href="<?= Url::toRoute(['view', 'id' => $model->id]); ?>" class="link-light">
@@ -64,7 +64,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php endforeach; ?>
                     </div>
                     <div class="col-md-12">
-                        <?= $model->generatePaginationLinks($dataProvider) ?>
+                        <?php
+                        echo LinkPager::widget([
+                            'pagination' => $dataProvider->pagination,
+                            'maxButtonCount' => 5,
+                            'firstPageLabel' => Yii::t('app', 'First'),
+                            'lastPageLabel' => Yii::t('app', 'Last'),
+                            'options' => ['class' => 'pagination justify-content-center'],
+                            'linkContainerOptions' => ['class' => 'page-item'],
+                            'linkOptions' => ['class' => 'page-link'],
+                        ]);
+                        ?>
+
                     </div>
                 </div>
             </div>

@@ -292,18 +292,4 @@ class RequestRepair extends \yii\db\ActiveRecord
             ]) .
             '</div>';
     }
-
-    // Pagination bootstrap 5
-    public function generatePaginationLinks($dataProvider)
-    {
-        return LinkPager::widget([
-            'pagination' => $dataProvider->pagination,
-            'maxButtonCount' => 5,
-            'firstPageLabel' => Yii::t('app', 'First'),
-            'lastPageLabel' => Yii::t('app', 'Last'),
-            'options' => ['class' => 'pagination justify-content-center'],
-            'linkContainerOptions' => ['class' => 'page-item'],
-            'linkOptions' => ['class' => 'page-link'],
-        ]);
-    } // use yii\bootstrap5\LinkPager;
 }

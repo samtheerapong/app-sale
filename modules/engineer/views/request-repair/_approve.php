@@ -1,16 +1,8 @@
 <?php
 
-use app\models\User;
-use app\modules\general\models\Departments;
-use app\modules\general\models\Locations;
-use app\modules\general\models\Priority;
-use app\modules\general\models\Urgency;
+
 use kartik\widgets\DatePicker;
-use kartik\widgets\FileInput;
-use kartik\widgets\Select2;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
 
@@ -20,38 +12,35 @@ use yii\widgets\DetailView;
 ?>
 
 <div class="request-repair-form">
-<div style="display: flex; justify-content: space-between;">
-            <p>
-                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
-            </p>
+    <div style="display: flex; justify-content: space-between;">
+        <p>
+            <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+        </p>
 
-            <p style="text-align: right;">
+        <p style="text-align: right;">
 
-                <?= Html::a('<i class="fa-solid fa-eye"></i> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-info',  'aria-label' => Yii::t('app', 'View')]) ?>
-                <?= Html::a('<i class="fas fa-edit"></i> ' . Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
-                <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger',
-                    'data' => [
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                        'method' => 'post',
-                    ],
-                ]) ?>
+            <?= Html::a('<i class="fa-solid fa-eye"></i> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-info',  'aria-label' => Yii::t('app', 'View')]) ?>
+            <?= Html::a('<i class="fas fa-edit"></i> ' . Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
 
-            </p>
-        </div>
-
-
+        </p>
+    </div>
 
     <div class="row">
         <div class="col-md-6">
             <div class="card border-secondary">
-                <div class="card-header text-white bg-secondary">
-                    <?php echo Yii::t('app', 'Record') ?>
+                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                    <?php echo Yii::t('app', 'Request') ?>
                 </div>
                 <div class="card-body">
                     <?php echo DetailView::widget([
                         'model' => $model,
-                        // 'template' => '<tr><th style="width: 200px;">{label}</th><td> {value}</td></tr>',
                         'attributes' => [
                             // 'id',
                             // 'repair_code',
@@ -140,23 +129,22 @@ use yii\widgets\DetailView;
             </div>
         </div>
 
-
         <div class="col-md-6">
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
             <div class="card border-success">
-                <div class="card-header text-white bg-success">
+                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                     <?php echo Yii::t('app', 'Approval') ?>
                 </div>
                 <div class="card-body">
 
                     <div class="row">
-                     
+
                         <div class="col-md-12">
                             <?= $form->field($model, 'approve_date')->widget(
                                 DatePicker::class,
                                 [
                                     'language' => 'th',
-                                    'options' => ['placeholder' => Yii::t('app', 'Select...'),'required' => true],
+                                    'options' => ['placeholder' => Yii::t('app', 'Select...'), 'required' => true],
                                     'pluginOptions' => [
                                         'format' => 'yyyy-mm-dd',
                                         'todayHighlight' => true,
@@ -173,8 +161,6 @@ use yii\widgets\DetailView;
                             <?php echo $form->field($model, 'approve_comment')->textarea(['rows' => 2]) ?>
                         </div>
                     </div>
-
-                  
                 </div>
 
 

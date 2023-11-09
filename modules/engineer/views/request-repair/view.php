@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /** @var app\modules\engineer\models\RequestRepair $model */
 
 $this->title = $model->repair_code;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Request Repairs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Request Repair'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <div class="card border-secondary">
-                    <div class="card-header text-white bg-secondary">
+                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= $this->title ?>
                     </div>
                     <div class="card-body">
@@ -136,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="col-md-6">
                 <div class="card border-secondary">
-                    <div class="card-header text-white bg-secondary">
+                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Docs') ?>
                     </div>
                     <div class="card-body">
@@ -146,7 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                 <div class="card border-secondary">
-                    <div class="card-header text-white bg-secondary">
+                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Approver') ?>
                     </div>
                     <div class="card-body">
