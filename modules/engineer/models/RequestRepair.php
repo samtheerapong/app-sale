@@ -304,7 +304,6 @@ class RequestRepair extends \yii\db\ActiveRecord
 
         // Generate the QR code image HTML
         $qrCodeHtml = '<img src="' . $qr->render($data) . '" />';
-
         // Wrap the QR code image in a container with a 2px border
         echo '<div style="border: 1px solid #000; padding: 5px;">' . $qrCodeHtml . '<br>' . $this->repair_code . '</div>';
     }
