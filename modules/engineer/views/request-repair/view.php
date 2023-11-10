@@ -13,6 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="request-repair-view">
+
     <div class="row">
         <div style="display: flex; justify-content: space-between;">
             <p>
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <div class="card border-secondary">
-                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= $this->title ?>
                     </div>
                     <div class="card-body">
@@ -136,17 +137,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="col-md-6">
                 <div class="card border-secondary">
-                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Docs') ?>
                     </div>
                     <div class="card-body">
-                        <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->id)]); ?>
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label><?= Yii::t('app', 'Images') ?> : </label>
+                                <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->id)]); ?>
+                            </div>
 
+                            <div class="col-md-4">
+                                <label><?= Yii::t('app', 'QR Code') ?> : </label>
+                                    <?php echo $model->actionQr(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 <div class="card border-secondary">
-                <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Approver') ?>
                     </div>
                     <div class="card-body">
