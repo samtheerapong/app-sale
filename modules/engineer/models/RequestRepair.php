@@ -19,6 +19,9 @@ use yii\behaviors\BlameableBehavior;
 use yii\bootstrap5\LinkPager;
 use yii\db\BaseActiveRecord;
 
+use chillerlan\QRCode\QRCode;
+use yii\web\Response;
+
 /**
  * This is the model class for table "request_repair".
  *
@@ -292,4 +295,18 @@ class RequestRepair extends \yii\db\ActiveRecord
             ]) .
             '</div>';
     }
+
+    public function actionQr()
+    {
+        Yii::$app->response->format = Response::FORMAT_HTML;
+        $data = $this->repair_code;
+        $qr = new QRCode();
+    
+        // Generate the QR code image HTML
+        $qrCodeHtml = '<img src="' . $qr->render($data) . '" />';
+    
+        // Wrap the QR code image in a container with a 2px border
+        echo '<div style="border: 1px solid #000; padding: 5px;">' . $qrCodeHtml . $this->repair_code.'</div>';
+    }
+    
 }
