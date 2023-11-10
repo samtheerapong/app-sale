@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </p>
 
                             <p class="card-text"><b><?= Yii::t('app', 'Status') ?></b> :
-                                <span class="text" style="color: <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>; font-size: 16px;"><?= $model->status === User::STATUS_ACTIVE ? 'Active' : 'Not Active' ?></span>
+                                <span class="text" style="color: <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>;"><?= $model->status === User::STATUS_ACTIVE ? 'Active' : 'Not Active' ?></span>
                             </p>
 
                             <p class="card-text"><b><?= Yii::t('app', 'Created At') ?></b> : <?= Html::encode(Yii::$app->formatter->asDate($model->created_at, 'dd MMMM YYYY')) ?></p>

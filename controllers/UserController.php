@@ -19,6 +19,7 @@ class UserController extends Controller
     /**
      * @inheritDoc
      */
+
     public function behaviors()
     {
         return array_merge(
@@ -38,17 +39,22 @@ class UserController extends Controller
                         [
                             'actions' => ['index', 'view', 'create', 'update', 'delete'],
                             'allow' => true,
-                            'roles' => ['@'], // Require authenticated users
+                            'roles' => ['@'],
                             'matchCallback' => function ($rule, $action) {
-                                return Yii::$app->user->identity->id == 1;
+                                return in_array(Yii::$app->user->identity->role_id, [2]); // Admin
                             },
+                        ],
+                        [
+                            'actions' => ['index', 'view'],
+                            'allow' => true,
+                            'roles' => ['@'], // Require authenticated users
                         ],
                     ],
                 ],
             ]
         );
     }
-
+  
 
     /**
      * Lists all User models.

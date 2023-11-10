@@ -33,6 +33,29 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_DELETED = 0;
 
+    //  roles
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 2;
+    const ROLE_MANAGER = 3;
+    const ROLE_HEAD = 4;
+    const ROLE_QMR = 5;
+    const ROLE_DCC = 6;
+    const ROLE_SMR = 7;
+    const ROLE_LMR = 8;
+    const ROLE_AUDIT = 9;
+    const ROLE_SALE = 10;
+
+
+    // rules
+    const RULE_R = 1;
+    const RULE_C = 2;
+    const RULE_U = 3;
+    const RULE_D = 4;
+    const RULE_L = 5;
+    const RULE_CR = 6;
+    const RULE_CRU = 7;
+    const RULE_ALL = 8;
+
     /**
      * {@inheritdoc}
      */
@@ -58,6 +81,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['role_id', 'default', 'value' => self::ROLE_USER],
+            ['rule_id', 'default', 'value' => self::RULE_R],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             [['thai_name', 'email'], 'string'],
             [['username', 'password_hash', 'email', 'thai_name'], 'required'],
