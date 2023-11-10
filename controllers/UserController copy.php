@@ -21,34 +21,43 @@ class UserController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::class,
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'delete' => ['post'],
                 ],
             ],
-            [
-                'access' => [
-                    'class' => AccessControl::class,
-                    'rules' => [
-                        [
-                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                            'allow' => true,
-                            'roles' => ['@'], // Require authenticated users
-                            'matchCallback' => function ($rule, $action) {
-                                return Yii::$app->user->identity->id == 1;
-                            },
+            'access' => [
+                'class' => AccessControl::class,
+                'ruleConfig' => [
+                    'class' => Rule::class,
+                ],
+                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_MANAGER
+                        ],
+                    ],
+                    [
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_MANAGER,
+                            User::ROLE_QA,
+                            User::ROLE_SALE,
+                            User::ROLE_USER
                         ],
                     ],
                 ],
-            ]
-        );
+            ],
+        ];
     }
-
 
     /**
      * Lists all User models.
@@ -117,7 +126,7 @@ class UserController extends Controller
         $oldPass = $model->password_hash;
 
         if ($this->request->isPost && $model->load($this->request->post())) {
-            if ($oldPass != $model->password_hash) { //กรณีเปลี่ยนรหัสผ่าน
+            if($oldPass!=$model->password_hash){ //กรณีเปลี่ยนรหัสผ่าน
                 $model->password_hash = Yii::$app->security->generatePasswordHash($model->password_hash);
                 //$user->auth_key = Yii::$app->Security->generateRandomString();
                 $model->save();

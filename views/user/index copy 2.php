@@ -51,22 +51,30 @@ $this->params['breadcrumbs'][] = $this->title;
                             <p class="card-text"><b><?= Yii::t('app', 'Username') ?></b> : <?= Html::encode($model->username) ?></p>
                             <p class="card-text"><b><?= Yii::t('app', 'Thai Name') ?></b> : <?= Html::encode($model->thai_name) ?></p>
                             <p class="card-text"><b><?= Yii::t('app', 'Email') ?></b> : <?= \yii\helpers\Html::a($model->email, 'mailto:' . $model->email) ?></p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Department') ?></b> :
-                                <?= $model->department ? '<span class="text" style="color: ' . $model->department->color . ';">' . $model->department->name . '</span>' : ' '; ?>
-                            </p>
-                            <p class="card-text"><b><?= Yii::t('app', 'Role') ?></b> :
-                                <?= $model->role0 ? '<span class="text" style="color: ' . $model->role0->color . ';">' . $model->role0->name . '</span>' : ' '; ?>
-                            </p>
-
-                            <p class="card-text"><b><?= Yii::t('app', 'Rule') ?></b> :
-                                <?= $model->rule0 ? '<span class="text" style="color: ' . $model->rule0->color . ';">' . $model->rule0->name . '</span>' : ' '; ?>
-                            </p>
+                            <p class="card-text"><b><?= Yii::t('app', 'Location') ?></b> : <?= Html::encode($model->username) ?></p>
 
                             <p class="card-text"><b><?= Yii::t('app', 'Status') ?></b> :
-                                <span class="text" style="color: <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>; font-size: 16px;"><?= $model->status === User::STATUS_ACTIVE ? 'Active' : 'Not Active' ?></span>
+                                <span class="badge" style="color: <?= $model->status === User::STATUS_ACTIVE ? '#1A5D1A' : '#FE0000' ?>; font-size: 16px;"><?= $model->status === User::STATUS_ACTIVE ? 'Active' : 'Not Active' ?></span>
+                            </p>
+
+                            <p class="card-text"><b><?= Yii::t('app', 'Role') ?></b> :
+                                <?php
+                                if ($model->role === User::ROLE_ADMIN) {
+                                    echo 'Admin';
+                                } elseif ($model->role === User::ROLE_MANAGER) {
+                                    echo 'Manager';
+                                } elseif ($model->role === User::ROLE_QA) {
+                                    echo 'QA';
+                                } elseif ($model->role === User::ROLE_SALE) {
+                                    echo 'Sale';
+                                } else {
+                                    echo 'User';
+                                }
+                                ?>
                             </p>
 
                             <p class="card-text"><b><?= Yii::t('app', 'Created At') ?></b> : <?= Html::encode(Yii::$app->formatter->asDate($model->created_at, 'dd MMMM YYYY')) ?></p>
+
 
                         </div>
 

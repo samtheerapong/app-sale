@@ -3,8 +3,6 @@
 namespace app\models;
 
 use app\modules\general\models\Departments;
-use app\models\UserRoles;
-use app\models\UserRules;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -33,6 +31,13 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_DELETED = 0;
 
+    // role
+    const ROLE_ADMIN = 10;
+    const ROLE_QA = 9;
+    const ROLE_SALE = 8;
+    const ROLE_MANAGER = 5;
+    const ROLE_USER = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -59,9 +64,17 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['role', 'default', 'value' => self::ROLE_USER],
+            ['role', 'in', 'range' => [
+                self::ROLE_USER,
+                self::ROLE_MANAGER,
+                self::ROLE_QA,
+                self::ROLE_SALE,
+                self::ROLE_ADMIN
+            ]],
             [['thai_name', 'email'], 'string'],
             [['username', 'password_hash', 'email', 'thai_name'], 'required'],
-            [['department_id', 'role_id', 'rule_id'], 'safe'],
+            [['department_id'], 'safe'],
         ];
     }
 
@@ -74,8 +87,7 @@ class User extends ActiveRecord implements IdentityInterface
             'password_hash' => Yii::t('app', 'Password'),
             'status' => Yii::t('app', 'Status'),
             'email' => Yii::t('app', 'Email'),
-            'role_id' => Yii::t('app', 'Role'),
-            'rule_id' => Yii::t('app', 'Rule'),
+            'role' => Yii::t('app', 'Role'),
             'dapartment_id' => Yii::t('app', 'Dapartment'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
@@ -236,18 +248,8 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    public function getDepartment()
+    public function getDepartment0()
     {
         return $this->hasOne(Departments::class, ['id' => 'department_id']);
-    }
-
-    public function getRole0()
-    {
-        return $this->hasOne(UserRoles::class, ['id' => 'role_id']);
-    }
-
-    public function getRule0()
-    {
-        return $this->hasOne(UserRules::class, ['id' => 'rule_id']);
     }
 }

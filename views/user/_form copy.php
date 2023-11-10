@@ -1,8 +1,6 @@
 <?php
 
 use app\models\User;
-use app\models\UserRoles;
-use app\models\UserRules;
 use app\modules\general\models\Departments;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -30,23 +28,22 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($model, 'email')->textInput() ?>
 
-            <?= $form->field($model, 'role_id')->dropDownList(
-                ArrayHelper::map(UserRoles::find()->all(), 'id', 'name'),
-                [
-                    'prompt' => Yii::t('app', 'Select...'),
-                    'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
-                    'required' => true, // Make the field required
-                ]
-            ) ?>
+            <?= $form->field($model, 'status')->dropDownList([
+                User::STATUS_ACTIVE => Yii::t('app', 'Active'),
+                User::STATUS_INACTIVE => Yii::t('app', 'Inactive'),
+                // User::STATUS_DELETED => Yii::t('app', 'Delete'),
+            ]) ?>
 
-            <?= $form->field($model, 'rule_id')->dropDownList(
-                ArrayHelper::map(UserRules::find()->all(), 'id', 'name'),
-                [
-                    'prompt' => Yii::t('app', 'Select...'),
-                    'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
-                    'required' => true, // Make the field required
-                ]
-            ) ?>
+            <?= $form->field($model, 'role')->dropDownList([
+                User::ROLE_ADMIN => Yii::t('app', 'Admin'),
+                User::ROLE_QA => Yii::t('app', 'QA'),
+                User::ROLE_SALE => Yii::t('app', 'Sale'),
+                User::ROLE_MANAGER => Yii::t('app', 'Manager'),
+                User::ROLE_USER => Yii::t('app', 'User'),
+            ]) ?>
+
+
+
 
             <?= $form->field($model, 'department_id')->dropDownList(
                 ArrayHelper::map(Departments::find()->all(), 'id', 'name'),
@@ -57,11 +54,7 @@ use yii\widgets\ActiveForm;
                 ]
             ) ?>
 
-            <?= $form->field($model, 'status')->dropDownList([
-                User::STATUS_ACTIVE => Yii::t('app', 'Active'),
-                User::STATUS_INACTIVE => Yii::t('app', 'Inactive'),
-                // User::STATUS_DELETED => Yii::t('app', 'Delete'),
-            ]) ?>
+
 
 
         </div>

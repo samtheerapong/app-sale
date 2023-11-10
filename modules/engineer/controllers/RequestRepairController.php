@@ -8,6 +8,7 @@ use app\modules\general\models\Uploads;
 use Exception;
 use mdm\autonumber\AutoNumber;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,9 +39,25 @@ class RequestRepairController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+            ],
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['@'], // Require authenticated users
+                            'matchCallback' => function ($rule, $action) {
+                                return Yii::$app->user->identity->id == 1;
+                            },
+                        ],
+                    ],
+                ],
             ]
         );
     }
+
 
     /**
      * Lists all RequestRepair models.
