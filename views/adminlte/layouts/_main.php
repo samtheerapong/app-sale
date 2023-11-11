@@ -16,7 +16,8 @@ AppAsset::register($this);
 // $bundle->js[] = 'sweetalert2/sweetalert2.min.js';
 
 
-$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500&family=Kanit&family=Sriracha&display=swap');
+// $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
+// $this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Kanit&display=swap');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
@@ -32,23 +33,25 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500&family=Kanit&family=Sriracha&display=swap" rel="stylesheet">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <style>
-        body {
-            /* font-family: 'Sriracha', cursive; */
+        * {
+            font-family: 'Sriracha', cursive;
             /* font-family: 'Chakra Petch', sans-serif; */
-            font-family: 'Kanit', sans-serif;
+            /* font-family: 'Kanit', sans-serif; */
         }
-       
     </style>
 </head>
 <!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
 <!-- <body class="sidebar-collapse sidebar-collapse layout-navbar-fixed layout-footer-fixed"> -->
-<!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
+<body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed">
 
-<body class="hold-transition sidebar-mini">
+<!-- <body class="hold-transition sidebar-mini"> -->
     <?php $this->beginBody() ?>
 
     <div class="wrapper">
@@ -68,7 +71,7 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <?php  echo $this->render('footer') ?>
+        <?= $this->render('footer') ?>
 
     </div>
 

@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div style="display: flex; justify-content: space-between;">
         <p>
             <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+       
+            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New User'), ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
         <p style="text-align: right;">
@@ -80,10 +82,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                         'value' => function ($model) {
                             return $model->status === User::STATUS_ACTIVE
-                                ? '<span class="text" style="color: #1A5D1A">Active</span>'
-                                : '<span class="text" style="color: #FE0000">In Active</span>';
+                                ? '<span class="text" style="color: #1A5D1A">' . Yii::t('app', 'Active') . '</span>'
+                                : '<span class="text" style="color: #FE0000">' . Yii::t('app', 'Inactive') . '</span>';
                         },
                     ],
+                    
                     'created_at:date',
                     'updated_at:date',
                     // 'verification_token',

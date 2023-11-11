@@ -21,48 +21,63 @@ use yii\widgets\ActiveForm;
             <?= Html::encode($this->title) ?>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($model, 'username')->textInput() ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field($model, 'password_hash')->passwordInput() ?>
+                </div>
+            </div>
 
-            <?= $form->field($model, 'username')->textInput() ?>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($model, 'thai_name')->textInput() ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field($model, 'email')->textInput() ?>
+                </div>
+            </div>
 
-            <?= $form->field($model, 'password_hash')->passwordInput() ?>
-
-            <?= $form->field($model, 'thai_name')->textInput() ?>
-
-            <?= $form->field($model, 'email')->textInput() ?>
-
-            <?= $form->field($model, 'role_id')->dropDownList(
-                ArrayHelper::map(UserRoles::find()->all(), 'id', 'name'),
-                [
-                    'prompt' => Yii::t('app', 'Select...'),
-                    'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
-                    'required' => true, // Make the field required
-                ]
-            ) ?>
-
-            <?= $form->field($model, 'rule_id')->dropDownList(
-                ArrayHelper::map(UserRules::find()->all(), 'id', 'name'),
-                [
-                    'prompt' => Yii::t('app', 'Select...'),
-                    'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
-                    'required' => true, // Make the field required
-                ]
-            ) ?>
-
-            <?= $form->field($model, 'department_id')->dropDownList(
-                ArrayHelper::map(Departments::find()->all(), 'id', 'name'),
-                [
-                    'prompt' => Yii::t('app', 'Select...'),
-                    'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
-                    'required' => true, // Make the field required
-                ]
-            ) ?>
-
-            <?= $form->field($model, 'status')->dropDownList([
-                User::STATUS_ACTIVE => Yii::t('app', 'Active'),
-                User::STATUS_INACTIVE => Yii::t('app', 'Inactive'),
-                // User::STATUS_DELETED => Yii::t('app', 'Delete'),
-            ]) ?>
-
+            <div class="row">
+                <div class="col-md-3">
+                    <?= $form->field($model, 'role_id')->dropDownList(
+                        ArrayHelper::map(UserRoles::find()->all(), 'id', 'name'),
+                        [
+                            'prompt' => Yii::t('app', 'Select...'),
+                            'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
+                            'required' => true, // Make the field required
+                        ]
+                    ) ?>
+                </div>
+                <div class="col-md-3">
+                    <?= $form->field($model, 'rule_id')->dropDownList(
+                        ArrayHelper::map(UserRules::find()->all(), 'id', 'name'),
+                        [
+                            'prompt' => Yii::t('app', 'Select...'),
+                            'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
+                            'required' => true, // Make the field required
+                        ]
+                    ) ?>
+                </div>
+                <div class="col-md-3">
+                    <?= $form->field($model, 'department_id')->dropDownList(
+                        ArrayHelper::map(Departments::find()->all(), 'id', 'name'),
+                        [
+                            'prompt' => Yii::t('app', 'Select...'),
+                            'options' => ['' => ['disabled' => true]], // Optional: Disable the prompt option
+                            'required' => true, // Make the field required
+                        ]
+                    ) ?>
+                </div>
+                <div class="col-md-3">
+                    <?= $form->field($model, 'status')->dropDownList([
+                        User::STATUS_ACTIVE => Yii::t('app', 'Active'),
+                        User::STATUS_INACTIVE => Yii::t('app', 'Inactive'),
+                        // User::STATUS_DELETED => Yii::t('app', 'Delete'),
+                    ]) ?>
+                </div>
+            </div>
 
         </div>
         <div class="card-footer">

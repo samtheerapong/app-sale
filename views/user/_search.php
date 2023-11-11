@@ -1,5 +1,10 @@
 <?php
 
+use app\modules\general\models\Departments;
+use app\models\UserRoles;
+use app\models\UserRules;
+use kartik\widgets\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,35 +20,45 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="card border-secondary">
+        <div class="card-header text-white bg-secondary">
+            <?= Yii::t('app', 'Search') ?> 
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <?= $form->field($model, 'thai_name') ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'role_id')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(UserRoles::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($model, 'department_id')->widget(Select2::class, [
+                        'language' => 'th',
+                        'data' => ArrayHelper::map(Departments::find()->all(), 'id', 'name'),
+                        'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);
+                    ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <?= Html::submitButton('<i class="fas fa-search"></i> ' . Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['index'], ['class' => 'btn btn-outline-secondary']) ?>
+            </div>
 
-    <?= $form->field($model, 'username') ?>
+            <?php ActiveForm::end(); ?>
 
-    <?= $form->field($model, 'thai_name') ?>
-
-    <?= $form->field($model, 'auth_key') ?>
-
-    <?= $form->field($model, 'password_hash') ?>
-
-    <?php // echo $form->field($model, 'password_reset_token') ?>
-
-    <?php // echo $form->field($model, 'email') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
-
-    <?php // echo $form->field($model, 'verification_token') ?>
-
-    <?php // echo $form->field($model, 'role') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>
