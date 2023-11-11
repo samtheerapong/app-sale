@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 11, 2023 at 08:52 AM
+-- Generation Time: Nov 11, 2023 at 09:17 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -1341,14 +1341,14 @@ CREATE TABLE `user_rules` (
 --
 
 INSERT INTO `user_rules` (`id`, `code`, `name`, `color`, `active`) VALUES
-(1, 'R', 'ดู', '#1A5D1A', 1),
-(2, 'C', 'เพิ่ม', '#0079FF', 1),
-(3, 'U', 'แก้ไข', '#F94A29', 1),
-(4, 'D', 'ลบ', '#B70404', 1),
-(5, 'L', 'โหลด', '#070A52', 1),
-(6, 'CR', 'ดูและสร้าง', '#539165', 1),
-(7, 'CRU', 'ดู สร้าง แก้ไข', '#4C4B16', 1),
-(8, 'A', 'ทั้งหมด', '#379237', 1);
+(1, 'index', 'หน้าหลัก', '#1A5D1A', 1),
+(2, 'view', 'ดู', '#0079FF', 1),
+(3, 'create', 'สร้าง', '#F94A29', 1),
+(4, 'update', 'แก้ไข', '#B70404', 1),
+(5, 'delete', 'ลบ', '#070A52', 1),
+(6, 'profile', 'โปรไฟล์', '#539165', 1),
+(7, 'download', 'ดาวน์โหลด', '#4C4B16', 1),
+(8, 'All', '[\'index\', \'view\', \'create\', \'update\', \'delete\', \'profile\',\'download\']', '#379237', 1);
 
 -- --------------------------------------------------------
 
