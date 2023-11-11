@@ -40,7 +40,7 @@
                     ],
                     [
                         'label' => Yii::t('app', 'QC'),
-                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-c text-red',
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-q text-red',
                         'items' => [
                             // [
                             //     'label' => Yii::t('app', 'Koji'),
