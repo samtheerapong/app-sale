@@ -15,6 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="request-repair-index">
+    <p>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New Request'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">

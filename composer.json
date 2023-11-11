@@ -29,7 +29,8 @@
         "2amigos/yii2-gallery-widget" : "*",
         "miloschuman/yii2-highcharts-widget": "*",
         "yurkinx/yii2-image": "dev-master",
-        "chillerlan/php-qrcode": "*"
+        "chillerlan/php-qrcode": "*",
+        "intervention/image": "^2.7"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

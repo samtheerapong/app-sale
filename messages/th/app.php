@@ -39,6 +39,7 @@ return [
     'Total : {count} Record' => 'ทั้งหมด : {count} รายการ',
     'Table' => 'ตาราง',
     'Card' => 'การ์ด',
+    'Create New Request' => 'เพิ่มการแจ้งซ่อม',
 
 
     'Products' => 'สินค้า',

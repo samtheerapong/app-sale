@@ -45,26 +45,26 @@ class RequestRepairController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'approve'],
+                            // 'actions' => [''],
                             'allow' => true,
                             'roles' => ['@'],
-                            'matchCallback' => function ($rule, $action) {
-                                return in_array(Yii::$app->user->identity->role_id, [2, 3]); // Admin
-                            },
+                            // 'matchCallback' => function ($rule, $action) {
+                            //     return in_array(Yii::$app->user->identity->role_id, [2, 3]); // Admin
+                            // },
                         ],
-                        [
-                            'actions' => ['approve', 'update'],
-                            'allow' => true,
-                            'roles' => ['@'],
-                            'matchCallback' => function ($rule, $action) {
-                                return in_array(Yii::$app->user->identity->role_id, [4]); // Admin
-                            },
-                        ],
-                        [
-                            'actions' => ['index', 'view', 'create'],
-                            'allow' => true,
-                            'roles' => ['@'], // Require authenticated users
-                        ],
+                        // [
+                        //     'actions' => ['approve', 'update'],
+                        //     'allow' => true,
+                        //     'roles' => ['@'],
+                        //     'matchCallback' => function ($rule, $action) {
+                        //         return in_array(Yii::$app->user->identity->role_id, [4]); // Admin
+                        //     },
+                        // ],
+                        // [
+                        //     'actions' => ['index', 'view', 'create'],
+                        //     'allow' => true,
+                        //     'roles' => ['@'], // Require authenticated users
+                        // ],
                     ],
                 ],
             ]

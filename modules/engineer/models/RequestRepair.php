@@ -250,20 +250,20 @@ class RequestRepair extends \yii\db\ActiveRecord
 
     public function getThumbnails($ref, $id)
     {
-        $uploadFiles   = Uploads::find()->where(['ref' => $ref])->all();
+        $uploadFiles = Uploads::find()->where(['ref' => $ref])->all();
         $preview = [];
         foreach ($uploadFiles as $file) {
             $preview[] = [
                 'url' => self::getUploadUrl(true) . $ref . '/' . $file->real_filename,
                 'src' => self::getUploadUrl(true) . $ref . '/thumbnail/' . $file->real_filename,
-                'options' => [
-                    'style' => 'width: 250px; margin: 2px;',
-                ]
-
+                'options' => ['title' => $id]
             ];
         }
         return $preview;
     }
+
+
+
 
     // Action Buttons
     public function generateActionButtons()
