@@ -17,12 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php Pjax::begin(); ?>
-
-
     <?php echo $this->render('_search2', ['model' => $searchModel]); ?>
-
-
-
     <div class="card border-info">
         <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'Total : {count} Record', ['count' => $dataProvider->totalCount]) ?>
@@ -79,9 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
             </div>
-
-            <?php Pjax::end(); ?>
-
         </div>
     </div>
+    <?php Pjax::end(); ?>
 </div>

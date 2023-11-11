@@ -20,47 +20,45 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-
     <?php Pjax::begin(); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="card border-secondary">
-        <div class="card-header text-white bg-primary">
+        <div class="card-header text-white bg-secondary">
             <?= Html::encode($this->title) ?>
         </div>
         <div class="card-body">
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-        </div>
-    </div>
-
-    <div class="row ">
-        <?php foreach ($dataProvider->getModels() as $model) : ?>
-            <div class="col-xl-3 col-md-4 col-sm-6">
-                <div class="card mb-2">
-                    <div class="card-header" style="background-color: <?= $model->color ?>; color: #FFFFFF;">
-                        <h5><?= Html::encode($model->code) ?></h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><?= Yii::t('app', 'Name') ?> : <?= Html::encode($model->name) ?></p>
-                        <p class="card-text"><?= Yii::t('app', 'Description') ?> : <?= Html::encode($model->description) ?></p>
-                        <!-- <p class="card-text"><?= Html::encode($model->color) ?></p> -->
-                    </div>
-                    <div class="card-footer text-center">
-                        <div class="btn-group btn-group-xs" role="group">
-                            <?= Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'View'), 'aria-label' => Yii::t('app', 'View')]) ?>
-                            <?= Html::a('<i class="fas fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'Update'), 'aria-label' => Yii::t('app', 'Update')]) ?>
-                            <?= Html::a('<i class="fas fa-trash-can"></i>', ['delete', 'id' => $model->id], [
-                                'class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'Delete'), 'aria-label' => Yii::t('app', 'Delete'),
-                                'data' => [
-                                    'confirm' => 'Are you sure you want to delete this item?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?>
+            <div class="row ">
+                <?php foreach ($dataProvider->getModels() as $model) : ?>
+                    <div class="col-xl-3 col-md-4 col-sm-6">
+                        <div class="card mb-2">
+                            <div class="card-header" style="background-color: <?= $model->color ?>; color: #FFFFFF;">
+                                <h5><?= Html::encode($model->code) ?></h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><?= Yii::t('app', 'Name') ?> : <?= Html::encode($model->name) ?></p>
+                                <p class="card-text"><?= Yii::t('app', 'Description') ?> : <?= Html::encode($model->description) ?></p>
+                                <!-- <p class="card-text"><?= Html::encode($model->color) ?></p> -->
+                            </div>
+                            <div class="card-footer text-center">
+                                <div class="btn-group btn-group-xs" role="group">
+                                    <?= Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $model->id], ['class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'View'), 'aria-label' => Yii::t('app', 'View')]) ?>
+                                    <?= Html::a('<i class="fas fa-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'Update'), 'aria-label' => Yii::t('app', 'Update')]) ?>
+                                    <?= Html::a('<i class="fas fa-trash-can"></i>', ['delete', 'id' => $model->id], [
+                                        'class' => 'btn btn-outline-dark btn-sm', 'title' => Yii::t('app', 'Delete'), 'aria-label' => Yii::t('app', 'Delete'),
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+                <?php endforeach; ?>
 
+            </div>
+        </div>
     </div>
 
     <?php Pjax::end(); ?>

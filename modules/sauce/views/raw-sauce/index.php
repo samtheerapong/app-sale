@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="card border-secondary">
@@ -39,6 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'pager' => [
                     'class' => LinkPager::class,
                     'options' => ['class' => 'pagination justify-content-center m-1'],
+                    'maxButtonCount' => 5,
+                    'firstPageLabel' => Yii::t('app', 'First'),
+                    'lastPageLabel' => Yii::t('app', 'Last'),
+                    'options' => ['class' => 'pagination justify-content-center'],
                     'linkContainerOptions' => ['class' => 'page-item'],
                     'linkOptions' => ['class' => 'page-link'],
                 ],
@@ -201,7 +204,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        'headerOptions' => ['style' => 'width: 120px;'],
+                        // 'headerOptions' => ['style' => 'width: 120px;'],
                         'contentOptions' => ['class' => 'text-center'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
                         'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
@@ -212,8 +215,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]); ?>
 
-            <?php Pjax::end(); ?>
-
         </div>
     </div>
+    <?php Pjax::end(); ?>
 </div>

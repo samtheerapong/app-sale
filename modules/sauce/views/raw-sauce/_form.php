@@ -16,9 +16,6 @@ use yii\widgets\ActiveForm;
 <div class="raw-sauce-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-
-
     <div class="row">
         <div class="col-md-12">
             <div class="card border-secondary">
@@ -28,9 +25,7 @@ use yii\widgets\ActiveForm;
                 <div class="card-body">
                     <?= $form->field($model, 'batch')->hiddenInput()->label(false); ?>
                     <div class="row">
-
                         <div class="col-md-6">
-
                             <?= $form->field($model, 'reccord_date')->widget(
                                 DatePicker::class,
                                 [

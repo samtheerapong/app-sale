@@ -29,44 +29,44 @@ use yii\helpers\Url;
                 [
                     'label' => Yii::t('app', 'QC'),
                     'items' => [
-                        [
-                            'label' => Yii::t('app', 'Koji'),
-                            'items' => [
-                                ['label' => Yii::t('app', 'Koji Record'), 'url' => Url::toRoute('/sauce/koji/index')],
-                                // ['label' => Yii::t('app', 'Create New'), 'url' => Url::toRoute('/sauce/koji/create')],
-                                ['label' => Yii::t('app', 'Report Koji 1'), 'url' => Url::toRoute('/sauce/koji/report1')],
-                                ['label' => Yii::t('app', 'Report Koji 2'), 'url' => Url::toRoute('/sauce/koji/report2')],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'Configuration'),
-                                    'items' => [
-                                        ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/koji/tank/index'])],
-                                        ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/koji/type/index'])],
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                        [
-                            'label' => Yii::t('app', 'Moromi'),
-                            'items' => [
-                                ['label' => Yii::t('app', 'Moromi Record'), 'url' => Url::toRoute('/sauce/moromi/index')],
-                                // ['label' => Yii::t('app', 'Create New'), 'url' => Url::toRoute('/sauce/moromi/create')],
-                                ['label' => Yii::t('app', 'Report Moromi 1'), 'url' => Url::toRoute('/sauce/moromi/report1')],
-                                ['label' => Yii::t('app', 'Report Moromi 2'), 'url' => Url::toRoute('/sauce/moromi/report2')],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'Configuration'),
-                                    'items' => [
-                                        ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/koji/tank/index'])],
-                                        ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/koji/type/index'])],
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
+                        // [
+                        //     'label' => Yii::t('app', 'Koji'),
+                        //     'items' => [
+                        //         ['label' => Yii::t('app', 'Koji Record'), 'url' => Url::toRoute('/sauce/koji/index')],
+                        //         // ['label' => Yii::t('app', 'Create New'), 'url' => Url::toRoute('/sauce/koji/create')],
+                        //         ['label' => Yii::t('app', 'Report Koji 1'), 'url' => Url::toRoute('/sauce/koji/report1')],
+                        //         ['label' => Yii::t('app', 'Report Koji 2'), 'url' => Url::toRoute('/sauce/koji/report2')],
+                        //         '<div class="dropdown-divider"></div>',
+                        //         [
+                        //             'label' => Yii::t('app', 'Configuration'),
+                        //             'items' => [
+                        //                 ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/koji/tank/index'])],
+                        //                 ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/koji/type/index'])],
+                        //             ],
+                        //             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+                        //         ],
+                        //     ],
+                        //     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+                        // ],
+                        // [
+                        //     'label' => Yii::t('app', 'Moromi'),
+                        //     'items' => [
+                        //         ['label' => Yii::t('app', 'Moromi Record'), 'url' => Url::toRoute('/sauce/moromi/index')],
+                        //         // ['label' => Yii::t('app', 'Create New'), 'url' => Url::toRoute('/sauce/moromi/create')],
+                        //         ['label' => Yii::t('app', 'Report Moromi 1'), 'url' => Url::toRoute('/sauce/moromi/report1')],
+                        //         ['label' => Yii::t('app', 'Report Moromi 2'), 'url' => Url::toRoute('/sauce/moromi/report2')],
+                        //         '<div class="dropdown-divider"></div>',
+                        //         [
+                        //             'label' => Yii::t('app', 'Configuration'),
+                        //             'items' => [
+                        //                 ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/koji/tank/index'])],
+                        //                 ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/koji/type/index'])],
+                        //             ],
+                        //             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+                        //         ],
+                        //     ],
+                        //     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+                        // ],
                         [
                             'label' => Yii::t('app', 'Raw Soy Sauce'),
                             'items' => [
@@ -79,8 +79,8 @@ use yii\helpers\Url;
                                 [
                                     'label' => Yii::t('app', 'Configuration'),
                                     'items' => [
-                                        ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/raw-sauce/tank/index'])],
-                                        ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/raw-sauce/type/index'])],
+                                        ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/tank/index'])],
+                                        ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/type/index'])],
                                     ],
                                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
                                 ],
@@ -102,108 +102,108 @@ use yii\helpers\Url;
         ]);
 
         // ++++++++++++ IT +++++++++++++++
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav'],
-            'items' => [
-                [
-                    'label' => Yii::t('app', 'IT'),
-                    'items' => [
-                        [
-                            'label' => Yii::t('app', 'IT1'),
-                            'items' => [
-                                ['label' => 'IT 1.1', 'url' => '#'],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'IT1'),
-                                    'items' => [
-                                        ['label' => 'IT 1.2', 'url' => '#'],
-                                        // ... add more submenu items as needed ...
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                        [
-                            'label' => Yii::t('app', 'IT2'),
-                            'items' => [
-                                ['label' => 'IT 2.1', 'url' => '#'],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'IT 2'),
-                                    'items' => [
-                                        ['label' => 'IT2.2', 'url' => '#'],
-                                        // ... add more submenu items as needed ...
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                    ],
-                    'options' => ['class' => 'nav-item dropdown'],
-                    'linkOptions' => [
-                        'id' => 'dropdownSubMenu1',
-                        'class' => 'nav-link dropdown-toggle',
-                        'data-toggle' => 'dropdown',
-                        'aria-haspopup' => 'true',
-                        'aria-expanded' => 'false',
-                    ],
-                ],
-            ],
-        ]);
+        // echo Nav::widget([
+        //     'options' => ['class' => 'navbar-nav'],
+        //     'items' => [
+        //         [
+        //             'label' => Yii::t('app', 'IT'),
+        //             'items' => [
+        //                 [
+        //                     'label' => Yii::t('app', 'IT1'),
+        //                     'items' => [
+        //                         ['label' => 'IT 1.1', 'url' => '#'],
+        //                         '<div class="dropdown-divider"></div>',
+        //                         [
+        //                             'label' => Yii::t('app', 'IT1'),
+        //                             'items' => [
+        //                                 ['label' => 'IT 1.2', 'url' => '#'],
+        //                                 // ... add more submenu items as needed ...
+        //                             ],
+        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                         ],
+        //                     ],
+        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                 ],
+        //                 [
+        //                     'label' => Yii::t('app', 'IT2'),
+        //                     'items' => [
+        //                         ['label' => 'IT 2.1', 'url' => '#'],
+        //                         '<div class="dropdown-divider"></div>',
+        //                         [
+        //                             'label' => Yii::t('app', 'IT 2'),
+        //                             'items' => [
+        //                                 ['label' => 'IT2.2', 'url' => '#'],
+        //                                 // ... add more submenu items as needed ...
+        //                             ],
+        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                         ],
+        //                     ],
+        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                 ],
+        //             ],
+        //             'options' => ['class' => 'nav-item dropdown'],
+        //             'linkOptions' => [
+        //                 'id' => 'dropdownSubMenu1',
+        //                 'class' => 'nav-link dropdown-toggle',
+        //                 'data-toggle' => 'dropdown',
+        //                 'aria-haspopup' => 'true',
+        //                 'aria-expanded' => 'false',
+        //             ],
+        //         ],
+        //     ],
+        // ]);
 
         // ++++++++++++ AC +++++++++++++++
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav'],
-            'items' => [
-                [
-                    'label' => Yii::t('app', 'AC'),
-                    'items' => [
-                        [
-                            'label' => Yii::t('app', 'AC1'),
-                            'items' => [
-                                ['label' => 'AC 1.1', 'url' => '#'],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'AC1'),
-                                    'items' => [
-                                        ['label' => 'AC 1.2', 'url' => '#'],
-                                        // ... add more submenu items as needed ...
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                        [
-                            'label' => Yii::t('app', 'AC2'),
-                            'items' => [
-                                ['label' => 'AC 2.1', 'url' => '#'],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'AC 2'),
-                                    'items' => [
-                                        ['label' => 'AC 2.2', 'url' => '#'],
-                                        // ... add more submenu items as needed ...
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                    ],
-                    'options' => ['class' => 'nav-item dropdown'],
-                    'linkOptions' => [
-                        'id' => 'dropdownSubMenu1',
-                        'class' => 'nav-link dropdown-toggle',
-                        'data-toggle' => 'dropdown',
-                        'aria-haspopup' => 'true',
-                        'aria-expanded' => 'false',
-                    ],
-                ],
-            ],
-        ]);
+        // echo Nav::widget([
+        //     'options' => ['class' => 'navbar-nav'],
+        //     'items' => [
+        //         [
+        //             'label' => Yii::t('app', 'AC'),
+        //             'items' => [
+        //                 [
+        //                     'label' => Yii::t('app', 'AC1'),
+        //                     'items' => [
+        //                         ['label' => 'AC 1.1', 'url' => '#'],
+        //                         '<div class="dropdown-divider"></div>',
+        //                         [
+        //                             'label' => Yii::t('app', 'AC1'),
+        //                             'items' => [
+        //                                 ['label' => 'AC 1.2', 'url' => '#'],
+        //                                 // ... add more submenu items as needed ...
+        //                             ],
+        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                         ],
+        //                     ],
+        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                 ],
+        //                 [
+        //                     'label' => Yii::t('app', 'AC2'),
+        //                     'items' => [
+        //                         ['label' => 'AC 2.1', 'url' => '#'],
+        //                         '<div class="dropdown-divider"></div>',
+        //                         [
+        //                             'label' => Yii::t('app', 'AC 2'),
+        //                             'items' => [
+        //                                 ['label' => 'AC 2.2', 'url' => '#'],
+        //                                 // ... add more submenu items as needed ...
+        //                             ],
+        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                         ],
+        //                     ],
+        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+        //                 ],
+        //             ],
+        //             'options' => ['class' => 'nav-item dropdown'],
+        //             'linkOptions' => [
+        //                 'id' => 'dropdownSubMenu1',
+        //                 'class' => 'nav-link dropdown-toggle',
+        //                 'data-toggle' => 'dropdown',
+        //                 'aria-haspopup' => 'true',
+        //                 'aria-expanded' => 'false',
+        //             ],
+        //         ],
+        //     ],
+        // ]);
 
         // ++++++++++++ EN +++++++++++++++
         echo Nav::widget([
