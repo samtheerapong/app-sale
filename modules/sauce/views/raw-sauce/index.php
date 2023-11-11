@@ -7,9 +7,7 @@ use kartik\widgets\Select2;
 use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use kartik\grid\GridView;
-use kartik\widgets\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
 
@@ -21,12 +19,9 @@ $this->title = Yii::t('app', 'Raw Soy Sauce Record');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="raw-sauce-index">
-
-
     <p>
         <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
 
     <?php Pjax::begin(); ?>
 
@@ -112,15 +107,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                     ],
 
-                    // [
-                    //     'attribute' => 'batch',
-                    //     'format' => 'html',
-                    //     'contentOptions' => ['class' => 'text-center'],
-                    //     'options' => ['style' => 'width:200px;'],
-                    //     'value' => function ($model) {
-                    //         return $model->batch;
-                    //     },
-                    // ],
+                    [
+                        'attribute' => 'batch',
+                        'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'options' => ['style' => 'width:200px;'],
+                        'value' => function ($model) {
+                            return $model->batch;
+                        },
+                    ],
 
                     [
                         'attribute' => 'ph',

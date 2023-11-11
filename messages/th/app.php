@@ -36,6 +36,9 @@ return [
     'Profile' => 'โปรไฟล์',
     'Change Profile' => 'แก้ไขโปรไฟล์',
     'Showing {count} users' => 'ผู้ใช้งานทั้งหมด {count} ',
+    'Total : {count} Record' => 'ทั้งหมด : {count} รายการ',
+    'Table' => 'ตาราง',
+    'Card' => 'การ์ด',
 
 
     'Products' => 'สินค้า',
@@ -56,8 +59,8 @@ return [
     'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',
     'Configuration' => 'กำหนดค่า',
-    'Report 1' => 'รายงาน 1',
-    'Report 2' => 'รายงาน 2',
+    'Type Report' => 'รายงานชนิด',
+    'Tank Report' => 'รายงานถัง',
     'Record Sauce' => 'บันทึกคุณภาพ',
     'Raw Soy Sauce Record' => 'บันทึกคุณภาพซีอิ๊วดิบ',
     'Moromi Quality Report' => 'บันทึกคุณภาพซีโมโรมิ',

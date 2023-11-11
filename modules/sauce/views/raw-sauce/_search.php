@@ -1,11 +1,7 @@
 <?php
 
 use app\modules\sauce\models\RawSauce;
-use app\modules\sauce\models\Tank;
-use app\modules\sauce\models\Type;
 use yii\helpers\Html;
-use kartik\date\DatePicker;
-use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use kartik\form\ActiveForm;
 
@@ -15,16 +11,20 @@ use kartik\form\ActiveForm;
 ?>
 
 <div class="raw-sauce-search">
-    <div class="card">
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['index'],
+        'method' => 'get',
+        'options' => [
+            'data-pjax' => 12
+        ],
+    ]); ?>
+
+    <div class="card border-secondary">
+        <div class="card-header text-white bg-secondary">
+            <?= Yii::t('app', 'Search') ?>
+        </div>
         <div class="card-body">
-            <?php $form = ActiveForm::begin([
-                'action' => ['index'],
-                'method' => 'get',
-                'options' => [
-                    'data-pjax' => 12
-                ],
-            ]);
-            ?>
             <div class="row">
                 <div class="col-md-2">
                     <?= $form->field($model, 'year')->dropDownList(
@@ -40,13 +40,9 @@ use kartik\form\ActiveForm;
                         ),
                         ['prompt' => Yii::t('app', 'Select All')]
                     ) ?>
-
-
                 </div>
 
                 <div class="col-md-2">
-                    <?php //echo $form->field($model, 'month')->textInput(['type' => 'number','placeholder' => Yii::t('app', 'Month')]) 
-                    ?>
                     <?= $form->field($model, 'month')->dropDownList(
                         [
                             1 => 'มกราคม',
@@ -64,15 +60,14 @@ use kartik\form\ActiveForm;
                         ],
                         ['prompt' => Yii::t('app', 'เลือกทั้งหมด')]
                     ) ?>
+                </div>
 
-                </div>
                 <div class="col-md-3">
-                    <?php // echo $form->field($model, 'tank_id')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(Tank::find()->all(), 'id', 'code'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]);
-                    ?>
+                    <?php // echo $form->field($model, 'tank_id')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(Tank::find()->all(), 'id', 'code'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]); ?>
                 </div>
+
                 <div class="col-md-3">
-                    <?php // echo $form->field($model, 'type_id')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(Type::find()->all(), 'id', 'code'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]);
-                    ?>
+                    <?php // echo $form->field($model, 'type_id')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(Type::find()->all(), 'id', 'code'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]); ?>
                 </div>
 
                 <div class="col-md-12">
@@ -82,9 +77,9 @@ use kartik\form\ActiveForm;
                     </div>
                 </div>
             </div>
-
-            <?php ActiveForm::end(); ?>
-
         </div>
     </div>
+
+    <?php ActiveForm::end(); ?>
+
 </div>

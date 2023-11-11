@@ -1,11 +1,9 @@
 <?php
 
 use app\modules\sauce\models\RawSauce;
-use app\modules\sauce\models\Tank;
 use app\modules\sauce\models\Type;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -13,15 +11,15 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="raw-sauce-form">
+<div class="report-1-form">
 
-    <div class="card border-primary">
-        <div class="card-header text-white bg-primary">
+    <div class="card border-secondary">
+        <div class="card-header text-white bg-secondary">
             <?= Yii::t('app', 'Report Selector') ?>
         </div>
         <div class="card-body">
             <?php $form = ActiveForm::begin([
-                'action' => ['raw-sauce/report1'], // ต้องเปลี่ยน controllerName เป็นชื่อของคอนโทรลเลอร์ที่เกี่ยวข้อง
+                'action' => ['raw-sauce/report1'], // Change controllerName to the name of the relevant controller
             ]); ?>
 
             <div class="row">
@@ -39,7 +37,6 @@ use yii\helpers\ArrayHelper;
                         ),
                         ['prompt' => Yii::t('app', 'Select All')]
                     ) ?>
-
                 </div>
 
                 <div class="col-md-2">
@@ -52,9 +49,9 @@ use yii\helpers\ArrayHelper;
                             ],
                         ]
                     ) ?>
-
                 </div>
             </div>
+
             <div class="form-group">
                 <?= Html::submitButton('<i class="fa fa-area-chart" aria-hidden="true"></i> ' . Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
                 <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/report1'], ['class' => 'btn btn-outline-secondary']) ?>

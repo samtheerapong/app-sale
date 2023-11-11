@@ -7,15 +7,15 @@ $this->title = Yii::t('app', 'Report Select Tank');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="report1">
+<div class="report2">
 
     <?php Pjax::begin(); ?>
 
     <?php echo $this->render('report2Form', ['model' => $model]); ?>
 
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'pH Charts') ?>
         </div>
         <div class="card-body">
@@ -42,8 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'NaCl Charts') ?>
         </div>
         <div class="card-body">
@@ -70,8 +70,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'TN Charts') ?>
         </div>
         <div class="card-body">
@@ -98,8 +98,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'Color Charts') ?>
         </div>
         <div class="card-body">
@@ -126,8 +126,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'Alcohol Charts') ?>
         </div>
         <div class="card-body">
@@ -154,8 +154,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'Turbidity Charts') ?>
         </div>
         <div class="card-body">
@@ -182,8 +182,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
             <?= Yii::t('app', 'Blix Charts') ?>
         </div>
         <div class="card-body">

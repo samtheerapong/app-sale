@@ -5,7 +5,6 @@ use app\modules\sauce\models\Tank;
 use app\modules\sauce\models\Type;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -13,10 +12,10 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="raw-sauce-form">
+<div class="report-2-form">
 
-    <div class="card border-primary">
-        <div class="card-header text-white bg-primary">
+    <div class="card border-secondary">
+        <div class="card-header text-white bg-secondary">
             <?= Yii::t('app', 'Report Selector') ?>
         </div>
         <div class="card-body">
@@ -51,8 +50,6 @@ use yii\helpers\ArrayHelper;
                             ],
                         ]
                     ) ?>
-
-
                 </div>
 
                 <div class="col-md-2">
@@ -70,7 +67,7 @@ use yii\helpers\ArrayHelper;
 
             <div class="form-group">
                 <?= Html::submitButton('<i class="fa fa-area-chart" aria-hidden="true"></i> ' . Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/report1'], ['class' => 'btn btn-outline-secondary']) ?>
+                <?= Html::a('<i class="fas fa-refresh"></i> ' . Yii::t('app', 'Reset'), ['raw-sauce/report2'], ['class' => 'btn btn-outline-secondary']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

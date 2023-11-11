@@ -14,17 +14,22 @@ use kartik\form\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="raw-sauce-search">
-    <div class="card">
+<div class="raw-sauce-search2">
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['index2'],
+        'method' => 'get',
+        'options' => [
+            'data-pjax' => 1
+        ],
+    ]);
+    ?>
+
+    <div class="card border-secondary">
+        <div class="card-header text-white bg-secondary">
+            <?= Yii::t('app', 'Search') ?>
+        </div>
         <div class="card-body">
-            <?php $form = ActiveForm::begin([
-                'action' => ['index2'],
-                'method' => 'get',
-                'options' => [
-                    'data-pjax' => 12
-                ],
-            ]);
-            ?>
             <div class="row">
                 <div class="col-md-3">
                     <?= $form->field($model, 'year')->dropDownList(
@@ -40,8 +45,6 @@ use kartik\form\ActiveForm;
                         ),
                         ['prompt' => Yii::t('app', 'Select All')]
                     ) ?>
-
-
                 </div>
 
                 <div class="col-md-3">
