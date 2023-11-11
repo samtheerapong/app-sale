@@ -33,6 +33,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_DELETED = 0;
 
+    // public $repeat_password;
+
     /**
      * {@inheritdoc}
      */
@@ -64,6 +66,9 @@ class User extends ActiveRecord implements IdentityInterface
             [['thai_name', 'email'], 'string'],
             [['username', 'password_hash', 'email', 'thai_name'], 'required'],
             [['department_id', 'role_id', 'rule_id'], 'safe'],
+            // [['password_hash', 'repeat_password'], 'required', 'on' => ['create', 'update']],
+            // [['password_hash', 'repeat_password'], 'string', 'min' => 3],
+            // ['repeat_password', 'compare', 'compareAttribute' => 'password_hash', 'message' => Yii::t('app', "Passwords don't match")],
         ];
     }
 

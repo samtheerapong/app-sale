@@ -33,6 +33,8 @@ return [
     'Inactive' => 'ปิดใช้งาน',
     'Create New User' => 'เพิ่มผู้ใช้งาน',
     'Users' => 'ผู้ใช้งาน',
+    'Profile' => 'โปรไฟล์',
+    'Change Profile' => 'แก้ไขโปรไฟล์',
     'Showing {count} users' => 'ผู้ใช้งานทั้งหมด {count} ',
 
 

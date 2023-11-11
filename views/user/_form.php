@@ -16,6 +16,7 @@ use yii\widgets\ActiveForm;
 <div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">
             <?= Html::encode($this->title) ?>
@@ -83,7 +84,7 @@ use yii\widgets\ActiveForm;
         <div class="card-footer">
             <div class="form-group">
                 <div class="d-grid gap-2">
-                    <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                   
                 </div>
             </div>
 

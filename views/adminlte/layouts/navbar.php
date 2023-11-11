@@ -229,7 +229,6 @@ use yii\helpers\Url;
 
                     </ul>
                 </li>
-
             </ul>
         </li>
 
@@ -251,38 +250,37 @@ use yii\helpers\Url;
                 </li>
             </ul>
         </li>
-
-
-
     </ul>
-
-    
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <?php
             if (Yii::$app->user->isGuest) {
-                // echo Html::tag('li', Html::a(Yii::t('app', 'Register'), ['/site/signup'], ['class' => 'nav-link']));
                 echo Html::tag('li', Html::a(Yii::t('app', 'Login'), ['/site/login'], ['class' => 'nav-link']));
             } else {
                 $nameToDisplay = Yii::$app->user->identity->thai_name ?: Yii::$app->user->identity->username;
                 $menuItems = [
                     [
                         'label' => Yii::t('app', 'Configuration'),
-                        'visible' => in_array(Yii::$app->user->identity->username, ['admin', 'theerapong']),
+                       
                         'items' => [
+                            // [
+                            //     'label' => Yii::t('app', 'Profile'),
+                            //     'url' => ['/user/view', 'id' => Yii::$app->user->identity->id],
+                            // ],
+                            [
+                                'label' => Yii::t('app', 'Profile'),
+                                'url' => ['/user/profile'],
+                            ],
                             [
                                 'label' => Yii::t('app', 'Auto Number'),
-                                'visible' => in_array(Yii::$app->user->identity->username, ['admin']),
+                                'visible' => in_array(Yii::$app->user->identity->role_id, [2]),
                                 'url' => ['/auto-number/index'],
                             ],
                             [
-                                'label' => Yii::t('app', 'Profile'),
-                                'url' => ['/user/view', 'id' => Yii::$app->user->identity->id],
-                            ],
-                            [
                                 'label' => Yii::t('app', 'Users'),
+                                'visible' => in_array(Yii::$app->user->identity->role_id, [2]),
                                 'url' => ['/user/index'],
                             ],
                         ],
