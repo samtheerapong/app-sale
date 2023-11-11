@@ -19,45 +19,51 @@ class UserController extends Controller
     /**
      * @inheritDoc
      */
+
     public function behaviors()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'ruleConfig' => [
-                    'class' => Rule::class,
-                ],
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER
-                        ],
-                    ],
-                    [
-                        'actions' => ['view'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_QA,
-                            User::ROLE_SALE,
-                            User::ROLE_USER
-                        ],
+        return array_merge(
+            parent::behaviors(),
+            [
+                'verbs' => [
+                    'class' => VerbFilter::class,
+                    'actions' => [
+                        'delete' => ['POST'],
                     ],
                 ],
             ],
-        ];
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['profile'],
+                            'allow' => true,
+                            'roles' => ['@'], // Require authenticated users
+                        ],
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'profile'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                return in_array(Yii::$app->user->identity->role_id, [2]); // Admin
+                            },
+                        ],
+
+                        // [
+                        //     'actions' => ['profile'],
+                        //     'allow' => true,
+                        //     'roles' => ['@'],
+                        //     'matchCallback' => function ($rule, $action) {
+                        //         return Yii::$app->user->id == Yii::$app->request->get('id'); // Require only users
+                        //     },
+                        // ],
+                    ],
+                ],
+            ]
+        );
     }
+
 
     /**
      * Lists all User models.
@@ -126,7 +132,7 @@ class UserController extends Controller
         $oldPass = $model->password_hash;
 
         if ($this->request->isPost && $model->load($this->request->post())) {
-            if($oldPass!=$model->password_hash){ //กรณีเปลี่ยนรหัสผ่าน
+            if ($oldPass != $model->password_hash) { //กรณีเปลี่ยนรหัสผ่าน
                 $model->password_hash = Yii::$app->security->generatePasswordHash($model->password_hash);
                 //$user->auth_key = Yii::$app->Security->generateRandomString();
                 $model->save();
@@ -168,5 +174,28 @@ class UserController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionProfile()
+    {
+        $model = $this->findModel(Yii::$app->user->id);
+        $oldPassword = $model->password_hash;
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if (!empty($model->password_hash) && $oldPassword != $model->password_hash) {
+                $model->password_hash = Yii::$app->security->generatePasswordHash($model->password_hash);
+            } else {
+                // No password change
+                $model->password_hash = $oldPassword;
+            }
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        return $this->render('profile', [
+            'model' => $model,
+        ]);
     }
 }

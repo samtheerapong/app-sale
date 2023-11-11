@@ -8,6 +8,7 @@ use app\modules\general\models\Uploads;
 use Exception;
 use mdm\autonumber\AutoNumber;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,9 +39,38 @@ class RequestRepairController extends Controller
                         'delete' => ['POST'],
                     ],
                 ],
+            ],
+            [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'actions' => ['index', 'view', 'create', 'update', 'delete', 'approve'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                return in_array(Yii::$app->user->identity->role_id, [2, 3]); // Admin
+                            },
+                        ],
+                        [
+                            'actions' => ['approve', 'update'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                            'matchCallback' => function ($rule, $action) {
+                                return in_array(Yii::$app->user->identity->role_id, [4]); // Admin
+                            },
+                        ],
+                        [
+                            'actions' => ['index', 'view', 'create'],
+                            'allow' => true,
+                            'roles' => ['@'], // Require authenticated users
+                        ],
+                    ],
+                ],
             ]
         );
     }
+
 
     /**
      * Lists all RequestRepair models.
@@ -131,6 +161,32 @@ class RequestRepairController extends Controller
             'model' => $model,
             'initialPreview' => $initialPreview,
             'initialPreviewConfig' => $initialPreviewConfig
+        ]);
+    }
+
+
+    // Approval
+    public function actionApprove($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->approver = Yii::$app->user->identity->id; //ดึง id จาก ผู้ใช้ Login เข้ามา
+
+        $model->job_status_id = 2; // กำหนดให้ สถานะเป็น อนุมัติ
+
+        if ($model->approve_date === null) {
+            $model->approve_date = date('Y-m-d');
+        }  // หาก ไม่มีข้อมูล ให้ แสดงวันที่ปัจจุบัน
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                // return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+
+        return $this->render('approved', [
+            'model' => $model,
         ]);
     }
 

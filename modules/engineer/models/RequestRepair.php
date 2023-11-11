@@ -16,7 +16,11 @@ use yii\helpers\Json;
 use yii\helpers\Url;
 use dosamigos\gallery\Gallery;
 use yii\behaviors\BlameableBehavior;
+use yii\bootstrap5\LinkPager;
 use yii\db\BaseActiveRecord;
+
+use chillerlan\QRCode\QRCode;
+use yii\web\Response;
 
 /**
  * This is the model class for table "request_repair".
@@ -100,7 +104,7 @@ class RequestRepair extends \yii\db\ActiveRecord
             [['created_by', 'updated_by', 'priority', 'urgency', 'locations_id', 'approver', 'job_status_id'], 'integer'],
             [['request_detail', 'remask', 'approve_comment'], 'string'],
             [['repair_code'], 'autonumber', 'format' => 'RP-' . (date('y') + 43) . date('m') . '-????'],
-            [['request_department', 'request_title', 'ref'], 'string', 'max' => 255],
+            [['request_title', 'ref'], 'string', 'max' => 255],
             [['priority'], 'exist', 'skipOnError' => true, 'targetClass' => Priority::class, 'targetAttribute' => ['priority' => 'id']],
             [['urgency'], 'exist', 'skipOnError' => true, 'targetClass' => Urgency::class, 'targetAttribute' => ['urgency' => 'id']],
             [['request_department'], 'exist', 'skipOnError' => true, 'targetClass' => Departments::class, 'targetAttribute' => ['request_department' => 'id']],
@@ -219,6 +223,16 @@ class RequestRepair extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
+    public function getApproveBy()
+    {
+        return $this->hasOne(User::class, ['id' => 'approver']);
+    }
+
+    /**
+     * Gets query for [[CreatedBy]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
     public function getUpdatedBy()
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
@@ -249,5 +263,45 @@ class RequestRepair extends \yii\db\ActiveRecord
             ];
         }
         return $preview;
+    }
+
+    // Action Buttons
+    public function generateActionButtons()
+    {
+        return '<div class="btn-group btn-group-xs" role="group">' .
+            Html::a('<i class="fa-solid fa-thumbs-up"></i>', ['approve', 'id' => $this->id], [
+                'class' => 'btn btn-outline-success btn-sm',
+                'title' => Yii::t('app', 'Approve'),
+                'aria-label' => Yii::t('app', 'Approve'),
+            ]) .
+            Html::a('<i class="fas fa-eye"></i>', ['view', 'id' => $this->id], [
+                'class' => 'btn btn-outline-info btn-sm',
+                'title' => Yii::t('app', 'View'),
+                'aria-label' => Yii::t('app', 'View'),
+            ]) .
+            Html::a('<i class="fas fa-pencil"></i>', ['update', 'id' => $this->id], [
+                'class' => 'btn btn-outline-warning btn-sm',
+                'title' => Yii::t('app', 'Update'),
+                'aria-label' => Yii::t('app', 'Update'),
+            ]) .
+            Html::a('<i class="fas fa-trash-can"></i>', ['delete', 'id' => $this->id], [
+                'class' => 'btn btn-outline-danger btn-sm',
+                'title' => Yii::t('app', 'Delete'),
+                'aria-label' => Yii::t('app', 'Delete'),
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) .
+            '</div>';
+    }
+
+    public function actionQr()
+    {
+        Yii::$app->response->format = Response::FORMAT_HTML;
+        $data = $this->repair_code;
+        $qr = new QRCode();
+        $qrCodeHtml = '<img src="' . $qr->render($data) . '" />';
+        echo  $qrCodeHtml;
     }
 }

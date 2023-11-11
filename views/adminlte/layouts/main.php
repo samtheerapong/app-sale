@@ -16,17 +16,17 @@ AppAsset::register($this);
 // $bundle->js[] = 'sweetalert2/sweetalert2.min.js';
 
 
-// $this->registerCssFile('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
-$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Kanit&display=swap');
+$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500&family=Kanit&family=Sriracha&display=swap');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
 $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3/src/web/js');
-$this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);
+$this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\hail812\adminlte3\assets\AdminLteAsset']);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,41 +36,45 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <style>
-        * {
+        body {
+            /* font-family: 'Sriracha', cursive; */
             /* font-family: 'Chakra Petch', sans-serif; */
             font-family: 'Kanit', sans-serif;
         }
+       
     </style>
 </head>
 <!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
 <!-- <body class="sidebar-collapse sidebar-collapse layout-navbar-fixed layout-footer-fixed"> -->
 <!-- <body class="hold-transition sidebar-mini sidebar-collapse layout-navbar-fixed layout-fixed"> -->
-<body class="hold-transition sidebar-mini layout-fixed"> 
-<?php $this->beginBody() ?>
 
-<div class="wrapper">
-    <!-- Navbar -->
-    <?= $this->render('navbar', ['assetDir' => $assetDir]) ?>
-    <!-- /.navbar -->
+<body class="hold-transition sidebar-mini">
+    <?php $this->beginBody() ?>
 
-    <!-- Main Sidebar Container -->
-    <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
+    <div class="wrapper">
+        <!-- Navbar -->
+        <?= $this->render('navbar', ['assetDir' => $assetDir]) ?>
+        <!-- /.navbar -->
 
-    <!-- Content Wrapper. Contains page content -->
-    <?= $this->render('content', ['content' => $content, 'assetDir' => $assetDir]) ?>
-    <!-- /.content-wrapper -->
+        <!-- Main Sidebar Container -->
+        <?= $this->render('sidebar', ['assetDir' => $assetDir]) ?>
 
-    <!-- Control Sidebar -->
-    <?= $this->render('control-sidebar') ?>
-    <!-- /.control-sidebar -->
+        <!-- Content Wrapper. Contains page content -->
+        <?= $this->render('content', ['content' => $content, 'assetDir' => $assetDir]) ?>
+        <!-- /.content-wrapper -->
 
-    <!-- Main Footer -->
-    <?= $this->render('footer') ?>
-    
-</div>
+        <!-- Control Sidebar -->
+        <?= $this->render('control-sidebar') ?>
+        <!-- /.control-sidebar -->
 
-<?php $this->endBody() ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Main Footer -->
+        <?php  echo $this->render('footer') ?>
+
+    </div>
+
+    <?php $this->endBody() ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
+
 </html>
 <?php $this->endPage() ?>

@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div style="display: flex; justify-content: space-between;">
         <p>
             <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+       
+            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New User'), ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
         <p style="text-align: right;">
@@ -49,31 +51,42 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'password_reset_token',
                     'email:email',
                     // 'status',
+                   
+                    // 'role_id',
+                    [
+                        'attribute' => 'role_id',
+                        'format' => 'html',
+                        'value' => function ($model) {
+                            return $model->role0 ? '<span class="text" style="color:' . $model->role0->color . ';"><b>' . $model->role0->name . '</b></span>' : ' ';
+                        },
+                    ],
+                    // 'rule_id',
+                    [
+                        'attribute' => 'rule_id',
+                        'format' => 'html',
+                        'value' => function ($model) {
+                            return $model->rule0 ? '<span class="text" style="color:' . $model->rule0->color . ';"><b>' . $model->rule0->name . '</b></span>' : ' ';
+                        },
+                    ],
+                    // 'department_id',
+                    [
+                        'attribute' => 'department_id',
+                        'format' => 'html',
+                        'value' => function ($model) {
+                            return $model->department ? '<span class="text" style="color: ' . $model->department->color . ';"><b>' . $model->department->name . '</b></span>' : ' ';
+                        },
+                    ],
+
                     [
                         'attribute' => 'status',
                         'format' => 'raw',
                         'value' => function ($model) {
                             return $model->status === User::STATUS_ACTIVE
-                                ? '<span class="badge" style="background-color: #1A5D1A">Active</span>'
-                                : '<span class="badge" style="background-color: #FE0000">In Active</span>';
+                                ? '<span class="text" style="color: #1A5D1A">' . Yii::t('app', 'Active') . '</span>'
+                                : '<span class="text" style="color: #FE0000">' . Yii::t('app', 'Inactive') . '</span>';
                         },
                     ],
-                    // 'role',
-                    [
-                        'attribute' => 'role',
-                        'format' => 'raw',
-                        'value' => function ($model) {
-                            $roleLabels = [
-                                User::ROLE_ADMIN    => '<span class="badge" style="background-color: #0079FF">Admin</span>',
-                                User::ROLE_QA       => '<span class="badge" style="background-color: #FFB84C">QA</span>',
-                                User::ROLE_SALE     => '<span class="badge" style="background-color: #7149C6">Sale</span>',
-                                User::ROLE_MANAGER  => '<span class="badge" style="background-color: #F31559">Manager</span>',
-                                User::ROLE_USER     => '<span class="badge" style="background-color: #6C3428">User</span>',
-                            ];
-
-                            return isset($roleLabels[$model->role]) ? $roleLabels[$model->role] : '';
-                        },
-                    ],
+                    
                     'created_at:date',
                     'updated_at:date',
                     // 'verification_token',

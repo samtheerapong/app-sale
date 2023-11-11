@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use app\modules\general\models\Departments;
+use app\models\UserRoles;
+use app\models\UserRules;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -30,12 +33,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_DELETED = 0;
 
-    // role
-    const ROLE_ADMIN = 10;
-    const ROLE_QA = 9;
-    const ROLE_SALE = 8;
-    const ROLE_MANAGER = 5;
-    const ROLE_USER = 1;
+    // public $repeat_password;
 
     /**
      * {@inheritdoc}
@@ -62,30 +60,30 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['role_id', 'default', 'value' => 1],
+            ['rule_id', 'default', 'value' => 1],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-            ['role', 'default', 'value' => self::ROLE_USER],
-            ['role', 'in', 'range' => [
-                self::ROLE_USER,
-                self::ROLE_MANAGER,
-                self::ROLE_QA,
-                self::ROLE_SALE,
-                self::ROLE_ADMIN
-            ]],
             [['thai_name', 'email'], 'string'],
             [['username', 'password_hash', 'email', 'thai_name'], 'required'],
+            [['department_id', 'role_id', 'rule_id'], 'safe'],
+            // [['password_hash', 'repeat_password'], 'required', 'on' => ['create', 'update']],
+            // [['password_hash', 'repeat_password'], 'string', 'min' => 3],
+            // ['repeat_password', 'compare', 'compareAttribute' => 'password_hash', 'message' => Yii::t('app', "Passwords don't match")],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            // 'id' => Yii::t('app', 'ID'),
+            'id' => Yii::t('app', 'ID'),
             'username' => Yii::t('app', 'Username'),
             'thai_name' => Yii::t('app', 'Thai Name'),
             'password_hash' => Yii::t('app', 'Password'),
             'status' => Yii::t('app', 'Status'),
             'email' => Yii::t('app', 'Email'),
-            'role' => Yii::t('app', 'Role'),
+            'role_id' => Yii::t('app', 'Role'),
+            'rule_id' => Yii::t('app', 'Rule'),
+            'department_id' => Yii::t('app', 'Department'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
@@ -244,4 +242,23 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+
+    // เชื่อมตาราง
+    public function getDepartment()
+    {
+        return $this->hasOne(Departments::class, ['id' => 'department_id']);
+    }
+
+    public function getRole0()
+    {
+        return $this->hasOne(UserRoles::class, ['id' => 'role_id']);
+    }
+
+    public function getRule0()
+    {
+        return $this->hasOne(UserRules::class, ['id' => 'rule_id']);
+    }
+
+ 
 }

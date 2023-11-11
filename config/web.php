@@ -71,6 +71,15 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => [
+                'name' => '_identity',
+                'httpOnly' => true,
+            ],
+            'loginUrl' => ['site/login'], // Set the login page route
+        ],
+        'session' => [
+            'class' => 'yii\web\Session',
+            // You can configure other session options here, such as timeout and cookie parameters.
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

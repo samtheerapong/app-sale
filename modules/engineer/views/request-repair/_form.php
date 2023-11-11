@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
         <div class="col-md-12">
             <div class="card border-secondary">
                 <div class="card-header text-white bg-secondary">
-                    <?= Yii::t('app', 'Record') ?>
+                    <?= Yii::t('app', 'Request Repair') ?>
                 </div>
                 <div class="card-body">
                     <?= $form->field($model, 'repair_code')->hiddenInput()->label(false); ?>

@@ -14,7 +14,26 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="user-update">
 
-    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
+<div style="display: flex; justify-content: space-between;">
+        <p>
+            <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+       
+            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New User'), ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+
+        <p style="text-align: right;">
+        
+
+            <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+
+        </p>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,

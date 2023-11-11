@@ -7,19 +7,22 @@ use yii\widgets\DetailView;
 /** @var app\modules\engineer\models\RequestRepair $model */
 
 $this->title = $model->repair_code;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Request Repairs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Request Repair'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>
 <div class="request-repair-view">
+
     <div class="row">
         <div style="display: flex; justify-content: space-between;">
             <p>
-                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'),['index'], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
             </p>
 
             <p style="text-align: right;">
+
+                <?= Html::a('<i class="fa-solid fa-thumbs-up"></i> ' . Yii::t('app', 'Approve'), ['approve', 'id' => $model->id], ['class' => 'btn btn-success',  'aria-label' => Yii::t('app', 'Approve')]) ?>
                 <?= Html::a('<i class="fas fa-edit"></i> ' . Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
 
                 <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -36,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <div class="card border-secondary">
-                    <div class="card-header text-white bg-secondary">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= $this->title ?>
                     </div>
                     <div class="card-body">
@@ -134,17 +137,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="col-md-6">
                 <div class="card border-secondary">
-                    <div class="card-header text-white bg-secondary">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Docs') ?>
                     </div>
                     <div class="card-body">
-                        <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->id)]); ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label><?= Yii::t('app', 'Images') ?> : </label>
+                                <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->id)]); ?>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label><?= Yii::t('app', 'QR Code') ?> : </label>
+                                    <?php echo $model->actionQr(); ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-
-                <!-- <div class="card border-secondary">
-                    <div class="card-header text-white bg-secondary">
+                <div class="card border-secondary">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Approver') ?>
                     </div>
                     <div class="card-body">
@@ -156,7 +168,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'label' => Yii::t('app', 'Approver'),
                                     'format' => 'html',
                                     'value' => function ($model) {
-                                        return $model->approver ? $model->createdBy->thai_name : Yii::t('app', 'Waiting for approval');
+                                        return $model->approver ? $model->approveBy->thai_name : Yii::t('app', 'Waiting for approval');
                                     },
                                 ],
                                 [
@@ -176,7 +188,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ]) ?>
                     </div>
-                </div> -->
+                </div>
 
             </div>
         </div>
