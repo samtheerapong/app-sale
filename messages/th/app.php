@@ -111,6 +111,7 @@ return [
     'Moromi Record' => 'บันทึกคุณภาพโมโรมิ',
 
 
+    'Job Status' => 'สถานะงาน',
     'Urgency' => 'ความเร่งด่วน',
     'Priority' => 'ความสำคัญ',
     'Repair Code' => 'เลขที่ใบแจ้งซ่อม',

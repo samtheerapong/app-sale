@@ -220,6 +220,8 @@ use yii\helpers\Url;
                             'options' => ['class' => 'dropdown-header', 'style' => 'text-align: left;'],
                         ],
                         ['label' => Yii::t('app', 'Job Status'), 'url' => Url::toRoute(['/engineer/job-status/index'])],
+                        ['label' => Yii::t('app', 'Urgency'), 'url' => Url::toRoute(['/general/urgency/index'])],
+                        ['label' => Yii::t('app', 'Priority'), 'url' => Url::toRoute(['/general/priority/index'])],
                         // ... add more items as needed ...
                     ],
                     'options' => ['class' => 'nav-item dropdown'],
