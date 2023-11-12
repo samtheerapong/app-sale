@@ -46,6 +46,7 @@ $config = [
         'gallery' => 'dosamigos\gallery\Module',
     ],
     'components' => [
+       
         'view' => [
             'theme' => [
                 'pathMap' => [

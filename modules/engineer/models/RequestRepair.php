@@ -258,13 +258,26 @@ class RequestRepair extends \yii\db\ActiveRecord
                 'src' => self::getUploadUrl(true) . $ref . '/thumbnail/' . $file->real_filename,
                 'options' => [
                     'title' => $repair_code,
-                    // 'style' => 'height: 300px;',
+                    // 'style' => 'width: 300px; height: 300px;', // Adjust as needed
                 ],
-                // 'style' => 'height: 300px;',
             ];
         }
         return $preview;
     }
+
+
+    // public function getThumbnails($ref, $repairCode)
+    // {
+    //     $uploadFiles = Uploads::find()->where(['ref' => $ref])->all();
+    //     $preview = [];
+
+    //     // Modify the image URLs to include the desired size parameter
+    //     foreach ($uploadFiles as &$imageUrl) {
+    //         $imageUrl = \yii\helpers\Url::to([$imageUrl, 'width' => 300, 'height' => 300]); // Adjust the size as needed
+    //     }
+
+    //     return $preview;
+    // }
 
     // Action Buttons
     public function generateActionButtons()

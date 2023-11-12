@@ -135,6 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
 
+
             <div class="col-md-6">
                 <div class="card border-secondary">
                     <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
@@ -171,29 +172,33 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]) ?>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card border-secondary">
+                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+                        <?= Yii::t('app', 'Images') ?>
+                    </div>
+                    <div class="card-header">
+                        <div class="row">
+                            <?= DetailView::widget([
+                                'model' => $model,
+                                'attributes' => [
+                                    [
+                                        'label' => Yii::t('app', 'Images'),
+                                        'format' => 'raw',
+                                        'value' => function ($model) {
+                                            return dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->repair_code)]);
+                                        },
+                                    ],
+                                ],
+                            ]) ?>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
     </div>
-    <div class="card border-secondary">
-        <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
-            <?= Yii::t('app', 'Images') ?>
-        </div>
-        <div class="card-header">
-            <div class="row">
-                <?= DetailView::widget([
-                    'model' => $model,
-                    'attributes' => [
-                        [
-                            'label' => Yii::t('app', 'Images'),
-                            'format' => 'raw',
-                            'value' => function ($model) {
-                                return dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->repair_code)]);
-                            },
-                        ],
-                    ],
-                ]) ?>
-            </div>
-        </div>
-    </div>
+
 </div>
