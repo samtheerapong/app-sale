@@ -248,7 +248,7 @@ class RequestRepair extends \yii\db\ActiveRecord
         return Url::base(true) . '/' . self::UPLOAD_FOLDER . '/';
     }
 
-    public function getThumbnails($ref, $id)
+    public function getThumbnails($ref, $repair_code)
     {
         $uploadFiles = Uploads::find()->where(['ref' => $ref])->all();
         $preview = [];
@@ -256,11 +256,15 @@ class RequestRepair extends \yii\db\ActiveRecord
             $preview[] = [
                 'url' => self::getUploadUrl(true) . $ref . '/' . $file->real_filename,
                 'src' => self::getUploadUrl(true) . $ref . '/thumbnail/' . $file->real_filename,
-                'options' => ['title' => $id]
+                'options' => [
+                    'title' => $repair_code,
+                    // 'style' => 'max-width: 200px; max-height: 200px; border: 1px solid #000;',
+                ],
             ];
         }
         return $preview;
     }
+
 
 
 

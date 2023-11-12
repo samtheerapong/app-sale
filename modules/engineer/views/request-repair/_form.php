@@ -143,21 +143,28 @@ use yii\widgets\ActiveForm;
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group field-upload_files">
-                                <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
+                                <label class="control-label" for="upload_files[]"> <?=  Yii::t('app', 'Images') ?> </label>
                                 <div>
                                     <?= FileInput::widget([
                                         'name' => 'upload_ajax[]',
+                                        'language' => Yii::$app->language == 'th-TH' ? 'th' : 'en',
                                         'options' => ['multiple' => true, 'accept' => 'image/*'], //'accept' => 'image/*' หากต้องเฉพาะ image
                                         'pluginOptions' => [
-                                            'overwriteInitial' => false,
-                                            'initialPreviewShowDelete' => true,
                                             'initialPreview' => $initialPreview,
                                             'initialPreviewConfig' => $initialPreviewConfig,
+                                            // 'previewFileType' => 'any',
                                             'uploadUrl' => Url::to(['/engineer/request-repair/upload-ajax']),
+                                            'showCancel' => false,
+                                            'showRemove' => false,
+                                            'showUpload' => false,
+                                            'browseIcon' => '<i class="fas fa-camera"></i> ',
+                                            'browseLabel' =>   Yii::t('app', 'Select Photo'),
+                                            'overwriteInitial' => false,
+                                            'initialPreviewShowDelete' => true,
                                             'uploadExtraData' => [
                                                 'ref' => $model->ref,
                                             ],
-                                            'maxFileCount' => 100
+                                            'maxFileCount' => 10
                                         ]
                                     ]);
                                     ?>

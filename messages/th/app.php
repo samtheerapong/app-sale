@@ -40,6 +40,7 @@ return [
     'Table' => 'ตาราง',
     'Card' => 'การ์ด',
     'Create New Request' => 'เพิ่มการแจ้งซ่อม',
+    'Select Photo' => 'เลือกรูปภาพ',
 
 
     'Products' => 'สินค้า',

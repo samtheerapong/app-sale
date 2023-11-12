@@ -185,6 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return $model->approve_comment ? $model->approve_comment : '';
                                     },
                                 ],
+                                
                             ],
                         ]) ?>
                     </div>
