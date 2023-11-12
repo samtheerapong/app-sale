@@ -7,8 +7,3 @@
 .badge-blink {
     animation: blink 1s infinite; /* Adjust the animation duration as needed */
 }
-
-.custom-gallery-class img {
-    height: 200px; // Set the height to 200px
-    width: auto; // This will maintain the aspect ratio
-}

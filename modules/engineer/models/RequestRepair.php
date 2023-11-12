@@ -258,16 +258,13 @@ class RequestRepair extends \yii\db\ActiveRecord
                 'src' => self::getUploadUrl(true) . $ref . '/thumbnail/' . $file->real_filename,
                 'options' => [
                     'title' => $repair_code,
-                    // 'style' => 'max-width: 200px; max-height: 200px; border: 1px solid #000;',
+                    // 'style' => 'height: 300px;',
                 ],
+                // 'style' => 'height: 300px;',
             ];
         }
         return $preview;
     }
-
-
-
-
 
     // Action Buttons
     public function generateActionButtons()

@@ -321,13 +321,19 @@ class RequestRepairController extends Controller
         return $file;
     }
 
-    private function createThumbnail($folderName, $fileName, $height = 250)
+    public function createThumbnail($folderName, $fileName, $width = 300, $quality = 80)
     {
-        $uploadPath   = RequestRepair::getUploadPath() . '/' . $folderName . '/';
-        $file         = $uploadPath . $fileName;
-        $image        = Yii::$app->image->load($file);
-        $image->resize($height);
-        $image->save($uploadPath . 'thumbnail/' . $fileName);
+        $uploadPath = RequestRepair::getUploadPath() . '/' . $folderName . '/';
+        $file = $uploadPath . $fileName;
+
+        // Load the image and resize it to the specified width
+        $image = Yii::$app->image->load($file);
+        $image->resize($width);
+
+        // Save the thumbnail with the specified quality
+        $thumbnailPath = $uploadPath . 'thumbnail/' . $fileName;
+        $image->save($thumbnailPath, ['quality' => $quality]);
+
         return;
     }
 

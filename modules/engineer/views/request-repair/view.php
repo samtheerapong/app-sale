@@ -138,25 +138,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-6">
                 <div class="card border-secondary">
                     <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
-                        <?= Yii::t('app', 'Docs') ?>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label><?= Yii::t('app', 'Images') ?> : </label>
-                                <?= dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->id)]); ?>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label><?= Yii::t('app', 'QR Code') ?> : </label>
-                                    <?php echo $model->actionQr(); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                <div class="card border-secondary">
-                    <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
                         <?= Yii::t('app', 'Approver') ?>
                     </div>
                     <div class="card-body">
@@ -185,12 +166,33 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return $model->approve_comment ? $model->approve_comment : '';
                                     },
                                 ],
-                                
+
                             ],
                         ]) ?>
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+    <div class="card border-secondary">
+        <div class="card-header" style="background-color: <?= $model->jobStatus->color ?>; color: #fff;">
+            <?= Yii::t('app', 'Images') ?>
+        </div>
+        <div class="card-header">
+            <div class="row">
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        [
+                            'label' => Yii::t('app', 'Images'),
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return dosamigos\gallery\Gallery::widget(['items' => $model->getThumbnails($model->ref, $model->repair_code)]);
+                            },
+                        ],
+                    ],
+                ]) ?>
             </div>
         </div>
     </div>
