@@ -48,25 +48,24 @@ use yii\helpers\Url;
                         //     ],
                         //     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
                         // ],
-                        // [
-                        //     'label' => Yii::t('app', 'Moromi'),
-                        //     'items' => [
-                        //         ['label' => Yii::t('app', 'Moromi Record'), 'url' => Url::toRoute('/sauce/moromi/index')],
-                        //         // ['label' => Yii::t('app', 'Create New'), 'url' => Url::toRoute('/sauce/moromi/create')],
-                        //         ['label' => Yii::t('app', 'Report Moromi 1'), 'url' => Url::toRoute('/sauce/moromi/report1')],
-                        //         ['label' => Yii::t('app', 'Report Moromi 2'), 'url' => Url::toRoute('/sauce/moromi/report2')],
-                        //         '<div class="dropdown-divider"></div>',
-                        //         [
-                        //             'label' => Yii::t('app', 'Configuration'),
-                        //             'items' => [
-                        //                 ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/koji/tank/index'])],
-                        //                 ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/koji/type/index'])],
-                        //             ],
-                        //             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        //         ],
-                        //     ],
-                        //     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        // ],
+                        [
+                            'label' => Yii::t('app', 'Moromi'),
+                            'items' => [
+                                ['label' => Yii::t('app', 'Moromi Record'), 'url' => Url::toRoute('/sauce/moromi/index')],
+                                ['label' => Yii::t('app', 'Report Moromi 1'), 'url' => Url::toRoute('/sauce/moromi/report')],
+                                '<div class="dropdown-divider"></div>',
+                                [
+                                    'label' => Yii::t('app', 'Configuration'),
+                                    'items' => [
+                                        ['label' => Yii::t('app', 'Tank Source'), 'url' => Url::toRoute(['/sauce/tank-source/index'])],
+                                        ['label' => Yii::t('app', 'Tank Destination'), 'url' => Url::toRoute(['/sauce/tank-destination/index'])],
+                                        ['label' => Yii::t('app', 'Moromi Memo'), 'url' => Url::toRoute(['/sauce/moromi-list-memo/index'])],
+                                    ],
+                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+                                ],
+                            ],
+                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
+                        ],
                         [
                             'label' => Yii::t('app', 'Raw Soy Sauce'),
                             'items' => [

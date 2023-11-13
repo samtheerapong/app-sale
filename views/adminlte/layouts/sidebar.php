@@ -60,23 +60,24 @@
                             //     ]
                             // ],
 
-                            // [
-                            //     'label' => Yii::t('app', 'Moromi'),
-                            //     'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                            //     'items' => [
-                            //         ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/Moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
-                            //         ['label' => Yii::t('app', 'Report Select Type'), 'url' => ['/sauce/Moromi/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
-                            //         ['label' => Yii::t('app', 'Report Select Tank'), 'url' => ['/sauce/Moromi/report2'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
-                            //         [
-                            //             'label' => Yii::t('app', 'Configuration'),
-                            //             'iconStyle' => 'far',
-                            //             'items' => [
-                            //                 ['label' => Yii::t('app', 'Tank'), 'url' => ['/sauce/Moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-boxes-stacked'],
-                            //                 ['label' => Yii::t('app', 'Type'), 'url' => ['/sauce/Moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-hashtag'],
-                            //             ]
-                            //         ],
-                            //     ]
-                            // ],
+                            [
+                                'label' => Yii::t('app', 'Moromi'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Moromi Record Table'), 'url' => ['/sauce/moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                                    ['label' => Yii::t('app', 'Moromi Record Card'), 'url' => ['/sauce/moromi/card'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
+                                    ['label' => Yii::t('app', 'Report Moromi'), 'url' => ['/sauce/Moromi/report'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                                    [
+                                        'label' => Yii::t('app', 'Configuration'),
+                                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-blue',
+                                        'items' => [
+                                            ['label' => Yii::t('app', 'Tank Source'), 'url' => ['/sauce/tank-source/index'], 'iconStyle' => 'fa', 'icon' => 'fa-brands fa-glass-water'],
+                                            ['label' => Yii::t('app', 'Tank Destination'), 'url' => ['/sauce/tank-destination/index'], 'iconStyle' => 'fa', 'icon' => 'fa-brands fa-glass-water'],
+                                            ['label' => Yii::t('app', 'Moromi Memo List'), 'url' => ['/sauce/moromi-list-memo/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-list'],
+                                        ]
+                                    ],
+                                ]
+                            ],
 
                             [
                                 'label' => Yii::t('app', 'Raw Sauce'),

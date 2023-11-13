@@ -147,4 +147,26 @@ return [
     'New Request' => 'เพิ่มการแจ้งซ่อม',
     'Request Repair' => 'ระบบแจ้งซ่อม',
     'Waiting for approval' => 'รอการอนุมัติ',
+
+    // Moromi
+    'Create Moromi Record' => 'เพิ่มบันทึกคุณภาพโมโรมิ',
+    'Create Moromi' => 'บันทึกคุณภาพโมโรมิ',
+    'Batch No' => 'เลขที่แบทช์',
+    'Shikomi Date' => 'วันที่เดโคจิ',
+    'Type ID' => 'ประเภท',
+    'Status ID' => 'สถานะ',
+    'Transfer Date' => 'วันที่ย้ายถัง',
+    'Tank Source' => 'ถังต้นทาง',
+    'Tank Destination' => 'ถังปลายทาง',
+    'Created By' => 'สร้างโดย',
+    'Detail' => 'รายละเอียด',
+    
+    //
+    'Moromi Memo List' => 'รายการบันทึกโมโรมิ',
+    'Moromi List Memo' => 'รายการบันทึกโมโรมิ',
+    'Create Moromi Memo List' => 'เพิ่มรายการบันทึกโมโรมิ',
+    'Moromi Record Table' => 'ตารางบันทึกโมโรมิ',
+    'Moromi Record Card' => 'การ์ดบันทึกโมโรมิ',
+
+
 ];
