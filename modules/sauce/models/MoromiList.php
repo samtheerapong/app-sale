@@ -8,7 +8,8 @@ use Yii;
  * This is the model class for table "moromi_list".
  *
  * @property int $id
- * @property string|null $moromi_record
+ * @property int $moromi_id
+ * @property string|null $record_date
  * @property int|null $memo_list
  * @property float|null $ph
  * @property int|null $color
@@ -34,9 +35,11 @@ class MoromiList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['moromi_record', 'note'], 'string'],
-            [['memo_list', 'color'], 'integer'],
+            [['moromi_id'], 'required'],
+            [['moromi_id', 'memo_list', 'color'], 'integer'],
+            [['record_date'], 'safe'],
             [['ph', 'nacl', 'tn', 'alcohol', 'turbidity'], 'number'],
+            [['note'], 'string'],
         ];
     }
 
@@ -47,7 +50,8 @@ class MoromiList extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'moromi_record' => Yii::t('app', 'Moromi Record'),
+            'moromi_id' => Yii::t('app', 'Moromi ID'),
+            'record_date' => Yii::t('app', 'Record Date'),
             'memo_list' => Yii::t('app', 'Memo List'),
             'ph' => Yii::t('app', 'Ph'),
             'color' => Yii::t('app', 'Color'),
