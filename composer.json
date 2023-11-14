@@ -30,7 +30,8 @@
         "miloschuman/yii2-highcharts-widget": "*",
         "chillerlan/php-qrcode": "*",
         "yurkinx/yii2-image": "*",
-        "wbraganca/yii2-dynamicform": "*"
+        "wbraganca/yii2-dynamicform": "*",
+        "buibr/yii2-datepicker-bs4": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -85,4 +86,5 @@
             "url": "https://asset-packagist.org"
         }
     ]
+ 
 }

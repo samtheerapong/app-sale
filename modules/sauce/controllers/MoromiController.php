@@ -12,6 +12,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * MoromiController implements the CRUD actions for Moromi model.
@@ -84,7 +85,7 @@ class MoromiController extends Controller
     public function actionCreate()
     {
         $model = new Moromi();
-        $modelItems = [new MoromiList];
+        $modelsItem = [new MoromiList];
 
         $model->status_id = 1;
 
@@ -92,18 +93,17 @@ class MoromiController extends Controller
             if ($model->load($this->request->post())) {
                 $model->code = AutoNumber::generate('MRM-' . (date('y') + 43) . date('m') . '-????'); // Auto Number
 
-
-                $modelItems = Model::createMultiple(MoromiList::class);
-                Model::loadMultiple($modelItems, Yii::$app->request->post());
+                $modelsItem = Model::createMultiple(MoromiList::class);
+                Model::loadMultiple($modelsItem, Yii::$app->request->post());
                 $valid = $model->validate();
-                $valid = Model::validateMultiple($modelItems) && $valid;
+                $valid = Model::validateMultiple($modelsItem) && $valid;
 
                 $model->save();
                 if ($valid) {
                     $transaction = \Yii::$app->db->beginTransaction();
                     try {
                         if ($flag = $model->save(false)) {
-                            foreach ($modelItems as $modelitem) {
+                            foreach ($modelsItem as $modelitem) {
                                 $modelitem->moromi_id = $model->id;
                                 if (!($flag = $modelitem->save(false))) {
                                     $transaction->rollBack();
@@ -126,7 +126,7 @@ class MoromiController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'modelItems' => (empty($modelItems)) ? [new MoromiList] : $modelItems
+            'modelsItem' => (empty($modelsItem)) ? [new MoromiList] : $modelsItem
         ]);
     }
 
@@ -148,6 +148,54 @@ class MoromiController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+
+
+    public function actionAddlist($id)
+    {
+        $model = $this->findModel($id);
+        $modelsItem = $model->moromiLists;
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $oldIDs = ArrayHelper::map($modelsItem, 'id', 'id');
+            $modelsItem = Model::createMultiple(MoromiList::class, $modelsItem);
+            Model::loadMultiple($modelsItem, Yii::$app->request->post());
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsItem, 'id', 'id')));
+
+            $valid = $model->validate();
+            $valid = Model::validateMultiple($modelsItem) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $model->save(false)) {
+                        if (!empty($deletedIDs)) {
+                            MoromiList::deleteAll(['id' => $deletedIDs]);
+                        }
+                        foreach ($modelsItem as $modelPoItem) {
+                            $modelPoItem->moromi_id = $model->id;
+                            if (!($flag = $modelPoItem->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        } else {
+            return $this->render('addlist', [
+                'model' => $model,
+                'modelsItem' => (empty($modelsItem)) ? [new MoromiList] : $modelsItem
+            ]);
+        }
     }
 
     /**

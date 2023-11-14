@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create Moromi Record'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Moromi Record Card'),['card'], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Moromi Record Card'), ['card'], ['class' => 'btn btn-secondary']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -139,10 +139,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'kartik\grid\ActionColumn',
                         'contentOptions' => ['class' => 'text-center'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
-                        'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
-                        'urlCreator' => function ($action, $model, $key, $index, $column) {
-                            return Url::toRoute([$action, 'id' => $model->id]);
-                        }
+                        'template' => '<div class="btn-group btn-group-xs" role="group"> {addlist} {view} {update} {delete}</div>',
+                        'buttons' => [
+                            'addlist' => function ($url, $model, $key) {
+                                return Html::a('<i class="fa fa-list"></i>', ['addlist', 'id' => $model->id], [
+                                    'title' => Yii::t('app', 'Add List of Memo'),
+                                    'class' => 'btn btn-outline-dark btn-sm',
+                                ]);
+                            },
+                        ],
                     ],
                 ],
             ]); ?>

@@ -167,6 +167,13 @@ return [
     'Create Moromi Memo List' => 'เพิ่มรายการบันทึกโมโรมิ',
     'Moromi Record Table' => 'ตารางบันทึกโมโรมิ',
     'Moromi Record Card' => 'การ์ดบันทึกโมโรมิ',
+    'Note' => 'โน๊ต',
+    'Memo List' => 'รายการบันทึก',
+    'Additional' => 'เพิ่มเติม',
+    'Removed' => 'ลบออก',
+    'List of Memo' => 'รายการบันทึกคุณภาพโมโรมิ',
+    'Add List of Memo' => 'เพิ่มรายการบันทึกคุณภาพโมโรมิ',
+   
 
 
 ];

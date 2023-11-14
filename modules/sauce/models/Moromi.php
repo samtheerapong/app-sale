@@ -67,7 +67,6 @@ class Moromi extends \yii\db\ActiveRecord
             [['shikomi_date', 'transfer_date', 'created_at', 'updated_at'], 'safe'],
             [['type_id', 'status_id', 'created_by', 'updated_by'], 'integer'],
             [['code', 'batch_no'], 'string', 'max' => 45],
-            [['tank_source', 'tank_destination'], 'string', 'max' => 255],
             [['batch_no', 'shikomi_date', 'transfer_date', 'status_id', 'type_id', 'tank_source', 'tank_destination'], 'required'],
         ];
     }
@@ -122,5 +121,12 @@ class Moromi extends \yii\db\ActiveRecord
     public function getUpdatedBy0()
     {
         return $this->hasOne(User::class, ['id' => 'updated_by']);
+    }
+
+
+    // hasMany
+    public function getMoromiLists()
+    {
+        return $this->hasMany(MoromiList::class, ['moromi_id' => 'id']);
     }
 }

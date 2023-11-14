@@ -3,6 +3,7 @@
 namespace app\modules\sauce\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "moromi_list".
@@ -21,6 +22,21 @@ use Yii;
  */
 class MoromiList extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    self::EVENT_BEFORE_INSERT => ['record_date'],
+                ],
+                'value' => function () {
+                    return date('Y-m-d H:i:s');
+                },
+            ],
+            
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -35,7 +51,7 @@ class MoromiList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['moromi_id'], 'required'],
+            // [['moromi_id'], 'required'],
             [['moromi_id', 'memo_list', 'color'], 'integer'],
             [['record_date'], 'safe'],
             [['ph', 'nacl', 'tn', 'alcohol', 'turbidity'], 'number'],
@@ -53,13 +69,23 @@ class MoromiList extends \yii\db\ActiveRecord
             'moromi_id' => Yii::t('app', 'Moromi ID'),
             'record_date' => Yii::t('app', 'Record Date'),
             'memo_list' => Yii::t('app', 'Memo List'),
-            'ph' => Yii::t('app', 'Ph'),
+            'ph' => Yii::t('app', '% Ph'),
             'color' => Yii::t('app', 'Color'),
-            'nacl' => Yii::t('app', 'Nacl'),
-            'tn' => Yii::t('app', 'Tn'),
-            'alcohol' => Yii::t('app', 'Alcohol'),
+            'nacl' => Yii::t('app', '% NaCl'),
+            'tn' => Yii::t('app', '% Tn'),
+            'alcohol' => Yii::t('app', '% Alcohol'),
             'turbidity' => Yii::t('app', 'Turbidity'),
             'note' => Yii::t('app', 'Note'),
         ];
+    }
+
+    public function getMoromis()
+    {
+        return $this->hasOne(Moromi::class, ['id' => 'moromi_id']);
+    }
+
+    public function getMemo()
+    {
+        return $this->hasOne(MoromiListMemo::class, ['id' => 'memo_list']);
     }
 }
