@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2023 at 03:14 PM
+-- Generation Time: Nov 14, 2023 at 09:44 AM
 -- Server version: 5.7.39
--- PHP Version: 7.4.33
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,7 @@ CREATE TABLE `auto_number` (
 --
 
 INSERT INTO `auto_number` (`group`, `number`, `optimistic_lock`, `update_time`) VALUES
-('MRM-6611-????', 10, 1, 1699865737),
+('MRM-6611-????', 2, 1, 1699953167),
 ('RP-6611-????', 7, 1, 1699838479);
 
 -- --------------------------------------------------------
@@ -252,16 +252,8 @@ CREATE TABLE `moromi` (
 --
 
 INSERT INTO `moromi` (`id`, `code`, `batch_no`, `shikomi_date`, `transfer_date`, `tank_source`, `tank_destination`, `type_id`, `status_id`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'MRM-6611-0001', 'B2536', '2023-11-13', '2023-11-14', 1, 5, 1, 1, '2023-11-13', '2023-11-13', 1, 15),
-(2, 'MRM-6611-0002', 'B2537', '2023-11-08', '2023-11-17', 2, 4, 3, 2, '2023-11-13', '2023-11-13', 1, 15),
-(3, 'MRM-6611-0003', 'B2537', '2023-11-14', '2023-11-22', 2, 3, 7, 2, '2023-11-13', '2023-11-13', 1, 1),
-(4, 'MRM-6611-0004', 'B2538', '2023-11-09', '2023-11-24', 4, 5, 4, 2, '2023-11-13', '2023-11-13', 1, 15),
-(5, 'MRM-6611-0005', 'B2539-B2541', '2023-11-02', '2023-11-10', 5, 28, 6, 2, '2023-11-13', '2023-11-13', 15, 15),
-(6, 'MRM-6611-0006', 'B2542', '2023-11-13', '2023-11-10', 7, 21, 2, 1, '2023-11-13', '2023-11-13', 15, 15),
-(7, 'MRM-6611-0007', 'B2543-B2544', '2023-11-13', '2023-11-15', 6, 27, 5, 1, '2023-11-13', '2023-11-13', 15, 15),
-(8, 'MRM-6611-0008', 'B2536', '2023-11-15', '2023-11-09', 5, 15, 3, 2, '2023-11-13', '2023-11-13', 1, 1),
-(9, 'MRM-6611-0009', 'B2539', '2023-11-07', '2023-11-28', 2, 3, 3, 1, '2023-11-13', NULL, 1, 1),
-(10, 'MRM-6611-0010', 'B2542', '2023-11-10', '2023-11-11', 4, 20, 10, 1, '2023-11-13', NULL, 1, 1);
+(1, 'MRM-6611-0001', '2463', '2022-03-13', '2022-04-26', 2, 9, 5, 2, '2023-11-14', '2023-11-14', 1, 1),
+(2, 'MRM-6611-0002', '2492', '2022-06-29', '2022-07-05', 3, 18, 5, 2, '2023-11-14', '2023-11-14', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -282,6 +274,44 @@ CREATE TABLE `moromi_list` (
   `turbidity` decimal(10,2) DEFAULT NULL,
   `note` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `moromi_list`
+--
+
+INSERT INTO `moromi_list` (`id`, `moromi_id`, `record_date`, `memo_list`, `ph`, `color`, `nacl`, `tn`, `alcohol`, `turbidity`, `note`) VALUES
+(1, 1, '2022-03-21', 5, '4.42', 45, '16.44', NULL, NULL, NULL, ''),
+(2, 1, '2022-04-02', 2, '4.32', NULL, NULL, NULL, NULL, NULL, ''),
+(3, 1, '2022-04-12', 7, '4.37', 45, '15.86', '1.17', '0.05', NULL, ''),
+(4, 1, '2022-05-14', 8, '4.37', 41, '15.80', '1.32', '0.38', NULL, ''),
+(5, 1, '2022-05-13', 9, '4.39', 45, '15.66', '1.40', '0.75', NULL, ''),
+(6, 1, '2022-07-17', 10, '4.64', 37, '16.46', '1.76', '1.07', NULL, ''),
+(7, 1, '2022-08-13', 11, '4.36', 39, '15.79', '1.50', '0.87', NULL, ''),
+(8, 1, '2022-09-13', 12, '4.39', 37, '15.53', '1.47', '0.87', NULL, ''),
+(9, 1, '2022-10-13', 13, '4.35', 33, NULL, NULL, NULL, NULL, ''),
+(10, 1, '2022-10-20', 3, '4.34', 29, '15.81', '1.55', '0.82', NULL, ''),
+(11, 1, '2022-10-20', 4, NULL, NULL, '6.73', '0.64', NULL, NULL, ''),
+(12, 1, '2022-11-14', 14, '4.36', 33, NULL, NULL, NULL, NULL, ''),
+(13, 1, '2022-12-13', 15, '4.39', 29, NULL, NULL, NULL, NULL, ''),
+(14, 1, '2023-01-13', 16, '4.37', 27, NULL, NULL, NULL, NULL, ''),
+(15, 1, '2023-02-13', 17, '4.43', 27, NULL, NULL, NULL, '422.00', ''),
+(16, 1, '2023-02-27', 3, '4.40', 27, '15.83', '1.64', '0.91', NULL, ''),
+(17, 1, '2023-02-27', 4, NULL, NULL, '5.99', '0.56', NULL, NULL, ''),
+(18, 1, '2023-03-13', 18, '4.45', 27, NULL, NULL, NULL, '654.00', ''),
+(21, 2, '2022-06-29', 5, '5.34', 45, '16.87', NULL, NULL, NULL, ''),
+(22, 2, '2022-07-02', 2, '5.18', NULL, NULL, NULL, NULL, NULL, ''),
+(23, 2, '2022-07-23', 7, '4.50', 41, '15.86', '1.86', '0.60', NULL, ''),
+(24, 2, '2022-08-23', 8, '4.51', 41, '16.29', '1.94', '0.76', NULL, ''),
+(25, 2, '2022-09-23', 9, '4.47', 37, '16.34', '1.97', '0.70', NULL, ''),
+(26, 2, '2022-10-22', 10, '4.39', 37, '16.52', '1.94', '0.95', NULL, ''),
+(27, 2, '2022-11-17', 19, NULL, NULL, NULL, NULL, NULL, NULL, 'T17 = 19,880 lit'),
+(28, 2, '2022-11-24', 11, '4.44', 29, '16.47', '2.01', '0.99', NULL, ''),
+(29, 2, '2022-12-23', 12, '4.42', 33, '16.34', '2.01', '1.15', NULL, ''),
+(30, 2, '2023-01-23', 13, '4.51', 33, NULL, NULL, NULL, '179.00', ''),
+(31, 2, '2023-02-23', 14, '4.39', 29, NULL, NULL, NULL, NULL, ''),
+(32, 2, '2023-02-25', 3, '5.37', 49, '16.34', '2.02', '2.00', NULL, 'ไม่ได้ลง rtTPC'),
+(33, 2, '2023-02-25', 4, NULL, NULL, '6.09', '0.77', NULL, NULL, ''),
+(34, 2, '2023-03-23', 15, '4.48', 29, NULL, NULL, NULL, '934.00', '');
 
 -- --------------------------------------------------------
 
@@ -319,7 +349,8 @@ INSERT INTO `moromi_list_memo` (`id`, `name`, `detail`, `color`, `active`) VALUE
 (15, '9 เดือน', NULL, '#00695c', 1),
 (16, '10 เดือน', NULL, '#004d40', 1),
 (17, '11 เดือน', NULL, '#0277bd', 1),
-(18, '12 เดือน', NULL, '#01579b', 1);
+(18, '12 เดือน', NULL, '#01579b', 1),
+(19, 'ปั๊มจากถังอื่นมาใส่', '', '#FE0000', 1);
 
 -- --------------------------------------------------------
 
@@ -422,6 +453,49 @@ INSERT INTO `payment_term` (`id`, `payment_term`, `color`) VALUES
 (1, 'เงินสด', '#4477CE'),
 (2, 'credit 15 days', '#BA704F'),
 (3, 'credit 30 days', '#6C3428');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `po`
+--
+
+CREATE TABLE `po` (
+  `id` int(11) NOT NULL,
+  `po_no` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `po`
+--
+
+INSERT INTO `po` (`id`, `po_no`, `description`) VALUES
+(1, 55, '55'),
+(2, 222, '2222');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `po_item`
+--
+
+CREATE TABLE `po_item` (
+  `id` int(11) NOT NULL,
+  `po_item_no` varchar(10) NOT NULL,
+  `quantity` double NOT NULL,
+  `po_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `po_item`
+--
+
+INSERT INTO `po_item` (`id`, `po_item_no`, `quantity`, `po_id`) VALUES
+(1, 'qqq', 1, 1),
+(2, '2', 2, 2),
+(3, '22', 22, 2),
+(4, '222', 222, 2);
 
 -- --------------------------------------------------------
 
@@ -1654,6 +1728,18 @@ ALTER TABLE `payment_term`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `po`
+--
+ALTER TABLE `po`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `po_item`
+--
+ALTER TABLE `po_item`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `priority`
 --
 ALTER TABLE `priority`
@@ -1783,19 +1869,19 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `moromi`
 --
 ALTER TABLE `moromi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `moromi_list`
 --
 ALTER TABLE `moromi_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `moromi_list_memo`
 --
 ALTER TABLE `moromi_list_memo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `moromi_status`
@@ -1826,6 +1912,18 @@ ALTER TABLE `paid_status`
 --
 ALTER TABLE `payment_term`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `po`
+--
+ALTER TABLE `po`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `po_item`
+--
+ALTER TABLE `po_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `priority`
