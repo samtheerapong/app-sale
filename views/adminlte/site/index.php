@@ -37,7 +37,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             <div class="card mb-2">
                 <img class="card-img-top" src="images/pasteurization.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <a href="<?= Url::toRoute('/sauce/raw-sauce/index2'); ?>">
+                    <a href="<?= Url::toRoute('/sauce/raw-sauce/index'); ?>">
                         <h5 class="card-title mb-2"><i class="fa-solid fa-bore-hole"></i> <b>ซีอิ๊วดิบ <br>(FM-QC-19)</b></h5>
                     </a>
                     <!-- <p class="card-text text-center">โมโรมิจะถูกนำมาคั้นแยกน้ำซีอิ๊วดิบออกจากส่วนผสม น้ำซีอิ๊วดิบจะถูกนำมาแยกไขมัน กรอง และ ปรับคุณภาพตามข้อกำหนด ซีอิ๊วดิบที่ปรับคุณภาพแล้วจะถูกนำมาให้ความร้อนที่ 90-95 องศาเซลเซียส เพื่อทำการฆ่าเชื้อและพัฒนากลิ่นสีของผลิตภัณท์</p> -->
