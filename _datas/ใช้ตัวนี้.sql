@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 14, 2023 at 09:44 AM
+-- Generation Time: Nov 14, 2023 at 09:54 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -39,7 +39,7 @@ CREATE TABLE `auto_number` (
 --
 
 INSERT INTO `auto_number` (`group`, `number`, `optimistic_lock`, `update_time`) VALUES
-('MRM-6611-????', 2, 1, 1699953167),
+('MRM-6611-????', 3, 1, 1699955204),
 ('RP-6611-????', 7, 1, 1699838479);
 
 -- --------------------------------------------------------
@@ -253,7 +253,8 @@ CREATE TABLE `moromi` (
 
 INSERT INTO `moromi` (`id`, `code`, `batch_no`, `shikomi_date`, `transfer_date`, `tank_source`, `tank_destination`, `type_id`, `status_id`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
 (1, 'MRM-6611-0001', '2463', '2022-03-13', '2022-04-26', 2, 9, 5, 2, '2023-11-14', '2023-11-14', 1, 1),
-(2, 'MRM-6611-0002', '2492', '2022-06-29', '2022-07-05', 3, 18, 5, 2, '2023-11-14', '2023-11-14', 1, 1);
+(2, 'MRM-6611-0002', '2492', '2022-06-29', '2022-07-05', 3, 18, 5, 2, '2023-11-14', '2023-11-14', 1, 1),
+(3, 'MRM-6611-0003', '2510', '2022-08-25', '2022-09-07', 4, 24, 3, 2, '2023-11-14', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -311,7 +312,10 @@ INSERT INTO `moromi_list` (`id`, `moromi_id`, `record_date`, `memo_list`, `ph`, 
 (31, 2, '2023-02-23', 14, '4.39', 29, NULL, NULL, NULL, NULL, ''),
 (32, 2, '2023-02-25', 3, '5.37', 49, '16.34', '2.02', '2.00', NULL, 'ไม่ได้ลง rtTPC'),
 (33, 2, '2023-02-25', 4, NULL, NULL, '6.09', '0.77', NULL, NULL, ''),
-(34, 2, '2023-03-23', 15, '4.48', 29, NULL, NULL, NULL, '934.00', '');
+(34, 2, '2023-03-23', 15, '4.48', 29, NULL, NULL, NULL, '934.00', ''),
+(35, 3, '2023-08-27', 2, '5.09', NULL, NULL, NULL, NULL, NULL, ''),
+(36, 3, '2023-09-10', 5, '4.86', 53, '17.26', NULL, NULL, NULL, ''),
+(37, 3, '2023-09-05', 19, NULL, NULL, NULL, NULL, NULL, NULL, 'ปั๊ม Moromi Tank  A (B.2511)');
 
 -- --------------------------------------------------------
 
@@ -1869,13 +1873,13 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `moromi`
 --
 ALTER TABLE `moromi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `moromi_list`
 --
 ALTER TABLE `moromi_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `moromi_list_memo`

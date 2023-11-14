@@ -148,7 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:auto;'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b></span>';
                         },
