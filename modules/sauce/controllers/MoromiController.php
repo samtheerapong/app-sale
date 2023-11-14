@@ -28,7 +28,7 @@ class MoromiController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -37,11 +37,7 @@ class MoromiController extends Controller
         );
     }
 
-    /**
-     * Lists all Moromi models.
-     *
-     * @return string
-     */
+
     public function actionIndex()
     {
         $searchModel = new MoromiSearch();
@@ -64,12 +60,7 @@ class MoromiController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Moromi model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionView($id)
     {
         return $this->render('view', [
@@ -77,11 +68,7 @@ class MoromiController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Moromi model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+
     public function actionCreate()
     {
         $model = new Moromi();
@@ -130,13 +117,7 @@ class MoromiController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Moromi model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -151,8 +132,7 @@ class MoromiController extends Controller
     }
 
 
-
-    public function actionAddlist($id)
+    public function actionItem($id)
     {
         $model = $this->findModel($id);
         $modelsItem = $model->moromiLists;
@@ -191,7 +171,7 @@ class MoromiController extends Controller
                 }
             }
         } else {
-            return $this->render('addlist', [
+            return $this->render('item', [
                 'model' => $model,
                 'modelsItem' => (empty($modelsItem)) ? [new MoromiList] : $modelsItem
             ]);
@@ -207,9 +187,23 @@ class MoromiController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+            // Delete related MoromiList records
+            MoromiList::deleteAll(['moromi_id' => $model->id]);
+
+            // Delete the Moromi record
+            $model->delete();
+
+            $transaction->commit();
+
+            return $this->redirect(['index']);
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
     }
 
     /**

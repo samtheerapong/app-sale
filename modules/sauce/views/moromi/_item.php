@@ -36,18 +36,11 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     ]) ?>
                 </div>
                 <div class="col-md-3">
-                    <?= $form->field($model, 'shikomi_date')->widget(
-                        DatePicker::class,
-                        [
-                            'language' => 'th',
-                            'options' => ['placeholder' => Yii::t('app', 'Select...'), 'disabled' => true],
-                            'pluginOptions' => [
-                                'format' => 'yyyy-mm-dd',
-                                'todayHighlight' => true,
-                                'autoclose' => true,
-                            ]
-                        ]
-                    ); ?>
+                    <?= $form->field($model, 'shikomi_date')->textInput([
+                        'maxlength' => true,
+                        'type' => 'date', // set the input type to date
+                        'disabled' => true
+                    ]) ?>
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($model, 'type_id')->widget(Select2::class, [
@@ -76,19 +69,11 @@ use wbraganca\dynamicform\DynamicFormWidget;
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <?= $form->field($model, 'transfer_date')->widget(
-                        DatePicker::class,
-                        [
-                            'language' => 'th',
-                            'options' => ['placeholder' => Yii::t('app', 'Select...'), 'disabled' => true],
-                            'pluginOptions' => [
-                                'format' => 'yyyy-mm-dd',
-                                'todayHighlight' => true,
-                                'autoclose' => true,
-
-                            ]
-                        ]
-                    ); ?>
+                    <?= $form->field($model, 'transfer_date')->textInput([
+                        'maxlength' => true,
+                        'type' => 'date', // set the input type to date
+                        'disabled' => true
+                    ]) ?>
                 </div>
 
                 <div class="col-md-4">
@@ -149,10 +134,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <div class="container-items">
                 <?php foreach ($modelsItem as $i => $modelitem) : ?>
                     <div class="item card">
-                        <div class="card-header text-white bg-dark">
+                        <div class="card-header text-white bg-info">
                             <div class="card-title float-left">
                                 <div class="float-left">
-                                    <?= Yii::t('app', 'List of Memo') ?>
+                                    <?= $modelitem->id ? $modelitem->memo->name : ' ' ?>
                                 </div>
                             </div>
                             <div class="float-right">
@@ -169,8 +154,14 @@ use wbraganca\dynamicform\DynamicFormWidget;
                             }
                             ?>
                             <div class="row">
-
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <?= $form->field($modelitem, "[{$i}]record_date")->textInput([
+                                        'maxlength' => true,
+                                        'type' => 'date', // set the input type to date
+                                        // 'inputOptions' => ['step' => '1'], // set the step attribute
+                                    ]) ?>
+                                </div>
+                                <div class="col-md-3">
 
                                     <?= $form->field($modelitem, "[{$i}]memo_list")->dropDownList(
                                         ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'),
@@ -182,7 +173,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                         ]
                                     ) ?>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <?= $form->field($modelitem, "[{$i}]note")->textInput(['maxlength' => true]) ?>
                                 </div>
                                 <div class="col-md-2">

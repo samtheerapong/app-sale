@@ -22,21 +22,21 @@ use yii\behaviors\TimestampBehavior;
  */
 class MoromiList extends \yii\db\ActiveRecord
 {
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::class,
-                'attributes' => [
-                    self::EVENT_BEFORE_INSERT => ['record_date'],
-                ],
-                'value' => function () {
-                    return date('Y-m-d H:i:s');
-                },
-            ],
+    // public function behaviors()
+    // {
+    //     return [
+    //         [
+    //             'class' => TimestampBehavior::class,
+    //             'attributes' => [
+    //                 self::EVENT_BEFORE_INSERT => ['record_date'],
+    //             ],
+    //             'value' => function () {
+    //                 return date('Y-m-d H:i:s');
+    //             },
+    //         ],
             
-        ];
-    }
+    //     ];
+    // }
     /**
      * {@inheritdoc}
      */

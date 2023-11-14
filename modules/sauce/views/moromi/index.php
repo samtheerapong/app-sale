@@ -54,14 +54,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     // 'id',
-                    'code',
-                    'batch_no',
-                    'shikomi_date:date',
-                    'transfer_date:date',
+                    // 'code',
                     [
                         'attribute' => 'tank_source',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
+                        // 'headerOptions' => ['style' => 'width: 170px;'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:170px;'],
+                        'value' => function ($model) {
+                            return $model->code;
+                        },                      
+                    ],
+                    // 'batch_no',
+                    [
+                        'attribute' => 'batch_no',
+                        'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
+                        'value' => function ($model) {
+                            return $model->batch_no;
+                        },                      
+                    ],
+                    [
+                        'attribute' => 'shikomi_date',
+                        'format' => 'date',
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:auto;'],
+                        'value' => function ($model) {
+                            return $model->shikomi_date;
+                        },                      
+                    ],
+                    // 'transfer_date:date',
+                    [
+                        'attribute' => 'transfer_date',
+                        'format' => 'date',
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:auto;'],
+                        'value' => function ($model) {
+                            return $model->transfer_date;
+                        },                      
+                    ],
+                    [
+                        'attribute' => 'tank_source',
+                        'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:100px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b></span>';
                         },
@@ -74,12 +106,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'pluginOptions' => [
                                 'allowClear' => true
                             ],
-                        ])
+                        ]),
+                       
                     ],
                     [
                         'attribute' => 'tank_destination',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:100px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->tankDestination0->color . ';"><b>' . $model->tankDestination0->name . '</b></span>';
                         },
@@ -97,8 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'type_id',
                         'format' => 'html',
-                        // 'contentOptions' => ['class' => 'text-center'],
-                        // 'options' => ['style' => 'width:20%;'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:300px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->moromiType0->color . ';"><b>' . $model->moromiType0->name . '</b></span>';
                         },
@@ -116,7 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:auto;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b></span>';
                         },
@@ -137,12 +169,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'updated_by',
                     [
                         'class' => 'kartik\grid\ActionColumn',
+                        'headerOptions' => ['style' => 'width:250px;'],
                         'contentOptions' => ['class' => 'text-center'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
-                        'template' => '<div class="btn-group btn-group-xs" role="group"> {addlist} {view} {update} {delete}</div>',
+                        'template' => '<div class="btn-group btn-group-xs" role="group">{view} {item}  {update} {delete}</div>',
                         'buttons' => [
-                            'addlist' => function ($url, $model, $key) {
-                                return Html::a('<i class="fa fa-list"></i>', ['addlist', 'id' => $model->id], [
+                            'item' => function ($url, $model, $key) {
+                                return Html::a('<i class="fa fa-list"></i>', ['item', 'id' => $model->id], [
                                     'title' => Yii::t('app', 'Add List of Memo'),
                                     'class' => 'btn btn-outline-dark btn-sm',
                                 ]);
