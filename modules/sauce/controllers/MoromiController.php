@@ -2,8 +2,11 @@
 
 namespace app\modules\sauce\controllers;
 
+use app\modules\sauce\models\Model;
 use app\modules\sauce\models\Moromi;
+use app\modules\sauce\models\MoromiList;
 use app\modules\sauce\models\MoromiSearch;
+use Exception;
 use mdm\autonumber\AutoNumber;
 use Yii;
 use yii\web\Controller;
@@ -81,13 +84,41 @@ class MoromiController extends Controller
     public function actionCreate()
     {
         $model = new Moromi();
+        $modelItems = [new MoromiList];
+
         $model->status_id = 1;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->code = AutoNumber::generate('MRM-' . (date('y') + 43) . date('m') . '-????'); // Auto Number
+
+
+                $modelItems = Model::createMultiple(MoromiList::class);
+                Model::loadMultiple($modelItems, Yii::$app->request->post());
+                $valid = $model->validate();
+                $valid = Model::validateMultiple($modelItems) && $valid;
+
                 $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                if ($valid) {
+                    $transaction = \Yii::$app->db->beginTransaction();
+                    try {
+                        if ($flag = $model->save(false)) {
+                            foreach ($modelItems as $modelitem) {
+                                $modelitem->moromi_id = $model->id;
+                                if (!($flag = $modelitem->save(false))) {
+                                    $transaction->rollBack();
+                                    break;
+                                }
+                            }
+                        }
+                        if ($flag) {
+                            $transaction->commit();
+                            return $this->redirect(['view', 'id' => $model->id]);
+                        }
+                    } catch (Exception $e) {
+                        $transaction->rollBack();
+                    }
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -95,6 +126,7 @@ class MoromiController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'modelItems' => (empty($modelItems)) ? [new MoromiList] : $modelItems
         ]);
     }
 

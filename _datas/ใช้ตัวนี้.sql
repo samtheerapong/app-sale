@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2023 at 09:20 AM
+-- Generation Time: Nov 13, 2023 at 03:14 PM
 -- Server version: 5.7.39
--- PHP Version: 7.4.9
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -271,7 +271,8 @@ INSERT INTO `moromi` (`id`, `code`, `batch_no`, `shikomi_date`, `transfer_date`,
 
 CREATE TABLE `moromi_list` (
   `id` int(11) NOT NULL,
-  `moromi_record` text,
+  `moromi_id` int(11) NOT NULL,
+  `record_date` date DEFAULT NULL,
   `memo_list` int(11) DEFAULT NULL,
   `ph` decimal(10,2) DEFAULT NULL,
   `color` int(11) DEFAULT NULL,
@@ -1794,7 +1795,7 @@ ALTER TABLE `moromi_list`
 -- AUTO_INCREMENT for table `moromi_list_memo`
 --
 ALTER TABLE `moromi_list_memo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `moromi_status`

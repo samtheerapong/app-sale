@@ -46,11 +46,17 @@ $config = [
         'gallery' => 'dosamigos\gallery\Module',
     ],
     'components' => [
-       
+        // 'assetManager' => [
+        //     'bundles' => [
+        //         'yii\web\JqueryAsset' => [
+        //             'js' => [],
+        //         ],
+        //     ],
+        // ],
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => '@app/views/adminlte/'
+                    '@app/views' => '@app/themes/adminlte/'
                 ],
             ],
         ],
