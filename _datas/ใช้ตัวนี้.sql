@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 14, 2023 at 09:54 AM
+-- Generation Time: Nov 15, 2023 at 10:02 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -310,7 +310,7 @@ INSERT INTO `moromi_list` (`id`, `moromi_id`, `record_date`, `memo_list`, `ph`, 
 (29, 2, '2022-12-23', 12, '4.42', 33, '16.34', '2.01', '1.15', NULL, ''),
 (30, 2, '2023-01-23', 13, '4.51', 33, NULL, NULL, NULL, '179.00', ''),
 (31, 2, '2023-02-23', 14, '4.39', 29, NULL, NULL, NULL, NULL, ''),
-(32, 2, '2023-02-25', 3, '5.37', 49, '16.34', '2.02', '2.00', NULL, 'ไม่ได้ลง rtTPC'),
+(32, 2, '2023-02-25', 3, '5.37', 49, '16.34', '2.02', '2.00', NULL, 'ไม่ได้ลง TPC'),
 (33, 2, '2023-02-25', 4, NULL, NULL, '6.09', '0.77', NULL, NULL, ''),
 (34, 2, '2023-03-23', 15, '4.48', 29, NULL, NULL, NULL, '934.00', ''),
 (35, 3, '2023-08-27', 2, '5.09', NULL, NULL, NULL, NULL, NULL, ''),
@@ -1195,6 +1195,269 @@ INSERT INTO `request_repair` (`id`, `repair_code`, `created_at`, `updated_at`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `salers`
+--
+
+CREATE TABLE `salers` (
+  `id` int(11) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` text,
+  `tel` varchar(45) DEFAULT NULL,
+  `color` varchar(45) DEFAULT '#333FFF',
+  `active` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `salers`
+--
+
+INSERT INTO `salers` (`id`, `code`, `name`, `address`, `tel`, `color`, `active`) VALUES
+(1, 'U001', 'สุพัฒน์', '', '', '#333FFF', 1),
+(2, 'U002', 'ธวัชชัย', '', '', '#333FFF', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_customer`
+--
+
+CREATE TABLE `sale_customer` (
+  `id` int(11) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` text,
+  `tel` varchar(45) DEFAULT NULL,
+  `color` varchar(45) DEFAULT '#333FFF',
+  `active` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_customer`
+--
+
+INSERT INTO `sale_customer` (`id`, `code`, `name`, `address`, `tel`, `color`, `active`) VALUES
+(1, 'CUS0001', 'NFC', '59/3 Soi Sukhumvit 39, Sukhumvit Road, Klongton Nua, Wattana, Bangkok 10110 Thailand', ' 02 2620030 - 3', '#333FFF', 1),
+(2, 'CUS0002', 'QP', 'บริษัท คิวพี (ประเทศไทย) จำกัด เลขที่ 1023 เอ็มเอส สยาม ทาวเวอร์ (ชั้น 23) ถนนพระราม 3, ช่องนนทรี, ยานนาวา, กรุงเทพฯ 10120', '02 294 5115 แฟกซ์: 02 294 5424', '#333FFF', 1),
+(3, 'CUS0003', 'Singha Kameda', 'SINGHA KAMEDA (THAILAND) CO., LTD. 99/5 MOO.7 BANGNA-TRAD KM.19, BANGCHALONG,BANGPLEE, SAMUTPRAKARN 10540', '(662) 740-7700-8   Fax: (662) 312-6686', '#333FFF', 1),
+(6, 'CUS0006', 'BFood', 'หมู่ที่ 5 39 ตำบล ช่องสาริกา อำเภอพัฒนานิคม ลพบุรี 15220', '082 028 8254', '#333FFF', 1),
+(7, 'CUS0007', 'Thai Nichi', 'เลขที่ 77 ม. 13 ต. มะเขือแจ้ อ. เมือง จ. ลำพูน ประเทศไทย 51000', '+66 53 581 222', '#333FFF', 1),
+(8, 'CUS0008', 'CPRAM', NULL, NULL, '#333FFF', 1),
+(9, 'CUS0009', 'Sky Food', NULL, NULL, '#333FFF', 1),
+(10, 'CUS0010', 'Sinvaree', NULL, NULL, '#333FFF', 1),
+(11, 'CUS0011', 'Thai Nikken', NULL, NULL, '#333FFF', 1),
+(12, 'CUS0012', 'Thai Nippon', NULL, NULL, '#333FFF', 1),
+(13, 'CUS0013', 'Sahafarm', NULL, NULL, '#333FFF', 1),
+(14, 'CUS0014', 'Golden Line', NULL, NULL, '#333FFF', 1),
+(15, 'CUS0015', 'Sahafarm Inter', NULL, NULL, '#333FFF', 1),
+(16, 'CUS0016', 'CPF Food & Baverage', NULL, NULL, '#333FFF', 1),
+(17, 'CUS0017', 'Multitech', NULL, NULL, '#333FFF', 1),
+(18, 'CUS0018', 'KRS', NULL, NULL, '#333FFF', 1),
+(19, 'CUS0019', 'Vanguard', NULL, NULL, '#333FFF', 1),
+(20, 'CUS0020', 'Kanom Sakol', NULL, NULL, '#333FFF', 1),
+(21, 'CUS0021', 'R&B Food Supply', NULL, NULL, '#333FFF', 1),
+(22, 'CUS0022', 'Winchance Food', NULL, NULL, '#333FFF', 1),
+(23, 'CUS0023', 'Mekkala', NULL, NULL, '#333FFF', 1),
+(24, 'CUS0024', 'Thai Food Father', NULL, NULL, '#333FFF', 1),
+(25, 'CUS0025', 'Pure Food', NULL, NULL, '#333FFF', 1),
+(26, 'CUS0026', 'Monty & Totco', NULL, NULL, '#333FFF', 1),
+(27, 'CUS0027', 'Nine Star', NULL, NULL, '#333FFF', 1),
+(28, 'CUS0028', 'Zen Kitchen Food', NULL, NULL, '#333FFF', 1),
+(29, 'CUS0029', 'Bio Asia', NULL, NULL, '#333FFF', 1),
+(30, 'CUS0030', 'Thanawat', NULL, NULL, '#333FFF', 1),
+(31, 'CUS0031', 'Thai Union Food', NULL, NULL, '#333FFF', 1),
+(32, 'CUS0032', 'Spice Garden', NULL, NULL, '#333FFF', 1),
+(33, 'CUS0033', 'Food Image', NULL, NULL, '#333FFF', 1),
+(34, 'CUS0034', 'DSmith Food', NULL, NULL, '#333FFF', 1),
+(35, 'CUS0035', 'Lactasoy', NULL, NULL, '#333FFF', 1),
+(36, 'CUS0036', 'Robbie Market', NULL, NULL, '#333FFF', 1),
+(37, 'CUS0037', 'salada', NULL, NULL, '#333FFF', 1),
+(38, 'CUS0038', 'Spring Kitchen', NULL, NULL, '#333FFF', 1),
+(39, 'CUS0039', 'NR Instant', NULL, NULL, '#333FFF', 1),
+(40, 'CUS0040', 'Panus Poltry Group', NULL, NULL, '#333FFF', 1),
+(41, 'CUS0041', 'Sammitr lndustry', NULL, NULL, '#333FFF', 1),
+(42, 'CUS0042', 'Capital Trading', NULL, NULL, '#333FFF', 1),
+(43, 'CUS0043', 'Tops Organic', NULL, NULL, '#333FFF', 1),
+(44, 'CUS0044', 'NST Foods Industry', NULL, NULL, '#333FFF', 1),
+(45, 'CUS0045', 'Asian Food Network', NULL, NULL, '#333FFF', 1),
+(46, 'CUS0046', 'Surapon Nichirei', NULL, NULL, '#333FFF', 1),
+(47, 'CUS0047', 'Surapon Food', NULL, NULL, '#333FFF', 1),
+(48, 'CUS0048', 'Betagro', NULL, NULL, '#333FFF', 1),
+(49, 'CUS0049', 'Lampang Food', NULL, NULL, '#333FFF', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_item`
+--
+
+CREATE TABLE `sale_item` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT '0.00',
+  `quantity` int(11) DEFAULT '1',
+  `unit` int(11) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_order`
+--
+
+CREATE TABLE `sale_order` (
+  `id` int(11) NOT NULL,
+  `po_number` varchar(45) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `salers_id` int(11) DEFAULT NULL,
+  `sale_ordercol` varchar(45) DEFAULT NULL,
+  `new_deadline` date DEFAULT NULL,
+  `payment_id` int(11) DEFAULT NULL,
+  `percent_vat` decimal(10,2) DEFAULT '7.00',
+  `discount` decimal(10,2) DEFAULT '0.00',
+  `grand_total` decimal(10,2) DEFAULT NULL,
+  `remask` text,
+  `status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_payment`
+--
+
+CREATE TABLE `sale_payment` (
+  `id` int(11) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `detail` text,
+  `color` varchar(45) DEFAULT '#333FFF',
+  `active` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_payment`
+--
+
+INSERT INTO `sale_payment` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
+(1, 'SP001', 'เครดิต 30 วัน', '', '#CD5C08', 1),
+(2, 'SP002', 'เครดิต 60 วัน', '', '#CD5C08', 1),
+(3, 'SP003', 'เครดิต 90 วัน', '', '#CD5C08', 1),
+(4, 'SP004', 'เครดิต 120 วัน', '', '#CD5C08', 1),
+(5, 'SP005', 'เงินสด', '', '#005B41', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_product`
+--
+
+CREATE TABLE `sale_product` (
+  `id` int(11) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `detail` text,
+  `unit_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `note` text,
+  `active` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_product`
+--
+
+INSERT INTO `sale_product` (`id`, `code`, `name`, `detail`, `unit_id`, `customer_id`, `note`, `active`) VALUES
+(1, 'FBCO-05001', 'กาแฟข้าวบาร์เลย์ (500 g)', NULL, 1, NULL, NULL, 1),
+(2, 'FCD2-A0181', 'ซีอิ๊วดำโจฮินสูตร2 18 C', NULL, 2, NULL, NULL, 1),
+(3, 'FCDA-10001', 'Johin Premium Dark Soy Sauce 1 Liter', NULL, 3, NULL, NULL, 1),
+(4, 'FCDA-A0181', 'Johin Dark Soy Sauce Formula 2 For CP 18 C', NULL, 2, NULL, NULL, 1),
+(5, 'FCDA-A0182', 'Johin Premium Dark Soy Sauce For M&S51 (18 C)', NULL, 2, NULL, NULL, 1),
+(6, 'FCDA-A0184', 'Johin Standard Dark Soy Sauce 18 Liter', NULL, 2, NULL, NULL, 1),
+(7, 'FCDA-A0187', 'Johin Seasoning Dark soy sauce 18 C', NULL, 2, NULL, NULL, 1),
+(8, 'FCDA-A0188', 'Johin dark soy sauce (Gluten Free) 18 C', NULL, 2, NULL, NULL, 1),
+(9, 'FCDO-02001', 'Organic Dark soy sauce 200ml (12 bottles) - Asian Organic', NULL, 3, NULL, NULL, 1),
+(10, 'FCDO-02002', 'PB Farm Organic Dark Soy sauce 200 ml (6 bottles)', NULL, 3, NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_product_unit`
+--
+
+CREATE TABLE `sale_product_unit` (
+  `id` int(11) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `detail` text,
+  `color` varchar(45) DEFAULT '#333FFF',
+  `active` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_product_unit`
+--
+
+INSERT INTO `sale_product_unit` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
+(1, 'ถุง', 'ถุง', NULL, '#333FFF', 1),
+(2, 'ปี๊บ', 'ปี๊บ', NULL, '#333FFF', 1),
+(3, 'ขวด', 'ขวด', NULL, '#333FFF', 1),
+(4, 'ลิตร', 'ลิตร', NULL, '#333FFF', 1),
+(5, 'กระปุก', 'กระปุก', NULL, '#333FFF', 1),
+(6, 'กล่อง', 'กล่อง', NULL, '#333FFF', 1),
+(7, 'ถัง', 'ถัง', NULL, '#333FFF', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_report`
+--
+
+CREATE TABLE `sale_report` (
+  `id` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
+  `month` int(11) DEFAULT NULL,
+  `domestic_sales` decimal(10,2) DEFAULT NULL,
+  `sales_target` decimal(10,2) DEFAULT NULL,
+  `variation` decimal(10,2) DEFAULT NULL,
+  `achievement` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_status`
+--
+
+CREATE TABLE `sale_status` (
+  `id` int(11) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `detail` text,
+  `color` varchar(45) DEFAULT '#333FFF',
+  `active` int(11) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_status`
+--
+
+INSERT INTO `sale_status` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
+(1, 'New Order', 'ใหม่', '', '#ff0000', 1),
+(2, 'Planning', 'วางแผนผลิต', NULL, '#B15EFF', 1),
+(3, 'Inventory', 'สินค้าคงคลัง', NULL, '#0174BE', 1),
+(4, 'Results', 'รอผลเชื้อ', NULL, '#ED7D31', 1),
+(5, 'delivery', 'รอจัดส่ง', '', '#a64d79', 1),
+(6, 'Shipped', 'จัดส่งแล้ว', NULL, '#5D12D2', 1),
+(7, 'payment', 'รอจ่ายเงิน', '', '#ea9999', 1),
+(8, 'Success', 'สำเร็จ', '', '#274e13', 1),
+(9, 'Cancel', 'ยกเลิก', '', '#434343', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `status`
 --
 
@@ -1771,6 +2034,68 @@ ALTER TABLE `request_repair`
   ADD KEY `fk_enrequest_locations1_idx` (`locations_id`);
 
 --
+-- Indexes for table `salers`
+--
+ALTER TABLE `salers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sale_customer`
+--
+ALTER TABLE `sale_customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sale_item`
+--
+ALTER TABLE `sale_item`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sale_item_sale_product1_idx` (`product_id`),
+  ADD KEY `fk_sale_item_sale_product_unit1_idx` (`unit`);
+
+--
+-- Indexes for table `sale_order`
+--
+ALTER TABLE `sale_order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sale_order_sale_customer1_idx` (`customer_id`),
+  ADD KEY `fk_sale_order_sale_item1_idx` (`item_id`),
+  ADD KEY `fk_sale_order_salers1_idx` (`salers_id`),
+  ADD KEY `fk_sale_order_sale_payment1_idx` (`payment_id`),
+  ADD KEY `fk_sale_order_sale_status1_idx` (`status`);
+
+--
+-- Indexes for table `sale_payment`
+--
+ALTER TABLE `sale_payment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sale_product`
+--
+ALTER TABLE `sale_product`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Indexes for table `sale_product_unit`
+--
+ALTER TABLE `sale_product_unit`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sale_report`
+--
+ALTER TABLE `sale_report`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sale_status`
+--
+ALTER TABLE `sale_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
@@ -1879,7 +2204,7 @@ ALTER TABLE `moromi`
 -- AUTO_INCREMENT for table `moromi_list`
 --
 ALTER TABLE `moromi_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `moromi_list_memo`
@@ -1952,6 +2277,60 @@ ALTER TABLE `raw_sauce`
 --
 ALTER TABLE `request_repair`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `salers`
+--
+ALTER TABLE `salers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `sale_customer`
+--
+ALTER TABLE `sale_customer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `sale_item`
+--
+ALTER TABLE `sale_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sale_order`
+--
+ALTER TABLE `sale_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sale_payment`
+--
+ALTER TABLE `sale_payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `sale_product`
+--
+ALTER TABLE `sale_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `sale_product_unit`
+--
+ALTER TABLE `sale_product_unit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `sale_report`
+--
+ALTER TABLE `sale_report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sale_status`
+--
+ALTER TABLE `sale_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -2030,6 +2409,23 @@ ALTER TABLE `orders_item`
   ADD CONSTRAINT `fk_orders_has_products_orders1` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_orders_has_products_products1` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_orders_item_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sale_item`
+--
+ALTER TABLE `sale_item`
+  ADD CONSTRAINT `fk_sale_item_sale_product1` FOREIGN KEY (`product_id`) REFERENCES `sale_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sale_item_sale_product_unit1` FOREIGN KEY (`unit`) REFERENCES `sale_product_unit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sale_order`
+--
+ALTER TABLE `sale_order`
+  ADD CONSTRAINT `fk_sale_order_sale_customer1` FOREIGN KEY (`customer_id`) REFERENCES `sale_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sale_order_sale_item1` FOREIGN KEY (`item_id`) REFERENCES `sale_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sale_order_sale_payment1` FOREIGN KEY (`payment_id`) REFERENCES `sale_payment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sale_order_sale_status1` FOREIGN KEY (`status`) REFERENCES `sale_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sale_order_salers1` FOREIGN KEY (`salers_id`) REFERENCES `salers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

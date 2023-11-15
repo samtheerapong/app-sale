@@ -190,22 +190,22 @@
                         'header' => true
                     ],
                     [
-                        'label' => Yii::t('app', 'Sale Order'),
+                        'label' => Yii::t('app', 'Sale Order System'),
                         'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
                         'items' => [
                             ['label' => Yii::t('app', 'Sale Orders'), 'url' => ['/salers/sale-order/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-handshake-simple text-red'],
                             ['label' => Yii::t('app', 'Report'), 'url' => ['/salers/sale-report/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-column text-red'],
+                            ['label' => Yii::t('app', 'Sale Item'), 'url' => ['/salers/sale-item/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-bottle-water text-red'],
                             [
                                 'label' => Yii::t('app', 'Configuration'),
                                 'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs text-blue',
                                 'items' => [
                                     ['label' => Yii::t('app', 'Sale Status'), 'url' => ['/salers/sale-status/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
-                                    ['label' => Yii::t('app', 'Units'), 'url' => ['/salers/sale-product-unit/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Unit'), 'url' => ['/salers/sale-product-unit/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
                                     ['label' => Yii::t('app', 'Salers'), 'url' => ['/salers/salers/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
-                                    ['label' => Yii::t('app', 'Products'), 'url' => ['/salers/sale-product/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
-                                    ['label' => Yii::t('app', 'Payments'), 'url' => ['/salers/sale-payment/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
-                                    ['label' => Yii::t('app', 'Sale Items'), 'url' => ['/salers/sale-item/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
-                                    ['label' => Yii::t('app', 'Customers'), 'url' => ['/salers/sale-customer/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Product'), 'url' => ['/salers/sale-product/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Payment'), 'url' => ['/salers/sale-payment/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Customer'), 'url' => ['/salers/sale-customer/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
                                 ]
                             ],
                         ]

@@ -179,7 +179,17 @@ return [
     'Request Repair Table' => 'ตารางแจ้งซ่อม',
 
     // sales
-    'Sale Statuse' => 'สถานะ',
+    'Sale Order System' => 'ระบบขายสินค้า',
+    'Sale Order' => 'ระบบขาย',
+    'Sale Orders' => 'ตารางขายสินค้า',
+    'Sale Status' => 'สถานะ',
+    'Unit' => 'หน่วยนับ',
+    'Salers' => 'พนักงานขาย',
+    'Product' => 'สินค้า',
+    'Payment' => 'เงื่อนไขการชำระเงิน',
+    'Sale Item' => 'รายการขายสินค้า',
+    'Customer' => 'ลูกค้า',
+    'Report' => 'รายงาน',
 
 
 ];

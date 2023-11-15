@@ -1,10 +1,6 @@
 <?php
 
-use app\modules\salers\models\SaleStatus;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use kartik\grid\GridView;
 use yii\bootstrap5\LinkPager;
 use yii\widgets\Pjax;
 
@@ -18,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="sale-status-index">
 
     <p>
-        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create Moromi Memo List'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
