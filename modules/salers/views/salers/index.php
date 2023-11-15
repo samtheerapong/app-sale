@@ -16,7 +16,7 @@ $this->title = Yii::t('app', 'Salers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="salers-index">
-<p>
+    <p>
         <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 foreach ($dataProvider->getModels() as $model) : ?>
                     <div class="col-md-3 col-sm-6">
                         <div class="card mb-3">
-                                <img src="<?= Yii::getAlias('@web/').Html::encode($model->avatar) ?>" class="card-img-top" alt="...">
+                            <img src="<?= Yii::getAlias('@web/') . Html::encode($model->avatar) ?>" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text"><?= Yii::t('app', 'Code') ?>: <?= $model->code ?></p>
                                 <p class="card-text"><?= Yii::t('app', 'Name') ?>: <?= $model->name ?></p>
@@ -75,4 +75,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+</div>
 </div>
