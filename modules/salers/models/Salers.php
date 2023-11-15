@@ -3,6 +3,7 @@
 namespace app\modules\salers\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "salers".
@@ -12,7 +13,7 @@ use Yii;
  * @property string|null $name
  * @property string|null $address
  * @property string|null $tel
- * @property string|null $color
+ * @property string|null $avatar
  * @property int|null $active
  *
  * @property SaleOrder[] $saleOrders
@@ -35,8 +36,10 @@ class Salers extends \yii\db\ActiveRecord
         return [
             [['address'], 'string'],
             [['active'], 'integer'],
-            [['code', 'tel', 'color'], 'string', 'max' => 45],
-            [['name'], 'string', 'max' => 255],
+            [['code', 'tel'], 'string', 'max' => 45],
+            [['name', 'avatar'], 'string', 'max' => 255],
+            // ['avatar', 'default', 'value' => 'images/avatar/no-avatar.jpg'],
+            [['avatar'], 'required'],
         ];
     }
 
@@ -51,7 +54,7 @@ class Salers extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'address' => Yii::t('app', 'Address'),
             'tel' => Yii::t('app', 'Tel'),
-            'color' => Yii::t('app', 'Color'),
+            'avatar' => Yii::t('app', 'avatar'),
             'active' => Yii::t('app', 'Active'),
         ];
     }
@@ -65,4 +68,23 @@ class Salers extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SaleOrder::class, ['salers_id' => 'id']);
     }
+
+    public function uploadAvatar(UploadedFile $avatarFile)
+{
+    if ($avatarFile) {
+        $uploadPath = 'images/avatar/';
+        // $avatarFileName = $this->name . '_' . Yii::$app->security->generateRandomString() . '.' . $avatarFile->extension;
+        $avatarFileName = $this->id . '_' . Yii::$app->security->generateRandomString() . '.' . $avatarFile->extension;
+
+        if ($avatarFile->saveAs($uploadPath . $avatarFileName)) {
+            $this->avatar = $uploadPath . $avatarFileName;
+            return true;
+        } else {
+            Yii::error('Failed to upload avatar.');
+        }
+    }
+
+    return false;
+}
+
 }

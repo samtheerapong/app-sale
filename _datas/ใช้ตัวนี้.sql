@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 15, 2023 at 10:02 AM
+-- Generation Time: Nov 15, 2023 at 03:26 PM
 -- Server version: 5.7.39
--- PHP Version: 7.4.9
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1204,7 +1204,7 @@ CREATE TABLE `salers` (
   `name` varchar(255) DEFAULT NULL,
   `address` text,
   `tel` varchar(45) DEFAULT NULL,
-  `color` varchar(45) DEFAULT '#333FFF',
+  `avatar` varchar(255) DEFAULT NULL,
   `active` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1212,9 +1212,11 @@ CREATE TABLE `salers` (
 -- Dumping data for table `salers`
 --
 
-INSERT INTO `salers` (`id`, `code`, `name`, `address`, `tel`, `color`, `active`) VALUES
-(1, 'U001', 'สุพัฒน์', '', '', '#333FFF', 1),
-(2, 'U002', 'ธวัชชัย', '', '', '#333FFF', 1);
+INSERT INTO `salers` (`id`, `code`, `name`, `address`, `tel`, `avatar`, `active`) VALUES
+(1, 'U001', 'สุพัฒน์', '', '', 'images/avatar/1_eZhy3sxTT1nSrw9xglIpQ2iR2mtNxpRu.jpg', 1),
+(2, 'U002', 'ธวัชชัย', '', '', 'images/avatar/hq8o_Xw4Rw_MJHHHWT5jwY6is3jWoPxk.jpg', 1),
+(3, 'U003', 'ธีรพงศ์ ขันตา', '', '0870873830', 'images/avatar/3_F-JSvmG78ysSHpV_dayLc0kn4QfYjc0-.jpg', 1),
+(4, 'U004', 'เวียงพิงค์', '123/4', '', 'images/avatar/4_aePDINdRdPmceLSOdZdnWtn4NEk4Nicy.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -1402,12 +1404,12 @@ CREATE TABLE `sale_product_unit` (
 
 INSERT INTO `sale_product_unit` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
 (1, 'ถุง', 'ถุง', NULL, '#333FFF', 1),
-(2, 'ปี๊บ', 'ปี๊บ', NULL, '#333FFF', 1),
-(3, 'ขวด', 'ขวด', NULL, '#333FFF', 1),
-(4, 'ลิตร', 'ลิตร', NULL, '#333FFF', 1),
-(5, 'กระปุก', 'กระปุก', NULL, '#333FFF', 1),
-(6, 'กล่อง', 'กล่อง', NULL, '#333FFF', 1),
-(7, 'ถัง', 'ถัง', NULL, '#333FFF', 1);
+(2, 'ปี๊บ', 'ปี๊บ', '', '#ED7D31', 1),
+(3, 'ขวด', 'ขวด', '', '#4F4A45', 1),
+(4, 'ลิตร', 'ลิตร', '', '#557C55', 1),
+(5, 'กระปุก', 'กระปุก', '', '#ED5AB3', 1),
+(6, 'กล่อง', 'กล่อง', '', '#860A35', 1),
+(7, 'ถัง', 'ถัง', '', '#706233', 1);
 
 -- --------------------------------------------------------
 
@@ -2282,7 +2284,7 @@ ALTER TABLE `request_repair`
 -- AUTO_INCREMENT for table `salers`
 --
 ALTER TABLE `salers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sale_customer`

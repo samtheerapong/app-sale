@@ -7,6 +7,7 @@ use app\modules\salers\models\SalersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SalersController implements the CRUD actions for Salers model.
@@ -70,7 +71,9 @@ class SalersController extends Controller
         $model = new Salers();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $avatarFile = UploadedFile::getInstance($model, 'avatar');
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -92,15 +95,27 @@ class SalersController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldAvatar = $model->avatar; // Save the old avatar path
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost) {
+            $model->load($this->request->post());
+
+            $avatarFile = UploadedFile::getInstance($model, 'avatar');
+            if ($avatarFile !== null) {
+                if ($model->uploadAvatar($avatarFile) && $model->save()) {
+                    if ($oldAvatar && file_exists($oldAvatar)) {
+                        unlink($oldAvatar);
+                    }
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            } elseif ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        return $this->render('update', ['model' => $model]);
     }
+
 
     /**
      * Deletes an existing Salers model.

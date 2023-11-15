@@ -18,7 +18,7 @@ class SalersSearch extends Salers
     {
         return [
             [['id', 'active'], 'integer'],
-            [['code', 'name', 'address', 'tel', 'color'], 'safe'],
+            [['code', 'name', 'address', 'tel', 'avatar'], 'safe'],
         ];
     }
 
@@ -66,7 +66,7 @@ class SalersSearch extends Salers
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'tel', $this->tel])
-            ->andFilterWhere(['like', 'color', $this->color]);
+            ->andFilterWhere(['like', 'avatar', $this->avatar]);
 
         return $dataProvider;
     }

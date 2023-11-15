@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'tel') ?>
 
-    <?php // echo $form->field($model, 'color') ?>
+    <?php // echo $form->field($model, 'avatar') ?>
 
     <?php // echo $form->field($model, 'active') ?>
 
