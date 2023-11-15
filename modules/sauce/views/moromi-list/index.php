@@ -55,7 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'moromis.batch_no',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center','style' => 'width:140px;'],
+                            'contentOptions' => [
+                                'class' => 'text-center',
+                                // 'style' => 'width:140px;'
+                            ],
                             'value' => function ($model) {
                                 return Html::a(
                                     $model->moromis->batch_no ? $model->moromis->batch_no : Yii::t('app', '-'),
@@ -76,7 +79,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'record_date',
                             'format' => 'date',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                            'contentOptions' => [
+                                'class' => 'text-center',
+                                'style' => 'width:150px;'
+                            ],
                             'value' => function ($model) {
                                 return $model->record_date;
                             },
@@ -84,7 +90,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'memo_list',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center','style' => 'width:300px;'],
+                            'contentOptions' => [
+                                'class' => 'text-center',
+                                // 'style' => 'width:300px;'
+                            ],
                             'value' => function ($model) {
                                 $name = $model->memo->name;
                                 $note = $model->note;
@@ -105,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'ph',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                             'value' => function ($model) {
                                 return $model->ph ? $model->ph : '-';
                             },
@@ -113,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'color',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                             'value' => function ($model) {
                                 return $model->color ? $model->color : '-';
                             },
@@ -121,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'nacl',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                             'value' => function ($model) {
                                 return $model->nacl ? $model->nacl : '-';
                             },
@@ -129,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'tn',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                             'value' => function ($model) {
                                 return $model->tn ? $model->tn : '-';
                             },
@@ -137,7 +146,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'alcohol',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                             'value' => function ($model) {
                                 return $model->alcohol ? $model->alcohol : '-';
                             },
@@ -145,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'turbidity',
                             'format' => 'html',
-                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                            'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                             'value' => function ($model) {
                                 return $model->turbidity ? $model->turbidity : '-';
                             },
@@ -173,3 +182,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php Pjax::end(); ?>
     </div>
+</div>

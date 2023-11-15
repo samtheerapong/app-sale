@@ -178,8 +178,8 @@ return [
     'Waiting for approval' => 'รอการอนุมัติ',
     'Request Repair Table' => 'ตารางแจ้งซ่อม',
 
-
-
+    // sales
+    'Sale Statuse' => 'สถานะ',
 
 
 ];

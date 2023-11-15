@@ -1,10 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <img src="https://www.northernfoodcomplex.com/wp-content/uploads/2018/10/logo.png" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: 0.8; width: 50px;">
-
-        <span class="brand-text font-weight-light">
-            <?= Yii::$app->name ?></span>
+    <a href="#" class="brand-link">
+    <img src="<?= Yii::getAlias('@web/') ?>images/nfc-logo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light"><?= Yii::$app->name ?></span>
     </a>
 
     <!-- Sidebar -->
@@ -182,6 +180,32 @@
                                     ['label' => Yii::t('app', 'Job Status'), 'url' => ['/engineer/job-status/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
                                     ['label' => Yii::t('app', 'Urgency'), 'url' => ['/general/urgency/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
                                     ['label' => Yii::t('app', 'Priority'), 'url' => ['/general/priority/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cog'],
+                                ]
+                            ],
+                        ]
+                    ],
+
+                    [
+                        'label' => Yii::t('app', 'Salers'),
+                        'header' => true
+                    ],
+                    [
+                        'label' => Yii::t('app', 'Sale Order'),
+                        'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
+                        'items' => [
+                            ['label' => Yii::t('app', 'Sale Orders'), 'url' => ['/salers/sale-order/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-handshake-simple text-red'],
+                            ['label' => Yii::t('app', 'Report'), 'url' => ['/salers/sale-report/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-column text-red'],
+                            [
+                                'label' => Yii::t('app', 'Configuration'),
+                                'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-cogs text-blue',
+                                'items' => [
+                                    ['label' => Yii::t('app', 'Sale Status'), 'url' => ['/salers/sale-status/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Units'), 'url' => ['/salers/sale-product-unit/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Salers'), 'url' => ['/salers/salers/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Products'), 'url' => ['/salers/sale-product/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Payments'), 'url' => ['/salers/sale-payment/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Sale Items'), 'url' => ['/salers/sale-item/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
+                                    ['label' => Yii::t('app', 'Customers'), 'url' => ['/salers/sale-customer/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chevron-right text-blue'],
                                 ]
                             ],
                         ]

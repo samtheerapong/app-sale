@@ -31,15 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card border-secondary">
                 <div class="card-header text-white bg-secondary">
-                    <?= $this->title ?>
+                <?= Yii::t('app', 'Moromi Record') ?>
                 </div>
                 <div class="card-body">
                     <?= DetailView::widget([
                         'model' => $model,
-                        'template' => '<tr><th style="width: 250px;">{label}</th><td> {value}</td></tr>',
+                        'template' => '<tr><th style="width: 200px;">{label}</th><td> {value}</td></tr>',
                         'attributes' => [
                             // 'id',
                             'moromis.code',
@@ -80,48 +80,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card border-secondary">
                 <div class="card-header text-white bg-secondary">
-                    <?= $this->title ?>
+                    <?= Yii::t('app', 'Moromi List') ?>
                 </div>
                 <div class="card-body">
                     <?= DetailView::widget([
                         'model' => $model,
-                        'template' => '<tr><th style="width: 250px;">{label}</th><td> {value}</td></tr>',
+                        'template' => '<tr><th style="width: 200px;">{label}</th><td> {value}</td></tr>',
                         'attributes' => [
-                            // 'id',
-                            'moromis.code',
-
-                            'moromis.batch_no',
-
-                            'moromis.shikomi_date:date',
-
-                            [
-                                'label' => Yii::t('app', 'Type'),
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return $model->moromi_id ? $model->moromis->moromiType0->name : '-';
-                                },
-                            ],
-
-                            'moromis.transfer_date:date',
-
-                            [
-                                'label' => Yii::t('app', 'Tank Source'),
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return $model->moromi_id ? $model->moromis->tankSource0->name : '-';
-                                },
-                            ],
-
-                            [
-                                'label' => Yii::t('app', 'Tank Destination'),
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return $model->moromi_id ? $model->moromis->tankDestination0->name : '-';
-                                },
-                            ],
+                            
                             'record_date:date',
                             // 'memo_list',
                             [
