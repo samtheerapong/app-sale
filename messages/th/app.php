@@ -41,6 +41,10 @@ return [
     'Card' => 'การ์ด',
     'Create New Request' => 'เพิ่มการแจ้งซ่อม',
     'Select Photo' => 'เลือกรูปภาพ',
+    'Select All' => 'ทั้งหมด',
+    'Remask' => 'Remask',
+    'Submit' => 'ส่ง',
+
 
 
     'Products' => 'สินค้า',
@@ -54,18 +58,50 @@ return [
     'unit' => 'หน่วยนับ',
     'image' => 'รูปภาพ',
 
+    // koji
+    'Koji' => 'โคจิ',
 
-    'Record Table' => 'ตารางบันทึกคุณภาพซีอิ้วดิบ',
-    'Record Card' => 'บันทึกคุณภาพซีอิ้วดิบ',
+    // moromi
+    'Moromi' => 'โมโรมิ',
+    'Moromi Record' => 'บันทึกโมโรมิ',
+    'Create Moromi Record' => 'เพิ่มบันทึกโมโรมิ',
+    'Create Moromi' => 'บันทึกโมโรมิ',
+    'Batch No' => 'เลขที่แบทช์',
+    'Shikomi Date' => 'วันที่เดโคจิ',
+    'Type ID' => 'ประเภท',
+    'Status ID' => 'สถานะ',
+    'Transfer Date' => 'วันที่ย้ายถัง',
+    'Tank Source' => 'ถังต้นทาง',
+    'Tank Destination' => 'ถังปลายทาง',
+    'Created By' => 'สร้างโดย',
+    'Detail' => 'รายละเอียด',
+    'Moromi Memo List' => 'รายการบันทึกโมโรมิ',
+    'Moromi List Memo' => 'รายการบันทึกโมโรมิ',
+    'Create Moromi Memo List' => 'เพิ่มรายการบันทึกโมโรมิ',
+    'Moromi Record Table' => 'ตารางบันทึกโมโรมิ',
+    'Moromi Record Card' => 'การ์ดบันทึกโมโรมิ',
+    'Note' => 'โน๊ต',
+    'Memo List' => 'รายการบันทึก',
+    'Additional' => 'เพิ่มเติม',
+    'Removed' => 'ลบออก',
+    'List of Memo' => 'รายการบันทึกโมโรมิ',
+    'Add List of Memo' => 'เพิ่มรายการบันทึกโมโรมิ',
+    'Moromi List' => 'รายการบันทึกโมโรมิ',
+    'Turbidity' => 'ค่าความขุ่น',
+
+    // raw sauce
+    'Record Table' => 'ตารางบันทึกซีอิ้วดิบ',
+    'Record Card' => 'บันทึกซีอิ้วดิบ',
     'Raw Soy Sauce' => 'ซีอิ๊วดิบ',
     'Record Form' => 'แบบฟอร์มบันทึก',
     'description' => 'รายละเอียด',
     'Configuration' => 'กำหนดค่า',
     'Type Report' => 'รายงานชนิด',
     'Tank Report' => 'รายงานถัง',
-    'Record Sauce' => 'บันทึกคุณภาพ',
-    'Raw Soy Sauce Record' => 'บันทึกคุณภาพซีอิ๊วดิบ',
-    'Moromi Quality Report' => 'บันทึกคุณภาพซีโมโรมิ',
+    'Record Sauce' => 'บันทึก',
+    'Raw Sauce Table' => 'ตารางบันทึกซีอิ๊วดิบ',
+    'Raw Sauce Card' => 'การ์ดบันทึกซีอิ๊วดิบ',
+    'Moromi Quality Report' => 'บันทึกซีโมโรมิ',
     'Raw Sauce' => 'ซีอิ๊วดิบ',
     'Batch' => 'Batch',
     'Record Date' => 'วันที่บันทึก',
@@ -91,28 +127,21 @@ return [
     'Alcohol (P)' => '%Alcohol',
     'PPM' => 'ค่าความขุ่น',
     'Brix' => '%Brix',
-    'Remask' => 'Remask',
-    'Submit' => 'ส่ง',
     'Description' => 'รายละเอียด',
     'Choose a year' => 'เลือกปี',
     'Choose a month' => 'เลือกเดือน',
     'Choose a Tank' => 'เลือกถัง',
     'Choose a Type' => 'เลือกชนิด',
-    'Select All' => 'ทั้งหมด',
     'Report Selector' => 'ตัวเลือกรายงาน',
     'Report Charts' => 'แผนภูมิและกราฟ',
     'Report Select Tank' => 'กราฟรายงานตามถัง',
     'Report Select Type' => 'กราฟรายงานตามชนิด',
 
 
-    'Koji' => 'โคจิ',
-    'Moromi' => 'โมโรมิ',
 
 
-    'Moromi' => 'โมโรมิ',
-    'Moromi Record' => 'บันทึกคุณภาพโมโรมิ',
 
-
+    // repair Engineering
     'Job Status' => 'สถานะงาน',
     'Urgency' => 'ความเร่งด่วน',
     'Priority' => 'ความสำคัญ',
@@ -147,33 +176,10 @@ return [
     'New Request' => 'เพิ่มการแจ้งซ่อม',
     'Request Repair' => 'ระบบแจ้งซ่อม',
     'Waiting for approval' => 'รอการอนุมัติ',
+    'Request Repair Table' => 'ตารางแจ้งซ่อม',
 
-    // Moromi
-    'Create Moromi Record' => 'เพิ่มบันทึกคุณภาพโมโรมิ',
-    'Create Moromi' => 'บันทึกคุณภาพโมโรมิ',
-    'Batch No' => 'เลขที่แบทช์',
-    'Shikomi Date' => 'วันที่เดโคจิ',
-    'Type ID' => 'ประเภท',
-    'Status ID' => 'สถานะ',
-    'Transfer Date' => 'วันที่ย้ายถัง',
-    'Tank Source' => 'ถังต้นทาง',
-    'Tank Destination' => 'ถังปลายทาง',
-    'Created By' => 'สร้างโดย',
-    'Detail' => 'รายละเอียด',
-    
-    //
-    'Moromi Memo List' => 'รายการบันทึกโมโรมิ',
-    'Moromi List Memo' => 'รายการบันทึกโมโรมิ',
-    'Create Moromi Memo List' => 'เพิ่มรายการบันทึกโมโรมิ',
-    'Moromi Record Table' => 'ตารางบันทึกโมโรมิ',
-    'Moromi Record Card' => 'การ์ดบันทึกโมโรมิ',
-    'Note' => 'โน๊ต',
-    'Memo List' => 'รายการบันทึก',
-    'Additional' => 'เพิ่มเติม',
-    'Removed' => 'ลบออก',
-    'List of Memo' => 'รายการบันทึกคุณภาพโมโรมิ',
-    'Add List of Memo' => 'เพิ่มรายการบันทึกคุณภาพโมโรมิ',
-   
+
+
 
 
 ];

@@ -3,11 +3,8 @@
     <a href="index3.html" class="brand-link">
         <img src="https://www.northernfoodcomplex.com/wp-content/uploads/2018/10/logo.png" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: 0.8; width: 50px;">
 
-        <span class="brand-text font-weight-light"><?php
-
-                                                    use yii\helpers\Url;
-
-                                                    echo Yii::$app->name ?></span>
+        <span class="brand-text font-weight-light">
+            <?= Yii::$app->name ?></span>
     </a>
 
     <!-- Sidebar -->
@@ -66,7 +63,7 @@
                                 'items' => [
                                     ['label' => Yii::t('app', 'Moromi Record Table'), 'url' => ['/sauce/moromi/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
                                     ['label' => Yii::t('app', 'Moromi Record Card'), 'url' => ['/sauce/moromi/card'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-rectangle-list'],
-                                    ['label' => Yii::t('app', 'Report Moromi'), 'url' => ['/sauce/Moromi/report'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
+                                    ['label' => Yii::t('app', 'Report Moromi'), 'url' => ['/sauce/moromi/report'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
                                     [
                                         'label' => Yii::t('app', 'Configuration'),
                                         'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-blue',
@@ -83,8 +80,8 @@
                                 'label' => Yii::t('app', 'Raw Sauce'),
                                 'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
                                 'items' => [
-                                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index2'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-table-cells-large'],
-                                    ['label' => Yii::t('app', 'Raw Soy Sauce Record'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-list'],
+                                    ['label' => Yii::t('app', 'Raw Sauce Card'), 'url' => ['/sauce/raw-sauce/index2'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-table-cells-large'],
+                                    ['label' => Yii::t('app', 'Raw Sauce Table'), 'url' => ['/sauce/raw-sauce/index'], 'iconStyle' => 'fa', 'icon' => 'fa-regular fa-list'],
                                     ['label' => Yii::t('app', 'Report Select Type'), 'url' => ['/sauce/raw-sauce/report1'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
                                     ['label' => Yii::t('app', 'Report Select Tank'), 'url' => ['/sauce/raw-sauce/report2'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-simple'],
                                     [

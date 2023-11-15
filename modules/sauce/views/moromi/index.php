@@ -18,7 +18,7 @@ use yii\widgets\Pjax;
 /** @var app\modules\sauce\models\MoromiSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Moromi');
+$this->title = Yii::t('app', 'Moromi Record Table');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="moromi-index">
@@ -107,7 +107,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'allowClear' => true
                             ],
                         ]),
-                       
                     ],
                     [
                         'attribute' => 'tank_destination',

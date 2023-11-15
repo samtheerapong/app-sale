@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /** @var app\modules\sauce\models\RawSauceSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Raw Soy Sauce Record');
+$this->title = Yii::t('app', 'Raw Sauce Card');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="raw-sauce-index2">

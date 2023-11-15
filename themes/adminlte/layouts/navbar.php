@@ -7,6 +7,7 @@ use yii\helpers\Url;
 ?>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -15,232 +16,115 @@ use yii\helpers\Url;
         <!-- <li class="nav-item d-none d-sm-inline-block">
             <a href="<?= \yii\helpers\Url::home() ?>" class="nav-link"><?= Yii::t('app', 'Home') ?></a>
         </li> -->
-        <!-- <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
-        </li> -->
-       
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link"> <?= Yii::t('app', 'Home') ?></a>
+        </li>
 
+        <!-- QC Menu Links -->
+        <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+                <?= Yii::t('app', 'QC') ?>
+            </a>
 
-        <?php
-        // ++++++++++++ QC +++++++++++++++
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav'],
-            'items' => [
-                [
-                    'label' => Yii::t('app', 'QC'),
-                    'items' => [
-                        // [
-                        //     'label' => Yii::t('app', 'Koji'),
-                        //     'items' => [
-                        //         ['label' => Yii::t('app', 'Koji Record'), 'url' => Url::toRoute('/sauce/koji/index')],
-                        //         // ['label' => Yii::t('app', 'Create New'), 'url' => Url::toRoute('/sauce/koji/create')],
-                        //         ['label' => Yii::t('app', 'Report Koji 1'), 'url' => Url::toRoute('/sauce/koji/report1')],
-                        //         ['label' => Yii::t('app', 'Report Koji 2'), 'url' => Url::toRoute('/sauce/koji/report2')],
-                        //         '<div class="dropdown-divider"></div>',
-                        //         [
-                        //             'label' => Yii::t('app', 'Configuration'),
-                        //             'items' => [
-                        //                 ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/koji/tank/index'])],
-                        //                 ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/koji/type/index'])],
-                        //             ],
-                        //             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        //         ],
-                        //     ],
-                        //     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        // ],
-                        [
-                            'label' => Yii::t('app', 'Moromi'),
-                            'items' => [
-                                ['label' => Yii::t('app', 'Moromi Record'), 'url' => Url::toRoute('/sauce/moromi/index')],
-                                ['label' => Yii::t('app', 'Report Moromi 1'), 'url' => Url::toRoute('/sauce/moromi/report')],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'Configuration'),
-                                    'items' => [
-                                        ['label' => Yii::t('app', 'Tank Source'), 'url' => Url::toRoute(['/sauce/tank-source/index'])],
-                                        ['label' => Yii::t('app', 'Tank Destination'), 'url' => Url::toRoute(['/sauce/tank-destination/index'])],
-                                        ['label' => Yii::t('app', 'Moromi Memo'), 'url' => Url::toRoute(['/sauce/moromi-list-memo/index'])],
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                        [
-                            'label' => Yii::t('app', 'Raw Soy Sauce'),
-                            'items' => [
-                                ['label' => Yii::t('app', 'Table'), 'url' => Url::toRoute('/sauce/raw-sauce/index')],
-                                ['label' => Yii::t('app', 'Card'), 'url' => Url::toRoute('/sauce/raw-sauce/index2')],
-                                // ['label' => Yii::t('app', 'Create New Raw Sauce'), 'url' => Url::toRoute('/sauce/raw-sauce/create')],
-                                ['label' => Yii::t('app', 'Report Select Type'), 'url' => Url::toRoute('/sauce/raw-sauce/report1')],
-                                ['label' => Yii::t('app', 'Report Select Tank'), 'url' => Url::toRoute('/sauce/raw-sauce/report2')],
-                                '<div class="dropdown-divider"></div>',
-                                [
-                                    'label' => Yii::t('app', 'Configuration'),
-                                    'items' => [
-                                        ['label' => Yii::t('app', 'Tank'), 'url' => Url::toRoute(['/sauce/tank/index'])],
-                                        ['label' => Yii::t('app', 'Type'), 'url' => Url::toRoute(['/sauce/type/index'])],
-                                    ],
-                                    'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                                ],
-                            ],
-                            'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-                        ],
-                        // Add other menu items for Moromi and Raw Soy Sauce similarly...
-                    ],
-                    'options' => ['class' => 'nav-item dropdown'],
-                    'linkOptions' => [
-                        'id' => 'dropdownSubMenu1',
-                        'class' => 'nav-link dropdown-toggle',
-                        'data-toggle' => 'dropdown',
-                        'aria-haspopup' => 'true',
-                        'aria-expanded' => 'false',
-                    ],
-                ],
-            ],
-        ]);
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
 
-        // ++++++++++++ IT +++++++++++++++
-        // echo Nav::widget([
-        //     'options' => ['class' => 'navbar-nav'],
-        //     'items' => [
-        //         [
-        //             'label' => Yii::t('app', 'IT'),
-        //             'items' => [
-        //                 [
-        //                     'label' => Yii::t('app', 'IT1'),
-        //                     'items' => [
-        //                         ['label' => 'IT 1.1', 'url' => '#'],
-        //                         '<div class="dropdown-divider"></div>',
-        //                         [
-        //                             'label' => Yii::t('app', 'IT1'),
-        //                             'items' => [
-        //                                 ['label' => 'IT 1.2', 'url' => '#'],
-        //                                 // ... add more submenu items as needed ...
-        //                             ],
-        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                         ],
-        //                     ],
-        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                 ],
-        //                 [
-        //                     'label' => Yii::t('app', 'IT2'),
-        //                     'items' => [
-        //                         ['label' => 'IT 2.1', 'url' => '#'],
-        //                         '<div class="dropdown-divider"></div>',
-        //                         [
-        //                             'label' => Yii::t('app', 'IT 2'),
-        //                             'items' => [
-        //                                 ['label' => 'IT2.2', 'url' => '#'],
-        //                                 // ... add more submenu items as needed ...
-        //                             ],
-        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                         ],
-        //                     ],
-        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                 ],
-        //             ],
-        //             'options' => ['class' => 'nav-item dropdown'],
-        //             'linkOptions' => [
-        //                 'id' => 'dropdownSubMenu1',
-        //                 'class' => 'nav-link dropdown-toggle',
-        //                 'data-toggle' => 'dropdown',
-        //                 'aria-haspopup' => 'true',
-        //                 'aria-expanded' => 'false',
-        //             ],
-        //         ],
-        //     ],
-        // ]);
+                <!-- Koji -->
+                <li class="dropdown-submenu dropdown-hover">
+                    <a id="dropdowLevel1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                        <?= Yii::t('app', 'Koji') ?></a>
+                    <ul aria-labelledby="dropdowLevel1" class="dropdown-menu border-0 shadow">
+                        <span class="dropdown-header"><?= Yii::t('app', 'Records') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/koji/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Koji Records Table') ?> </a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/koji/card') ?>" class="dropdown-item"> <?= Yii::t('app', 'Koji Record Card') ?> </a></li>
 
-        // ++++++++++++ AC +++++++++++++++
-        // echo Nav::widget([
-        //     'options' => ['class' => 'navbar-nav'],
-        //     'items' => [
-        //         [
-        //             'label' => Yii::t('app', 'AC'),
-        //             'items' => [
-        //                 [
-        //                     'label' => Yii::t('app', 'AC1'),
-        //                     'items' => [
-        //                         ['label' => 'AC 1.1', 'url' => '#'],
-        //                         '<div class="dropdown-divider"></div>',
-        //                         [
-        //                             'label' => Yii::t('app', 'AC1'),
-        //                             'items' => [
-        //                                 ['label' => 'AC 1.2', 'url' => '#'],
-        //                                 // ... add more submenu items as needed ...
-        //                             ],
-        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                         ],
-        //                     ],
-        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                 ],
-        //                 [
-        //                     'label' => Yii::t('app', 'AC2'),
-        //                     'items' => [
-        //                         ['label' => 'AC 2.1', 'url' => '#'],
-        //                         '<div class="dropdown-divider"></div>',
-        //                         [
-        //                             'label' => Yii::t('app', 'AC 2'),
-        //                             'items' => [
-        //                                 ['label' => 'AC 2.2', 'url' => '#'],
-        //                                 // ... add more submenu items as needed ...
-        //                             ],
-        //                             'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                         ],
-        //                     ],
-        //                     'options' => ['class' => 'dropdown-submenu dropdown-hover'],
-        //                 ],
-        //             ],
-        //             'options' => ['class' => 'nav-item dropdown'],
-        //             'linkOptions' => [
-        //                 'id' => 'dropdownSubMenu1',
-        //                 'class' => 'nav-link dropdown-toggle',
-        //                 'data-toggle' => 'dropdown',
-        //                 'aria-haspopup' => 'true',
-        //                 'aria-expanded' => 'false',
-        //             ],
-        //         ],
-        //     ],
-        // ]);
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Reports') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/koji/report1') ?>" class="dropdown-item"> <?= Yii::t('app', 'Koji Report 1') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/koji/report2') ?>" class="dropdown-item"> <?= Yii::t('app', 'Koji Report 2') ?></a></li>
 
-        // ++++++++++++ EN +++++++++++++++
-        echo Nav::widget([
-            'options' => ['class' => 'navbar-nav'],
-            'items' => [
-                [
-                    'label' => Yii::t('app', 'EN'),
-                    'items' => [
-                        ['label' => Yii::t('app', 'Request Repair'), 'url' => Url::toRoute('/engineer/request-repair/index')],
-                        '<div class="dropdown-divider"></div>',
-                        // Dropdown Header
-                        [
-                            'label' => Yii::t('app', 'Configuration'),
-                            'options' => ['class' => 'dropdown-header', 'style' => 'text-align: left;'],
-                        ],
-                        ['label' => Yii::t('app', 'Job Status'), 'url' => Url::toRoute(['/engineer/job-status/index'])],
-                        ['label' => Yii::t('app', 'Urgency'), 'url' => Url::toRoute(['/general/urgency/index'])],
-                        ['label' => Yii::t('app', 'Priority'), 'url' => Url::toRoute(['/general/priority/index'])],
-                        // ... add more items as needed ...
-                    ],
-                    'options' => ['class' => 'nav-item dropdown'],
-                    'linkOptions' => [
-                        'id' => 'dropdownSubMenu1',
-                        'class' => 'nav-link dropdown-toggle',
-                        'data-toggle' => 'dropdown',
-                        'aria-haspopup' => 'true',
-                        'aria-expanded' => 'false',
-                    ],
-                ],
-            ],
-        ]);
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Configurations') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/koji/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Koji') ?></a></li>
+                    </ul>
+                </li>
 
-        ?>
+                <!-- Moromi -->
+                <li class="dropdown-submenu dropdown-hover">
+                    <a id="dropdowLevel1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                        <?= Yii::t('app', 'Moromi') ?></a>
+                    <ul aria-labelledby="dropdowLevel1" class="dropdown-menu border-0 shadow">
+                        <span class="dropdown-header"><?= Yii::t('app', 'Records') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/moromi/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Moromi Record Table') ?> </a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/moromi/card') ?>" class="dropdown-item"> <?= Yii::t('app', 'Moromi Record Card') ?> </a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/moromi-list/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Moromi List') ?></a></li>
 
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Reports') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/moromi/report1') ?>" class="dropdown-item"> <?= Yii::t('app', 'Moromi Report 1') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/moromi/report2') ?>" class="dropdown-item"> <?= Yii::t('app', 'Moromi Report 2') ?></a></li>
 
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Configurations') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/tank-source/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Tank Source') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/tank-destination/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Tank Destination') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/moromi-list-memo/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Moromi Memo List') ?></a></li>
+                    </ul>
+                </li>
+
+                <!-- Raw Sauce -->
+                <li class="dropdown-submenu dropdown-hover">
+                    <a id="dropdowLevel1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                        <?= Yii::t('app', 'Raw Sauce') ?></a>
+                    <ul aria-labelledby="dropdowLevel1" class="dropdown-menu border-0 shadow">
+                        <span class="dropdown-header"><?= Yii::t('app', 'Records') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/raw-sauce/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Raw Sauce Table') ?> </a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/raw-sauce/index2') ?>" class="dropdown-item"> <?= Yii::t('app', 'Raw Sauce Card') ?> </a></li>
+
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Reports') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/raw-sauce/report1') ?>" class="dropdown-item"> <?= Yii::t('app', 'Report Select Type') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/raw-sauce/report2') ?>" class="dropdown-item"> <?= Yii::t('app', 'Report Select Tank') ?></a></li>
+
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Configurations') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/tank/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Tank') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/type/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Type') ?></a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+        <!-- Engineering Menu Links -->
+        <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+                <?= Yii::t('app', 'EN') ?>
+            </a>
+
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                <!-- Repair -->
+                <li class="dropdown-submenu dropdown-hover">
+                    <a id="dropdowLevel1" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">
+                        <?= Yii::t('app', 'Request Repair') ?></a>
+                    <ul aria-labelledby="dropdowLevel1" class="dropdown-menu border-0 shadow">
+                        <span class="dropdown-header"><?= Yii::t('app', 'Request Repair') ?></span>
+                        <li><a href="<?= Url::toRoute('/engineer/request-repair/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Request Repair') ?> </a></li>
+                        <li><a href="<?= Url::toRoute('/engineer/request-repair/table') ?>" class="dropdown-item"> <?= Yii::t('app', 'Request Repair Table') ?> </a></li>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Reports') ?></span>
+                        <li><a href="<?= Url::toRoute('/sauce/request-repair/report1') ?>" class="dropdown-item"> <?= Yii::t('app', 'Repair Report 1') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/sauce/request-repair/report2') ?>" class="dropdown-item"> <?= Yii::t('app', 'Repair Report 2') ?></a></li>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header"><?= Yii::t('app', 'Configurations') ?></span>
+                        <li><a href="<?= Url::toRoute('/engineer/job-status/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Job Status') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/general/urgency/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Urgency') ?></a></li>
+                        <li><a href="<?= Url::toRoute('/general/priority/index') ?>" class="dropdown-item"> <?= Yii::t('app', 'Priority') ?></a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
     </ul>
-
-
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -300,7 +184,6 @@ use yii\helpers\Url;
                 <i class="fas fa-th-large"></i>
             </a>
         </li>
-
-
     </ul>
+
 </nav>
