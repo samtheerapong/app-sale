@@ -1,21 +1,24 @@
 <?php
 
-
 use yii\helpers\Html;
 use yii\bootstrap5\LinkPager;
 use yii\widgets\Pjax;
 
-
 /** @var yii\web\View $this */
-/** @var app\modules\salers\models\SaleProductSearch $searchModel */
+/** @var app\modules\salers\models\SaleOrderSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Sale Product');
+$this->title = Yii::t('app', 'Sale Orders');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sale-product-index">
+<div class="sale-order-card">
+
+    <p>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel]);
+    <?php //echo $this->render('_search', ['model' => $searchModel]);
     ?>
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">
@@ -27,17 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 foreach ($dataProvider->getModels() as $model) : ?>
                     <div class="col-md-3 col-sm-6">
                         <div class="card mb-3">
-                        <div class="card-header" style="background-color: 
-                        <?= $model->active === 1 ? '#1A5D1A' : '#FE0000' ?>
+                            <div class="card-header" style="background-color: 
+                        <?php // echo $model->active === 1 ? '#1A5D1A' : '#FE0000' 
+                        ?>
                         ; color: #fff;">
                                 <h5><?= Html::encode($model->code) ?></h5>
                             </div>
                             <div class="card-body">
                                 <p class="card-text"><?= Yii::t('app', 'Code') ?>: <?= $model->code ?></p>
-                                <p class="card-text"><?= Yii::t('app', 'Name') ?>: <?= $model->name ?></p>
-                                <p class="card-text"><?= Yii::t('app', 'Unit ID') ?>: <?= $model->unit_id ? $model->units->name : ' ' ?></p>
-                                <p class="card-text"><?= Yii::t('app', 'Customer ID') ?>: <?= $model->customer_id ? $model->customers->name : ' ' ?></p>
-                                <span class="text" style="color: <?= $model->active === 1 ? '#1A5D1A' : '#FE0000' ?>;"><?= $model->active === 1 ? Yii::t('app', 'Active') : Yii::t('app', 'Inactive') ?></span>
                             </div>
                             <div class="card-footer text-center">
                                 <div class="btn-group btn-group-xs" role="group">

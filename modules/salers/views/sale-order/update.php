@@ -6,16 +6,16 @@ use yii\helpers\Html;
 /** @var app\modules\salers\models\SaleOrder $model */
 
 $this->title = Yii::t('app', 'Update Sale Order: {name}', [
-    'name' => $model->id,
+    'name' => $model->po_number,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sale Orders'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sale Order'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->po_number, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="sale-order-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<p>
+        <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+    </p>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

@@ -200,10 +200,20 @@ return [
     'Create Sale Customer' => 'เพิ่มรายชื่อลูกค้า',
     'Create Sale Payment' => 'เพิ่มเงื่อนไขการชำระเงิน',
     'Create Sale Product' => 'เพิ่มรายการสินค้า',
+    'Create Sale Order' => 'เพิ่มรายการขาย',
     'Sale Payment' => 'เงื่อนไขการชำระเงิน',
     'Update Sale Customer: {name}' => 'แก้ไข : {name}',
     'Update Sale Payment: {name}' => 'แก้ไข : {name}',
     'Update Sale Product: {name}' => 'แก้ไข : {name}',
+    'Update Sale Order: {name}' => 'แก้ไข : {name}',
+    'Salers ID' => 'พนักงานขาย',
+    'Deadline' => 'กำหนดส่ง',
+    'New Deadline' => 'เลื่อนกำหนดส่ง',
+    'Payment ID' => 'เงื่อนไขการชำระเงิน',
+    'Total' => 'ราคาก่อนหัก',
+    'Percent Vat' => 'อัตราภาษี',
+    'Discount' => 'ส่วนลด',
+    'Grand Total' => 'ยอดสุทธิ',
 
 
 ];

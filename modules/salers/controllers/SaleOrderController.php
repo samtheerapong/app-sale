@@ -4,6 +4,7 @@ namespace app\modules\salers\controllers;
 
 use app\modules\salers\models\SaleOrder;
 use app\modules\salers\models\SaleOrderSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,7 +23,7 @@ class SaleOrderController extends Controller
             parent::behaviors(),
             [
                 'verbs' => [
-                    'class' => VerbFilter::className(),
+                    'class' => VerbFilter::class,
                     'actions' => [
                         'delete' => ['POST'],
                     ],
@@ -42,6 +43,28 @@ class SaleOrderController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionCard()
+    {
+        $searchModel = new SaleOrderSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('card', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionReport()
+    {
+        $searchModel = new SaleOrderSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('report', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -69,8 +92,12 @@ class SaleOrderController extends Controller
     {
         $model = new SaleOrder();
 
+        $model->status = 1;
+
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                $model->grand_total = $model->total + ($model->total * (intval($model->percent_vat) / 100)) - intval($model->discount); // vat temp
+                $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -93,7 +120,9 @@ class SaleOrderController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->grand_total = $model->total + ($model->total * (intval($model->percent_vat) / 100)) - intval($model->discount); // vat temp
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

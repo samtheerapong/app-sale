@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 15, 2023 at 03:26 PM
+-- Generation Time: Nov 16, 2023 at 07:25 AM
 -- Server version: 5.7.39
--- PHP Version: 7.4.33
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -1215,8 +1215,8 @@ CREATE TABLE `salers` (
 INSERT INTO `salers` (`id`, `code`, `name`, `address`, `tel`, `avatar`, `active`) VALUES
 (1, 'U001', 'สุพัฒน์', '', '', 'images/avatar/1_eZhy3sxTT1nSrw9xglIpQ2iR2mtNxpRu.jpg', 1),
 (2, 'U002', 'ธวัชชัย', '', '', 'images/avatar/hq8o_Xw4Rw_MJHHHWT5jwY6is3jWoPxk.jpg', 1),
-(3, 'U003', 'ธีรพงศ์ ขันตา', '', '0870873830', 'images/avatar/3_F-JSvmG78ysSHpV_dayLc0kn4QfYjc0-.jpg', 1),
-(4, 'U004', 'เวียงพิงค์', '123/4', '', 'images/avatar/4_aePDINdRdPmceLSOdZdnWtn4NEk4Nicy.jpg', 1);
+(3, 'U003', 'ธีรพงศ์ ขันตา', '', '0870873830', 'images/avatar/3_F-JSvmG78ysSHpV_dayLc0kn4QfYjc0-.jpg', 2),
+(4, 'U004', 'เวียงพิงค์', '123/4', '', 'images/avatar/4_aePDINdRdPmceLSOdZdnWtn4NEk4Nicy.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -1239,14 +1239,14 @@ CREATE TABLE `sale_customer` (
 --
 
 INSERT INTO `sale_customer` (`id`, `code`, `name`, `address`, `tel`, `color`, `active`) VALUES
-(1, 'CUS0001', 'NFC', '59/3 Soi Sukhumvit 39, Sukhumvit Road, Klongton Nua, Wattana, Bangkok 10110 Thailand', ' 02 2620030 - 3', '#333FFF', 1),
-(2, 'CUS0002', 'QP', 'บริษัท คิวพี (ประเทศไทย) จำกัด เลขที่ 1023 เอ็มเอส สยาม ทาวเวอร์ (ชั้น 23) ถนนพระราม 3, ช่องนนทรี, ยานนาวา, กรุงเทพฯ 10120', '02 294 5115 แฟกซ์: 02 294 5424', '#333FFF', 1),
-(3, 'CUS0003', 'Singha Kameda', 'SINGHA KAMEDA (THAILAND) CO., LTD. 99/5 MOO.7 BANGNA-TRAD KM.19, BANGCHALONG,BANGPLEE, SAMUTPRAKARN 10540', '(662) 740-7700-8   Fax: (662) 312-6686', '#333FFF', 1),
-(6, 'CUS0006', 'BFood', 'หมู่ที่ 5 39 ตำบล ช่องสาริกา อำเภอพัฒนานิคม ลพบุรี 15220', '082 028 8254', '#333FFF', 1),
+(1, 'CUS0001', 'NFC', 'โรงงาน 99/3 หมู่ 1 ถนนเชียงราย-ดงมะดะ ตำบลแม่กรณ์ อำเภอเมืองเชียงราย จังหวัดเชียงราย 57000', ' 02 2620030 - 3', '#333FFF', 2),
+(2, 'CUS0002', 'QP', 'เลขที่ 1023 เอ็มเอส สยาม ทาวเวอร์ (ชั้น 23) ถนนพระราม 3 ช่องนนทรี  ยานนาวา กรุงเทพฯ 10120', '02 294 5115 แฟกซ์: 02 294 5424', '#333FFF', 1),
+(3, 'CUS0003', 'Singha Kameda', '99/5 ซอยร่วมใจ ถนนบางนา-ตราด กม.19 ต.บางโฉลง อ.บางพลี จ.สมุทรปราการ 10540', '(662) 740-7700-8   Fax: (662) 312-6686', '#333FFF', 1),
+(6, 'CUS0006', 'BFood', '39 หมู่ที่ 5 ต.ช่องสาริกา อ.พัฒนานิคม จ.ลพบุรี 15220', '082 028 8254', '#333FFF', 1),
 (7, 'CUS0007', 'Thai Nichi', 'เลขที่ 77 ม. 13 ต. มะเขือแจ้ อ. เมือง จ. ลำพูน ประเทศไทย 51000', '+66 53 581 222', '#333FFF', 1),
-(8, 'CUS0008', 'CPRAM', NULL, NULL, '#333FFF', 1),
-(9, 'CUS0009', 'Sky Food', NULL, NULL, '#333FFF', 1),
-(10, 'CUS0010', 'Sinvaree', NULL, NULL, '#333FFF', 1),
+(8, 'CUS0008', 'CPRAM', 'สำนักงานใหญ่ 177 หมู่ 4 ถนนปทุมธานี-ลาดหลุมแก้ว ตำบลระแหง อำเภอลาดหลุมแก้ว จังหวัดปทุมธานี 12140', '', '#333FFF', 1),
+(9, 'CUS0009', 'Sky Food', '7/3 หมู่ที่ 1 ถนนพหลโยธิน ตำบลคลองหนึ่ง อำเภอคลองหลวง จ.ปทุมธานี', '', '#333FFF', 1),
+(10, 'CUS0010', 'Sinwaree', '139 หมู่ที่ 3 ตำบลหินแก้ว อำเภอท่าแซะ จ.ชุมพร 86190', '', '#333FFF', 1),
 (11, 'CUS0011', 'Thai Nikken', NULL, NULL, '#333FFF', 1),
 (12, 'CUS0012', 'Thai Nippon', NULL, NULL, '#333FFF', 1),
 (13, 'CUS0013', 'Sahafarm', NULL, NULL, '#333FFF', 1),
@@ -1312,17 +1312,27 @@ CREATE TABLE `sale_order` (
   `id` int(11) NOT NULL,
   `po_number` varchar(45) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
-  `item_id` int(11) DEFAULT NULL,
   `salers_id` int(11) DEFAULT NULL,
-  `sale_ordercol` varchar(45) DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
   `new_deadline` date DEFAULT NULL,
   `payment_id` int(11) DEFAULT NULL,
   `percent_vat` decimal(10,2) DEFAULT '7.00',
   `discount` decimal(10,2) DEFAULT '0.00',
+  `total` decimal(10,2) DEFAULT NULL,
   `grand_total` decimal(10,2) DEFAULT NULL,
   `remask` text,
   `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_order`
+--
+
+INSERT INTO `sale_order` (`id`, `po_number`, `customer_id`, `salers_id`, `deadline`, `new_deadline`, `payment_id`, `percent_vat`, `discount`, `total`, `grand_total`, `remask`, `status`) VALUES
+(1, 'PO-6601-0001', 3, 1, '2023-11-17', '2023-11-23', 2, '7.00', '70.00', '1000.00', '1000.00', '', 1),
+(2, 'PO-6611-0002', 2, 2, '2023-11-16', NULL, NULL, '7.00', '0.00', '1000.00', '1070.00', '', 2),
+(3, 'PO-6601-0003', 7, 2, '2023-11-16', NULL, 2, '7.00', '0.00', '1000.00', '1070.00', '', 8),
+(4, 'PO-6601-0004', 29, 2, '2023-11-24', NULL, 2, '7.00', '0.00', '2000.00', '2140.00', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1344,11 +1354,11 @@ CREATE TABLE `sale_payment` (
 --
 
 INSERT INTO `sale_payment` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
-(1, 'SP001', 'เครดิต 30 วัน', '', '#CD5C08', 1),
-(2, 'SP002', 'เครดิต 60 วัน', '', '#CD5C08', 1),
-(3, 'SP003', 'เครดิต 90 วัน', '', '#CD5C08', 1),
-(4, 'SP004', 'เครดิต 120 วัน', '', '#CD5C08', 1),
-(5, 'SP005', 'เงินสด', '', '#005B41', 1);
+(1, 'SP005', 'เงินสด', '', '#005B41', 1),
+(2, 'SP001', 'เครดิต 30 วัน', '', '#f9cb9c', 1),
+(3, 'SP002', 'เครดิต 60 วัน', '', '#f6b26b', 1),
+(4, 'SP003', 'เครดิต 90 วัน', '', '#e69138', 2),
+(5, 'SP004', 'เครดิต 120 วัน', '', '#CD5C08', 2);
 
 -- --------------------------------------------------------
 
@@ -1381,7 +1391,314 @@ INSERT INTO `sale_product` (`id`, `code`, `name`, `detail`, `unit_id`, `customer
 (7, 'FCDA-A0187', 'Johin Seasoning Dark soy sauce 18 C', NULL, 2, NULL, NULL, 1),
 (8, 'FCDA-A0188', 'Johin dark soy sauce (Gluten Free) 18 C', NULL, 2, NULL, NULL, 1),
 (9, 'FCDO-02001', 'Organic Dark soy sauce 200ml (12 bottles) - Asian Organic', NULL, 3, NULL, NULL, 1),
-(10, 'FCDO-02002', 'PB Farm Organic Dark Soy sauce 200 ml (6 bottles)', NULL, 3, NULL, NULL, 1);
+(10, 'FCDO-02002', 'PB Farm Organic Dark Soy sauce 200 ml (6 bottles)', NULL, 3, NULL, NULL, 1),
+(11, 'FCDO-02003', 'Organic Dark soy sauce 200ml (6 bottles) - PB Farm(New)', NULL, 3, NULL, NULL, 1),
+(12, 'FCDO-06003', 'Organic Dark Soy Sauce 600ml -Asian Organic Brand', NULL, 3, NULL, NULL, 1),
+(13, 'FCDO-A0181', 'Johin Organic dark soy sauce 18 L', NULL, 2, NULL, NULL, 1),
+(14, 'FCKE-02001', 'Organic Fair Trade Ketjap manis 200 ml x 6 - Autour du riz L\'Asie brand', NULL, 3, NULL, NULL, 1),
+(15, 'FCKE-02002', 'Organic Ketjap manis 200 ml x 6 - NoAd brand', NULL, 3, NULL, NULL, 1),
+(16, 'FCKE-06001', 'Organic Fair Trade Ketjap manis 600 ml x 6 - Autour du riz L\'Asie brand', NULL, 3, NULL, NULL, 1),
+(17, 'FCKE-A2001', 'Organic Fairatrade Ketjap manis 200L Autour La Du Riz Brand', NULL, 4, NULL, NULL, 1),
+(18, 'FCL1-03001', 'ซีอิ้วขาวสูตร 1 300 CC', NULL, 3, NULL, NULL, 1),
+(19, 'FCL1-07001', 'ซีอิ้วขาวสูตร 1 700 CC', NULL, 3, NULL, NULL, 1),
+(20, 'FCL1-A0052', 'ซีอิ้วขาว สูตร 1 ขนาด 5 4 x 2', NULL, 3, NULL, NULL, 1),
+(21, 'FCL1-A0101', 'ซีอิ้วขาวสูตร 1 (10Liter)', NULL, 3, NULL, NULL, 1),
+(22, 'FCL1-A0102', 'Johin Chinese Soy Sauce 10 Liter (ขาวสูตร 1)', NULL, 3, NULL, NULL, 1),
+(23, 'FCL2-06301', 'ซีอิ๊วขาวสูตร 2 630 CC', NULL, 3, NULL, NULL, 1),
+(24, 'FCL2-K0001', 'Johin Extra Chinese Soy Sauce 1,000 Liters (RL-LQ-003-1)', NULL, 4, NULL, NULL, 1),
+(25, 'FCLC-A0101', 'Johin Chinese Soy Sauce For CP Group 10 Liter', NULL, 3, NULL, NULL, 1),
+(26, 'FCLC-A0103', 'Johin Chinese Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(27, 'FCLC-A0104', 'Johin chinese soy sauce (gluten free) 10Lx2B', NULL, 3, NULL, NULL, 1),
+(28, 'FCLC-A0105', 'Johin Chinese Soy Sauce NO 1.2 10 Liter', NULL, 3, NULL, NULL, 1),
+(29, 'FCLC-A0182', 'Johin Chinese Soy Sauce For CP Group18 C', NULL, 2, NULL, NULL, 1),
+(30, 'FCLC-A0183', 'Johin Chinese Soy Sauce 18 C', NULL, 2, NULL, NULL, 1),
+(31, 'FCLC-A0185', 'Johin Chinese soy sauce (sugar)', NULL, 2, NULL, NULL, 1),
+(32, 'FCLC-A0186', 'Johin Light Soy Sauce 18C (CHOLIMEX)', NULL, 3, NULL, NULL, 1),
+(33, 'FCOR-02001', 'Organic Chinese Soy Sauce 200 ml (12 Bottles)', NULL, 3, NULL, NULL, 1),
+(34, 'FCOR-02002', 'Organic Chinese soy sauce 200 ml (6 bottles) - PB Farm', NULL, 3, NULL, NULL, 1),
+(35, 'FCOR-02003', 'Organic Chinese soy sauce 200 ml (6 bottles) - Welt partner Brand (Grace Bio)', NULL, 3, NULL, NULL, 1),
+(36, 'FCOR-02004', 'Organic Chinese soy sauce 200ml ( 12 bottles)-Asian organic', NULL, 3, NULL, NULL, 1),
+(37, 'FCOR-02005', 'Organic Chinese soy sauce 200 ml (12 bottles) - Fair D Brand (Grace Bio)', NULL, 3, NULL, NULL, 1),
+(38, 'FCOR-02006', 'Organic Chinese soy sauce 200 ml (6 bottles) - PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(39, 'FCOR-02007', 'Organic Chinese soy sauce 200ml ( 6 bottles)-Asian organic', NULL, 3, NULL, NULL, 1),
+(40, 'FCOR-03001', 'Organic soy sauce 300ml (12bottles)-One organic', NULL, 3, NULL, NULL, 1),
+(41, 'FCOR-06002', 'Organic Chinese soy sauce 600ml ( 12 bottles)-Asian organic', NULL, 3, NULL, NULL, 1),
+(42, 'FCOR-07001', 'Organic Chinese Soy Sauce 700 ml (12 Bottles)', NULL, 3, NULL, NULL, 1),
+(43, 'FCOR-A0051', 'Organic Chinese soy sauce 5 L x 2 bottles - PB Farm', NULL, 3, NULL, NULL, 1),
+(44, 'FCSW-02001', 'Sweet soy sauce (gluten free) 200 ml (6 bottle)- PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(45, 'FDSP-02001', 'Organic Spring Roll sauce 200ml (6 bottles) -L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(46, 'FDSP-02002', 'Organic Spring roll sauce 200mlx6 NoAd Brand', NULL, 3, NULL, NULL, 1),
+(47, 'FDSW-02001', 'Organic Sweet Chili sauce 200ml(6 bottles)-L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(48, 'FFHO-03001', 'Fairtrade Hoisin Sauce 300 ml', NULL, 3, NULL, NULL, 1),
+(49, 'FFHO-10001', 'Fairtrade Hoisin Sauce 1 Liter', NULL, 3, NULL, NULL, 1),
+(50, 'FFLE-03001', 'Fairtrade Less salt Tamari Soy Sauce 300 ml', NULL, 3, NULL, NULL, 1),
+(51, 'FFMI-02001', 'Organic Fair Trade Pasteurized Genmai miso (200g Jar x6) La Du Riz Brand', NULL, 3, NULL, NULL, 1),
+(52, 'FFMI-02002', 'Organic Fair Trade Pasteurized Genmai miso with kombu (200g Jar x6) La Du riz Brand', NULL, 3, NULL, NULL, 1),
+(53, 'FFMI-02003', 'Organic Fair Trade Pasteurized Shiro Miso (200g Jar x6) La Du Riz Brand', NULL, 3, NULL, NULL, 1),
+(54, 'FFMI-02501', 'Organic Fairtrade Miso 250 g x 6 boxes -La Du Riz brand', NULL, 5, NULL, NULL, 1),
+(55, 'FFMI-02502', 'Organic Fairtrade unpasteurized Miso 250 g Jar x 6 - La Du Riz Brand', NULL, 3, NULL, NULL, 1),
+(56, 'FFMI-15001', 'Organic Fairtrade Miso 1.5 kg.x 2 boxes -La Du riz Brand', NULL, 5, NULL, NULL, 1),
+(57, 'FFOR-02001', 'Fairtrade Organic Soy Sauce 200 ml (12 Bottles) Chopstick brand', NULL, 3, NULL, NULL, 1),
+(58, 'FFOR-02002', 'Fairtrade Organic Soy Sauce 200 ml (6 Bottle) Fair trade original Brand', NULL, 3, NULL, NULL, 1),
+(59, 'FFOR-02003', 'Fairtrade Organic Soy Sauce 200 ml(6 bottles) Fair Trade original (German)', NULL, 3, NULL, NULL, 1),
+(60, 'FFOR-02004', 'Organic Fairtrade Shoyu 200 ml (6 bottles) Autour Du riz L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(61, 'FFOR-02005', 'Organic Fairtrade Tamari soy sauce 200 ml (6 bottles) Autour Du riz L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(62, 'FFOR-02006', 'Organic Fairtrade Shoyu Less salt 200ml (6 bottles) Autour La Du Riz', NULL, 3, NULL, NULL, 1),
+(63, 'FFOR-02007', 'Organic & Fairtrade Shoyu soy sauce 200 mlx6 NoAd Brand', NULL, 10, NULL, NULL, 1),
+(64, 'FFOR-03001', 'Fairtrade Organic Tamari (regular salt) 300 ml', NULL, 3, NULL, NULL, 1),
+(65, 'FFOR-06001', 'Fairtrade Organic Tamari Soy Sauce 600 ml', NULL, 3, NULL, NULL, 1),
+(66, 'FFOR-06002', 'Organic Fairtarde Tamari soy sauce 600 ml ( 6 bottles)Autour Du riz L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(67, 'FFOR-06003', 'Organic Fairtarde Shoyu 600 ml ( 6 bottles) Autour Du riz L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(68, 'FFOR-06004', 'Organic Fairtrade Shoyu Less salt 600ml (6 bottles) Autour La Du Riz', NULL, 3, NULL, NULL, 1),
+(69, 'FFOR-10001', 'Saitaku Organic soy sauce 1000 ml (6 bottles)', NULL, 3, NULL, NULL, 1),
+(70, 'FFOR-A0181', 'Organic Fairtarde Shoyu 18 Liters Autour Du riz L\'Asie Brand', NULL, 2, NULL, NULL, 1),
+(71, 'FFOR-A2001', 'Fairtrade Tamari Organic Soy Sauce 200 L', NULL, 4, NULL, NULL, 1),
+(72, 'FFOR-A2002', 'Fairtrade organic Tamari No.1 soy sauce 200 L', NULL, 4, NULL, NULL, 1),
+(73, 'FFOR-A2003', 'Organic FairTrade Shoyu 200 L -Autour Du Riz L\'Asie Brand', NULL, 7, NULL, NULL, 1),
+(74, 'FFOR-A2004', 'Organic Fairtrade Shoyu Less salt soy sauce 200L -Autour Du Riz Brand', NULL, 4, NULL, NULL, 1),
+(75, 'FFOR-K0001', 'Organic FairTrade Tamari soy sauce 1000 L', NULL, 4, NULL, NULL, 1),
+(76, 'FFOR-K0002', 'Organic Fairtrade Shoyu Soy sauce 1000 L -Autour Du Riz Brand', NULL, 4, NULL, NULL, 1),
+(77, 'FFOR-K0003', 'Organic Fairtrade Tamari Soy sauce No.1 1000L - Autur La Du Riz Brand', NULL, 4, NULL, NULL, 1),
+(78, 'FFSW-02001', 'Fairtrade Sweet Soy Sauce 200 ml (12 Bottles)', NULL, 3, NULL, NULL, 1),
+(79, 'FFTA-10001', 'Fairtrade Tamari Soy Sauce 1 L (12 Bottle)', NULL, 3, NULL, NULL, 1),
+(80, 'FFTE-03001', 'Fairtrade Teriyaki Sauce 300 ml', NULL, 3, NULL, NULL, 1),
+(81, 'FFVI-02001', 'Fairtrade Organic Rice Vinegar 200 ml (6 Bottles)', NULL, 3, NULL, NULL, 1),
+(82, 'FJEX-00051', 'Johin Extra 5 g (T)(600 pcs)', NULL, 8, NULL, NULL, 1),
+(83, 'FJEX-00052', 'Johin Extra 5 g (T)(1,000 pcs)', NULL, 8, NULL, NULL, 1),
+(84, 'FJEX-00053', 'Extra 5 g (WASABI-O) (1,000 pcs)', NULL, 8, NULL, NULL, 1),
+(85, 'FJEX-02001', 'Johin Extra Soy Sauce 200 ml', NULL, 3, NULL, NULL, 1),
+(86, 'FJEX-02002', 'Johin Extra Soy Sauce 200 ml (Monty Lio-chang)', NULL, 3, NULL, NULL, 1),
+(87, 'FJEX-10001', 'JOHIN EXTRA 1 L', NULL, 3, NULL, NULL, 1),
+(88, 'FJEX-10002', 'Japanese Extra soy sauce (Wasabi - O) 1L x 12', NULL, 3, NULL, NULL, 1),
+(89, 'FJEX-10003', 'Johin Extra Soy Sauce 1L X 12 (Monty Lio-chang)', NULL, 3, NULL, NULL, 1),
+(90, 'FJEX-A0051', 'JOHIN EXTRA 5 L', NULL, 3, NULL, NULL, 1),
+(91, 'FJEX-A0053', 'Johin Extra Soy Sauce 5 Liter (5Lx4B)', NULL, 3, NULL, NULL, 1),
+(92, 'FJEX-A0101', 'Johin Extra Soy Sauce 10 Liters', NULL, 3, NULL, NULL, 1),
+(93, 'FJEX-A0102', 'Johin Extra Soy Sauce 10 Liters (For Thai nikken Foods)', NULL, 3, NULL, NULL, 1),
+(94, 'FJEX-A0181', 'JOHIN EXTRA 18 L', NULL, 2, NULL, NULL, 1),
+(95, 'FJEX-A0182', 'Johin Extra Soy Sauce (Fair Trade) 18 L', NULL, 2, NULL, NULL, 1),
+(96, 'FJEX-A0203', 'Shizen Japanese soy sauce 200 ml x 12', NULL, 3, NULL, NULL, 1),
+(97, 'FJEX-A2001', 'Johin Extra Soy Sauce No.1 200 Liters', NULL, 4, NULL, NULL, 1),
+(98, 'FJEX-A2002', 'Johin Extra Soy Sauce 200 Liters', NULL, 7, NULL, NULL, 1),
+(99, 'FJEX-A2003', 'Johin Extra soy sauce (gluten free) 200 Liters', NULL, 7, NULL, NULL, 1),
+(100, 'FJEX-K0001', 'JOHIN EXTRA 1,000 L', NULL, 4, NULL, NULL, 1),
+(101, 'FJEX-K0002', 'JOHIN EXTRA 1,000 L (For Thai Nikken Foods)', NULL, 4, NULL, NULL, 1),
+(102, 'FJGL-02001', 'Johin Gluten free Soy Sauce 200 ml (12 Bottle)', NULL, 3, NULL, NULL, 1),
+(103, 'FJGL-02002', 'Gluten free Soy Sauce 200 ml (12 Bottles) - PB Farm Eastland', NULL, 3, NULL, NULL, 1),
+(104, 'FJGL-02003', 'Gluten free Soy Sauce 200 ml (12 Bottles) - PB Farm( Apple\'s Island)', NULL, 3, NULL, NULL, 1),
+(105, 'FJGL-02004', 'Gluten free Soy Sauce 200 ml (12 Bottles) - PB Farm(กวางเฮียหยู)', NULL, 3, NULL, NULL, 1),
+(106, 'FJGL-02006', 'Gluten Free soy sauce 200 ml ( 6 bottles) - PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(107, 'FJGL-06001', 'Gluten free Soy Sauce 600 ml (12 Bottles) - PB Farm( Apple\'s Island)', NULL, 3, NULL, NULL, 1),
+(108, 'FJGL-10002', 'Johin Gluten Free soy sauce No.1 1L x 12bottles', NULL, 3, NULL, NULL, 1),
+(109, 'FJGL-A0053', 'Gluten Free Soy Sauce 5 Liter (5Lx4B) - PB Farm( Apple\'s Island)', NULL, 3, NULL, NULL, 1),
+(110, 'FJGL-A0101', 'Johin Gluten Free Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(111, 'FJGL-A0102', 'Johin Gluten Free Soy Sauce 10 Liter + Iodine', NULL, 3, NULL, NULL, 1),
+(112, 'FJGL-A0181', 'Johin Gluten Free Soy Sauce 18 C', NULL, 2, NULL, NULL, 1),
+(113, 'FJGL-A0183', 'Johin Gluten Free soy sauce No.1 18 C', NULL, 2, NULL, NULL, 1),
+(114, 'FJGL-A2001', 'Johin Gluten Free Soy Sauce 200 Liters', NULL, 4, NULL, NULL, 1),
+(115, 'FJGL-K0001', 'Johin Gluten Free Soy Sauce 1,000 Liters (Multipol)', NULL, 4, NULL, NULL, 1),
+(116, 'FJGL-K0002', 'Johin gluten free soy sauce 1,000 Liters (Thai Nikken)', NULL, 4, NULL, NULL, 1),
+(117, 'FJLE-02002', 'Less Sodium Soy Sauce 200 ml (12 Bottles) - PB Farm', NULL, 3, NULL, NULL, 1),
+(118, 'FJLE-02004', 'Johin Less Salt Soy Sauce NO.1 200 ml (Lio-Chang)', NULL, 3, NULL, NULL, 1),
+(119, 'FJLE-02005', 'Less salt soy sauce 200 ml (6 bottles) - PB Farm', NULL, 3, NULL, NULL, 1),
+(120, 'FJLE-02006', 'Less salt soy sauce 200 ml - gluten free (6 bottles) - PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(121, 'FJLE-10001', 'Johin Less Salt Soy Sauce 1 Liter', NULL, 3, NULL, NULL, 1),
+(122, 'FJLE-A0101', 'Johin Less Salt Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(123, 'FJLE-A0102', 'Johin Less Salt Soy Sauce 10 Liters + Iodine', NULL, 3, NULL, NULL, 1),
+(124, 'FJLE-A0103', 'Johin Less Salt Soy Sauce (Gluten free) 10 L', NULL, 3, NULL, NULL, 1),
+(125, 'FJLE-A0181', 'Johin Less Salt Soy Sauce 18 C', NULL, 2, NULL, NULL, 1),
+(126, 'FJLE-A0184', 'Johin Less salt soy sauce No.1 18 C', NULL, 2, NULL, NULL, 1),
+(127, 'FJLI-03001', 'Johin Light Color Soy Sauce 300 ml.', NULL, 3, NULL, NULL, 1),
+(128, 'FJLI-07001', 'JOHIN LIGHT COLOR SOY SAUCE 700 ml', NULL, 3, NULL, NULL, 1),
+(129, 'FJLI-10001', 'JOHIN LIGHT COLOR SOY SAUCE (NJ5-1P)', NULL, 3, NULL, NULL, 1),
+(130, 'FJLI-A0101', 'Johin Light Color Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(131, 'FJLI-A0102', 'Johin Light Color Soy Sauce + Iodine 10 Liter', NULL, 3, NULL, NULL, 1),
+(132, 'FJLI-A0181', 'JOHIN LIGHT COLOR SOY SAUCE 18 L', NULL, 2, NULL, NULL, 1),
+(133, 'FJLI-A2001', 'Johin Light color soy sauce for KPT 200L drum', NULL, 9, NULL, NULL, 1),
+(134, 'FJLI-K0001', 'JOHIN LIGHT COLOR SOY SAUCE 1,000 L', NULL, 4, NULL, NULL, 1),
+(135, 'FJLI-K0002', 'Johin Light Color Soy Sauce 1,000 L For Kiewpei', NULL, 4, NULL, NULL, 1),
+(136, 'FJOR-02001', 'Organic Soy Sauce 200 ml (12 Bottles) Lemon Farm Brand', NULL, 3, NULL, NULL, 1),
+(137, 'FJOR-02002', 'Organic Soy Sauce 200 ml (12 Bottles) - PB Farm', NULL, 3, NULL, NULL, 1),
+(138, 'FJOR-02003', 'Organic Soy Sauce 200 ml (6 Bottles) - Spiral', NULL, 3, NULL, NULL, 1),
+(139, 'FJOR-02004', 'Organic Japanese Soy Sauce 200 ml (12 bottles)', NULL, 3, NULL, NULL, 1),
+(140, 'FJOR-02005', 'Organic Soy Sauce 200 ml (12 Bottles) PB Farm- Eastland', NULL, 3, NULL, NULL, 1),
+(141, 'FJOR-02006', 'Organic Soy Sauce 200 ml (12 Bottles) - Philipines', NULL, 3, NULL, NULL, 1),
+(142, 'FJOR-02007', 'Organic Soy sauce 200 ml x 12 -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(143, 'FJOR-02008', 'Organic soy sauce 200ml ( 6 bottles) - Organi', NULL, 3, NULL, NULL, 1),
+(144, 'FJOR-02009', 'Organic Tamari soy sauce 200ml (12 bottles) - BIO TIGER KHAN', NULL, 3, NULL, NULL, 1),
+(145, 'FJOR-02011', 'Organic Tamari soy sauce 200ml (12bottle) -PB Farm', NULL, 3, NULL, NULL, 1),
+(146, 'FJOR-02012', 'Organic Reduced salt soy sauce 200ml x 12 ARTICLE CONTAINS 4.2% v/v ALCOHOL- Mei Yang', NULL, 3, NULL, NULL, 1),
+(147, 'FJOR-02013', 'Organic Less salt Soy sauce 200 ml (6 bottles)-PB Farm', NULL, 3, NULL, NULL, 1),
+(148, 'FJOR-02014', 'Organic soy sauce 200 ml (6 bottles)- PB Farm', NULL, 3, NULL, NULL, 1),
+(149, 'FJOR-02015', 'Organic Tamari soy sauce 200 ml (6 bottles)-PB Farm', NULL, 3, NULL, NULL, 1),
+(150, 'FJOR-02016', 'Organic soy sauce with low sodium 200 ml (12 bottles)-Asian Organic Brand', NULL, 3, NULL, NULL, 1),
+(151, 'FJOR-02017', 'Organic Soy Sauce 200 ml (6 Bottles) - PB Farm (English version)', NULL, 3, NULL, NULL, 1),
+(152, 'FJOR-02018', 'Organic Tamari soy sauce 200ml (6bottle) -PB Farm (English Version)', NULL, 3, NULL, NULL, 1),
+(153, 'FJOR-02019', 'Organic Tamari soy sauce 200ml(6bottles) -PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(154, 'FJOR-02020', 'Organic soy sauce 200ml(6bottles) -PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(155, 'FJOR-02021', 'Organic Less salt soy sauce 200ml(6bottles) -PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(156, 'FJOR-02022', 'Organic Less salt Soy sauce 200 ml x 6 -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(157, 'FJOR-02023', 'Organic Less salt soy sauce 200ml(6bottles)-PB Farm (English version)', NULL, 3, NULL, NULL, 1),
+(158, 'FJOR-02024', 'Organic Tamari Soy Sauce 200 ml (6 Bottles) - PB Farm (English version with Hebrew)', NULL, 3, NULL, NULL, 1),
+(159, 'FJOR-02025', 'Organic Reduced salt soy sauce with alcohol 1.0%v/v 200mlx 12 - Mei Yang Brand', NULL, 3, NULL, NULL, 1),
+(160, 'FJOR-03002', 'Organic soy sauce -Light Taste 300ml (12bottles)-One organic', NULL, 3, NULL, NULL, 1),
+(161, 'FJOR-06001', 'Organic Soy Sauce 600 ml (12 Bottles) - Philipines', NULL, 3, NULL, NULL, 1),
+(162, 'FJOR-06002', 'Organic Soy sauce 600 ml x 12 -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(163, 'FJOR-06003', 'Organic soy sauce with low Sodium 600ml ( 12 bottles)-Asian organic', NULL, 3, NULL, NULL, 1),
+(164, 'FJOR-07001', 'Organic Japanese Soy Sauce 700 ml (12 Bottles)', NULL, 3, NULL, NULL, 1),
+(165, 'FJOR-10003', 'Organic Reduced salt soy sauce 1000 ml x 6 ARTICLE CONTAINS 4.2% v/v ALCOHOL-Saitaku', NULL, 3, NULL, NULL, 1),
+(166, 'FJOR-10004', 'Organic Reduced salt soy sauce with alcohol 1.0%v/v 1000mlx 6 - SAITAKU BRAND', NULL, 3, NULL, NULL, 1),
+(167, 'FJOR-A0051', 'Johin Organic Soy Sauce 5L (5L x 4 B)', NULL, 3, NULL, NULL, 1),
+(168, 'FJOR-A0052', 'Johin organic soy sauce (5L x2)', NULL, 3, NULL, NULL, 1),
+(169, 'FJOR-A0053', 'PB FARM ORGANIC SOY SUACE 5 L X 4', NULL, 3, NULL, NULL, 1),
+(170, 'FJOR-A0054', 'Organic Tamari soy sauce 5 L x 2 bottles - PB Farm', NULL, 3, NULL, NULL, 1),
+(171, 'FJOR-A0101', 'Organic Shoyu Soy Sauce 10 L.', NULL, 3, NULL, NULL, 1),
+(172, 'FJOR-A0102', 'Organic Soy Sauce 10 L', NULL, 3, NULL, NULL, 1),
+(173, 'FJOR-A0103', 'PB FARM ORGANIC SOY SUACE 10 L', NULL, 3, NULL, NULL, 1),
+(174, 'FJOR-A0104', 'PB FARM ORGANIC SOY SUACE + Iodine10 L', NULL, 3, NULL, NULL, 1),
+(175, 'FJOR-A0105', 'Johin Organic Tamari Gluten Free Soy Sauce 10 L', NULL, 3, NULL, NULL, 1),
+(176, 'FJOR-A2001', 'Johin Organic Soy sauce 200 Liters', NULL, 4, NULL, NULL, 1),
+(177, 'FJOR-K0003', 'Johin Organic Tamari Gluten Free soy sauce 1,000 Liters', NULL, 10, NULL, NULL, 1),
+(178, 'FJPA-A0101', 'Johin Pasteurized soy sauce 10L (2bottles/carton)', NULL, 3, NULL, NULL, 1),
+(179, 'FJPA-K0001', 'JOHIN PASTEURIZED SOY SAUCE 1,000 Liter', NULL, 4, NULL, NULL, 1),
+(180, 'FJPA-K0002', 'JOHIN PASTEURIZED SOY SAUCE + IODINE 1,000 Liter', NULL, 4, NULL, NULL, 1),
+(181, 'FJPR-A0051', 'JOHIN PREMIUM SOY SAUCE(SOS9) 5Lx2Bottles', NULL, 3, NULL, NULL, 1),
+(182, 'FJPR-A0053', 'Johin Premium (J1-5P) T', NULL, 3, NULL, NULL, 1),
+(183, 'FJRE-A0101', 'Johin Regular Soy Sauce 10 L', NULL, 3, NULL, NULL, 1),
+(184, 'FJRE-A0103', 'Johin Regular Soy Sauce + Iodine 10 Liters', NULL, 3, NULL, NULL, 1),
+(185, 'FJRH-A0101', 'Johin Rich Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(186, 'FJRH-A0181', 'JOHIN RICH SOY SAUCE 18 C', NULL, 2, NULL, NULL, 1),
+(187, 'FJRH-K0001', 'Johin Rich Soy Sauce 1,000 Liter', NULL, 4, NULL, NULL, 1),
+(188, 'FJRI-A0181', 'Johin Rice Soy Sauce 18 Liter', NULL, 2, NULL, NULL, 1),
+(189, 'FJRO-A0051', 'Roasted Japanese Soy sauce 5 Liter (5L x 4B)', NULL, 3, NULL, NULL, 1),
+(190, 'FJRO-A0101', 'Johin Roasted Japanese Soy Sauce 10 Liters', NULL, 3, NULL, NULL, 1),
+(191, 'FJSP-A0052', 'JOHIN SPECIAL SOY SAUCE(NJ2 F -5P)', NULL, 3, NULL, NULL, 1),
+(192, 'FJSP-A0101', 'Johin Special Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(193, 'FJSP-A0102', 'Johin Special Soy Sauce No.2 10 Liter', NULL, 3, NULL, NULL, 1),
+(194, 'FJSP-K0001', 'JOHIN SPECIAL SOY SAUCE (NJ2-1KL)', NULL, 4, NULL, NULL, 1),
+(195, 'FJST-A0101', 'Johin Standard Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(196, 'FJST-A0102', 'JOHIN STANDARD SOY SAUCE No.2 10 Liter', NULL, 3, NULL, NULL, 1),
+(197, 'FJST-A0103', 'JOHIN STANDARD SOY SAUCE No.2 + Iodine 10 Liter (AFSSBT)', NULL, 3, NULL, NULL, 1),
+(198, 'FJST-A0104', 'Johin Standard Soy Sauce + Iodine 10 Liters', NULL, 3, NULL, NULL, 1),
+(199, 'FJST-A0105', 'Johin Standard Soy Sauce (Gluten free) 10 Liters', NULL, 10, NULL, NULL, 1),
+(200, 'FJST-A0185', 'Johin Standard Soy Sauce (Fairtrade) 18 L', NULL, 2, NULL, NULL, 1),
+(201, 'FJST-K0001', 'Johin Standard soy sauce 1,000 L', NULL, 4, NULL, NULL, 1),
+(202, 'FJTA-A0101', 'Johin Tamari soy sauce 10Lx 2', NULL, 3, NULL, NULL, 1),
+(203, 'FJTA-A0185', 'Johin Tamari Soy Sauce (Gluten free) For Thai Nichi (RL-LQ-015-1)', NULL, 2, NULL, NULL, 1),
+(204, 'FJTA-A0186', 'JohinTamari Gluten Free Soy Sauce No.1 For Thai Nichi (RL-LQ-017-1)', NULL, 2, NULL, NULL, 1),
+(205, 'FJTA-K0001', 'Johin Tamari Soy Sauce (Gluten free) For Thai Nichi 1000 L', NULL, 4, NULL, NULL, 1),
+(206, 'FMMI-02401', 'Pasteurized Sfhiro Miso 240g Jarx12', NULL, 10, NULL, NULL, 1),
+(207, 'FMMI-05001', 'Johin Miso 0.5 Kg', NULL, 1, NULL, NULL, 1),
+(208, 'FMMI-07002', 'Johin เต้าเจี้ยว 700 ml (12 Bottles)', NULL, 3, NULL, NULL, 1),
+(209, 'FMMI-10001', 'Johin Miso 1 Kg', NULL, 1, NULL, NULL, 1),
+(210, 'FMMI-10002', 'Johin Dark Miso 1 kg', NULL, 1, NULL, NULL, 1),
+(211, 'FMMI-10003', 'Johin Pasteurization Miso- 1 kg - Plastic bag', NULL, 1, NULL, NULL, 1),
+(212, 'FMOR-05001', 'Organic Miso 0.5 kg', NULL, 1, NULL, NULL, 1),
+(213, 'FMOR-10001', 'Johin Organic Miso 1 Kg.', NULL, 1, NULL, NULL, 1),
+(214, 'FMSS-07002', 'M1-700CC (J) MALT SAUCE SEASONING', NULL, 3, NULL, NULL, 1),
+(215, 'FOBY-K0001', 'น้ำมันถั่วเหลืองดิบ', NULL, 9, NULL, NULL, 1),
+(216, 'FSAM-A0101', 'Johin Amakuchi Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(217, 'FSBL-A0181', 'Johin Black Bean Marinade Sauce 18 L', NULL, 2, NULL, NULL, 1),
+(218, 'FSBV-02001', 'Organic Black Vinegar Sauce 200 ml (12 bottles)', NULL, 3, NULL, NULL, 1),
+(219, 'FSBV-06001', 'Organic Black Rice Vinegar sauce 600ml x 12- Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(220, 'FSEE-A0051', 'Johin Eel Sauce 5 Liter (5L x 2B)', NULL, 3, NULL, NULL, 1),
+(221, 'FSFS-02002', 'Fish Sauce Flavored Organic Soy Sauce PB Farm Brand 200ml(6 Bottles)', NULL, 3, NULL, NULL, 1),
+(222, 'FSFS-02003', 'ซีอิ๊วรสน้ำปลา (200mlx6)', NULL, 3, NULL, NULL, 1),
+(223, 'FSFS-02005', 'Sauce Nuoc Mam 200ml', NULL, 10, NULL, NULL, 1),
+(224, 'FSHO-02001', 'Premium Hoisin sauce 200ml (6 bottles) -PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(225, 'FSHO-03001', 'Hoi Sin Sauce 300g (12 bottles)', NULL, 3, NULL, NULL, 1),
+(226, 'FSHO-A0181', 'Hoi Sin Sauce 18 C', NULL, 2, NULL, NULL, 1),
+(227, 'FSHO-A0187', 'Premium Hoi Sin Sauce 18L', NULL, 2, NULL, NULL, 1),
+(228, 'FSHO-A0188', 'Premium Hoi Sin Sauce NO.1 18L', NULL, 2, NULL, NULL, 1),
+(229, 'FSJV-02001', 'Organic Japanese Vinaigrette sauce 200ml(6bottle)-La Du Riz Companige', NULL, 3, NULL, NULL, 1),
+(230, 'FSJV-02002', 'Organic Japanese vinaigrette 200mlx6 NoAd Brand', NULL, 10, NULL, NULL, 1),
+(231, 'FSME-10001', 'Johin Men-Tsuyu 1 Liter', NULL, 3, NULL, NULL, 1),
+(232, 'FSMI-02001', 'Sauce Mirin 200ml', NULL, 10, NULL, NULL, 1),
+(233, 'FSMR-02002', 'Organic Vegan Mushroom Sauce PB Farm -Agtrade 200mlx12', NULL, 3, NULL, NULL, 1),
+(234, 'FSPL-02001', 'Sauce Ponzu Lime', NULL, 10, NULL, NULL, 1),
+(235, 'FSPO-A0181', 'Johin Ponzu Shoyu 18 C No.1', NULL, 2, NULL, NULL, 1),
+(236, 'FSPT-02001', 'Organic Pad Thai Sauce 200ml (6 bottles) -La Autour Du Riz Brand', NULL, 3, NULL, NULL, 1),
+(237, 'FSSC-A0101', 'ซอสสาหร่ายปรุงรส Curve 10 Liter', NULL, 3, NULL, NULL, 1),
+(238, 'FSSC-A0181', 'ซอสสาหร่ายปรุงรส Curue 18 C', NULL, 2, NULL, NULL, 1),
+(239, 'FSSC-A0182', 'ซอสสาหร่ายปรุงรส Curve No MSG 18 C', NULL, 2, NULL, NULL, 1),
+(240, 'FSSD-A0051', 'Johin Shoyu Dressing Sauce 5 Liter (5L x 2B)', NULL, 3, NULL, NULL, 1),
+(241, 'FSSE-00051', 'Johin Seasonning Sauce 0.005 Kg', NULL, 8, NULL, NULL, 1),
+(242, 'FSSE-00081', 'Johin Seasoning sauce 0.008 Kg', NULL, 8, NULL, NULL, 1),
+(243, 'FSSU-00051', 'Johin Sushi Soy Sauce 0.005 kg', NULL, 8, NULL, NULL, 1),
+(244, 'FSSU-02001', 'Johin Sushi Soy Sauce 200 ml', NULL, 3, NULL, NULL, 1),
+(245, 'FSSU-A0052', 'Johin Sushi Soy Sauce 5 L (T)', NULL, 3, NULL, NULL, 1),
+(246, 'FSSU-A0101', 'Johin Sushi Soy Sauce (No.1 ) 10 Liter', NULL, 3, NULL, NULL, 1),
+(247, 'FSSU-A0181', 'Johin Sushi Soy Sauce No.1 18 C', NULL, 2, NULL, NULL, 1),
+(248, 'FSSW-02001', 'Organic Sweet and Sour Sauce 200ml(6 Bottles) - La Du Riz Companige', NULL, 3, NULL, NULL, 1),
+(249, 'FSTA-03001', 'Johin Tamari Soy Sauce (M) 300 ml', NULL, 3, NULL, NULL, 1),
+(250, 'FSTA-07001', 'Johin Tamari Soy Sauce (M) 700 ml', NULL, 3, NULL, NULL, 1),
+(251, 'FSTA-10001', 'Johin Tamari Soy Sauce 1 Liter', NULL, 3, NULL, NULL, 1),
+(252, 'FSTA-A0051', 'Johin Tamari Soy Sauce (M) 5 Liters', NULL, 3, NULL, NULL, 1),
+(253, 'FSTA-A0052', 'Johin Tamari No.1 Soy Sauce 5 Liter (5L x 4 B)', NULL, 3, NULL, NULL, 1),
+(254, 'FSTA-A0103', 'Johin Tamari Soy Sauce 10 Liter ( KAMEDA-STC )', NULL, 3, NULL, NULL, 1),
+(255, 'FSTA-A0104', 'Johin Tamari Soy Sauce (No SSA) 10 Liter', NULL, 3, NULL, NULL, 1),
+(256, 'FSTA-A0105', 'Johin Tamari Thai Nichi 10 L x 2', NULL, 3, NULL, NULL, 1),
+(257, 'FSTA-A0181', 'JOHIN TAMARI Thai - Nichi 18 C (RM-LF-004)', NULL, 2, NULL, NULL, 1),
+(258, 'FSTA-A0184', 'JOHIN GLUTEN FREE TAMARI SOY SUACE FOR Thai - Nichi 18 C (RM-LF-005-9)', NULL, 2, NULL, NULL, 1),
+(259, 'FSTA-K0001', 'Johin tamari soy sauce for Thai Nichi 1000L', NULL, 4, NULL, NULL, 1),
+(260, 'FSTA-K0002', 'Johin Tamari Soy Sauce No.1 for Thai nichi 1000L(RL-LQ-018-1)', NULL, 4, NULL, NULL, 1),
+(261, 'FSTD-02001', 'Organic Tandoori Marinade Sauce 200ml(6 Bottles) - La Du Riz Companige', NULL, 3, NULL, NULL, 1),
+(262, 'FSTE-02001', 'Organic Fairtrade marinade Teriyaki sauce 200 ml (6 bottles) L\'Asie Brand', NULL, 10, NULL, NULL, 1),
+(263, 'FSTE-02003', 'Organic Teriyaki sauce 200ml (12 bottles) - BIO TIGER KHAN', NULL, 3, NULL, NULL, 1),
+(264, 'FSTE-02004', 'Organic Teriyaki sauce 200ml(12 bottles)- PB Farm', NULL, 3, NULL, NULL, 1),
+(265, 'FSTE-02005', 'Organic Fairtrade marinade Teriyaki sauce 200 ml (6 bottles) L\'Asie Brand', NULL, 3, NULL, NULL, 1),
+(266, 'FSTE-02006', 'Organic Teriyaki sauce 200ml (12 bottles)-Asian Organic', NULL, 3, NULL, NULL, 1),
+(267, 'FSTE-02007', 'Organic Teriyaki sauce 200ml(6 bottles)- PB Farm', NULL, 3, NULL, NULL, 1),
+(268, 'FSTE-02008', 'Organic Teriyaki sauce 200 ml(6 bottles)-PB Farm ( English Version)', NULL, 3, NULL, NULL, 1),
+(269, 'FSTE-02009', 'Organic Teriyaki sauce 200 ml(6 bottles)-PB Farm ( New)', NULL, 3, NULL, NULL, 1),
+(270, 'FSTE-02010', 'Organic Teriyaki sauce 200ml (6 bottles)-PB Farm (English version with Hebrew)', NULL, 3, NULL, NULL, 1),
+(271, 'FSTE-02011', 'Organic Marinade Teriyaki sauce 200mlx6 NoAd Brand', NULL, 10, NULL, NULL, 1),
+(272, 'FSTE-06001', 'Organic Teriyaki sauce 600ml -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(273, 'FSTE-10001', 'Johin Organic Teriyaki sauce 1000 ml x 6 - Johin Brand', NULL, 3, NULL, NULL, 1),
+(274, 'FSTE-A0051', 'TERITAKI MARINADE 5P(T)', NULL, 3, NULL, NULL, 1),
+(275, 'FSTE-A0102', 'Johin Gluten Free Teriyaki Sauce 10 L', NULL, 3, NULL, NULL, 1),
+(276, 'FSTE-A0181', 'Johin Premium Terriyaki Soy Sauce 18 C', NULL, 2, NULL, NULL, 1),
+(277, 'FSTO-A0182', 'Johin Tonkatsu Sauce No.2 18L', NULL, 2, NULL, NULL, 1),
+(278, 'FSTV-02001', 'Organic Thai Vinaigrette sauce 200ml(6bottle)-La Du Riz Companige', NULL, 3, NULL, NULL, 1),
+(279, 'FSTV-02002', 'Organic Thai Vinaigrette sauce200 ml (6 bottles) -NoAd brand', NULL, 10, NULL, NULL, 1),
+(280, 'FSVF-02001', 'Vegan Fish Sauce 200ml x12 Mei Yang Brand', NULL, 3, NULL, NULL, 1),
+(281, 'FSVF-10001', 'Vegan Fish Sauce 1000ml x6 Mei Yang Brand', NULL, 3, NULL, NULL, 1),
+(282, 'FSYA-A0181', 'Johin Yakiniku Apple Sauce 18 C', NULL, 2, NULL, NULL, 1),
+(283, 'FVOR-02001', 'Organic Rice Vinegar 200 CC', NULL, 3, NULL, NULL, 1),
+(284, 'FVOR-02003', 'Organic Rice Vinegar 200 ml (12 Bottles) - PB Farm', NULL, 3, NULL, NULL, 1),
+(285, 'FVOR-02004', 'Organic Rice Vinegar 200 ml (12 Bottles) - Philipines', NULL, 3, NULL, NULL, 1),
+(286, 'FVOR-02005', 'Organic Rice Vinegar 200 ml (12 Bottles) - PB Farm( Apple\'s Island)', NULL, 3, NULL, NULL, 1),
+(287, 'FVOR-02006', 'Organic rice vinegar 200 ml x 12 -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(288, 'FVOR-02007', 'Organic rice vinegar 200ml (12 bottles) - BIO TIGER KHAN', NULL, 3, NULL, NULL, 1),
+(289, 'FVOR-02008', 'Organic Black Vinegar Sauce 200 ml (12 bottles)-Asian organic', NULL, 3, NULL, NULL, 1),
+(290, 'FVOR-02009', 'Organic Rice vinegar 200 ml (6 bottles) - PB Farm', NULL, 3, NULL, NULL, 1),
+(291, 'FVOR-02010', 'Organic Jasmine Hom Mali Rice vinegar 200 ml (12 bottles) - Fair D Brand (Grace Bio)', NULL, 3, NULL, NULL, 1),
+(292, 'FVOR-02011', 'Organic Rice Vinegar 200 ml (6Bottles) - PB Farm ( English Version)', NULL, 3, NULL, NULL, 1),
+(293, 'FVOR-02012', 'Organic Rice Vinegar 200 ml (6 bottles) - PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(294, 'FVOR-02013', 'Organic Black Rice Vinegar Sauce 200 ml (6 bottles) - PB Farm (New)', NULL, 3, NULL, NULL, 1),
+(295, 'FVOR-02014', 'Organic rice vinegar 200 ml x 6 -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(296, 'FVOR-02015', 'Organic Rice vinegar 5.0 % 200ml (6 bottles) - RECENES BIO BRAND', NULL, 3, NULL, NULL, 1),
+(297, 'FVOR-02016', 'Organic rice vinegar 200ml (6 bottles)-PB Farm (English version with Hebrew)', NULL, 3, NULL, NULL, 1),
+(298, 'FVOR-02017', 'Organic brown rice vinegar 5% 200mlx6 NoAd Brand', NULL, 10, NULL, NULL, 1),
+(299, 'FVOR-03001', 'Organic Fairtrade Rice Vinegar 5% 310ml(6 bottles)-L\' Aise Brand', NULL, 3, NULL, NULL, 1),
+(300, 'FVOR-06001', 'Organic Rice Vinegar 600 ml (12 Bottles) - Philipines', NULL, 3, NULL, NULL, 1),
+(301, 'FVOR-06002', 'Organic Rice Vinegar 600 ml (12 Bottles) - PB Farm( Apple\'s Island)', NULL, 3, NULL, NULL, 1),
+(302, 'FVOR-06003', 'Organic rice vinegar 600 ml x 12 -Asian organic Brand', NULL, 3, NULL, NULL, 1),
+(303, 'FVOR-06005', 'Organic Fairtrade rice vinegar 5% 600ml x 6- La Du rize brand', NULL, 3, NULL, NULL, 1),
+(304, 'FVOR-07002', 'Organic Rice Vinegar (Clear style) 700 CC', NULL, 3, NULL, NULL, 1),
+(305, 'FVOR-10001', 'Organic Rice Vinegar 1 Liter', NULL, 3, NULL, NULL, 1),
+(306, 'FVOR-A0051', 'Organic Rice Vinegar 5 L x 2 Bottle', NULL, 3, NULL, NULL, 1),
+(307, 'FVOR-A0052', 'Organic Rice Vinegar 5L (5L x 4B)', NULL, 3, NULL, NULL, 1),
+(308, 'FVOR-A0053', 'Organic Rice Vinegar 5L (5L x 2B) PB Farm', NULL, 3, NULL, NULL, 1),
+(309, 'FVOR-A0101', 'Organic Rice Vinegar 10 L', NULL, 3, NULL, NULL, 1),
+(310, 'FVOR-A0102', 'Organic Fair Trade Rice Vinegar 10 L', NULL, 3, NULL, NULL, 1),
+(311, 'FVOR-A0103', 'Raw Organic Fair Trade Rice Vinegar 10 L', NULL, 3, NULL, NULL, 1),
+(312, 'FVOR-A2001', 'Organic Rice Vinegar 200 Liters', NULL, 4, NULL, NULL, 1),
+(313, 'FVOR-A2002', 'Organic Fair Trade Rice Vinegar 5% -200L La Compagnie du riz        ', NULL, 7, NULL, NULL, 1),
+(314, 'FVOR-K0001', 'Organic Fairtrade Rice vinegar 5% 1,000 L -Autour La Du Riz Brand', NULL, 4, NULL, NULL, 1),
+(315, 'FVRI-02001', 'Shizen Jasmine rice vinegar 200 ml x12', NULL, 3, NULL, NULL, 1),
+(316, 'FVSV-02001', 'Organic Sushi vinegar 200ml x 6 - NOAD brand', NULL, 3, NULL, NULL, 1),
+(317, 'FVSV-02002', 'Organic Sushi vinegar 200ml x 6 - La Autour Du Riz brand', NULL, 3, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -1403,13 +1720,16 @@ CREATE TABLE `sale_product_unit` (
 --
 
 INSERT INTO `sale_product_unit` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
-(1, 'ถุง', 'ถุง', NULL, '#333FFF', 1),
-(2, 'ปี๊บ', 'ปี๊บ', '', '#ED7D31', 1),
-(3, 'ขวด', 'ขวด', '', '#4F4A45', 1),
-(4, 'ลิตร', 'ลิตร', '', '#557C55', 1),
-(5, 'กระปุก', 'กระปุก', '', '#ED5AB3', 1),
-(6, 'กล่อง', 'กล่อง', '', '#860A35', 1),
-(7, 'ถัง', 'ถัง', '', '#706233', 1);
+(1, 'bag', 'ถุง', NULL, '#333FFF', 1),
+(2, 'bucket', 'ปี๊บ', '', '#ED7D31', 1),
+(3, 'bottle', 'ขวด', '', '#4F4A45', 1),
+(4, 'liter', 'ลิตร', '', '#557C55', 1),
+(5, 'pot', 'กระปุก', '', '#ED5AB3', 1),
+(6, 'box', 'กล่อง', '', '#860A35', 1),
+(7, 'tank', 'ถัง', '', '#706233', 1),
+(8, 'package', 'ซอง', NULL, '#333FFF', 1),
+(9, 'kilogram', 'กิโลกรัม\r\n', NULL, '#333FFF', 1),
+(10, 'anonymous', 'ไม่ระบุ', NULL, '#333FFF', 1);
 
 -- --------------------------------------------------------
 
@@ -2061,7 +2381,6 @@ ALTER TABLE `sale_item`
 ALTER TABLE `sale_order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_sale_order_sale_customer1_idx` (`customer_id`),
-  ADD KEY `fk_sale_order_sale_item1_idx` (`item_id`),
   ADD KEY `fk_sale_order_salers1_idx` (`salers_id`),
   ADD KEY `fk_sale_order_sale_payment1_idx` (`payment_id`),
   ADD KEY `fk_sale_order_sale_status1_idx` (`status`);
@@ -2302,7 +2621,7 @@ ALTER TABLE `sale_item`
 -- AUTO_INCREMENT for table `sale_order`
 --
 ALTER TABLE `sale_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sale_payment`
@@ -2314,13 +2633,13 @@ ALTER TABLE `sale_payment`
 -- AUTO_INCREMENT for table `sale_product`
 --
 ALTER TABLE `sale_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=318;
 
 --
 -- AUTO_INCREMENT for table `sale_product_unit`
 --
 ALTER TABLE `sale_product_unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sale_report`
@@ -2416,6 +2735,7 @@ ALTER TABLE `orders_item`
 -- Constraints for table `sale_item`
 --
 ALTER TABLE `sale_item`
+  ADD CONSTRAINT `fk_sale_item_sale_order1` FOREIGN KEY (`product_id`) REFERENCES `sale_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sale_item_sale_product1` FOREIGN KEY (`product_id`) REFERENCES `sale_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sale_item_sale_product_unit1` FOREIGN KEY (`unit`) REFERENCES `sale_product_unit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -2424,7 +2744,6 @@ ALTER TABLE `sale_item`
 --
 ALTER TABLE `sale_order`
   ADD CONSTRAINT `fk_sale_order_sale_customer1` FOREIGN KEY (`customer_id`) REFERENCES `sale_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sale_order_sale_item1` FOREIGN KEY (`item_id`) REFERENCES `sale_item` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sale_order_sale_payment1` FOREIGN KEY (`payment_id`) REFERENCES `sale_payment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sale_order_sale_status1` FOREIGN KEY (`status`) REFERENCES `sale_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_sale_order_salers1` FOREIGN KEY (`salers_id`) REFERENCES `salers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

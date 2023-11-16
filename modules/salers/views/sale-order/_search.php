@@ -24,7 +24,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'customer_id') ?>
 
-    <?= $form->field($model, 'item_id') ?>
 
     <?= $form->field($model, 'salers_id') ?>
 

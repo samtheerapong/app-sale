@@ -46,7 +46,16 @@ class SaleProductSearch extends SaleProduct
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC, // เรียงลำดับตามคอลัมน์ "id" ล่าสุดขึ้นก่อน
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 12, // กำหนดจำนวนรายการต่อหน้า
+            ],
         ]);
+    
 
         $this->load($params);
 

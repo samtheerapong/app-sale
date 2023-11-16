@@ -17,9 +17,9 @@ class SaleOrderSearch extends SaleOrder
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'item_id', 'salers_id', 'payment_id', 'status'], 'integer'],
-            [['po_number', 'sale_ordercol', 'new_deadline', 'remask'], 'safe'],
-            [['percent_vat', 'discount', 'grand_total'], 'number'],
+            [['id', 'customer_id', 'salers_id', 'payment_id', 'status'], 'integer'],
+            [['po_number', 'deadline', 'new_deadline', 'remask'], 'safe'],
+            [['percent_vat', 'discount', 'grand_total','total'], 'number'],
         ];
     }
 
@@ -47,6 +47,14 @@ class SaleOrderSearch extends SaleOrder
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC, // เรียงลำดับตามคอลัมน์ "id" ล่าสุดขึ้นก่อน
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 12, // กำหนดจำนวนรายการต่อหน้า
+            ],
         ]);
 
         $this->load($params);
@@ -61,18 +69,18 @@ class SaleOrderSearch extends SaleOrder
         $query->andFilterWhere([
             'id' => $this->id,
             'customer_id' => $this->customer_id,
-            'item_id' => $this->item_id,
             'salers_id' => $this->salers_id,
+            'deadline' => $this->deadline,
             'new_deadline' => $this->new_deadline,
             'payment_id' => $this->payment_id,
             'percent_vat' => $this->percent_vat,
             'discount' => $this->discount,
+            'total' => $this->total,
             'grand_total' => $this->grand_total,
             'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'po_number', $this->po_number])
-            ->andFilterWhere(['like', 'sale_ordercol', $this->sale_ordercol])
             ->andFilterWhere(['like', 'remask', $this->remask]);
 
         return $dataProvider;
