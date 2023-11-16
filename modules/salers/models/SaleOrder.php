@@ -117,4 +117,11 @@ class SaleOrder extends \yii\db\ActiveRecord
     {
         return $this->hasOne(SaleStatus::class, ['id' => 'status']);
     }
+
+
+    // hasMany
+    public function getSaleItems()
+    {
+        return $this->hasMany(SaleItem::class, ['order_id' => 'id']);
+    }
 }

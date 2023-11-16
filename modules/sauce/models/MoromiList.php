@@ -51,7 +51,7 @@ class MoromiList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            // [['moromi_id'], 'required'],
+            [['moromi_id'], 'required'],
             [['moromi_id', 'memo_list', 'color'], 'integer'],
             [['record_date'], 'safe'],
             [['ph', 'nacl', 'tn', 'alcohol', 'turbidity'], 'number'],
@@ -79,13 +79,14 @@ class MoromiList extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getMoromis()
-    {
-        return $this->hasOne(Moromi::class, ['id' => 'moromi_id']);
-    }
-
+    
     public function getMemo()
     {
         return $this->hasOne(MoromiListMemo::class, ['id' => 'memo_list']);
+    }
+    
+    public function getMoromis()
+    {
+        return $this->hasOne(Moromi::class, ['id' => 'moromi_id']);
     }
 }

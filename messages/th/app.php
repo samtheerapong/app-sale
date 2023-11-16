@@ -210,10 +210,14 @@ return [
     'Deadline' => 'กำหนดส่ง',
     'New Deadline' => 'เลื่อนกำหนดส่ง',
     'Payment ID' => 'เงื่อนไขการชำระเงิน',
-    'Total' => 'ราคาก่อนหัก',
+    'Total' => 'ราคา',
     'Percent Vat' => 'อัตราภาษี',
     'Discount' => 'ส่วนลด',
     'Grand Total' => 'ยอดสุทธิ',
+    'Po Number' => 'เลขที่ใบสั่งซื้อ',
+    'Quantity' => 'จำนวน',
+    'Price' => 'ราคา',
+    'Product ID' => 'สินค้า',
 
 
 ];

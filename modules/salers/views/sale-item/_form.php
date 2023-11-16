@@ -21,6 +21,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'unit')->textInput() ?>
 
     <?= $form->field($model, 'total')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'status_id')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

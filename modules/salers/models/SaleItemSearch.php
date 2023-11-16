@@ -17,7 +17,7 @@ class SaleItemSearch extends SaleItem
     public function rules()
     {
         return [
-            [['id', 'product_id', 'quantity', 'unit'], 'integer'],
+            [['id', 'product_id', 'quantity', 'unit', 'status_id', 'order_id'], 'integer'],
             [['price', 'total'], 'number'],
         ];
     }
@@ -59,11 +59,13 @@ class SaleItemSearch extends SaleItem
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'order_id' => $this->order_id,
             'product_id' => $this->product_id,
             'price' => $this->price,
             'quantity' => $this->quantity,
             'unit' => $this->unit,
             'total' => $this->total,
+            'status_id' => $this->status_id,
         ]);
 
         return $dataProvider;

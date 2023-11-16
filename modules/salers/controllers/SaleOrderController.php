@@ -2,12 +2,17 @@
 
 namespace app\modules\salers\controllers;
 
+// use app\modules\salers\models\Model;
+use app\modules\salers\models\SaleItem;
 use app\modules\salers\models\SaleOrder;
 use app\modules\salers\models\SaleOrderSearch;
+use app\modules\sauce\models\Model;
+use Exception;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * SaleOrderController implements the CRUD actions for SaleOrder model.
@@ -83,11 +88,8 @@ class SaleOrderController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new SaleOrder model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
+
+
     public function actionCreate()
     {
         $model = new SaleOrder();
@@ -138,11 +140,32 @@ class SaleOrderController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
+    // public function actionDelete($id)
+    // {
+    //     $this->findModel($id)->delete();
+
+    //     return $this->redirect(['index']);
+    // }
+
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+            // Delete related Saleitem records
+            SaleItem::deleteAll(['product_id' => $model->id]);
+
+            // Delete the Order record
+            $model->delete();
+
+            $transaction->commit();
+
+            return $this->redirect(['index']);
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
     }
 
     /**
@@ -159,5 +182,55 @@ class SaleOrderController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+
+    public function actionItem($id)
+    {
+        $model = $this->findModel($id);
+
+        $modelsItem = $model->saleItems; // ดูที่ hasmany
+
+        Yii::debug($model->attributes);
+        Yii::debug(count($modelsItem));
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $oldIDs = ArrayHelper::map($modelsItem, 'id', 'id');
+            $modelsItem = Model::createMultiple(SaleItem::class, $modelsItem);
+            Model::loadMultiple($modelsItem, Yii::$app->request->post());
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsItem, 'id', 'id')));
+
+            $valid = $model->validate();
+            $valid = Model::validateMultiple($modelsItem) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $model->save(false)) {
+                        if (!empty($deletedIDs)) {
+                            SaleItem::deleteAll(['id' => $deletedIDs]);
+                        }
+                        foreach ($modelsItem as $modelItem) {
+                            $modelItem->order_id = $model->id;
+                            if (!($flag = $modelItem->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
+        } else {
+            return $this->render('item', [
+                'model' => $model,
+                'modelsItem' => (empty($modelsItem)) ? [new SaleItem] : $modelsItem
+            ]);
+        }
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 16, 2023 at 07:25 AM
+-- Generation Time: Nov 16, 2023 at 10:05 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -1285,7 +1285,9 @@ INSERT INTO `sale_customer` (`id`, `code`, `name`, `address`, `tel`, `color`, `a
 (46, 'CUS0046', 'Surapon Nichirei', NULL, NULL, '#333FFF', 1),
 (47, 'CUS0047', 'Surapon Food', NULL, NULL, '#333FFF', 1),
 (48, 'CUS0048', 'Betagro', NULL, NULL, '#333FFF', 1),
-(49, 'CUS0049', 'Lampang Food', NULL, NULL, '#333FFF', 1);
+(49, 'CUS0049', 'Lampang Food', NULL, NULL, '#333FFF', 1),
+(50, NULL, 'Chivasom', '', '', '#333FFF', 1),
+(51, NULL, 'Tanawat', '', '', '#333FFF', 1);
 
 -- --------------------------------------------------------
 
@@ -1295,12 +1297,22 @@ INSERT INTO `sale_customer` (`id`, `code`, `name`, `address`, `tel`, `color`, `a
 
 CREATE TABLE `sale_item` (
   `id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT '0.00',
   `quantity` int(11) DEFAULT '1',
   `unit` int(11) DEFAULT NULL,
-  `total` decimal(10,2) DEFAULT '0.00'
+  `total` decimal(10,2) DEFAULT '0.00',
+  `status_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_item`
+--
+
+INSERT INTO `sale_item` (`id`, `order_id`, `product_id`, `price`, `quantity`, `unit`, `total`, `status_id`) VALUES
+(1, 1, 1, '2000.00', 1, 1, '0.00', 1),
+(2, 1, 1, '50000.00', 1, 1, '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -1329,10 +1341,10 @@ CREATE TABLE `sale_order` (
 --
 
 INSERT INTO `sale_order` (`id`, `po_number`, `customer_id`, `salers_id`, `deadline`, `new_deadline`, `payment_id`, `percent_vat`, `discount`, `total`, `grand_total`, `remask`, `status`) VALUES
-(1, 'PO-6601-0001', 3, 1, '2023-11-17', '2023-11-23', 2, '7.00', '70.00', '1000.00', '1000.00', '', 1),
-(2, 'PO-6611-0002', 2, 2, '2023-11-16', NULL, NULL, '7.00', '0.00', '1000.00', '1070.00', '', 2),
-(3, 'PO-6601-0003', 7, 2, '2023-11-16', NULL, 2, '7.00', '0.00', '1000.00', '1070.00', '', 8),
-(4, 'PO-6601-0004', 29, 2, '2023-11-24', NULL, 2, '7.00', '0.00', '2000.00', '2140.00', '', 1);
+(1, '230274941', 13, 1, '2023-11-06', NULL, 2, '0.00', '0.00', '3373.08', '3373.08', '', 1),
+(2, '66001687', 9, 1, '2023-11-30', NULL, 4, '0.00', '0.00', '21600.00', '21600.00', '', 2),
+(3, '6610080', 51, 2, '2023-10-25', NULL, 3, '0.00', '0.00', '1683.60', '1683.60', '', 8),
+(4, '2313814', 50, 1, '2023-10-27', NULL, 3, '0.00', '0.00', '12600.00', '12600.00', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1355,10 +1367,10 @@ CREATE TABLE `sale_payment` (
 
 INSERT INTO `sale_payment` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
 (1, 'SP005', 'เงินสด', '', '#005B41', 1),
-(2, 'SP001', 'เครดิต 30 วัน', '', '#f9cb9c', 1),
-(3, 'SP002', 'เครดิต 60 วัน', '', '#f6b26b', 1),
-(4, 'SP003', 'เครดิต 90 วัน', '', '#e69138', 2),
-(5, 'SP004', 'เครดิต 120 วัน', '', '#CD5C08', 2);
+(2, 'SP004', 'เครดิต 15 วัน', '', '#CD5C08', 1),
+(3, 'SP001', 'เครดิต 30 วัน', '', '#f9cb9c', 1),
+(4, 'SP002', 'เครดิต 60 วัน', '', '#f6b26b', 1),
+(5, 'SP003', 'เครดิต 90 วัน', '', '#e69138', 2);
 
 -- --------------------------------------------------------
 
@@ -2609,13 +2621,13 @@ ALTER TABLE `salers`
 -- AUTO_INCREMENT for table `sale_customer`
 --
 ALTER TABLE `sale_customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `sale_item`
 --
 ALTER TABLE `sale_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sale_order`

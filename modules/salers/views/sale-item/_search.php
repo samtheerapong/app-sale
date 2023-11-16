@@ -29,6 +29,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'unit') ?>
 
     <?php // echo $form->field($model, 'total') ?>
+    <?php // echo $form->field($model, 'status_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

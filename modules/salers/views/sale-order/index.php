@@ -2,6 +2,7 @@
 
 use app\modules\salers\models\SaleCustomer;
 use app\modules\salers\models\SaleOrder;
+use app\modules\salers\models\SalePayment;
 use app\modules\salers\models\Salers;
 use app\modules\salers\models\SaleStatus;
 use yii\bootstrap5\LinkPager;
@@ -103,22 +104,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                     ],
                     // 'deadline:date',
-                    [
-                        'attribute' => 'deadline',
-                        'format' => 'date',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
-                        'value' => function ($model) {
-                            return $model->deadline ? $model->deadline : null;
-                        },
-                    ],
+                    // [
+                    //     'attribute' => 'deadline',
+                    //     'format' => 'date',
+                    //     'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                    //     'value' => function ($model) {
+                    //         return $model->deadline ? $model->deadline : null;
+                    //     },
+                    // ],
                     // 'new_deadline',
                     [
-                        'attribute' => 'new_deadline',
+                        'attribute' => 'deadline',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
                         'value' => function ($model) {
-                            $formattedDate = $model->new_deadline ? Yii::$app->formatter->asDate($model->new_deadline) :  Yii::t('app', 'None');
-
+                            $formattedDate = $model->new_deadline ? Yii::$app->formatter->asDate($model->new_deadline) : Yii::$app->formatter->asDate($model->deadline);
+                            
                             return $model->new_deadline ? "<span style='color: red;'>$formattedDate</span>" : $formattedDate;
                         },
                     ],
@@ -131,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'grand_total',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-right', 'style' => 'width:80px;'],
+                        'contentOptions' => ['class' => 'text-right', 'style' => 'width:150px;'],
                         'value' => function ($model) {
                             return $model->grand_total !== null ? Yii::$app->formatter->asDecimal($model->grand_total, 2) : null;
                         },
@@ -140,11 +141,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'remask:ntext',
                     // 'status',
                     [
-                        'attribute' => 'status',
+                        'attribute' => 'payment_id',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:180px;'],
                         'value' => function ($model) {
-                            return '<span class="badge" style="background-color:' . $model->status0->color . ';"><b>' . $model->status0->name . '</b></span>';
+                            return $model->payment->name;
+                        },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'payment_id',
+                            'data' => ArrayHelper::map(SalePayment::find()->where(['active' => 1])->all(), 'id', 'name'),
+                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                            'language' => 'th',
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ])
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                        'value' => function ($model) {
+                            return '<h5><span class="badge" style="background-color:' . $model->status0->color . ';">' . $model->status0->name . '</span></h5>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
@@ -159,12 +178,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'class' => 'kartik\grid\ActionColumn',
+                        'headerOptions' => ['style' => 'width:250px;'],
                         'contentOptions' => ['class' => 'text-center'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
-                        'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
-                        'urlCreator' => function ($action, $model, $key, $index, $column) {
-                            return Url::toRoute([$action, 'id' => $model->id]);
-                        }
+                        'template' => '<div class="btn-group btn-group-xs" role="group">{view} {item} {update} {delete}</div>',
+                        'buttons' => [
+                            'item' => function ($url, $model, $key) {
+                                return Html::a('<i class="fa fa-list"></i>', ['item', 'id' => $model->id], [
+                                    'title' => Yii::t('app', 'Add Items'),
+                                    'class' => 'btn btn-outline-dark btn-sm',
+                                ]);
+                            },
+                        ],
                     ],
                 ],
             ]); ?>
