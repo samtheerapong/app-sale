@@ -15,12 +15,8 @@ class SaleItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'quantity', 'unit'], 'integer'],
             [['price', 'total'], 'number'],
-            // [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => SaleOrder::class, 'targetAttribute' => ['order_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => SaleProduct::class, 'targetAttribute' => ['product_id' => 'id']],
-            [['unit'], 'exist', 'skipOnError' => true, 'targetClass' => SaleProductUnit::class, 'targetAttribute' => ['unit' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => SaleStatus::class, 'targetAttribute' => ['unit' => 'id']],
+            [['order_id', 'product_id', 'unit', 'status_id', 'quantity'], 'integer'],
         ];
     }
 
@@ -38,13 +34,13 @@ class SaleItem extends \yii\db\ActiveRecord
         ];
     }
 
-   
-    public function getProduct()
+
+    public function getProduct0()
     {
         return $this->hasOne(SaleProduct::class, ['id' => 'product_id']);
     }
 
-    public function getUnit0()
+    public function getUnits0()
     {
         return $this->hasOne(SaleProductUnit::class, ['id' => 'unit']);
     }
@@ -54,7 +50,7 @@ class SaleItem extends \yii\db\ActiveRecord
         return $this->hasOne(SaleStatus::class, ['id' => 'status_id']);
     }
 
-    public function getSaleOrders()
+    public function getOrders0()
     {
         return $this->hasOne(SaleOrder::class, ['id' => 'order_id']);
     }

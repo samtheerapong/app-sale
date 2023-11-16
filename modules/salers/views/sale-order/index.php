@@ -181,11 +181,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['style' => 'width:250px;'],
                         'contentOptions' => ['class' => 'text-center'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
-                        'template' => '<div class="btn-group btn-group-xs" role="group">{view} {item} {update} {delete}</div>',
+                        'template' => '<div class="btn-group btn-group-xs" role="group">{view} {item}  {update} {delete}</div>',
                         'buttons' => [
                             'item' => function ($url, $model, $key) {
                                 return Html::a('<i class="fa fa-list"></i>', ['item', 'id' => $model->id], [
-                                    'title' => Yii::t('app', 'Add Items'),
+                                    'title' => Yii::t('app', 'List Item'),
                                     'class' => 'btn btn-outline-dark btn-sm',
                                 ]);
                             },

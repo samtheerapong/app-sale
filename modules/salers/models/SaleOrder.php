@@ -4,41 +4,14 @@ namespace app\modules\salers\models;
 
 use Yii;
 
-/**
- * This is the model class for table "sale_order".
- *
- * @property int $id
- * @property string|null $po_number
- * @property int|null $customer_id
- * @property int|null $salers_id
- * @property string|null $deadline
- * @property string|null $new_deadline
- * @property int|null $payment_id
- * @property float|null $percent_vat
- * @property float|null $discount
- * @property float|null $grand_total
- * @property string|null $remask
- * @property int|null $status
- *
- * @property SaleCustomer $customer
- * @property SaleItem $item
- * @property SalePayment $payment
- * @property Salers $salers
- * @property SaleStatus $status0
- */
 class SaleOrder extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+ 
     public static function tableName()
     {
         return 'sale_order';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -55,9 +28,7 @@ class SaleOrder extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+   
     public function attributeLabels()
     {
         return [
@@ -77,50 +48,29 @@ class SaleOrder extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Customer]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
+    
     public function getCustomer()
     {
         return $this->hasOne(SaleCustomer::class, ['id' => 'customer_id']);
     }
 
-
-    /**
-     * Gets query for [[Payment]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getPayment()
     {
         return $this->hasOne(SalePayment::class, ['id' => 'payment_id']);
     }
 
-    /**
-     * Gets query for [[Salers]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getSalers()
     {
         return $this->hasOne(Salers::class, ['id' => 'salers_id']);
     }
 
-    /**
-     * Gets query for [[Status0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
     public function getStatus0()
     {
         return $this->hasOne(SaleStatus::class, ['id' => 'status']);
     }
 
-
     // hasMany
-    public function getSaleItems()
+    public function getOders0()
     {
         return $this->hasMany(SaleItem::class, ['order_id' => 'id']);
     }

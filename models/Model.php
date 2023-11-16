@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\salers\models;
+namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;

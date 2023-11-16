@@ -210,7 +210,7 @@ return [
     'Deadline' => 'กำหนดส่ง',
     'New Deadline' => 'เลื่อนกำหนดส่ง',
     'Payment ID' => 'เงื่อนไขการชำระเงิน',
-    'Total' => 'ราคา',
+    'Total' => 'ราคารวม',
     'Percent Vat' => 'อัตราภาษี',
     'Discount' => 'ส่วนลด',
     'Grand Total' => 'ยอดสุทธิ',
