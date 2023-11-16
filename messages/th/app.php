@@ -183,6 +183,7 @@ return [
     'Sale Order' => 'ระบบขาย',
     'Sale Orders' => 'ตารางขายสินค้า',
     'Sale Status' => 'สถานะ',
+    'Sale Product' => 'รายการสินค้า',
     'Unit' => 'หน่วยนับ',
     'Salers' => 'พนักงานขาย',
     'Product' => 'สินค้า',
@@ -190,6 +191,19 @@ return [
     'Sale Item' => 'รายการขายสินค้า',
     'Customer' => 'ลูกค้า',
     'Report' => 'รายงาน',
+    'Tel' => 'เบอร์โทร',
+    'Address' => 'ที่อยู่',
+    'Search by name' => 'ค้นหาตามชื่อ',
+    'Sale Customer' => 'รายชื่อลูกค้า',
+    'Unit ID' => 'หน่วยนับ',
+    'Customer ID' => 'ลูกค้า',
+    'Create Sale Customer' => 'เพิ่มรายชื่อลูกค้า',
+    'Create Sale Payment' => 'เพิ่มเงื่อนไขการชำระเงิน',
+    'Create Sale Product' => 'เพิ่มรายการสินค้า',
+    'Sale Payment' => 'เงื่อนไขการชำระเงิน',
+    'Update Sale Customer: {name}' => 'แก้ไข : {name}',
+    'Update Sale Payment: {name}' => 'แก้ไข : {name}',
+    'Update Sale Product: {name}' => 'แก้ไข : {name}',
 
 
 ];

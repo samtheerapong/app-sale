@@ -67,4 +67,14 @@ class SaleProduct extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SaleItem::class, ['product_id' => 'id']);
     }
+
+    public function getUnits()
+    {
+        return $this->hasOne(SaleProductUnit::class, ['id' => 'unit_id']);
+    }
+
+    public function getCustomers()
+    {
+        return $this->hasOne(SaleCustomer::class, ['id' => 'customer_id']);
+    }
 }
