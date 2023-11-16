@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 16, 2023 at 10:05 AM
+-- Generation Time: Nov 16, 2023 at 04:05 PM
 -- Server version: 5.7.39
--- PHP Version: 7.4.9
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -476,7 +476,9 @@ CREATE TABLE `po` (
 
 INSERT INTO `po` (`id`, `po_no`, `description`) VALUES
 (1, 55, '55'),
-(2, 222, '2222');
+(2, 222, '2222'),
+(3, 0, 'asd'),
+(4, 0, 'asd');
 
 -- --------------------------------------------------------
 
@@ -499,7 +501,9 @@ INSERT INTO `po_item` (`id`, `po_item_no`, `quantity`, `po_id`) VALUES
 (1, 'qqq', 1, 1),
 (2, '2', 2, 2),
 (3, '22', 22, 2),
-(4, '222', 222, 2);
+(4, '222', 222, 2),
+(5, 'asda', 1, 4),
+(6, 'wweqwe', 123, 4);
 
 -- --------------------------------------------------------
 
@@ -1312,7 +1316,9 @@ CREATE TABLE `sale_item` (
 
 INSERT INTO `sale_item` (`id`, `order_id`, `product_id`, `price`, `quantity`, `unit`, `total`, `status_id`) VALUES
 (1, 1, 1, '2000.00', 1, 1, '0.00', 1),
-(2, 1, 1, '50000.00', 1, 1, '0.00', 1);
+(2, 1, 1, '50000.00', 1, 1, '0.00', 1),
+(3, 1, 1, '2.00', 1, 1, '0.00', 1),
+(4, NULL, 1, '0.00', 1, 1, '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -1344,7 +1350,8 @@ INSERT INTO `sale_order` (`id`, `po_number`, `customer_id`, `salers_id`, `deadli
 (1, '230274941', 13, 1, '2023-11-06', NULL, 2, '0.00', '0.00', '3373.08', '3373.08', '', 1),
 (2, '66001687', 9, 1, '2023-11-30', NULL, 4, '0.00', '0.00', '21600.00', '21600.00', '', 2),
 (3, '6610080', 51, 2, '2023-10-25', NULL, 3, '0.00', '0.00', '1683.60', '1683.60', '', 8),
-(4, '2313814', 50, 1, '2023-10-27', NULL, 3, '0.00', '0.00', '12600.00', '12600.00', '', 1);
+(4, '2313814', 50, 1, '2023-10-27', NULL, 3, '0.00', '0.00', '12600.00', '12600.00', '', 1),
+(5, 'a11', 2, 1, '2023-11-16', NULL, 1, '0.00', '0.00', '1000.00', '1000.00', '', 1);
 
 -- --------------------------------------------------------
 
@@ -2384,8 +2391,8 @@ ALTER TABLE `sale_customer`
 --
 ALTER TABLE `sale_item`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sale_item_sale_product1_idx` (`product_id`),
-  ADD KEY `fk_sale_item_sale_product_unit1_idx` (`unit`);
+  ADD KEY `fk_sale_item_sale_product_unit1_idx` (`unit`),
+  ADD KEY `fk_sale_items_sale_product1_idx` (`product_id`);
 
 --
 -- Indexes for table `sale_order`
@@ -2579,13 +2586,13 @@ ALTER TABLE `payment_term`
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `po_item`
 --
 ALTER TABLE `po_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `priority`
@@ -2627,13 +2634,13 @@ ALTER TABLE `sale_customer`
 -- AUTO_INCREMENT for table `sale_item`
 --
 ALTER TABLE `sale_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sale_order`
 --
 ALTER TABLE `sale_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sale_payment`
@@ -2747,9 +2754,8 @@ ALTER TABLE `orders_item`
 -- Constraints for table `sale_item`
 --
 ALTER TABLE `sale_item`
-  ADD CONSTRAINT `fk_sale_item_sale_order1` FOREIGN KEY (`product_id`) REFERENCES `sale_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sale_item_sale_product1` FOREIGN KEY (`product_id`) REFERENCES `sale_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sale_item_sale_product_unit1` FOREIGN KEY (`unit`) REFERENCES `sale_product_unit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_sale_item_sale_product_unit1` FOREIGN KEY (`unit`) REFERENCES `sale_product_unit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sale_items_sale_product1` FOREIGN KEY (`product_id`) REFERENCES `sale_product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `sale_order`
