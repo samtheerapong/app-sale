@@ -4,12 +4,12 @@ namespace app\modules\salers\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\salers\models\Saleorder;
+use app\modules\salers\models\SaleOrder;
 
 /**
- * SaleorderSearch represents the model behind the search form of `app\modules\salers\models\Saleorder`.
+ * SaleOrderSearch represents the model behind the search form of `app\modules\salers\models\SaleOrder`.
  */
-class SaleorderSearch extends Saleorder
+class SaleOrderSearch extends SaleOrder
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,9 @@ class SaleorderSearch extends Saleorder
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'salers_id', 'payment_id', 'status_id'], 'integer'],
+            [['id', 'customer_id', 'salers_id', 'payment_id', 'status'], 'integer'],
             [['po_number', 'deadline', 'new_deadline', 'remask'], 'safe'],
-            [['percent_vat', 'discount', 'total', 'grand_total'], 'number'],
+            [['percent_vat', 'discount', 'grand_total','total'], 'number'],
         ];
     }
 
@@ -41,12 +41,20 @@ class SaleorderSearch extends Saleorder
      */
     public function search($params)
     {
-        $query = Saleorder::find();
+        $query = SaleOrder::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC, // เรียงลำดับตามคอลัมน์ "id" ล่าสุดขึ้นก่อน
+                ],
+            ],
+            'pagination' => [
+                'pageSize' => 12, // กำหนดจำนวนรายการต่อหน้า
+            ],
         ]);
 
         $this->load($params);
@@ -69,7 +77,7 @@ class SaleorderSearch extends Saleorder
             'discount' => $this->discount,
             'total' => $this->total,
             'grand_total' => $this->grand_total,
-            'status_id' => $this->status_id,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'po_number', $this->po_number])

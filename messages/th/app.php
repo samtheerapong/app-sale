@@ -195,7 +195,7 @@ return [
     'Address' => 'ที่อยู่',
     'Search by name' => 'ค้นหาตามชื่อ',
     'Sale Customer' => 'รายชื่อลูกค้า',
-    'Unit ID' => 'หน่วยนับ',
+    'Unit ID' => 'หน่วย',
     'Customer ID' => 'ลูกค้า',
     'Create Sale Customer' => 'เพิ่มรายชื่อลูกค้า',
     'Create Sale Payment' => 'เพิ่มเงื่อนไขการชำระเงิน',
@@ -218,6 +218,8 @@ return [
     'Quantity' => 'จำนวน',
     'Price' => 'ราคา',
     'Product ID' => 'สินค้า',
+    'PO Number' => 'เลขที่ใบสั่งซื้อ',
+    'Due Date' => 'วันที่กำหนด',
 
 
 ];

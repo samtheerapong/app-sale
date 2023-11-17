@@ -4,50 +4,31 @@ namespace app\modules\salers\models;
 
 use Yii;
 
-/**
- * This is the model class for table "saleorder".
- *
- * @property int $id
- * @property string|null $po_number
- * @property int|null $customer_id
- * @property int|null $salers_id
- * @property string|null $deadline
- * @property string|null $new_dateline
- * @property int|null $payment_id
- * @property float|null $percent_vat
- * @property float|null $discount
- * @property float|null $total
- * @property float|null $grand_total
- * @property string|null $remask
- * @property int|null $status
- */
-class Saleorder extends \yii\db\ActiveRecord
+class SaleOrder extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public static function tableName()
     {
-        return 'saleorder';
+        return 'sale_order';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
+            [['po_number', 'customer_id', 'salers_id', 'deadline', 'total'], 'required'],
             [['customer_id', 'salers_id', 'payment_id', 'status_id'], 'integer'],
-            [['deadline', 'new_deadline'], 'safe'],
-            [['percent_vat', 'discount', 'total', 'grand_total'], 'number'],
+            [['new_deadline', 'deadline'], 'safe'],
+            [['percent_vat', 'discount', 'grand_total', 'total'], 'number'],
             [['remask'], 'string'],
             [['po_number'], 'string', 'max' => 45],
+            [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => SaleCustomer::class, 'targetAttribute' => ['customer_id' => 'id']],
+            [['payment_id'], 'exist', 'skipOnError' => true, 'targetClass' => SalePayment::class, 'targetAttribute' => ['payment_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => SaleStatus::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['salers_id'], 'exist', 'skipOnError' => true, 'targetClass' => Salers::class, 'targetAttribute' => ['salers_id' => 'id']],
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+
     public function attributeLabels()
     {
         return [
@@ -56,17 +37,16 @@ class Saleorder extends \yii\db\ActiveRecord
             'customer_id' => Yii::t('app', 'Customer ID'),
             'salers_id' => Yii::t('app', 'Salers ID'),
             'deadline' => Yii::t('app', 'Deadline'),
-            'new_deadline' => Yii::t('app', 'New Dateline'),
+            'new_deadline' => Yii::t('app', 'New Deadline'),
             'payment_id' => Yii::t('app', 'Payment ID'),
             'percent_vat' => Yii::t('app', 'Percent Vat'),
             'discount' => Yii::t('app', 'Discount'),
             'total' => Yii::t('app', 'Total'),
             'grand_total' => Yii::t('app', 'Grand Total'),
             'remask' => Yii::t('app', 'Remask'),
-            'status_id' => Yii::t('app', 'Status'),
+            'status_id' => Yii::t('app', 'Status ID'),
         ];
     }
-
 
     public function getCustomer()
     {
@@ -88,14 +68,9 @@ class Saleorder extends \yii\db\ActiveRecord
         return $this->hasOne(SaleStatus::class, ['id' => 'status_id']);
     }
 
-    // hasmany
-    public function getSaleorderItems()
+    // hasMany
+    public function getOders0()
     {
-        return $this->hasMany(SaleorderItem::class, ['saleorder_id' => 'id']);
-    }
-
-    public function calculateTotal()
-    {
-        return $this->getSaleorderItems()->sum('total_price');
+        return $this->hasMany(SaleItem::class, ['order_id' => 'id']);
     }
 }

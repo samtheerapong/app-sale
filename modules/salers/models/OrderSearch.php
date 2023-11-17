@@ -4,12 +4,12 @@ namespace app\modules\salers\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\salers\models\Saleorder;
+use app\modules\salers\models\Order;
 
 /**
- * SaleorderSearch represents the model behind the search form of `app\modules\salers\models\Saleorder`.
+ * OrderSearch represents the model behind the search form of `app\modules\salers\models\Order`.
  */
-class SaleorderSearch extends Saleorder
+class OrderSearch extends Order
 {
     /**
      * {@inheritdoc}
@@ -17,9 +17,8 @@ class SaleorderSearch extends Saleorder
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'salers_id', 'payment_id', 'status_id'], 'integer'],
-            [['po_number', 'deadline', 'new_deadline', 'remask'], 'safe'],
-            [['percent_vat', 'discount', 'total', 'grand_total'], 'number'],
+            [['id'], 'integer'],
+            [['order_no'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class SaleorderSearch extends Saleorder
      */
     public function search($params)
     {
-        $query = Saleorder::find();
+        $query = Order::find();
 
         // add conditions that should always apply here
 
@@ -60,20 +59,9 @@ class SaleorderSearch extends Saleorder
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'customer_id' => $this->customer_id,
-            'salers_id' => $this->salers_id,
-            'deadline' => $this->deadline,
-            'new_deadline' => $this->new_deadline,
-            'payment_id' => $this->payment_id,
-            'percent_vat' => $this->percent_vat,
-            'discount' => $this->discount,
-            'total' => $this->total,
-            'grand_total' => $this->grand_total,
-            'status_id' => $this->status_id,
         ]);
 
-        $query->andFilterWhere(['like', 'po_number', $this->po_number])
-            ->andFilterWhere(['like', 'remask', $this->remask]);
+        $query->andFilterWhere(['like', 'order_no', $this->order_no]);
 
         return $dataProvider;
     }

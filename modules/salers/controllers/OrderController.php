@@ -3,10 +3,9 @@
 namespace app\modules\salers\controllers;
 
 use app\models\Model;
-use app\modules\salers\models\Saleorder;
-use app\modules\salers\models\SaleorderItem;
-use app\modules\salers\models\SaleorderSearch;
-use Exception;
+use app\modules\salers\models\Order;
+use app\modules\salers\models\OrderItem;
+use app\modules\salers\models\OrderSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -14,9 +13,9 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 
 /**
- * SaleorderController implements the CRUD actions for Saleorder model.
+ * OrderController implements the CRUD actions for Order model.
  */
-class SaleorderController extends Controller
+class OrderController extends Controller
 {
     /**
      * @inheritDoc
@@ -37,13 +36,13 @@ class SaleorderController extends Controller
     }
 
     /**
-     * Lists all Saleorder models.
+     * Lists all Order models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new SaleorderSearch();
+        $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -53,7 +52,7 @@ class SaleorderController extends Controller
     }
 
     /**
-     * Displays a single Saleorder model.
+     * Displays a single Order model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -66,36 +65,27 @@ class SaleorderController extends Controller
     }
 
     /**
-     * Creates a new Saleorder model.
+     * Creates a new Order model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Saleorder();
-        $modelsPoItem = [new SaleorderItem];
-        $model->percent_vat = 0;
-        $model->discount = 0;
-
-        // $model->total = $model->calculateTotal();
+        $model = new Order();
+        $modelsPoItem = [new OrderItem];
 
         if ($model->load(Yii::$app->request->post())) {
-            $modelsPoItem = Model::createMultiple(SaleorderItem::class);
+            $modelsPoItem = Model::createMultiple(OrderItem::class);
             Model::loadMultiple($modelsPoItem, Yii::$app->request->post());
             $valid = $model->validate();
             $valid = Model::validateMultiple($modelsPoItem) && $valid;
-
-            $model->grand_total = intval($model->total) + (intval($model->total) * (intval($model->percent_vat) / 100)) - intval($model->discount); // vat temp
-
             $model->save();
             if ($valid) {
                 $transaction = \Yii::$app->db->beginTransaction();
                 try {
                     if ($flag = $model->save(false)) {
                         foreach ($modelsPoItem as $modelPoItem) {
-                            $modelPoItem->saleorder_id = $model->id;
-                            $modelPoItem->unit_id =  $modelPoItem->saleProduct0->units->id;
-                            $modelPoItem->total_price = $modelPoItem->price * $modelPoItem->quantity;
+                            $modelPoItem->order_id = $model->id;
                             if (!($flag = $modelPoItem->save(false))) {
                                 $transaction->rollBack();
                                 break;
@@ -114,13 +104,13 @@ class SaleorderController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'modelsPoItem' => (empty($modelsPoItem)) ? [new SaleorderItem] : $modelsPoItem
+                'modelsPoItem' => (empty($modelsPoItem)) ? [new OrderItem] : $modelsPoItem
             ]);
         }
     }
 
     /**
-     * Updates an existing Saleorder model.
+     * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -129,16 +119,14 @@ class SaleorderController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $modelsPoItem = $model->saleorderItems;
 
-        // $model->total = $model->calculateTotal();
+        $modelsPoItem = $model->orderItems;
 
-        if ($model->load(Yii::$app->request->post())) {
+        // $modelsPdata = $model->pdatas;
 
-            // $model->grand_total = intval($model->total) + (intval($model->total) * (intval($model->percent_vat) / 100)) - intval($model->discount); // vat temp
-            $model->save();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $oldIDs = ArrayHelper::map($modelsPoItem, 'id', 'id');
-            $modelsPoItem = Model::createMultiple(SaleorderItem::class, $modelsPoItem);
+            $modelsPoItem = Model::createMultiple(OrderItem::classname(), $modelsPoItem);
             Model::loadMultiple($modelsPoItem, Yii::$app->request->post());
             $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsPoItem, 'id', 'id')));
 
@@ -150,13 +138,10 @@ class SaleorderController extends Controller
                 try {
                     if ($flag = $model->save(false)) {
                         if (!empty($deletedIDs)) {
-                            SaleorderItem::deleteAll(['id' => $deletedIDs]);
+                            OrderItem::deleteAll(['id' => $deletedIDs]);
                         }
                         foreach ($modelsPoItem as $modelPoItem) {
-                            $modelPoItem->saleorder_id = $model->id;
-                            $modelPoItem->unit_id =  $modelPoItem->saleProduct0->units->id;
-                            $modelPoItem->total_price = $modelPoItem->price * $modelPoItem->quantity;
-
+                            $modelPoItem->order_id = $model->id;
                             if (!($flag = $modelPoItem->save(false))) {
                                 $transaction->rollBack();
                                 break;
@@ -165,7 +150,7 @@ class SaleorderController extends Controller
                     }
                     if ($flag) {
                         $transaction->commit();
-                        return $this->redirect(['view', 'id' => $model->id]);
+                        return $this->redirect(['index']);
                     }
                 } catch (Exception $e) {
                     $transaction->rollBack();
@@ -174,13 +159,13 @@ class SaleorderController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'modelsPoItem' => (empty($modelsPoItem)) ? [new SaleorderItem] : $modelsPoItem
+                'modelsPoItem' => (empty($modelsPoItem)) ? [new Pdata] : $modelsPoItem
             ]);
         }
     }
 
     /**
-     * Deletes an existing Saleorder model.
+     * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -194,15 +179,15 @@ class SaleorderController extends Controller
     }
 
     /**
-     * Finds the Saleorder model based on its primary key value.
+     * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Saleorder the loaded model
+     * @return Order the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Saleorder::findOne(['id' => $id])) !== null) {
+        if (($model = Order::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
