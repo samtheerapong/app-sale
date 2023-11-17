@@ -37,7 +37,8 @@
         "chillerlan/php-qrcode": "*",
         "yurkinx/yii2-image": "*",
         "wbraganca/yii2-dynamicform": "*",
-        "buibr/yii2-datepicker-bs4": "^1.2"
+        "buibr/yii2-datepicker-bs4": "^1.2",
+        "unclead/yii2-multiple-input": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
