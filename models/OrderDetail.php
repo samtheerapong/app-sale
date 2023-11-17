@@ -29,7 +29,7 @@ class OrderDetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id'], 'integer'],
+            [['product_id','order_id'], 'integer'],
             [['price', 'amount'], 'number'],
             [['product_name'], 'string', 'max' => 255],
         ];
@@ -42,6 +42,7 @@ class OrderDetail extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'order_id' => Yii::t('app', 'Order ID'),
             'product_id' => Yii::t('app', 'Product ID'),
             'product_name' => Yii::t('app', 'Product Name'),
             'price' => Yii::t('app', 'Price'),

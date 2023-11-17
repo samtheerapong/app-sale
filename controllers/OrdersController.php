@@ -122,7 +122,7 @@ class OrdersController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = Order::findOne($id); //เลือกใบ Order
+        $model = Orders::findOne($id); //เลือกใบ Order
         $model->items = OrderDetail::find()->where(['order_id' => $model->id])->all();
 
         if ($model->load(Yii::$app->request->post())) {

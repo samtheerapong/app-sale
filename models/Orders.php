@@ -45,4 +45,9 @@ class Orders extends \yii\db\ActiveRecord
             'order_detail' => Yii::t('app', 'Order Detail'),
         ];
     }
+
+    public function getOrderDetail()
+    {
+        return $this->hasMany(OrderDetail::class, ['order_id' => 'id']);
+    }
 }
