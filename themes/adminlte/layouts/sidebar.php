@@ -95,74 +95,7 @@
                         ]
                     ],
 
-                    // [
-                    //     'label' => 'QA',
-                    //     'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-a text-red',
-                    //     'items' => [
-                    //         [
-                    //             'label' => Yii::t('app', 'DAR'),
-                    //             'iconStyle' => 'far',
-                    //             'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //         [
-                    //             'label' => Yii::t('app', 'Certificate'),
-                    //             'iconStyle' => 'far',
-                    //             'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //         [
-                    //             'label' => Yii::t('app', 'Products Spec'),
-                    //             'iconStyle' => 'far',
-                    //             'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //         [
-                    //             'label' => Yii::t('app', 'Raw Material'),
-                    //             'iconStyle' => 'far',
-                    //             'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //         [
-                    //             'label' => Yii::t('app', 'Process Flow'),
-                    //             'iconStyle' => 'far',
-                    //             'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //         [
-                    //             'label' => Yii::t('app', 'NCR'),
-                    //             'iconStyle' => 'far',
-                    //             'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //     ]
-                    // ],
-
-
+                  
                     // EN
                     [
                         'label' => Yii::t('app', 'Engineering'),
@@ -193,7 +126,7 @@
                         'label' => Yii::t('app', 'Sale Order System'),
                         'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
                         'items' => [
-                            ['label' => Yii::t('app', 'Sale Orders'), 'url' => ['/salers/sale-order/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-handshake-simple text-red'],
+                            ['label' => Yii::t('app', 'Sale Orders'), 'url' => ['/salers/saleorder/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-handshake-simple text-red'],
                             ['label' => Yii::t('app', 'Report'), 'url' => ['/salers/sale-report/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-column text-red'],
                             ['label' => Yii::t('app', 'Sale Item'), 'url' => ['/salers/sale-item/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-bottle-water text-red'],
                             [

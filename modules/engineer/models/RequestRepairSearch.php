@@ -11,6 +11,9 @@ use app\modules\engineer\models\RequestRepair;
  */
 class RequestRepairSearch extends RequestRepair
 {
+
+    public $globalsearch;
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +21,7 @@ class RequestRepairSearch extends RequestRepair
     {
         return [
             [['id', 'created_by', 'updated_by', 'priority', 'urgency', 'locations_id', 'approver', 'job_status_id'], 'integer'],
-            [['repair_code', 'created_at', 'updated_at', 'created_date', 'request_department', 'request_title', 'request_detail', 'request_date', 'broken_date', 'remask', 'docs', 'approve_date', 'approve_comment', 'ref'], 'safe'],
+            [['globalsearch','repair_code', 'created_at', 'updated_at', 'created_date', 'request_department', 'request_title', 'request_detail', 'request_date', 'broken_date', 'remask', 'docs', 'approve_date', 'approve_comment', 'ref'], 'safe'],
         ];
     }
 
@@ -87,6 +90,15 @@ class RequestRepairSearch extends RequestRepair
             ->andFilterWhere(['like', 'docs', $this->docs])
             ->andFilterWhere(['like', 'approve_comment', $this->approve_comment])
             ->andFilterWhere(['like', 'ref', $this->ref]);
+
+
+        // GlobalSearch
+        //  $query->orFilterWhere(['like', 'repair_code', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'request_department', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'request_title', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'request_detail', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'remask', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'approve_comment', $this->globalsearch]);
 
         return $dataProvider;
     }

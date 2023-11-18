@@ -1,15 +1,15 @@
 <?php
 
-namespace app\models;
+namespace app\modules\salers\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Product;
+use app\modules\salers\models\SaleorderItem;
 
 /**
- * ProductSearch represents the model behind the search form of `app\models\Product`.
+ * SaleorderItemSearch represents the model behind the search form of `app\modules\salers\models\SaleorderItem`.
  */
-class ProductSearch extends Product
+class SaleorderItemSearch extends SaleorderItem
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,9 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'saleorder_id', 'product_id', 'quantity', 'unit_id', 'status_id'], 'integer'],
+            [['due_date'], 'safe'],
+            [['price', 'total_price'], 'number'],
         ];
     }
 
@@ -40,7 +41,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $query = SaleorderItem::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +60,15 @@ class ProductSearch extends Product
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'saleorder_id' => $this->saleorder_id,
+            'due_date' => $this->due_date,
+            'product_id' => $this->product_id,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
+            'unit_id' => $this->unit_id,
+            'total_price' => $this->total_price,
+            'status_id' => $this->status_id,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

@@ -1,25 +1,28 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/** @var yii\web\View $this */
-/** @var app\models\Product $model */
-/** @var yii\widgets\ActiveForm $form */
 ?>
-
 <div class="product-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $productForm->errorSummary($form); ?>
 
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+    <fieldset>
+        <legend>Product</legend>
+        <?= $form->field($productForm->product, 'name')->textInput() ?>
+    </fieldset>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-    </div>
+    <fieldset>
+        <legend>Parcel</legend>
+        <?= $form->field($productForm->parcel, 'code')->textInput() ?>
+        <?= $form->field($productForm->parcel, 'width')->textInput() ?>
+        <?= $form->field($productForm->parcel, 'height')->textInput() ?>
+        <?= $form->field($productForm->parcel, 'depth')->textInput() ?>
+    </fieldset>
 
+    <?= Html::submitButton('Save'); ?>
     <?php ActiveForm::end(); ?>
 
 </div>

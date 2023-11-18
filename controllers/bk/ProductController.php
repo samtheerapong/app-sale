@@ -8,10 +8,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-//
-use app\models\form\ProductForm;
-use Yii;
-
 /**
  * ProductController implements the CRUD actions for Product model.
  */
@@ -71,16 +67,19 @@ class ProductController extends Controller
      */
     public function actionCreate()
     {
-        $productForm = new ProductForm();
-        $productForm->product = new Product;
-        $productForm->setAttributes(Yii::$app->request->post());
-        if (Yii::$app->request->post() && $productForm->save()) {
-            Yii::$app->getSession()->setFlash('success', 'Product has been created.');
-            return $this->redirect(['update', 'id' => $productForm->product->id]);
-        } elseif (!Yii::$app->request->isPost) {
-            $productForm->load(Yii::$app->request->get());
+        $model = new Product();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
         }
-        return $this->render('create', ['productForm' => $productForm]);
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -92,16 +91,15 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $productForm = new ProductForm();
-        $productForm->product = $this->findModel($id);
-        $productForm->setAttributes(Yii::$app->request->post());
-        if (Yii::$app->request->post() && $productForm->save()) {
-            Yii::$app->getSession()->setFlash('success', 'Product has been updated.');
-            return $this->redirect(['update', 'id' => $productForm->product->id]);
-        } elseif (!Yii::$app->request->isPost) {
-            $productForm->load(Yii::$app->request->get());
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-        return $this->render('update', ['productForm' => $productForm]);
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

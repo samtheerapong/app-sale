@@ -25,7 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="card-body">
             <div class="row">
-                <?= $this->render('_search', ['model' => $searchModel]); ?>
+                <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+                <?php  // echo $this->render('_search', ['model' => $searchModel]); ?>
             </div>
             <div class="row">
                 <?php foreach ($dataProvider->getModels() as $model) : ?>

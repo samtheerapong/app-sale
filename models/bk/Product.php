@@ -8,9 +8,8 @@ use Yii;
  * This is the model class for table "product".
  *
  * @property int $id
- * @property string $name
- *
- * @property Parcel[] $parcels
+ * @property string|null $name
+ * @property float|null $price
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -28,8 +27,8 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['price','charge'], 'number'],
+            [['name','code'], 'string', 'max' => 255],
         ];
     }
 
@@ -40,17 +39,10 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'code' => Yii::t('app', 'code'),
+            'charge' => Yii::t('app', 'charge'),
             'name' => Yii::t('app', 'Name'),
+            'price' => Yii::t('app', 'Price'),
         ];
-    }
-
-    /**
-     * Gets query for [[Parcels]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParcel()
-    {
-        return $this->hasMany(Parcel::class, ['product_id' => 'id']);
     }
 }

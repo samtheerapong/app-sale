@@ -8,8 +8,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\modules\salers\models\Saleorder $model */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Saleorder'), 'url' => ['index']];
+$this->title = $model->po_number;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sale Order'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
@@ -63,7 +63,15 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <strong><?= Yii::t('app', 'New Deadline') ?> : </strong> <?= Yii::$app->formatter->asDate($model->new_deadline); ?>
+                        <strong><?= Yii::t('app', 'New Deadline') ?> : </strong>
+                        <?php
+                        if ($model->new_deadline !== null) {
+                            echo '<span style="color: red;">' . Yii::$app->formatter->asDate($model->new_deadline) . '</span>';
+                        } else {
+                            echo Yii::t('app', 'None');
+                        }
+                        ?>
+
                     </div>
                 </div>
 
@@ -74,43 +82,82 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <strong><?= Yii::t('app', 'Percent Vat') ?> : </strong> <?= Yii::$app->formatter->asDecimal($model->percent_vat, 2) . ' %' ?>
+                        <strong><?= Yii::t('app', 'Percent Vat') ?> : </strong>
+                        <?php
+                        if ($model->percent_vat !== null) {
+                            echo Yii::$app->formatter->asDecimal($model->percent_vat, 2) . ' %';
+                        } else {
+                            echo Yii::t('app', 'ไม่กำหนด');
+                        }
+                        ?>
+
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <strong><?= Yii::t('app', 'Discount') ?> : </strong> <?= Yii::$app->formatter->asDecimal($model->discount, 2)  . ' ฿' ?>
+                        <strong><?= Yii::t('app', 'Discount') ?> : </strong>
+                        <?php
+                        if ($model->discount !== null) {
+                            echo Yii::$app->formatter->asDecimal($model->discount, 2) . ' ฿';
+                        } else {
+                            echo Yii::t('app', 'ไม่กำหนด');
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <strong><?= Yii::t('app', 'Total') ?> : </strong> <?= Yii::$app->formatter->asDecimal($model->total, 2)  . ' ฿' ?>
+                        <strong><?= Yii::t('app', 'Total') ?> : </strong>
+                        <?php
+                        if ($model->total !== null) {
+                            echo Yii::$app->formatter->asDecimal($model->total, 2) . ' ฿';
+                        } else {
+                            echo Yii::t('app', 'ไม่กำหนด');
+                        }
+                        ?>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group text-blue">
+                        <strong><?= Yii::t('app', 'Grand Total') ?> : </strong>
+                        <?php
+                        if ($model->grand_total !== null) {
+                            echo Yii::$app->formatter->asDecimal($model->grand_total, 2) . ' ฿';
+                        } else {
+                            echo Yii::t('app', 'ไม่กำหนด');
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <strong><?= Yii::t('app', 'Grand Total') ?> : </strong> <?= '<b>' . Yii::$app->formatter->asDecimal($model->grand_total, 2)  . ' ฿</b>' ?>
+                        <strong><?= Yii::t('app', 'Status') ?> : </strong>
+                        <span style="color: <?= $model->status0->color ?>;">
+                            <?= $model->status0->name; ?>
+                        </span>
+
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <strong><?= Yii::t('app', 'Remask') ?> : </strong> <?= $model->remask; ?>
+                <?php if ($model->remask !== null && trim($model->remask) !== '') : ?>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <strong><?= Yii::t('app', 'Remask') ?> : </strong> <?= $model->remask; ?>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <strong><?= Yii::t('app', 'Status') ?> : </strong> <?= $model->status0->name; ?>
-                    </div>
-                </div>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
 
-    <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
-            <?= Yii::t('app', 'Order List') ?>
-
-            <span class="float-right"><?= Yii::t('app', 'Total Price : {total} ฿', ['total' => $formattedTotalPriceSum]) ?></span>
+    <div class="card border-info">
+        <div class="card-header text-white bg-info">
+            <?= Yii::t('app', 'Items List') ?>
+            <span class="float-right">
+                <?php //echo Yii::t('app', 'Total Price : {total} ฿', ['total' => $formattedTotalPriceSum]) 
+                ?>
+            </span>
         </div>
         <div class="card-body">
             <?= GridView::widget([

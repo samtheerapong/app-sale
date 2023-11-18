@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\Product $model */
+/** @var app\modules\salers\models\SaleorderItem $model */
 
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Products'), 'url' => ['index']];
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Saleorder Items'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="product-view">
+<div class="saleorder-item-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,7 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'name',
+            'saleorder_id',
+            'due_date',
+            'product_id',
+            'price',
+            'quantity',
+            'unit_id',
+            'total_price',
+            'status_id',
         ],
     ]) ?>
 

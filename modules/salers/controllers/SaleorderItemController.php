@@ -1,21 +1,17 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\salers\controllers;
 
-use app\models\Product;
-use app\models\ProductSearch;
+use app\modules\salers\models\SaleorderItem;
+use app\modules\salers\models\SaleorderItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-//
-use app\models\form\ProductForm;
-use Yii;
-
 /**
- * ProductController implements the CRUD actions for Product model.
+ * SaleorderItemController implements the CRUD actions for SaleorderItem model.
  */
-class ProductController extends Controller
+class SaleorderItemController extends Controller
 {
     /**
      * @inheritDoc
@@ -36,13 +32,13 @@ class ProductController extends Controller
     }
 
     /**
-     * Lists all Product models.
+     * Lists all SaleorderItem models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new SaleorderItemSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +48,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Displays a single Product model.
+     * Displays a single SaleorderItem model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,26 +61,29 @@ class ProductController extends Controller
     }
 
     /**
-     * Creates a new Product model.
+     * Creates a new SaleorderItem model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $productForm = new ProductForm();
-        $productForm->product = new Product;
-        $productForm->setAttributes(Yii::$app->request->post());
-        if (Yii::$app->request->post() && $productForm->save()) {
-            Yii::$app->getSession()->setFlash('success', 'Product has been created.');
-            return $this->redirect(['update', 'id' => $productForm->product->id]);
-        } elseif (!Yii::$app->request->isPost) {
-            $productForm->load(Yii::$app->request->get());
+        $model = new SaleorderItem();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
         }
-        return $this->render('create', ['productForm' => $productForm]);
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing SaleorderItem model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -92,20 +91,19 @@ class ProductController extends Controller
      */
     public function actionUpdate($id)
     {
-        $productForm = new ProductForm();
-        $productForm->product = $this->findModel($id);
-        $productForm->setAttributes(Yii::$app->request->post());
-        if (Yii::$app->request->post() && $productForm->save()) {
-            Yii::$app->getSession()->setFlash('success', 'Product has been updated.');
-            return $this->redirect(['update', 'id' => $productForm->product->id]);
-        } elseif (!Yii::$app->request->isPost) {
-            $productForm->load(Yii::$app->request->get());
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-        return $this->render('update', ['productForm' => $productForm]);
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing SaleorderItem model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -119,15 +117,15 @@ class ProductController extends Controller
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the SaleorderItem model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Product the loaded model
+     * @return SaleorderItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne(['id' => $id])) !== null) {
+        if (($model = SaleorderItem::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
