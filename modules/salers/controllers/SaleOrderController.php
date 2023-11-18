@@ -85,7 +85,7 @@ class SaleorderController extends Controller
             $valid = $model->validate();
             $valid = Model::validateMultiple($modelsPoItem) && $valid;
 
-            $model->grand_total = intval($model->total) + (intval($model->total) * (intval($model->percent_vat) / 100)) - intval($model->discount); // vat temp
+            $model->grand_total = $model->calculateGrandTotal();
 
             $model->save();
             if ($valid) {
@@ -131,11 +131,10 @@ class SaleorderController extends Controller
         $model = $this->findModel($id);
         $modelsPoItem = $model->saleorderItems;
 
-        // $model->total = $model->calculateTotal();
-
         if ($model->load(Yii::$app->request->post())) {
 
-            // $model->grand_total = intval($model->total) + (intval($model->total) * (intval($model->percent_vat) / 100)) - intval($model->discount); // vat temp
+            $model->grand_total = $model->calculateGrandTotal();
+
             $model->save();
             $oldIDs = ArrayHelper::map($modelsPoItem, 'id', 'id');
             $modelsPoItem = Model::createMultiple(SaleorderItem::class, $modelsPoItem);

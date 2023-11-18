@@ -42,6 +42,7 @@ class Saleorder extends \yii\db\ActiveRecord
             [['percent_vat', 'discount', 'total', 'grand_total'], 'number'],
             [['remask'], 'string'],
             [['po_number'], 'string', 'max' => 45],
+            [['po_number', 'total', 'customer_id', 'salers_id', 'payment_id', 'status_id', 'deadline'], 'required'],
         ];
     }
 
@@ -97,5 +98,15 @@ class Saleorder extends \yii\db\ActiveRecord
     public function calculateTotal()
     {
         return $this->getSaleorderItems()->sum('total_price');
+    }
+
+    //คำนวนสุทธิ
+    public function calculateGrandTotal()
+    {
+        if ($this->total !== null && $this->percent_vat !== null && $this->discount !== null) {
+            return intval($this->total) + (intval($this->total) * (intval($this->percent_vat) / 100)) - intval($this->discount);
+        } else {
+            return null; // or return a default value, depending on your requirements
+        }
     }
 }

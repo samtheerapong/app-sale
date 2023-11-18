@@ -39,7 +39,7 @@ use yii\widgets\Pjax;
                 'format' => 'html',
                 // 'contentOptions' => ['style' => 'width:300px;'],
                 'value' => function ($model) {
-                    return $model->saleProduct0->name;
+                    return $model->saleProduct0->code . ' : ' . $model->saleProduct0->name;
                 },
             ],
             // 'price',

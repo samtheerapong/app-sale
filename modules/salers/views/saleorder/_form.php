@@ -1,6 +1,7 @@
 <?php
 
 use app\modules\salers\models\SaleCustomer;
+use app\modules\salers\models\SaleOrder;
 use app\modules\salers\models\SalePayment;
 use app\modules\salers\models\SaleProduct;
 use app\modules\salers\models\SaleProductUnit;
@@ -31,11 +32,12 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
             <div class="row">
                 <div class="col-md-2">
                     <?= $form->field($model, 'po_number')->textInput(['maxlength' => true]) ?>
+                    <?php //echo $form->field($model, 'po_number')->widget(Select2::class, ['language' => 'th','data' => ArrayHelper::map(SaleOrder::find()->all(), 'po_number', 'po_number'),'options' => ['placeholder' => Yii::t('app', 'Select...')],'pluginOptions' => ['allowClear' => true],]);?>
                 </div>
                 <div class="col-md-4">
                     <?= $form->field($model, 'customer_id')->widget(Select2::class, [
                         'language' => 'th',
-                        'data' => ArrayHelper::map(SaleCustomer::find()->all(), 'id', 'name'),
+                        'data' => ArrayHelper::map(SaleCustomer::find()->where(['active' => 1])->all(), 'id', 'name'),
                         'options' => ['placeholder' => Yii::t('app', 'Select...')],
                         'pluginOptions' => [
                             'allowClear' => true
@@ -46,7 +48,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                 <div class="col-md-2">
                     <?= $form->field($model, 'salers_id')->widget(Select2::class, [
                         'language' => 'th',
-                        'data' => ArrayHelper::map(Salers::find()->all(), 'id', 'name'),
+                        'data' => ArrayHelper::map(Salers::find()->where(['active' => 1])->all(), 'id', 'name'),
                         'options' => ['placeholder' => Yii::t('app', 'Select...')],
                         'pluginOptions' => [
                             'allowClear' => true
@@ -85,7 +87,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                 <div class="col-md-2">
                     <?= $form->field($model, 'payment_id')->widget(Select2::class, [
                         'language' => 'th',
-                        'data' => ArrayHelper::map(SalePayment::find()->all(), 'id', 'name'),
+                        'data' => ArrayHelper::map(SalePayment::find()->where(['active' => 1])->all(), 'id', 'name'),
                         'options' => ['placeholder' => Yii::t('app', 'Select...')],
                         'pluginOptions' => [
                             'allowClear' => true
@@ -99,18 +101,14 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                 <div class="col-md-2">
                     <?= $form->field($model, 'discount')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?= $form->field($model, 'total')->textInput(['maxlength' => true]) ?>
                 </div>
 
-                <div class="col-md-2">
-                    <?= $form->field($model, 'grand_total')->textInput(['maxlength' => true]) ?>
-                </div>
-
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <?= $form->field($model, 'status_id')->widget(Select2::class, [
                         'language' => 'th',
-                        'data' => ArrayHelper::map(SaleStatus::find()->all(), 'id', 'name'),
+                        'data' => ArrayHelper::map(SaleStatus::find()->where(['active' => 1])->all(), 'id', 'name'),
                         'options' => ['placeholder' => Yii::t('app', 'Select...')],
                         'pluginOptions' => [
                             'allowClear' => true
@@ -128,7 +126,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                         'widgetBody' => '.container-items', // required: css class selector
                         'widgetItem' => '.item', // required: css class
                         'limit' => 5, // the maximum times, an element can be cloned (default 999)
-                        'min' => 1, // 0 or 1 (default 1)
+                        'min' => 0, // 0 or 1 (default 1)
                         'insertButton' => '.add-item', // css class
                         'deleteButton' => '.remove-item', // css class
                         'model' => $modelsPoItem[0],
@@ -143,7 +141,11 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                             'status_id',
                         ],
                     ]); ?>
-
+                    <div class="row">
+                        <div class="float-right mb-3">
+                            <button type="button" class="add-item btn btn-primary btn-md"><i class="fa fa-plus"></i> <?= Yii::t('app', 'Add Order Items') ?></button>
+                        </div>
+                    </div>
                     <div class="container-items"><!-- widgetContainer -->
                         <?php foreach ($modelsPoItem as $i => $modelPoItem) : ?>
                             <div class="item card"><!-- widgetBody -->
@@ -154,7 +156,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                                         </div>
                                     </div>
                                     <div class="float-right">
-                                        <button type="button" class="add-item btn btn-primary btn-xs"><i class="fa fa-plus"></i> </button>
+                                        <!-- <button type="button" class="add-item btn btn-primary btn-xs"><i class="fa fa-plus"></i> </button> -->
                                         <button type="button" class="remove-item btn btn-danger btn-xs"><i class="fa fa-minus"></i> </button>
                                     </div>
                                     <div class="clearfix"></div>
@@ -176,7 +178,15 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                                         </div>
                                         <div class="col-md-6">
                                             <?= $form->field($modelPoItem, "[{$i}]product_id")->dropDownList(
-                                                ArrayHelper::map(SaleProduct::find()->all(), 'id', 'name'),
+                                                ArrayHelper::map(
+                                                    SaleProduct::find()
+                                                        ->where(['active' => 1])
+                                                        ->all(),
+                                                    'id',
+                                                    function ($model) {
+                                                        return $model->code . ' - ' . $model->name;
+                                                    }
+                                                ),
                                                 [
                                                     'prompt' => Yii::t('app', 'Select...'),
                                                     'options' => [
@@ -192,7 +202,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
 
                                         <div class="col-md-2">
                                             <?= $form->field($modelPoItem, "[{$i}]status_id")->dropDownList(
-                                                ArrayHelper::map(SaleStatus::find()->all(), 'id', 'name'),
+                                                ArrayHelper::map(SaleStatus::find()->where(['active' => 1])->all(), 'id', 'name'),
                                                 [
                                                     'prompt' => Yii::t('app', 'Select...'),
                                                     'options' => [
