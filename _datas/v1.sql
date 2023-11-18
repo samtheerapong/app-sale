@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 18, 2023 at 09:52 AM
+-- Generation Time: Nov 17, 2023 at 09:59 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -313,19 +313,19 @@ INSERT INTO `moromi_status` (`id`, `name`, `detail`, `color`, `active`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Table structure for table `order`
 --
 
-CREATE TABLE `orders` (
+CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `order_no` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `orders`
+-- Dumping data for table `order`
 --
 
-INSERT INTO `orders` (`id`, `order_no`) VALUES
+INSERT INTO `order` (`id`, `order_no`) VALUES
 (1, '001');
 
 -- --------------------------------------------------------
@@ -364,8 +364,10 @@ CREATE TABLE `po` (
 --
 
 INSERT INTO `po` (`id`, `po_no`, `description`) VALUES
-(1, 1, 'description 555'),
-(2, 2, 'description 666');
+(1, 55, '55'),
+(2, 222, '2222'),
+(3, 0, 'asd'),
+(4, 0, 'asd');
 
 -- --------------------------------------------------------
 
@@ -385,10 +387,12 @@ CREATE TABLE `po_item` (
 --
 
 INSERT INTO `po_item` (`id`, `po_id`, `po_item_no`, `quantity`) VALUES
-(1, 1, 'item 1', 50),
-(2, 2, 'item 10', 5),
-(3, 2, 'item 11', 20),
-(4, 1, 'item 2', 30);
+(1, 1, 'qqq', 1),
+(2, 2, '2', 2),
+(3, 2, '22', 22),
+(4, 2, '222', 222),
+(5, 4, 'asda', 1),
+(6, 4, 'wweqwe', 123);
 
 -- --------------------------------------------------------
 
@@ -781,12 +785,9 @@ CREATE TABLE `saleorder` (
 --
 
 INSERT INTO `saleorder` (`id`, `po_number`, `customer_id`, `salers_id`, `deadline`, `new_deadline`, `payment_id`, `percent_vat`, `discount`, `total`, `grand_total`, `remask`, `status_id`) VALUES
-(1, '404167697', 8, 1, '2020-01-06', NULL, 3, '0.00', '0.00', '1000.00', '1000.00', '', 8),
-(3, 'A02112', 3, 2, '2023-11-17', NULL, 3, '7.00', '100.00', '3000.00', '3110.00', '', 8),
-(4, '525252', 3, 2, '2023-11-23', '2023-11-20', 2, '0.00', NULL, NULL, '200000.00', '', 4),
-(5, 'P001', 42, 1, '2023-11-18', NULL, 1, '0.00', '0.00', '5000.00', '5000.00', '', 1),
-(6, 'P001', 6, 2, '2023-11-16', NULL, 2, '0.00', '0.00', '4000.00', '4000.00', '', 1),
-(7, 'P001', 8, 2, '2023-11-18', NULL, 2, '0.00', '0.00', '800000.00', '800000.00', '', 2);
+(1, '404167697', 8, 1, '2020-01-06', NULL, 3, '7.00', '700.00', '10000.00', '10000.00', '', 1),
+(3, 'A02112', 3, 2, '2023-11-17', NULL, 3, '0.00', '0.00', '100.00', '100.00', '', 2),
+(4, '525252', 3, 2, '2023-11-23', NULL, 2, '0.00', '0.00', NULL, '0.00', '', 2);
 
 -- --------------------------------------------------------
 
@@ -813,16 +814,12 @@ CREATE TABLE `saleorder_item` (
 INSERT INTO `saleorder_item` (`id`, `saleorder_id`, `due_date`, `product_id`, `price`, `quantity`, `unit_id`, `total_price`, `status_id`) VALUES
 (1, 1, '2020-01-06', 226, '1000.00', 10, 2, '10000.00', 8),
 (2, 2, '2020-01-06', 226, '1000.00', 10, 2, '10000.00', 8),
-(3, 3, '2023-11-18', 14, '100.00', 12, 3, '1200.00', 8),
+(3, 3, '2023-11-18', 14, '100.00', 1, 3, '100.00', 1),
 (7, 1, '2023-11-18', 217, NULL, 20, 2, '0.00', 8),
-(11, 3, '2023-12-01', 16, NULL, 20, 3, '0.00', 8),
-(12, 3, '2023-11-18', 12, NULL, 15, 3, '0.00', 8),
-(13, 4, '2023-11-17', 4, NULL, 6, 2, '0.00', 4),
-(14, 4, '2023-12-02', 17, NULL, 2, 4, '0.00', 8),
-(15, 7, '2023-11-18', 87, NULL, 6, 3, '0.00', 1),
-(16, 6, '2023-11-18', 9, NULL, 6, 3, '0.00', 7),
-(17, 6, '2023-11-18', 4, NULL, 7, 2, '0.00', 6),
-(18, 5, '2023-11-12', 18, NULL, 10, 3, '0.00', 8);
+(11, 3, '2023-12-01', 16, NULL, 20, 3, '0.00', 7),
+(12, 3, '2023-11-18', 12, NULL, 1, 3, '0.00', 8),
+(13, 4, '2023-11-17', 4, NULL, 6, 2, '0.00', 7),
+(14, 4, '2023-12-02', 17, NULL, 2, 4, '0.00', 8);
 
 -- --------------------------------------------------------
 
@@ -1845,9 +1842,9 @@ ALTER TABLE `moromi_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `orders`
+-- Indexes for table `order`
 --
-ALTER TABLE `orders`
+ALTER TABLE `order`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2056,9 +2053,9 @@ ALTER TABLE `moromi_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT for table `order`
 --
-ALTER TABLE `orders`
+ALTER TABLE `order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -2071,13 +2068,13 @@ ALTER TABLE `order_item`
 -- AUTO_INCREMENT for table `po`
 --
 ALTER TABLE `po`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `po_item`
 --
 ALTER TABLE `po_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `priority`
@@ -2101,13 +2098,13 @@ ALTER TABLE `request_repair`
 -- AUTO_INCREMENT for table `saleorder`
 --
 ALTER TABLE `saleorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `saleorder_item`
 --
 ALTER TABLE `saleorder_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `salers`
