@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
+                'hover' => true,
                 'pager' => [
                     'class' => LinkPager::class,
                     'options' => ['class' => 'pagination justify-content-center m-1'],
@@ -76,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'po_number',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:160px;'],
+                        'contentOptions' => ['style' => 'width:160px;'],
                         'value' => function ($model) {
                             return $model->po_number ? $model->po_number : null;
                         },
@@ -94,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'customer_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:300px;'],
+                        'contentOptions' => ['style' => 'width:300px;'],
                         'value' => function ($model) {
                             return $model->customer->name;
                         },
@@ -112,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'salers_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:180px;'],
+                        'contentOptions' => ['style' => 'width:180px;'],
                         'value' => function ($model) {
                             return $model->salers->name;
                         },
@@ -130,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'deadline',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                        'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
                             $formattedDate = $model->new_deadline ? Yii::$app->formatter->asDate($model->new_deadline) : Yii::$app->formatter->asDate($model->deadline);
 
@@ -148,7 +149,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'payment_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:180px;'],
+                        'contentOptions' => ['class' => 'text-right', 'style' => 'width:180px;'],
                         'value' => function ($model) {
                             return $model->payment->name;
                         },
@@ -166,7 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                        'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->status0->color . ';">' . $model->status0->name . '</span></h5>';
                         },

@@ -44,8 +44,8 @@ class RequestRepairSearch extends RequestRepair
     public function search($params)
     {
         $query = RequestRepair::find();
-
-        // add conditions that should always apply here
+        // $query->joinWith(['departments','locations','jobStatus']); // Join with the departments table
+       
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -76,13 +76,14 @@ class RequestRepairSearch extends RequestRepair
             'created_date' => $this->created_date,
             'request_date' => $this->request_date,
             'broken_date' => $this->broken_date,
-            'locations_id' => $this->locations_id,
+            // 'locations_id' => $this->locations_id,
             'approver' => $this->approver,
             'approve_date' => $this->approve_date,
-            'job_status_id' => $this->job_status_id,
+            // 'job_status_id' => $this->job_status_id,
         ]);
 
-        $query->andFilterWhere(['like', 'repair_code', $this->repair_code])
+        $query
+            ->andFilterWhere(['like', 'repair_code', $this->repair_code])
             ->andFilterWhere(['like', 'request_department', $this->request_department])
             ->andFilterWhere(['like', 'request_title', $this->request_title])
             ->andFilterWhere(['like', 'request_detail', $this->request_detail])
@@ -94,10 +95,12 @@ class RequestRepairSearch extends RequestRepair
 
         // GlobalSearch
         //  $query->orFilterWhere(['like', 'repair_code', $this->globalsearch])
-        //     ->orFilterWhere(['like', 'request_department', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'departments.name', $this->globalsearch])
         //     ->orFilterWhere(['like', 'request_title', $this->globalsearch])
         //     ->orFilterWhere(['like', 'request_detail', $this->globalsearch])
         //     ->orFilterWhere(['like', 'remask', $this->globalsearch])
+        //     ->orFilterWhere(['like', 'locations.name', $this->globalsearch])
+        //     // ->orFilterWhere(['like', 'jobStatus.name', $this->globalsearch])
         //     ->orFilterWhere(['like', 'approve_comment', $this->globalsearch]);
 
         return $dataProvider;

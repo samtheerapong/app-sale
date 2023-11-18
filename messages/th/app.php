@@ -222,6 +222,7 @@ return [
     'Due Date' => 'วันที่กำหนด',
     'Items List' => 'รายการสินค้า',
     'Add Order Items' => 'เพิ่มรายการสินค้า',
+    'Grand total' => 'ยอดขายรวม',
 
 
 ];

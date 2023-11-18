@@ -164,6 +164,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                 'dataProvider' => new \yii\data\ActiveDataProvider([
                     'query' => $model->getSaleorderItems(),
                 ]),
+                'hover' => true,
                 'pager' => [
                     'class' => LinkPager::class,
                     'options' => ['class' => 'pagination justify-content-center m-1'],
@@ -179,25 +180,27 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                     [
                         'attribute' => 'due_date',
                         'format' => 'date',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'headerOptions' => ['class' => 'text-center'],
                         'value' => function ($model) {
                             return
                                 $model->due_date;
                         },
                     ],
+                    // [
+                    //     'attribute' => 'saleProduct0.code',
+                    //     'format' => 'html',
+                    //     'value' => function ($model) {
+                    //         return
+                    //             $model->saleProduct0->code;
+                    //     },
+                    // ],
                     [
-                        'attribute' => 'saleProduct0.code',
+                        'attribute' => 'product_id',
                         'format' => 'html',
                         'value' => function ($model) {
                             return
-                                $model->saleProduct0->code;
-                        },
-                    ],
-                    [
-                        'attribute' => 'saleProduct0.name',
-                        'format' => 'html',
-                        'value' => function ($model) {
-                            return
-                                $model->saleProduct0->name;
+                            $model->saleProduct0->code . ' : ' .$model->saleProduct0->name;
                         },
                     ],
                     // [
@@ -211,14 +214,17 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                     [
                         'attribute' => 'quantity',
                         'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'headerOptions' => ['class' => 'text-center'],
                         'value' => function ($model) {
-                            return
-                                $model->quantity;
+                            return Yii::$app->formatter->asDecimal($model->quantity, 0);
                         },
                     ],
                     [
                         'attribute' => 'unit_id',
                         'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'headerOptions' => ['class' => 'text-center'],
                         'value' => function ($model) {
                             return
                                 $model->saleProduct0->units->name;
@@ -235,6 +241,8 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
+                        'contentOptions' => ['class' => 'text-center'],
+                        'headerOptions' => ['class' => 'text-center'],
                         'value' => function ($model) {
                             return
                                 $model->saleStatus0->name;
