@@ -57,7 +57,7 @@ class Saleorder extends \yii\db\ActiveRecord
             'customer_id' => Yii::t('app', 'Customer ID'),
             'salers_id' => Yii::t('app', 'Salers ID'),
             'deadline' => Yii::t('app', 'Deadline'),
-            'new_deadline' => Yii::t('app', 'New Dateline'),
+            'new_deadline' => Yii::t('app', 'New Deadline'),
             'payment_id' => Yii::t('app', 'Payment ID'),
             'percent_vat' => Yii::t('app', 'Percent Vat'),
             'discount' => Yii::t('app', 'Discount'),
