@@ -71,8 +71,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                         },
                     ],
-                    ['class' => 'yii\grid\SerialColumn'],
 
+                    [
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => ['style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                    ],
                     // 'id',
                     [
                         'attribute' => 'po_number',
@@ -96,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'customer_id',
                         'format' => 'html',
-                        'contentOptions' => ['style' => 'width:300px;'],
+                        // 'contentOptions' => ['style' => 'width:300px;'],
                         'value' => function ($model) {
                             return $model->customer->name;
                         },
@@ -173,7 +176,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->status0->color . ';">' . $model->status0->name . '</span></h5>';
                         },

@@ -17,7 +17,7 @@ AppAsset::register($this);
 // $bundle->js[] = 'sweetalert2/sweetalert2.min.js';
 
 
-$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500&family=Kanit&family=Sriracha&display=swap');
+$this->registerCssFile('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Kanit&family=Sriracha&family=Sarabun:wght@500&display=swap');
 
 $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 
@@ -38,9 +38,10 @@ $this->registerJsFile($publishedRes[1] . '/control_sidebar.js', ['depends' => '\
     <?php $this->head() ?>
     <style>
         body {
+            /* font-family: 'Sarabun', sans-serif; */
             /* font-family: 'Sriracha', cursive; */
-            /* font-family: 'Chakra Petch', sans-serif; */
-            font-family: 'Kanit', sans-serif;
+            font-family: 'Chakra Petch', sans-serif;
+            /* font-family: 'Kanit', sans-serif; */
         }
        
     </style>
