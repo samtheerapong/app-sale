@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 18, 2023 at 09:52 AM
+-- Generation Time: Nov 20, 2023 at 09:47 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -781,12 +781,9 @@ CREATE TABLE `saleorder` (
 --
 
 INSERT INTO `saleorder` (`id`, `po_number`, `customer_id`, `salers_id`, `deadline`, `new_deadline`, `payment_id`, `percent_vat`, `discount`, `total`, `grand_total`, `remask`, `status_id`) VALUES
-(1, '404167697', 8, 1, '2020-01-06', NULL, 3, '0.00', '0.00', '1000.00', '1000.00', '', 8),
-(3, 'A02112', 3, 2, '2023-11-17', NULL, 3, '7.00', '100.00', '3000.00', '3110.00', '', 8),
-(4, '525252', 3, 2, '2023-11-23', '2023-11-20', 2, '0.00', NULL, NULL, '200000.00', '', 4),
-(5, 'P001', 42, 1, '2023-11-18', NULL, 1, '0.00', '0.00', '5000.00', '5000.00', '', 1),
-(6, 'P001', 6, 2, '2023-11-16', NULL, 2, '0.00', '0.00', '4000.00', '4000.00', '', 1),
-(7, 'P001', 8, 2, '2023-11-18', NULL, 2, '0.00', '0.00', '800000.00', '800000.00', '', 2);
+(1, '593/2023', 19, 1, '2023-10-27', NULL, 3, '0.00', '0.00', '16700.00', '16700.00', '', 1),
+(2, '1234', 8, 2, '2023-11-09', NULL, 2, '0.00', '0.00', '500000.00', '500000.00', '', 1),
+(3, 'P001', 32, 2, '2023-11-30', NULL, 3, '0.00', '0.00', '50000.00', '50000.00', '', 4);
 
 -- --------------------------------------------------------
 
@@ -811,18 +808,14 @@ CREATE TABLE `saleorder_item` (
 --
 
 INSERT INTO `saleorder_item` (`id`, `saleorder_id`, `due_date`, `product_id`, `price`, `quantity`, `unit_id`, `total_price`, `status_id`) VALUES
-(1, 1, '2020-01-06', 226, '1000.00', 10, 2, '10000.00', 8),
-(2, 2, '2020-01-06', 226, '1000.00', 10, 2, '10000.00', 8),
-(3, 3, '2023-11-18', 14, '100.00', 12, 3, '1200.00', 8),
-(7, 1, '2023-11-18', 217, NULL, 20, 2, '0.00', 8),
-(11, 3, '2023-12-01', 16, NULL, 20, 3, '0.00', 8),
-(12, 3, '2023-11-18', 12, NULL, 15, 3, '0.00', 8),
-(13, 4, '2023-11-17', 4, NULL, 6, 2, '0.00', 4),
-(14, 4, '2023-12-02', 17, NULL, 2, 4, '0.00', 8),
-(15, 7, '2023-11-18', 87, NULL, 6, 3, '0.00', 1),
-(16, 6, '2023-11-18', 9, NULL, 6, 3, '0.00', 7),
-(17, 6, '2023-11-18', 4, NULL, 7, 2, '0.00', 6),
-(18, 5, '2023-11-12', 18, NULL, 10, 3, '0.00', 8);
+(1, 1, '2022-07-14', 2, NULL, 1, 2, '0.00', 1),
+(2, 1, '2023-10-27', 195, NULL, 15, 6, '0.00', 1),
+(3, 1, '2023-11-23', 14, NULL, 20, 3, '0.00', 1),
+(4, 2, '2023-11-22', 1, NULL, 20, 1, '0.00', 1),
+(5, 2, '2023-12-01', 15, NULL, 20, 3, '0.00', 1),
+(6, 2, '2023-11-24', 16, NULL, 15, 3, '0.00', 6),
+(7, 1, '2023-11-20', 85, NULL, 20, 3, NULL, 2),
+(8, 3, '2024-01-03', 35, NULL, 55, 3, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -887,7 +880,7 @@ INSERT INTO `sale_customer` (`id`, `code`, `name`, `address`, `tel`, `color`, `a
 (16, 'CUS0016', 'CPF Food & Baverage', NULL, NULL, '#333FFF', 1),
 (17, 'CUS0017', 'Multitech', NULL, NULL, '#333FFF', 1),
 (18, 'CUS0018', 'KRS', NULL, NULL, '#333FFF', 1),
-(19, 'CUS0019', 'Vanguard', NULL, NULL, '#333FFF', 1),
+(19, 'CUS0019', 'Vanguard Food', '', '', '#333FFF', 1),
 (20, 'CUS0020', 'Kanom Sakol', NULL, NULL, '#333FFF', 1),
 (21, 'CUS0021', 'R&B Food Supply', NULL, NULL, '#333FFF', 1),
 (22, 'CUS0022', 'Winchance Food', NULL, NULL, '#333FFF', 1),
@@ -1163,7 +1156,7 @@ INSERT INTO `sale_product` (`id`, `code`, `name`, `detail`, `unit_id`, `customer
 (192, 'FJSP-A0101', 'Johin Special Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
 (193, 'FJSP-A0102', 'Johin Special Soy Sauce No.2 10 Liter', NULL, 3, NULL, NULL, 1),
 (194, 'FJSP-K0001', 'JOHIN SPECIAL SOY SAUCE (NJ2-1KL)', NULL, 4, NULL, NULL, 1),
-(195, 'FJST-A0101', 'Johin Standard Soy Sauce 10 Liter', NULL, 3, NULL, NULL, 1),
+(195, 'FJST-A0101', 'Johin Standard Soy Sauce 10 Liter', '', 6, NULL, '', 1),
 (196, 'FJST-A0102', 'JOHIN STANDARD SOY SAUCE No.2 10 Liter', NULL, 3, NULL, NULL, 1),
 (197, 'FJST-A0103', 'JOHIN STANDARD SOY SAUCE No.2 + Iodine 10 Liter (AFSSBT)', NULL, 3, NULL, NULL, 1),
 (198, 'FJST-A0104', 'Johin Standard Soy Sauce + Iodine 10 Liters', NULL, 3, NULL, NULL, 1),
@@ -1214,7 +1207,7 @@ INSERT INTO `sale_product` (`id`, `code`, `name`, `detail`, `unit_id`, `customer
 (243, 'FSSU-00051', 'Johin Sushi Soy Sauce 0.005 kg', NULL, 8, NULL, NULL, 1),
 (244, 'FSSU-02001', 'Johin Sushi Soy Sauce 200 ml', NULL, 3, NULL, NULL, 1),
 (245, 'FSSU-A0052', 'Johin Sushi Soy Sauce 5 L (T)', NULL, 3, NULL, NULL, 1),
-(246, 'FSSU-A0101', 'Johin Sushi Soy Sauce (No.1 ) 10 Liter', NULL, 3, NULL, NULL, 1),
+(246, 'FSSU-A0101', 'Johin Sushi Soy Sauce (No.1 ) 10 Liter', '', 6, NULL, '', 1),
 (247, 'FSSU-A0181', 'Johin Sushi Soy Sauce No.1 18 C', NULL, 2, NULL, NULL, 1),
 (248, 'FSSW-02001', 'Organic Sweet and Sour Sauce 200ml(6 Bottles) - La Du Riz Companige', NULL, 3, NULL, NULL, 1),
 (249, 'FSTA-03001', 'Johin Tamari Soy Sauce (M) 300 ml', NULL, 3, NULL, NULL, 1),
@@ -2065,7 +2058,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `po`
@@ -2101,13 +2094,13 @@ ALTER TABLE `request_repair`
 -- AUTO_INCREMENT for table `saleorder`
 --
 ALTER TABLE `saleorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `saleorder_item`
 --
 ALTER TABLE `saleorder_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `salers`
