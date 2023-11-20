@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="sale-payment-search">
 
-<?php $form = ActiveForm::begin([
+    <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
         'options' => [
@@ -34,12 +34,8 @@ use yii\widgets\ActiveForm;
                         'class' => 'form-control',
                     ])->label(false) ?>
 
-                    <button class="btn btn-info" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <button class="btn btn-danger" type="reset">
-                        <i class="fa fa-refresh"></i>
-                    </button>
+                    <?= Html::submitButton('<i class="fa fa-search"></i>', ['class' => 'btn btn-info']) ?>
+                    <?= Html::a('<i class="fa fa-refresh"></i>', ['index'], ['class' => 'btn btn-danger']) ?>
                 </div>
 
             </div>

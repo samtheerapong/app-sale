@@ -127,6 +127,7 @@
                         'iconStyle' => 'fa', 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-angles-right text-yellow',
                         'items' => [
                             ['label' => Yii::t('app', 'Sale Orders'), 'url' => ['/salers/saleorder/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-handshake-simple text-red'],
+                            ['label' => Yii::t('app', 'Sale Order List'), 'url' => ['/salers/saleorder-item/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-list text-red'],
                             ['label' => Yii::t('app', 'Report'), 'url' => ['/salers/sale-report/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-chart-column text-red'],
                             ['label' => Yii::t('app', 'Sale Item'), 'url' => ['/salers/sale-item/index'], 'iconStyle' => 'fa', 'icon' => 'fa-solid fa-bottle-water text-red'],
                             [

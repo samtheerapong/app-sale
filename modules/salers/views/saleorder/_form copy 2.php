@@ -130,7 +130,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                         'min' => 0, // 0 or 1 (default 1)
                         'insertButton' => '.add-item', // css class
                         'deleteButton' => '.remove-item', // css class
-                        'model' => $modelItems[0],
+                        'model' => $modelsPoItem[0],
                         'formId' => 'dynamic-form',
                         'formFields' => [
                             'due_date',
@@ -150,7 +150,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                         </div>
                     </div>
                     <div class="container-items"><!-- widgetContainer -->
-                        <?php foreach ($modelItems as $i => $item) : ?>
+                        <?php foreach ($modelsPoItem as $i => $modelPoItem) : ?>
                             <div class="item card"><!-- widgetBody -->
                                 <div class="card-header bg-warning mb-3">
                                     <div class="card-title float-left">
@@ -167,20 +167,20 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                                 <div class="card-body">
                                     <?php
                                     // necessary for update action.
-                                    if (!$item->isNewRecord) {
-                                        echo Html::activeHiddenInput($item, "[{$i}]id");
+                                    if (!$modelPoItem->isNewRecord) {
+                                        echo Html::activeHiddenInput($modelPoItem, "[{$i}]id");
                                     }
                                     ?>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <?= $form->field($item, "[{$i}]due_date")->textInput([
+                                            <?= $form->field($modelPoItem, "[{$i}]due_date")->textInput([
                                                 'maxlength' => true,
                                                 'type' => 'date', // set the input type to date
                                                 // 'inputOptions' => ['step' => '1'], // set the step attribute
                                             ]) ?>
                                         </div>
                                         <div class="col-md-6">
-                                            <?= $form->field($item, "[{$i}]product_id")->dropDownList(
+                                            <?= $form->field($modelPoItem, "[{$i}]product_id")->dropDownList(
                                                 ArrayHelper::map(
                                                     SaleProduct::find()
                                                         ->where(['active' => 1])
@@ -200,11 +200,11 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                                         </div>
 
                                         <div class="col-md-2">
-                                            <?= $form->field($item, "[{$i}]quantity")->textInput(['maxlength' => true]) ?>
+                                            <?= $form->field($modelPoItem, "[{$i}]quantity")->textInput(['maxlength' => true]) ?>
                                         </div>
 
                                         <div class="col-md-2">
-                                            <?= $form->field($item, "[{$i}]status_id")->dropDownList(
+                                            <?= $form->field($modelPoItem, "[{$i}]status_id")->dropDownList(
                                                 ArrayHelper::map(SaleStatus::find()->where(['active' => 1])->all(), 'id', 'name'),
                                                 [
                                                     'prompt' => Yii::t('app', 'Select...'),

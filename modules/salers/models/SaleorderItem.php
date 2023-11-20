@@ -19,6 +19,11 @@ use Yii;
  */
 class SaleorderItem extends \yii\db\ActiveRecord
 {
+
+    // public $year;
+    // public $month;
+
+
     /**
      * {@inheritdoc}
      */
@@ -54,6 +59,7 @@ class SaleorderItem extends \yii\db\ActiveRecord
             'unit_id' => Yii::t('app', 'Unit ID'),
             'total_price' => Yii::t('app', 'Total Price'),
             'status_id' => Yii::t('app', 'Status ID'),
+            // 'year' => Yii::t('app', 'Select Year'),
         ];
     }
 

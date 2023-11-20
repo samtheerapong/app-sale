@@ -5,12 +5,18 @@ namespace app\modules\salers\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\modules\salers\models\SaleorderItem;
+use Yii;
 
 /**
  * SaleorderItemSearch represents the model behind the search form of `app\modules\salers\models\SaleorderItem`.
  */
 class SaleorderItemSearch extends SaleorderItem
 {
+
+    public $year;
+    public $month;
+
+
     /**
      * {@inheritdoc}
      */
@@ -20,6 +26,13 @@ class SaleorderItemSearch extends SaleorderItem
             [['id', 'saleorder_id', 'product_id', 'quantity', 'unit_id', 'status_id'], 'integer'],
             [['due_date'], 'safe'],
             [['price', 'total_price'], 'number'],
+            [['year', 'month'], 'integer'],
+        ];
+    }
+    public function attributeLabels()
+    {
+        return [
+            'year' => Yii::t('app', 'Select Year'),
         ];
     }
 
@@ -57,6 +70,15 @@ class SaleorderItemSearch extends SaleorderItem
             return $dataProvider;
         }
 
+        // Filter by year and month
+        if ($this->year) {
+            $query->andWhere(['YEAR(due_date)' => $this->year]);
+        }
+
+        if ($this->month) {
+            $query->andWhere(['MONTH(due_date)' => $this->month]);
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -69,6 +91,7 @@ class SaleorderItemSearch extends SaleorderItem
             'total_price' => $this->total_price,
             'status_id' => $this->status_id,
         ]);
+
 
         return $dataProvider;
     }

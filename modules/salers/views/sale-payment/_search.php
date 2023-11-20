@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="sale-payment-search">
 
-<?php $form = ActiveForm::begin([
+    <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
         'options' => [
@@ -21,27 +21,24 @@ use yii\widgets\ActiveForm;
 
     <div style="display: flex; justify-content: space-between;">
         <p>
-            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
         </p>
         <p style="text-align: right;">
 
         <div class="form-inline">
-            <div class="btn-group btn-group-xs" role="group">
-                <div class="input-group mb-3">
-                    <?= $form->field($model, 'name')->textInput([
-                        'placeholder' => Yii::t('app', 'Search by name'),
-                        // 'labelOptions' => ['class' => 'visually-hidden'],
-                        'class' => 'form-control',
-                    ])->label(false) ?>
+            <div class="row">
+                <div class="btn-group btn-group-xs" role="group">
+                    <div class="input-group mb-3">
+                        <?= $form->field($model, 'name')->textInput([
+                            'placeholder' => Yii::t('app', 'Search by name'),
+                            // 'labelOptions' => ['class' => 'visually-hidden'],
+                            'class' => 'form-control',
+                        ])->label(false) ?>
 
-                    <button class="btn btn-info" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <button class="btn btn-danger" type="reset">
-                        <i class="fa fa-refresh"></i>
-                    </button>
+                        <?= Html::submitButton('<i class="fa fa-search"></i>', ['class' => 'btn btn-info']) ?>
+                        <?= Html::a('<i class="fa fa-refresh"></i>', ['index'], ['class' => 'btn btn-danger']) ?>
+                    </div>
                 </div>
-
             </div>
 
             </p>

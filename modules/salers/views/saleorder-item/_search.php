@@ -1,5 +1,7 @@
 <?php
 
+use app\modules\salers\models\SaleorderItem;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -18,27 +20,37 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div style="display: flex; justify-content: space-between;">
+        <p>
+            <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
+        </p>
+        <p style="text-align: right;">
 
-    <?= $form->field($model, 'saleorder_id') ?>
+        <div class="form-inline">
+            <div class="btn-group btn-group-xs" role="group">
+                <div class="input-group mb-3">
+                    <?= $form->field($model, 'year')->dropDownList(
+                        ArrayHelper::map(
+                            SaleorderItem::find()
+                                ->select('YEAR(due_date) AS year')
+                                ->distinct()
+                                ->orderBy(['year' => SORT_ASC])
+                                ->asArray()
+                                ->all(),
+                            'year',
+                            'year'
+                        ),
+                        ['prompt' => Yii::t('app', 'Select Year...')]
+                    )->label(false); ?>
 
-    <?= $form->field($model, 'due_date') ?>
+                    <?= Html::submitButton('<i class="fa fa-search"></i>', ['class' => 'btn btn-info']) ?>
+                    <?= Html::a('<i class="fa fa-refresh"></i>', ['index'], ['class' => 'btn btn-danger']) ?>
+                </div>
 
-    <?= $form->field($model, 'product_id') ?>
+            </div>
 
-    <?= $form->field($model, 'price') ?>
-
-    <?php // echo $form->field($model, 'quantity') ?>
-
-    <?php // echo $form->field($model, 'unit_id') ?>
-
-    <?php // echo $form->field($model, 'total_price') ?>
-
-    <?php // echo $form->field($model, 'status_id') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+            </p>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -210,7 +210,7 @@ return [
     'Deadline' => 'กำหนดส่ง',
     'New Deadline' => 'เลื่อนกำหนดส่ง',
     'Payment ID' => 'เงื่อนไขการชำระเงิน',
-    'Total' => 'ราคารวม',
+    'Total' => 'ยอดขาย',
     'Percent Vat' => 'อัตราภาษี',
     'Discount' => 'ส่วนลด',
     'Grand Total' => 'ยอดสุทธิ',
@@ -223,6 +223,9 @@ return [
     'Items List' => 'รายการสินค้า',
     'Add Order Items' => 'เพิ่มรายการสินค้า',
     'Grand total' => 'ยอดขายรวม',
+    'Saleorder ID' => 'ใบสั่งขาย',
+    'Select Year...' => 'กรุณาเลือกปี...',
+    'Sale Order List' => 'รายการสินค้าที่ขาย',
 
 
 ];

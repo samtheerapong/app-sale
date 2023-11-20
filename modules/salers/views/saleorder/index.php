@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="saleorder-index">
     <p>
-        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -92,6 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ])
                     ],
+
                     [
                         'attribute' => 'customer_id',
                         'format' => 'html',
@@ -110,6 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ])
                     ],
+
                     [
                         'attribute' => 'salers_id',
                         'format' => 'html',
@@ -128,6 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ])
                     ],
+
                     [
                         'attribute' => 'deadline',
                         'format' => 'html',
@@ -138,6 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->new_deadline ? "<span style='color: red;'>$formattedDate</span>" : $formattedDate;
                         },
                     ],
+
                     [
                         'attribute' => 'grand_total',
                         'format' => 'html',
@@ -146,10 +150,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->grand_total !== null ? Yii::$app->formatter->asDecimal($model->grand_total, 2) : null;
                         },
                     ],
+
                     [
                         'attribute' => 'payment_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-right', 'style' => 'width:180px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:180px;'],
                         'value' => function ($model) {
                             return $model->payment->name;
                         },
@@ -164,10 +169,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ])
                     ],
+
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['style' => 'width:150px;'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->status0->color . ';">' . $model->status0->name . '</span></h5>';
                         },

@@ -73,17 +73,17 @@ class SaleorderController extends Controller
     public function actionCreate()
     {
         $model = new Saleorder();
-        $modelsPoItem = [new SaleorderItem];
+        $modelItems = [new SaleorderItem];
         $model->percent_vat = 0;
         $model->discount = 0;
 
         // $model->total = $model->calculateTotal();
 
         if ($model->load(Yii::$app->request->post())) {
-            $modelsPoItem = Model::createMultiple(SaleorderItem::class);
-            Model::loadMultiple($modelsPoItem, Yii::$app->request->post());
+            $modelItems = Model::createMultiple(SaleorderItem::class);
+            Model::loadMultiple($modelItems, Yii::$app->request->post());
             $valid = $model->validate();
-            $valid = Model::validateMultiple($modelsPoItem) && $valid;
+            $valid = Model::validateMultiple($modelItems) && $valid;
 
             $model->grand_total = $model->calculateGrandTotal();
 
@@ -92,11 +92,11 @@ class SaleorderController extends Controller
                 $transaction = \Yii::$app->db->beginTransaction();
                 try {
                     if ($flag = $model->save(false)) {
-                        foreach ($modelsPoItem as $modelPoItem) {
-                            $modelPoItem->saleorder_id = $model->id;
-                            $modelPoItem->unit_id =  $modelPoItem->saleProduct0->units->id;
-                            $modelPoItem->total_price = $modelPoItem->price * $modelPoItem->quantity;
-                            if (!($flag = $modelPoItem->save(false))) {
+                        foreach ($modelItems as $item) {
+                            $item->saleorder_id = $model->id;
+                            $item->unit_id =  $item->saleProduct0->units->id;
+                            $item->total_price = $item->price * $item->quantity;
+                            if (!($flag = $item->save(false))) {
                                 $transaction->rollBack();
                                 break;
                             }
@@ -114,7 +114,7 @@ class SaleorderController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'modelsPoItem' => (empty($modelsPoItem)) ? [new SaleorderItem] : $modelsPoItem
+                'modelItems' => (empty($modelItems)) ? [new SaleorderItem] : $modelItems
             ]);
         }
     }
@@ -129,20 +129,20 @@ class SaleorderController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $modelsPoItem = $model->saleorderItems;
+        $modelItems = $model->saleorderItems;
 
         if ($model->load(Yii::$app->request->post())) {
 
             $model->grand_total = $model->calculateGrandTotal();
 
             $model->save();
-            $oldIDs = ArrayHelper::map($modelsPoItem, 'id', 'id');
-            $modelsPoItem = Model::createMultiple(SaleorderItem::class, $modelsPoItem);
-            Model::loadMultiple($modelsPoItem, Yii::$app->request->post());
-            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelsPoItem, 'id', 'id')));
+            $oldIDs = ArrayHelper::map($modelItems, 'id', 'id');
+            $modelItems = Model::createMultiple(SaleorderItem::class, $modelItems);
+            Model::loadMultiple($modelItems, Yii::$app->request->post());
+            $deletedIDs = array_diff($oldIDs, array_filter(ArrayHelper::map($modelItems, 'id', 'id')));
 
             $valid = $model->validate();
-            $valid = Model::validateMultiple($modelsPoItem) && $valid;
+            $valid = Model::validateMultiple($modelItems) && $valid;
 
             if ($valid) {
                 $transaction = \Yii::$app->db->beginTransaction();
@@ -151,12 +151,12 @@ class SaleorderController extends Controller
                         if (!empty($deletedIDs)) {
                             SaleorderItem::deleteAll(['id' => $deletedIDs]);
                         }
-                        foreach ($modelsPoItem as $modelPoItem) {
-                            $modelPoItem->saleorder_id = $model->id;
-                            $modelPoItem->unit_id =  $modelPoItem->saleProduct0->units->id;
-                            $modelPoItem->total_price = $modelPoItem->price * $modelPoItem->quantity;
+                        foreach ($modelItems as $item) {
+                            $item->saleorder_id = $model->id;
+                            $item->unit_id =  $item->saleProduct0->units->id;
+                            $item->total_price = $item->price * $item->quantity;
 
-                            if (!($flag = $modelPoItem->save(false))) {
+                            if (!($flag = $item->save(false))) {
                                 $transaction->rollBack();
                                 break;
                             }
@@ -173,7 +173,7 @@ class SaleorderController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'modelsPoItem' => (empty($modelsPoItem)) ? [new SaleorderItem] : $modelsPoItem
+                'modelItems' => (empty($modelItems)) ? [new SaleorderItem] : $modelItems
             ]);
         }
     }
