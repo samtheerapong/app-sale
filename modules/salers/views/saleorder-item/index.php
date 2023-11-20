@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'saleorder_id',
                         'format' => 'html',
                         'value' => function ($model) {
-                            return $model->saleoder->po_number . ' - ' . $model->saleoder->customer->name;
+                            return $model->saleorder_id && $model->saleoder ? $model->saleoder->po_number . ' - ' . $model->saleoder->customer->name : '';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
