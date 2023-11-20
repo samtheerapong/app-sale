@@ -223,9 +223,10 @@ return [
     'Items List' => 'รายการสินค้า',
     'Add Order Items' => 'เพิ่มรายการสินค้า',
     'Grand total' => 'ยอดขายรวม',
-    'Saleorder ID' => 'ใบสั่งขาย',
+    'Saleorder ID' => 'ใบออเดอร์',
     'Select Year...' => 'กรุณาเลือกปี...',
-    'Sale Order List' => 'รายการสินค้าที่ขาย',
+    'Sales details' => 'รายการสินค้าที่ขาย',
+    'Create Sales details' => 'เพิ่มรายการสินค้าที่ขาย',
 
 
 ];

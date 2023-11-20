@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\modules\salers\models\SaleorderItem $model */
 
-$this->title = Yii::t('app', 'Create Saleorder Item');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Saleorder Items'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Sales details');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sales details'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="saleorder-item-create">

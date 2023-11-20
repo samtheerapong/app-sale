@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
                         ]
                     ); ?>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <?= $form->field($model, 'product_id')->widget(Select2::class, [
                         'language' => 'th',
                         'data' => ArrayHelper::map(

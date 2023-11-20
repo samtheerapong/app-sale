@@ -16,7 +16,7 @@ use yii\widgets\Pjax;
 /** @var app\modules\salers\models\SaleorderItemSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('app', 'Sale Order List');
+$this->title = Yii::t('app', 'Sales details');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="saleorder-item-index">
