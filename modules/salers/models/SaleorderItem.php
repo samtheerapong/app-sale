@@ -64,7 +64,7 @@ class SaleorderItem extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getSalerder()
+    public function getSaleoder()
     {
         return $this->hasOne(SaleOrder::class, ['id' => 'saleorder_id']);
     }
