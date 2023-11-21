@@ -9,7 +9,10 @@ use kartik\grid\GridView;
         // 'filterModel' => $searchModel,
         'hover' => true,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'contentOptions' => ['style' => 'width:45px;']
+            ], //กำหนด ความกว้างของ #],
 
             // 'id',
             // 'saleorder_id',
@@ -59,7 +62,7 @@ use kartik\grid\GridView;
                 'contentOptions' => ['class' => 'text-center'],
                         'headerOptions' => ['class' => 'text-center'],
                 'value' => function ($model) {
-                    return $model->saleStatus0->name;
+                    return '<span class="text" style="color:' . $model->saleStatus0->color . ';">' . $model->saleStatus0->name . '</span>';
                 },
             ],
 
