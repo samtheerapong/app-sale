@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 20, 2023 at 09:47 AM
+-- Generation Time: Nov 21, 2023 at 09:57 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -156,6 +156,32 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m190124_110200_add_verification_token_column_to_user_table', 1699339433),
 ('m200409_110543_rbac_update_mssql_trigger', 1699339963),
 ('m231107_015704_create_user_profile', 1699328910);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `minimum_config`
+--
+
+CREATE TABLE `minimum_config` (
+  `id` int(11) NOT NULL,
+  `tags` varchar(200) NOT NULL,
+  `type_id` int(11) DEFAULT NULL,
+  `ph` decimal(10,2) DEFAULT NULL,
+  `color` int(11) DEFAULT NULL,
+  `nacl` decimal(10,2) DEFAULT NULL,
+  `tn` decimal(10,2) DEFAULT NULL,
+  `alcohol` decimal(10,2) DEFAULT NULL,
+  `turbidity` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `minimum_config`
+--
+
+INSERT INTO `minimum_config` (`id`, `tags`, `type_id`, `ph`, `color`, `nacl`, `tn`, `alcohol`, `turbidity`) VALUES
+(1, 'Normal', 1, '4.60', 0, '18.00', '1.50', '0.00', '0.00'),
+(2, 'LS', 4, '4.60', 0, '11.00', '1.80', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -783,7 +809,8 @@ CREATE TABLE `saleorder` (
 INSERT INTO `saleorder` (`id`, `po_number`, `customer_id`, `salers_id`, `deadline`, `new_deadline`, `payment_id`, `percent_vat`, `discount`, `total`, `grand_total`, `remask`, `status_id`) VALUES
 (1, '593/2023', 19, 1, '2023-10-27', NULL, 3, '0.00', '0.00', '16700.00', '16700.00', '', 1),
 (2, '1234', 8, 2, '2023-11-09', NULL, 2, '0.00', '0.00', '500000.00', '500000.00', '', 1),
-(3, 'P001', 32, 2, '2023-11-30', NULL, 3, '0.00', '0.00', '50000.00', '50000.00', '', 4);
+(3, 'P001', 32, 2, '2024-02-01', NULL, 3, '0.00', '0.00', '50000.00', '50000.00', '', 4),
+(4, 'P001', 32, 2, '2024-01-01', '2024-01-10', 3, '0.00', '0.00', '20000.00', '20000.00', '', 2);
 
 -- --------------------------------------------------------
 
@@ -808,14 +835,17 @@ CREATE TABLE `saleorder_item` (
 --
 
 INSERT INTO `saleorder_item` (`id`, `saleorder_id`, `due_date`, `product_id`, `price`, `quantity`, `unit_id`, `total_price`, `status_id`) VALUES
-(1, 1, '2022-07-14', 2, NULL, 1, 2, '0.00', 1),
+(1, 1, '2022-07-14', 2, NULL, 1000, 2, '0.00', 1),
 (2, 1, '2023-10-27', 195, NULL, 15, 6, '0.00', 1),
 (3, 1, '2023-11-23', 14, NULL, 20, 3, '0.00', 1),
 (4, 2, '2023-11-22', 1, NULL, 20, 1, '0.00', 1),
 (5, 2, '2023-12-01', 15, NULL, 20, 3, '0.00', 1),
 (6, 2, '2023-11-24', 16, NULL, 15, 3, '0.00', 6),
-(7, 1, '2023-11-20', 85, NULL, 20, 3, NULL, 2),
-(8, 3, '2024-01-03', 35, NULL, 55, 3, NULL, 5);
+(7, 1, '2023-11-20', 85, NULL, 20, 3, '0.00', 2),
+(8, 3, '2024-01-03', 35, NULL, 55, 3, '0.00', 5),
+(9, 3, '2023-11-24', 14, NULL, 15, 3, '0.00', 3),
+(10, 3, '2023-11-23', 18, NULL, 9, 3, '0.00', 3),
+(11, 4, '2023-11-25', 105, NULL, 10, 3, '0.00', 2);
 
 -- --------------------------------------------------------
 
@@ -1814,6 +1844,12 @@ ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Indexes for table `minimum_config`
+--
+ALTER TABLE `minimum_config`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `moromi`
 --
 ALTER TABLE `moromi`
@@ -2025,6 +2061,12 @@ ALTER TABLE `locations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `minimum_config`
+--
+ALTER TABLE `minimum_config`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `moromi`
 --
 ALTER TABLE `moromi`
@@ -2094,13 +2136,13 @@ ALTER TABLE `request_repair`
 -- AUTO_INCREMENT for table `saleorder`
 --
 ALTER TABLE `saleorder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `saleorder_item`
 --
 ALTER TABLE `saleorder_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `salers`
