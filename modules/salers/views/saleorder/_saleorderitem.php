@@ -11,7 +11,7 @@ use kartik\grid\GridView;
         'columns' => [
             [
                 'class' => 'yii\grid\SerialColumn',
-                'contentOptions' => ['style' => 'width:45px;']
+                'contentOptions' => ['class' => 'text-center','style' => 'width:45px;']
             ], //กำหนด ความกว้างของ #],
 
             // 'id',
@@ -38,7 +38,7 @@ use kartik\grid\GridView;
             [
                 'attribute' => 'quantity',
                 'format' => 'html',
-                'contentOptions' => ['class' => 'text-center'],
+                'contentOptions' => ['class' => 'text-center', 'style' => 'width:130px;'],
                 'headerOptions' => ['class' => 'text-center'],
                 'value' => function ($model) {
                     return Yii::$app->formatter->asDecimal($model->quantity, 0);
@@ -48,8 +48,8 @@ use kartik\grid\GridView;
             [
                 'attribute' => 'unit_id',
                 'format' => 'html',
-                'contentOptions' => ['class' => 'text-center'],
-                        'headerOptions' => ['class' => 'text-center'],
+                'headerOptions' => ['class' => 'text-center'],
+                'contentOptions' => ['class' => 'text-center', 'style' => 'width:130px;'],
                 'value' => function ($model) {
                     return $model->saleUnit0->name;
                 },
@@ -59,8 +59,8 @@ use kartik\grid\GridView;
             [
                 'attribute' => 'status_id',
                 'format' => 'html',
-                'contentOptions' => ['class' => 'text-center'],
-                        'headerOptions' => ['class' => 'text-center'],
+                'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                'headerOptions' => ['class' => 'text-center'],
                 'value' => function ($model) {
                     return '<span class="text" style="color:' . $model->saleStatus0->color . ';">' . $model->saleStatus0->name . '</span>';
                 },

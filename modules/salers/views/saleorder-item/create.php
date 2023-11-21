@@ -10,8 +10,9 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sales details'), 'ur
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="saleorder-item-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+    <p>
+        <?= Html::a('<i class="fa fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary']) ?>
+    </p>
 
     <?= $this->render('_form', [
         'model' => $model,

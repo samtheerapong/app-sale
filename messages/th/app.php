@@ -206,6 +206,7 @@ return [
     'Update Sale Payment: {name}' => 'แก้ไข : {name}',
     'Update Sale Product: {name}' => 'แก้ไข : {name}',
     'Update Sale Order: {name}' => 'แก้ไข : {name}',
+    'Update Saleorder Item: {name}' => 'แก้ไข : {name}',
     'Salers ID' => 'พนักงานขาย',
     'Deadline' => 'กำหนดส่ง',
     'New Deadline' => 'เลื่อนกำหนดส่ง',
@@ -224,9 +225,10 @@ return [
     'Add Order Items' => 'เพิ่มรายการสินค้า',
     'Grand total' => 'ยอดขายรวม',
     'Saleorder ID' => 'ใบออเดอร์',
-    'Select Year...' => 'กรุณาเลือกปี...',
+    'Select Year...' => 'ค้นหาจากปี...',
     'Sales details' => 'รายการสินค้าที่ขาย',
     'Create Sales details' => 'เพิ่มรายการสินค้าที่ขาย',
+    'Postponed' => 'เลื่อน',
 
 
 ];

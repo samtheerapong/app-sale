@@ -60,7 +60,13 @@ class SaleorderItemSearch extends SaleorderItem
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC, // เรียงจาก id ล่าสุดก่อน
+                ],
+            ],
         ]);
+
 
         $this->load($params);
 

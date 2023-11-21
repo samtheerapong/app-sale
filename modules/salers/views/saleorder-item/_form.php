@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
                         ),
                         'options' => [
                             'class' => 'form-control',
-                            'placeholder' => Yii::t('app', 'Select...')
+                            'placeholder' => Yii::t('app', 'Select...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,

@@ -2,6 +2,7 @@
 
 use app\modules\salers\models\SaleCustomer;
 use app\modules\salers\models\SaleOrder;
+use app\modules\salers\models\Saleorder as ModelsSaleorder;
 use app\modules\salers\models\SaleorderItemSearch;
 use app\modules\salers\models\SalePayment;
 use app\modules\salers\models\Salers;
@@ -21,12 +22,12 @@ $this->title = Yii::t('app', 'Sale Order');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="saleorder-index">
-    <p>
+    <!-- <p>
         <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create New'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
-    </p>
+    </p> -->
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    <?php echo $this->render('_search', ['model' => $searchModel]);
     ?>
 
     <div class="card border-secondary">
@@ -74,13 +75,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'yii\grid\SerialColumn',
-                        'contentOptions' => ['style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:45px;'], //กำหนด ความกว้างของ #
                     ],
                     // 'id',
                     [
                         'attribute' => 'po_number',
                         'format' => 'html',
-                        'contentOptions' => ['style' => 'width:160px;'],
+                        'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
                             return $model->po_number ? $model->po_number : null;
                         },
@@ -143,6 +144,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             return $model->new_deadline ? "<span style='color: red;'>$formattedDate</span>" : $formattedDate;
                         },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'month',
+                            'data' => ArrayHelper::map(
+                                ModelsSaleorder::find()
+                                    ->select('MONTH(deadline) AS month')
+                                    ->distinct()
+                                    ->orderBy('month')
+                                    ->asArray()
+                                    ->all(),
+                                'month',
+                                function ($model) {
+                                    return Yii::$app->formatter->asDate("0000-{$model['month']}-01", 'MMMM'); //แปลงวันที่ให้อยู่ในรูปแบบของเดือนและแสดงผลเดือนนั้นๆเป็นชื่อเดือนแบบเต็ม
+                                }
+                            ),
+                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                            'language' => 'th',
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]),
                     ],
 
                     [

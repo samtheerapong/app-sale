@@ -42,14 +42,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        // 'class' => 'yii\grid\SerialColumn',
+                        'class' => 'kartik\grid\SerialColumn',
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                    ],
 
                     // 'id',
                     // 'saleorder_id',
                     // 'due_date',
                     [
-                        'label' =>  Yii::t('app', 'Due Date'),
-                        'attribute' => 'month',
+                        'attribute' => 'due_date',
                         'format' => 'date',
                         'contentOptions' => ['style' => 'width:130px;'],
                         'value' => function ($model) {

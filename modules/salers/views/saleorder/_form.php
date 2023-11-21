@@ -133,6 +133,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                         'model' => $modelItems[0],
                         'formId' => 'dynamic-form',
                         'formFields' => [
+                            'saleorder_id',
                             'due_date',
                             'product_id',
                             'price',
@@ -169,6 +170,7 @@ $formattedTotalPriceSum = Yii::$app->formatter->asDecimal($totalPriceSum, 2);
                                     // necessary for update action.
                                     if (!$item->isNewRecord) {
                                         echo Html::activeHiddenInput($item, "[{$i}]id");
+                                        echo Html::activeHiddenInput($item, "[{$i}]saleorder_id");
                                     }
                                     ?>
                                     <div class="row">
