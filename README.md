@@ -1,3 +1,7 @@
-Moromi
-Raw Sauce
-Request Repair
+QA 
+    - Moromi
+    - Raw Sauce
+EN
+    - Request Repair
+SALE
+    - Sale Order
