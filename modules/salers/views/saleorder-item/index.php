@@ -2,6 +2,7 @@
 
 use app\modules\salers\models\SaleOrder;
 use app\modules\salers\models\SaleorderItem;
+use app\modules\salers\models\SaleProduct;
 use app\modules\salers\models\SaleProductUnit;
 use app\modules\salers\models\SaleStatus;
 use kartik\widgets\Select2;
@@ -114,10 +115,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'model' => $searchModel,
                             'attribute' => 'product_id',
                             'data' => ArrayHelper::map(
-                                SaleOrder::find()->all(),
+                                SaleProduct::find()->all(),
                                 'id',
                                 function ($model) {
-                                    return $model->po_number . ' - ' . $model->customer->name;
+                                    return $model->code . ' - ' . $model->name;
                                 }
                             ),
                             'options' => ['placeholder' => Yii::t('app', 'Select...')],
