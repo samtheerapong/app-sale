@@ -41,7 +41,7 @@ class SaleorderItem extends \yii\db\ActiveRecord
             [['saleorder_id', 'product_id', 'quantity', 'unit_id', 'status_id'], 'integer'],
             [['due_date'], 'safe'],
             [['price', 'total_price'], 'number'],
-            // [['due_date','saleorder_id', 'product_id', 'quantity', 'unit_id', 'status_id'], 'required'],
+            [['due_date', 'product_id', 'quantity', 'status_id'], 'required'],
         ];
     }
 

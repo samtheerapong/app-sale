@@ -35,12 +35,17 @@ use yii\widgets\ActiveForm;
                                 return $text;
                             }
                         ),
-                        'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                        'options' => [
+                            'class' => 'form-control',
+                            'placeholder' => Yii::t('app', 'Select...')
+                        ],
                         'pluginOptions' => [
-                            'allowClear' => true
+                            'allowClear' => true,
+                            'initialize' => true,
                         ],
                     ]);
                     ?>
+
                 </div>
             </div>
 
@@ -80,7 +85,7 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-2">
                     <?= $form->field($model, 'quantity')->textInput() ?>
                 </div>
-               
+
 
                 <div class="col-md-2">
                     <?= $form->field($model, 'status_id')->widget(Select2::class, [
