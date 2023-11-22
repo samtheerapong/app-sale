@@ -4,7 +4,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'NFC',
     'name' => 'Application',
     'language' => 'th',
     'timezone' => 'Asia/Bangkok',
@@ -46,13 +46,6 @@ $config = [
         'gallery' => 'dosamigos\gallery\Module',
     ],
     'components' => [
-        // 'assetManager' => [
-        //     'bundles' => [
-        //         'yii\web\JqueryAsset' => [
-        //             'js' => [],
-        //         ],
-        //     ],
-        // ],
         'view' => [
             'theme' => [
                 'pathMap' => [
@@ -112,11 +105,22 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure transport
-            // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+
+        // 'mailer' => [
+        //     'class' => 'yii\swiftmailer\Mailer',
+        //     'viewPath' => '@app/mail',
+        //     'useFileTransport' => false,
+        //     'transport' => [
+        //         'class' => 'Swift_SmtpTransport',
+        //         'host' => 'smtp-mail.outlook.com',
+        //         'username' => 'northernfood.it@hotmail.com',
+        //         'password' => '******',
+        //         'port' => '587',
+        //         'encryption' => 'tls',
+        //     ],
+        // ],
 
         'db' => $db,
         'urlManager' => [
