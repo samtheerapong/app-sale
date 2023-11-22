@@ -51,7 +51,7 @@ class MoromiList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['moromi_id'], 'required'],
+            // [['moromi_id'], 'required'],
             [['moromi_id', 'memo_list', 'color'], 'integer'],
             [['record_date'], 'safe'],
             [['ph', 'nacl', 'tn', 'alcohol', 'turbidity'], 'number'],

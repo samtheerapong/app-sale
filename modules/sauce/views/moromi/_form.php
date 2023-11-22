@@ -110,21 +110,16 @@ use wbraganca\dynamicform\DynamicFormWidget;
                     ]);
                     ?>
                 </div>
-            </div>
-        </div>
 
-
-        <div class="row">
                 <div class="col-md-12">
                     <?= $form->field($model, 'remask')->textInput(['maxlength' => true]) ?>
                 </div>
+            </div>
+        </div>
 
-                <div class="card-footer">
-
-                    <div class="d-grid gap-2">
-                        <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
-                    </div>
-                </div>
+        <div class="card-footer">
+            <div class="d-grid gap-2">
+                <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
             </div>
         </div>
     </div>

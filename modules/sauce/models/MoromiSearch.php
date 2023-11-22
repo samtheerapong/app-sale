@@ -18,7 +18,7 @@ class MoromiSearch extends Moromi
     {
         return [
             [['id', 'type_id', 'status_id', 'created_by', 'updated_by', 'tank_source', 'tank_destination'], 'integer'],
-            [['code', 'batch_no', 'shikomi_date', 'transfer_date', 'tank_source', 'tank_destination', 'created_at', 'updated_at'], 'safe'],
+            [['code', 'batch_no', 'shikomi_date', 'transfer_date', 'tank_source', 'tank_destination', 'created_at', 'updated_at', 'remask'], 'safe'],
         ];
     }
 
@@ -81,8 +81,7 @@ class MoromiSearch extends Moromi
 
         $query->andFilterWhere(['like', 'code', $this->code])
             ->andFilterWhere(['like', 'batch_no', $this->batch_no])
-            // ->andFilterWhere(['like', 'tank_source', $this->tank_source])
-            // ->andFilterWhere(['like', 'tank_destination', $this->tank_destination])
+            ->andFilterWhere(['like', 'remask', $this->remask])
             ->andFilterWhere(['like', 'created_at', $this->created_at])
             ->andFilterWhere(['like', 'updated_at', $this->updated_at]);
 

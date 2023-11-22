@@ -1,22 +1,18 @@
 <?php
 
 use app\modules\sauce\models\Moromi;
+use app\modules\sauce\models\MoromiListSearch;
 use app\modules\sauce\models\MoromiStatus;
 use app\modules\sauce\models\TankDestination;
 use app\modules\sauce\models\TankSource;
 use app\modules\sauce\models\Type;
 use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use kartik\grid\GridView;
+use kartik\widgets\DatePicker;
 use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
-
-/** @var yii\web\View $this */
-/** @var app\modules\sauce\models\MoromiSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'Moromi Record Table');
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card-header text-white bg-secondary">
             <?= Html::encode($this->title) ?>
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -51,15 +47,34 @@ $this->params['breadcrumbs'][] = $this->title;
                     'linkOptions' => ['class' => 'page-link'],
                 ],
                 'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'class' => 'kartik\grid\ExpandRowColumn',
+                        'value' => function ($model, $key, $index, $column) {
+                            return GridView::ROW_COLLAPSED;
+                        },
+                        'detail' => function ($model, $key, $index, $column) {
+                            $searchModel = new MoromiListSearch();
+                            $searchModel->moromi_id = $model->id;
+                            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+                            return Yii::$app->controller->renderPartial('_moromiitem', [
+                                'searchModel' => $searchModel,
+                                'dataProvider' => $dataProvider,
+                            ]);
+                        },
+                    ],
+                    
+                    [
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => [ 'style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                    ],
 
                     // 'id',
                     // 'code',
                     [
-                        'attribute' => 'tank_source',
+                        'attribute' => 'code',
                         'format' => 'html',
-                        // 'headerOptions' => ['style' => 'width: 170px;'],
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:170px;'],
+                        'contentOptions' => ['style' => 'width:170px;'],
                         'value' => function ($model) {
                             return $model->code;
                         },                      
@@ -71,29 +86,63 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
                         'value' => function ($model) {
                             return $model->batch_no;
-                        },                      
+                        },  
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'batch_no',
+                            'data' => ArrayHelper::map(Moromi::find()->all(), 'batch_no', 'batch_no'),
+                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                            'language' => 'th',
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]),                    
                     ],
                     [
                         'attribute' => 'shikomi_date',
                         'format' => 'date',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:auto;'],
+                        'contentOptions' => [
+                            'style' => 'width:150px;'
+                        ],
                         'value' => function ($model) {
                             return $model->shikomi_date;
-                        },                      
+                        },     
+                        'filter' => DatePicker::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'shikomi_date',
+                            'pluginOptions' => [
+                                'format' => 'yyyy-mm-dd',
+                                'todayHighlight' => true,
+                                'autoclose' => true,
+                                'orientation' => 'bottom', // Set the orientation to bottom
+                            ]
+                        ]),                 
                     ],
                     // 'transfer_date:date',
                     [
                         'attribute' => 'transfer_date',
                         'format' => 'date',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:auto;'],
+                        'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
                             return $model->transfer_date;
-                        },                      
+                        },     
+                        'filter' => DatePicker::widget([
+                            // 'language' => 'th',
+                            'model' => $searchModel,
+                            'attribute' => 'transfer_date',
+                            'pluginOptions' => [
+                                'format' => 'yyyy-mm-dd',
+                                'todayHighlight' => true,
+                                'autoclose' => true,
+                                'orientation' => 'bottom', // Set the orientation to bottom
+                            ]
+                        ]),   
+                                         
                     ],
                     [
                         'attribute' => 'tank_source',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:100px;'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b></span>';
                         },
@@ -111,7 +160,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'tank_destination',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:100px;'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->tankDestination0->color . ';"><b>' . $model->tankDestination0->name . '</b></span>';
                         },
@@ -129,7 +178,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'type_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:300px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->moromiType0->color . ';"><b>' . $model->moromiType0->name . '</b></span>';
                         },
@@ -147,7 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
+                        'contentOptions' => ['style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b></span>';
                         },
@@ -171,9 +219,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         'headerOptions' => ['style' => 'width:250px;'],
                         'contentOptions' => ['class' => 'text-center'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
-                        'template' => '<div class="btn-group btn-group-xs" role="group">{view} {item}  {update} {delete}</div>',
+                        'template' => '<div class="btn-group btn-group-xs" role="group">{item} {view} {update} {delete}</div>',
                         'buttons' => [
-                            'item' => function ($url, $model, $key) {
+                            'item' => function ($url, $model, $key) { 
                                 return Html::a('<i class="fa fa-list"></i>', ['item', 'id' => $model->id], [
                                     'title' => Yii::t('app', 'Add List of Memo'),
                                     'class' => 'btn btn-outline-dark btn-sm',

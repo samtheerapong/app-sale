@@ -2,6 +2,7 @@
 
 namespace app\modules\sauce\controllers;
 
+use app\models\MinimumConfigSearch;
 use app\modules\sauce\models\Model;
 use app\modules\sauce\models\Moromi;
 use app\modules\sauce\models\MoromiList;
@@ -41,11 +42,13 @@ class MoromiController extends Controller
     public function actionIndex()
     {
         $searchModel = new MoromiSearch();
+        $searchModelMinimum = new MinimumConfigSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'searchModelMinimum' => $searchModelMinimum,
         ]);
     }
 

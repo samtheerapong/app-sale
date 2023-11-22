@@ -67,6 +67,7 @@ class Moromi extends \yii\db\ActiveRecord
             [['shikomi_date', 'transfer_date', 'created_at', 'updated_at'], 'safe'],
             [['type_id', 'status_id', 'created_by', 'updated_by'], 'integer'],
             [['code', 'batch_no'], 'string', 'max' => 45],
+            [['remask'], 'string'],
             [['batch_no', 'shikomi_date', 'transfer_date', 'status_id', 'type_id', 'tank_source', 'tank_destination'], 'required'],
         ];
     }
@@ -90,6 +91,7 @@ class Moromi extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
             'updated_by' => Yii::t('app', 'Updated By'),
+            'remask' => Yii::t('app', 'Remask'),
         ];
     }
 
