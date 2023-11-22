@@ -44,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="card-body">
                     <?= DetailView::widget([
                         'model' => $model,
+                        'template' => '<tr><th style="width: 200px;">{label}</th><td> {value}</td></tr>',
                         'attributes' => [
                             // 'id',
                             'code',
@@ -107,6 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => new \yii\data\ActiveDataProvider([
                             'query' => $model->getMoromiLists(),
                         ]),
+
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
                             // 'record_date:date',
