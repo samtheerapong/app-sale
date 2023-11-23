@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sale-payment-index">
 
-    <?php Pjax::begin(); ?>
     <?php echo $this->render('_search', ['model' => $searchModel]); 
     ?>
     <div class="card border-secondary">

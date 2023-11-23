@@ -14,7 +14,6 @@ $this->title = Yii::t('app', 'Sale Product');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sale-product-index">
-    <?php Pjax::begin(); ?>
     <?php echo $this->render('_search', ['model' => $searchModel]);
     ?>
     <div class="card border-secondary">

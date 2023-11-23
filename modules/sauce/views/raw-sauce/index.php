@@ -46,12 +46,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'linkOptions' => ['class' => 'page-link'],
                 ],
                 'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:60px;'], //กำหนด ความกว้างของ #
+                    ],
 
                     [
-                        'attribute' => 'month',
+                        'attribute' => 'reccord_date',
                         'format' => 'date',
-                        'options' => ['style' => 'width:200px'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:160px;'],
                         'value' => function ($model) {
                             return $model->reccord_date ?? '';
                         },
@@ -74,7 +77,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'tank_id',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:130px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->tank0->color . ';"><b>' . $model->tank0->code . '</b></span></h5>';
                         },
@@ -93,8 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'type_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:130px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->type0->color . ';"><b>' . $model->type0->code . '</b></span></h5>';
                         },
@@ -114,36 +115,58 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'batch',
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center'],
-                        'options' => ['style' => 'width:200px;'],
                         'value' => function ($model) {
-                            return $model->batch;
+                            return $model->batch ? $model->batch : '';
                         },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'batch',
+                            'data' => ArrayHelper::map(RawSauce::find()->all(), 'batch', 'batch'),
+                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                            'language' => 'th',
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ])
                     ],
 
                     [
                         'attribute' => 'ph',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             if ($model->ph < 4.6) {
                                 return '<span class="text" style="color:#C70039">' . $model->ph . '</span>';
                             } else {
-                                return '<span class="text">' . $model->ph . '</span>';
+                                return $model->ph ? '<span class="text">' . $model->ph . '</span>' : '';
                             }
                         },
                     ],
 
+                    // [
+                    //     'attribute' => 'nacl_p_avr',
+                    //     'format' => 'html',
+                    //     'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                    //     'value' => function ($model) {
+                    //         if ($model->nacl_p_avr > 18) {
+                    //             return '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
+                    //         } else {
+                    //             return $model->nacl_p_avr ? '<span class="text">' . $model->nacl_p_avr . '</span>' : '';
+                    //         }
+                    //     },
+                    // ],
+
                     [
                         'attribute' => 'nacl_p_avr',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
-                            if ($model->nacl_p_avr > 18) {
+                            if (in_array($model->type_id, [2, 4, 8, 9]) && $model->nacl_p_avr > 11) {
+                                return '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
+                            } elseif (in_array($model->type_id, [1, 3, 5, 6, 7, 10]) && $model->nacl_p_avr > 18) {
                                 return '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
                             } else {
-                                return '<span class="text">' . $model->nacl_p_avr . '</span>';
+                                return $model->ph ? '<span class="text">' . $model->nacl_p_avr . '</span>' : '';
                             }
                         },
                     ],
@@ -151,61 +174,61 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'tn_p_avr',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
-                            if ($model->tn_p_avr < 1.5) {
+                            if (in_array($model->type_id, [2, 4, 8, 9]) && $model->tn_p_avr < 1.8) {
+                                return '<span class="text" style="color:#C70039">' . $model->tn_p_avr . '</span>';
+                            } elseif (in_array($model->type_id, [1, 3, 5, 6, 7, 10]) && $model->tn_p_avr < 1.5) {
                                 return '<span class="text" style="color:#C70039">' . $model->tn_p_avr . '</span>';
                             } else {
-                                return '<span class="text">' . $model->tn_p_avr . '</span>';
+                                return $model->ph ? '<span class="text">' . $model->tn_p_avr . '</span>' : '';
                             }
                         },
                     ],
 
+
+
+
+
                     [
                         'attribute' => 'col',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
-                            return $model->col;
+                            return $model->col ? $model->col : '';
                         },
                     ],
 
                     [
                         'attribute' => 'alc_p',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
-                            return $model->alc_p;
+                            return $model->alc_p ? $model->alc_p : '';
                         },
                     ],
                     // 'alc_t',
                     [
                         'attribute' => 'ppm',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
-                            return $model->ppm;
+                            return $model->ppm ? $model->ppm : '';
                         },
                     ],
                     // 'brix',
                     [
                         'attribute' => 'brix',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center'],
-                        //'options' => ['style' => 'width:6%;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
-                            return $model->brix;
+                            return $model->brix ? $model->brix : '';
                         },
                     ],
 
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        // 'headerOptions' => ['style' => 'width: 120px;'],
-                        'contentOptions' => ['class' => 'text-center'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:200px;'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
                         'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
                         'urlCreator' => function ($action, $model, $key, $index, $column) {

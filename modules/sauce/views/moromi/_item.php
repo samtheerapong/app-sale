@@ -97,7 +97,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                             <div class="card-header text-white bg-info">
                                 <div class="card-title float-left">
                                     <div class="float-left">
-                                        <?= $modelitem->id ? $modelitem->memo->name : ' ' ?>
+                                        <?= Yii::t('app', 'List of Memo') ?>
                                     </div>
                                 </div>
                                 <div class="float-right">
@@ -114,15 +114,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                 }
                                 ?>
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <?= $form->field($modelitem, "[{$i}]record_date")->textInput([
-                                            'maxlength' => true,
-                                            'type' => 'date', // set the input type to date
-                                            // 'inputOptions' => ['step' => '1'], // set the step attribute
-                                        ]) ?>
+                                    <div class="col-md-2">
+                                        <?php echo $form->field($modelitem, "[{$i}]record_date")->textInput(['maxlength' => true,'type' => 'date']) ?>
                                     </div>
-                                    <div class="col-md-3">
-
+                                    <div class="col-md-2">
                                         <?= $form->field($modelitem, "[{$i}]memo_list")->dropDownList(
                                             ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'),
                                             [
@@ -133,26 +128,27 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                             ]
                                         ) ?>
                                     </div>
-                                    <div class="col-md-6">
-                                        <?= $form->field($modelitem, "[{$i}]note")->textInput(['maxlength' => true]) ?>
-                                    </div>
-                                    <div class="col-md-2">
+
+                                    <div class="col-md-1">
                                         <?= $form->field($modelitem, "[{$i}]ph")->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <?= $form->field($modelitem, "[{$i}]color")->textInput(['maxlength' => true, 'type' => 'number']) ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <?= $form->field($modelitem, "[{$i}]nacl")->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <?= $form->field($modelitem, "[{$i}]tn")->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <?= $form->field($modelitem, "[{$i}]alcohol")->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <?= $form->field($modelitem, "[{$i}]turbidity")->textInput(['maxlength' => true, 'type' => 'number']) ?>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?= $form->field($modelitem, "[{$i}]note")->textInput(['maxlength' => true]) ?>
                                     </div>
                                 </div>
                             </div>

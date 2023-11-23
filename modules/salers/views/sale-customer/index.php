@@ -16,25 +16,21 @@ $this->title = Yii::t('app', 'Sale Customer');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sale-customer-index">
-   
-    
 
-    <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel]); 
+    <?php echo $this->render('_search', ['model' => $searchModel]);
     ?>
+
     <div class="card border-secondary">
         <div class="card-header text-white bg-secondary">
             <?= Yii::t('app', 'Total : {count} Record', ['count' => $dataProvider->totalCount]) ?>
         </div>
         <div class="card-body">
             <div class="row">
-
-                <?php
-                foreach ($dataProvider->getModels() as $model) : ?>
+                <?php foreach ($dataProvider->getModels() as $model) : ?>
                     <div class="col-md-3 col-sm-6">
                         <div class="card mb-3">
                             <div class="card-header" style="background-color: <?= $model->active === 1 ? '#1A5D1A' : '#FE0000' ?>; color: #FFFFFF;">
-                              <h5><?= Html::a(Html::encode($model->name), ['view', 'id' => $model->id], ['style' => 'color: #FFFFFF;']) ?></h5>
+                                <h5><?= Html::a(Html::encode($model->name), ['view', 'id' => $model->id], ['style' => 'color: #FFFFFF;']) ?></h5>
                             </div>
                             <div class="card-body">
                                 <p class="card-text"><?= Yii::t('app', 'Code') ?>: <?= $model->code ?></p>
@@ -58,11 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                     </div>
-
                 <?php endforeach; ?>
-
             </div>
-            <div class="col-md-12">
+
+            <div class="row">
                 <?php
                 echo LinkPager::widget([
                     'pagination' => $dataProvider->pagination,
@@ -77,4 +72,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+
 </div>

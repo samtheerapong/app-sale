@@ -103,8 +103,8 @@ class RawSauce extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    
-     public function attributeLabels()
+
+    public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
