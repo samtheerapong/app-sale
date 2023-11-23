@@ -74,11 +74,33 @@ $this->params['breadcrumbs'][] = $this->title;
                         ),
                     ],
 
+
+                    [
+                        'attribute' => 'batch',
+                        'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:200px;'],
+                        'value' => function ($model) {
+                            return $model->batch ? $model->batch : '';
+                        },
+                        'filter' => Select2::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'batch',
+                            'data' => ArrayHelper::map(RawSauce::find()->all(), 'batch', 'batch'),
+                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
+                            'language' => 'th',
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ])
+                    ],
+
+
                     [
                         'attribute' => 'tank_id',
                         'format' => 'html',
                         'headerOptions' => ['class' => 'text-center'],
-                        'contentOptions' => ['class' => 'text-center'],
+                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->tank0->color . ';"><b>' . $model->tank0->code . '</b></span></h5>';
                         },
@@ -114,25 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ])
                     ],
 
-                    [
-                        'attribute' => 'batch',
-                        'format' => 'html',
-                        'headerOptions' => ['class' => 'text-center'],
-                        'contentOptions' => ['class' => 'text-center'],
-                        'value' => function ($model) {
-                            return $model->batch ? $model->batch : '';
-                        },
-                        'filter' => Select2::widget([
-                            'model' => $searchModel,
-                            'attribute' => 'batch',
-                            'data' => ArrayHelper::map(RawSauce::find()->all(), 'batch', 'batch'),
-                            'options' => ['placeholder' => Yii::t('app', 'Select...')],
-                            'language' => 'th',
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ],
-                        ])
-                    ],
+                    
 
                     [
                         'attribute' => 'ph',

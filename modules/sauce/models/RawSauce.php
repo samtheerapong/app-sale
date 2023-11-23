@@ -108,7 +108,7 @@ class RawSauce extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'batch' => Yii::t('app', 'Batch'),
+            'batch' => Yii::t('app', 'Batch No'),
             'reccord_date' => Yii::t('app', 'Record Date'),
             'tank_id' => Yii::t('app', 'Tank'),
             'type_id' => Yii::t('app', 'Type'),
