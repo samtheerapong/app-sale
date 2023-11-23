@@ -68,7 +68,7 @@ class Moromi extends \yii\db\ActiveRecord
             [['type_id', 'status_id', 'created_by', 'updated_by'], 'integer'],
             [['code', 'batch_no'], 'string', 'max' => 45],
             [['remask'], 'string'],
-            [['batch_no', 'shikomi_date', 'transfer_date', 'status_id', 'type_id', 'tank_source', 'tank_destination'], 'required'],
+            [['batch_no', 'shikomi_date', 'status_id', 'type_id', 'tank_source', 'tank_destination'], 'required'],
         ];
     }
 

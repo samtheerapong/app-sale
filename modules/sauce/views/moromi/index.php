@@ -119,10 +119,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'transfer_date:date',
                     [
                         'attribute' => 'transfer_date',
-                        'format' => 'date',
+                        'format' => 'html',
                         'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
-                            return $model->transfer_date;
+                            return $model->transfer_date ? Yii::$app->formatter->asDate($model->transfer_date) : Yii::t('app', 'None');
                         },
                         'filter' => DatePicker::widget([
                             // 'language' => 'th',
@@ -142,7 +142,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
-                            return '<span class="text" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b></span>';
+                            return '<span class="text" data-bs-toggle="tooltip" title="' . $model->tankSource0->detail . '" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b></span>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
@@ -160,7 +160,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
-                            return '<span class="text" style="color:' . $model->tankDestination0->color . ';"><b>' . $model->tankDestination0->name . '</b></span>';
+                            return '<span class="text" data-bs-toggle="tooltip" title="' . $model->tankDestination0->detail . '"  style="color:' . $model->tankDestination0->color . ';"><b>' . $model->tankDestination0->name . '</b></span>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
@@ -177,7 +177,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'type_id',
                         'format' => 'html',
                         'value' => function ($model) {
-                            return '<span class="text" style="color:' . $model->moromiType0->color . ';"><b>' . $model->moromiType0->name . '</b></span>';
+                            return '<span class="text" style="color:' . $model->moromiType0->color . ';"><b>' . $model->moromiType0->name . '</b> </span>'.'<span class="badge badge-warning">' . $model->remask . '</span>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,

@@ -44,6 +44,7 @@ return [
     'Select All' => 'ทั้งหมด',
     'Remask' => 'Remask',
     'Submit' => 'ส่ง',
+    'None' => 'ไม่ระบุ',
 
 
 
