@@ -37,7 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'pager' => [
                     'class' => LinkPager::class,
-                    'options' => ['class' => 'pagination justify-content-center m-1'],
                     'maxButtonCount' => 5,
                     'firstPageLabel' => Yii::t('app', 'First'),
                     'lastPageLabel' => Yii::t('app', 'Last'),

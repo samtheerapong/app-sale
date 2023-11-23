@@ -47,9 +47,9 @@ class RawSauceController extends Controller
         $searchModel = new RawSauceSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        $dataProvider->pagination = [
-            'pageSize' => 20, // Number of items per page
-        ];
+        // $dataProvider->pagination = [
+        //     'pageSize' => 20, // Number of items per page
+        // ];
 
         return $this->render('index', [
             'searchModel' => $searchModel,

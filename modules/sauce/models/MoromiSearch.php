@@ -47,13 +47,11 @@ class MoromiSearch extends Moromi
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 9, // Set the number of items per page to 12
+                'pageSize' => 10,
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC, // Ascending order for tank_id
-                    // 'batch_no' => SORT_DESC, // Ascending order for type_id
-                    // 'reccord_date' => SORT_DESC, // Descending order for record_date
+                    'id' => SORT_DESC, 
                 ],
             ],
         ]);

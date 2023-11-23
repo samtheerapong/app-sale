@@ -54,9 +54,10 @@ class RawSauceSearch extends RawSauce
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             // เรียงล่าสุดก่อน จาก id
-            'pagination' => false, // Disable pagination
+            'pagination' => [
+                'pageSize' => 10,
+            ],
             'sort' => ['defaultOrder' => [
-                // 'id' => 'ACE'
                 'id' => SORT_DESC,
             ]]
         ]);

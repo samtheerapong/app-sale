@@ -63,30 +63,30 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                         },
                     ],
-                    
+
                     [
                         'class' => 'yii\grid\SerialColumn',
-                        'contentOptions' => [ 'style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                        'contentOptions' => ['style' => 'width:45px;'], //กำหนด ความกว้างของ #
                     ],
 
                     // 'id',
                     // 'code',
-                    [
-                        'attribute' => 'code',
-                        'format' => 'html',
-                        'contentOptions' => ['style' => 'width:170px;'],
-                        'value' => function ($model) {
-                            return $model->code;
-                        },                      
-                    ],
+                    // [
+                    //     'attribute' => 'code',
+                    //     'format' => 'html',
+                    //     'contentOptions' => ['style' => 'width:170px;'],
+                    //     'value' => function ($model) {
+                    //         return $model->code;
+                    //     },                      
+                    // ],
                     // 'batch_no',
                     [
                         'attribute' => 'batch_no',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:200px;'],
                         'value' => function ($model) {
                             return $model->batch_no;
-                        },  
+                        },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
                             'attribute' => 'batch_no',
@@ -96,17 +96,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'pluginOptions' => [
                                 'allowClear' => true
                             ],
-                        ]),                    
+                        ]),
                     ],
                     [
                         'attribute' => 'shikomi_date',
                         'format' => 'date',
-                        'contentOptions' => [
-                            'style' => 'width:150px;'
-                        ],
+                        'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
                             return $model->shikomi_date;
-                        },     
+                        },
                         'filter' => DatePicker::widget([
                             'model' => $searchModel,
                             'attribute' => 'shikomi_date',
@@ -116,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'autoclose' => true,
                                 'orientation' => 'bottom', // Set the orientation to bottom
                             ]
-                        ]),                 
+                        ]),
                     ],
                     // 'transfer_date:date',
                     [
@@ -125,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
                             return $model->transfer_date;
-                        },     
+                        },
                         'filter' => DatePicker::widget([
                             // 'language' => 'th',
                             'model' => $searchModel,
@@ -136,13 +134,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'autoclose' => true,
                                 'orientation' => 'bottom', // Set the orientation to bottom
                             ]
-                        ]),   
-                                         
+                        ]),
+
                     ],
                     [
                         'attribute' => 'tank_source',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:120px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b></span>';
                         },
@@ -160,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'tank_destination',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:120px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="text" style="color:' . $model->tankDestination0->color . ';"><b>' . $model->tankDestination0->name . '</b></span>';
                         },
@@ -221,7 +219,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
                         'template' => '<div class="btn-group btn-group-xs" role="group">{item} {view} {update} {delete}</div>',
                         'buttons' => [
-                            'item' => function ($url, $model, $key) { 
+                            'item' => function ($url, $model, $key) {
                                 return Html::a('<i class="fa fa-list"></i>', ['item', 'id' => $model->id], [
                                     'title' => Yii::t('app', 'Add List of Memo'),
                                     'class' => 'btn btn-outline-dark btn-sm',

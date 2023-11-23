@@ -16,7 +16,7 @@ use kartik\form\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
         'options' => [
-            'data-pjax' => 12
+            'data-pjax' => 1
         ],
     ]); ?>
 
