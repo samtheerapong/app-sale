@@ -54,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'reccord_date',
                         'format' => 'date',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:160px;'],
                         'value' => function ($model) {
                             return $model->reccord_date ?? '';
@@ -76,6 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'tank_id',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center'],
                         'value' => function ($model) {
                             return '<h5><span class="badge" style="background-color:' . $model->tank0->color . ';"><b>' . $model->tank0->code . '</b></span></h5>';
@@ -95,9 +97,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'type_id',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
                         'value' => function ($model) {
-                            return '<h5><span class="badge" style="background-color:' . $model->type0->color . ';"><b>' . $model->type0->code . '</b></span></h5>';
+                            return '<h5><span class="badge" data-bs-toggle="tooltip" title="' . $model->type0->name . '" style="background-color:' . $model->type0->color . ';"><b>' . $model->type0->code . '</b></span></h5>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,
@@ -114,6 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'batch',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center'],
                         'value' => function ($model) {
                             return $model->batch ? $model->batch : '';
@@ -133,66 +137,53 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'ph',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             if ($model->ph < 4.6) {
-                                return '<span class="text" style="color:#C70039">' . $model->ph . '</span>';
+                                return '<span class="text" data-bs-toggle="tooltip" title="ค่ามาตรฐาน 4.6" style="color:#C70039">' . $model->ph . '</span>';
                             } else {
                                 return $model->ph ? '<span class="text">' . $model->ph . '</span>' : '';
                             }
                         },
                     ],
 
-                    // [
-                    //     'attribute' => 'nacl_p_avr',
-                    //     'format' => 'html',
-                    //     'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
-                    //     'value' => function ($model) {
-                    //         if ($model->nacl_p_avr > 18) {
-                    //             return '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
-                    //         } else {
-                    //             return $model->nacl_p_avr ? '<span class="text">' . $model->nacl_p_avr . '</span>' : '';
-                    //         }
-                    //     },
-                    // ],
-
                     [
                         'attribute' => 'nacl_p_avr',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             if (in_array($model->type_id, [2, 4, 8, 9]) && $model->nacl_p_avr > 11) {
-                                return '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
+                                return '<span class="text" data-bs-toggle="tooltip" title="ค่ามาตรฐาน 11" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
                             } elseif (in_array($model->type_id, [1, 3, 5, 6, 7, 10]) && $model->nacl_p_avr > 18) {
-                                return '<span class="text" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
+                                return '<span class="text" data-bs-toggle="tooltip" title="ค่ามาตรฐาน 18" style="color:#C70039">' . $model->nacl_p_avr . '</span>';
                             } else {
-                                return $model->ph ? '<span class="text">' . $model->nacl_p_avr . '</span>' : '';
+                                return $model->nacl_p_avr ? '<span class="text">' . $model->nacl_p_avr . '</span>' : '';
                             }
                         },
                     ],
 
                     [
                         'attribute' => 'tn_p_avr',
+                        'headerOptions' => ['class' => 'text-center'],
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             if (in_array($model->type_id, [2, 4, 8, 9]) && $model->tn_p_avr < 1.8) {
-                                return '<span class="text" style="color:#C70039">' . $model->tn_p_avr . '</span>';
+                                return '<span class="text" data-bs-toggle="tooltip" title="ค่ามาตรฐาน 1.8" style="color:#C70039">' . $model->tn_p_avr . '</span>';
                             } elseif (in_array($model->type_id, [1, 3, 5, 6, 7, 10]) && $model->tn_p_avr < 1.5) {
-                                return '<span class="text" style="color:#C70039">' . $model->tn_p_avr . '</span>';
+                                return '<span class="text" data-bs-toggle="tooltip" title="ค่ามาตรฐาน 1.5" style="color:#C70039">' . $model->tn_p_avr . '</span>';
                             } else {
-                                return $model->ph ? '<span class="text">' . $model->tn_p_avr . '</span>' : '';
+                                return $model->tn_p_avr ? '<span class="text">' . $model->tn_p_avr . '</span>' : '';
                             }
                         },
                     ],
 
-
-
-
-
                     [
                         'attribute' => 'col',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             return $model->col ? $model->col : '';
@@ -202,6 +193,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'alc_p',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             return $model->alc_p ? $model->alc_p : '';
@@ -211,6 +203,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'ppm',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             return $model->ppm ? $model->ppm : '';
@@ -220,6 +213,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'brix',
                         'format' => 'html',
+                        'headerOptions' => ['class' => 'text-center'],
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             return $model->brix ? $model->brix : '';
