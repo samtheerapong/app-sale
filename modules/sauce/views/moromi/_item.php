@@ -145,7 +145,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                         <?= $form->field($modelitem, "[{$i}]alcohol")->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                     </div>
                                     <div class="col-md-1">
-                                        <?= $form->field($modelitem, "[{$i}]turbidity")->textInput(['maxlength' => true, 'type' => 'number']) ?>
+                                        <?= $form->field($modelitem, "[{$i}]turbidity")->textInput(['maxlength' => true, 'type' => 'number', 'step' => '00.01']) ?>
                                     </div>
                                     <div class="col-md-2">
                                         <?= $form->field($modelitem, "[{$i}]note")->textInput(['maxlength' => true]) ?>
