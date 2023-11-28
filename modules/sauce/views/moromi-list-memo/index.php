@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <?php
                 foreach ($dataProvider->getModels() as $model) : ?>
-                    <div class="col-xl-2 col-lg-3 col-md-4 ol-sm-6">
+                    <div class="col-xl-3 col-lg-3 col-md-4 ol-sm-6">
                         <div class="card mb-3">
                             <div class="card-header" style="background-color: <?= $model->color ?>; color: #FFFFFF;">
                                 <h5><?= Html::encode($model->name) ?></h5>
