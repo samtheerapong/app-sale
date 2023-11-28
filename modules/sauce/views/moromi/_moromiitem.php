@@ -42,16 +42,6 @@ use yii\helpers\ArrayHelper;
                                 $badge = ($note !== null && $note !== '') ? '<span class="badge badge-warning">' . $note . '</span>' : '';
                                 return $name . '   ' . $badge;
                             },
-                            'filter' => Select2::widget([
-                                'model' => $searchModel,
-                                'attribute' => 'memo_list',
-                                'data' => ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'),
-                                'options' => ['placeholder' => Yii::t('app', 'Select...')],
-                                'language' => 'th',
-                                'pluginOptions' => [
-                                    'allowClear' => true
-                                ],
-                            ]),
                         ],
                         [
                             'attribute' => 'ph',

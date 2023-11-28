@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="moromi-create">
 
     <p>
-        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary btn-lg']) ?>
     </p>
 
 

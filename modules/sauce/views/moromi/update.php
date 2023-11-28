@@ -16,14 +16,15 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <div style="display: flex; justify-content: space-between;">
         <p>
-        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary btn-lg']) ?>
         </p>
 
         <p style="text-align: right;">
-        <?= Html::a('<i class="fas fa-list"></i> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
+            <?= Html::a('<i class="fas fa-eye"></i> ' . Yii::t('app', 'View'), ['view', 'id' => $model->id], ['class' => 'btn btn-warning btn-lg']) ?>
+            <?= Html::a('<i class="fas fa-list"></i> ' . Yii::t('app', 'Add List of Memo'), ['item', 'id' => $model->id], ['class' => 'btn btn-info btn-lg']) ?>
 
             <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
+                'class' => 'btn btn-danger btn-lg',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     'method' => 'post',

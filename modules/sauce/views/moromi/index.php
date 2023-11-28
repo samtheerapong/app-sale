@@ -20,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="moromi-index">
 
     <p>
-        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create Moromi Record'), ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Moromi Record Card'), ['card'], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('<i class="fas fa-plus"></i> ' . Yii::t('app', 'Create Moromi Record'), ['create'], ['class' => 'btn btn-success btn-lg']) ?>
+        <?php //echo Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Moromi Record Card'), ['card'], ['class' => 'btn btn-secondary']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -193,9 +193,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['style' => 'width:120px;'],
+                        'contentOptions' => ['style' => 'width:150px;'],
                         'value' => function ($model) {
-                            return '<span class="text" style="color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b></span>';
+                            return '<h5><span class="badge rounded-pill" style="background-color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b></span></h5>';
                         },
                         'filter' => Select2::widget([
                             'model' => $searchModel,

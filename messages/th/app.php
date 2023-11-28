@@ -86,7 +86,7 @@ return [
     'Additional' => 'เพิ่มเติม',
     'Removed' => 'ลบออก',
     'List of Memo' => 'รายการบันทึกโมโรมิ',
-    'Add List of Memo' => 'เพิ่มรายการบันทึกโมโรมิ',
+    'Add List of Memo' => 'เพิ่มรายการบันทึก',
     'Moromi List' => 'รายการบันทึกโมโรมิ',
     'Turbidity' => 'ค่าความขุ่น',
 

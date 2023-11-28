@@ -1,20 +1,15 @@
 <?php
 
 use app\modules\sauce\models\MoromiListMemo;
-use app\modules\sauce\models\MoromiStatus;
-use app\modules\sauce\models\TankDestination;
-use app\modules\sauce\models\TankSource;
-use app\modules\sauce\models\Type;
+use kartik\widgets\DatePicker;
+use kartik\widgets\Select2;
+use wbraganca\dynamicform\DynamicFormWidget;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\widgets\Select2;
 use yii\helpers\ArrayHelper;
-use kartik\widgets\DatePicker;
-use wbraganca\dynamicform\DynamicFormWidget;
 
-/** @var yii\web\View $this */
-/** @var app\modules\sauce\models\Moromi $model */
-/** @var yii\widgets\ActiveForm $form */
+
+
 ?>
 
 <div class="moromi-form-addlist">
@@ -24,42 +19,38 @@ use wbraganca\dynamicform\DynamicFormWidget;
     ]); ?>
 
     <div class="card border-secondary">
-        <div class="card-header text-white bg-secondary">
+        <div class="card-header" style="background-color: <?= $model->moromiStatus0->color ?>; color: #fff;">
             <?= Yii::t('app', 'Moromi Record') ?>
         </div>
         <div class="card-body">
             <div class="row">
                 <?= $form->field($model, 'code')->hiddenInput()->label(false); ?>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                     <strong><?= Yii::t('app', 'Batch No') ?> : </strong> <?= $model->batch_no; ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                     <strong><?= Yii::t('app', 'Shikomi Date') ?> : </strong> <?= Yii::$app->formatter->asDate($model->shikomi_date); ?>
                 </div>
-                <div class="col-md-3">
-                    <strong><?= Yii::t('app', 'Type') ?> : </strong> <?= $model->moromiType0->name; ?>
+                <div class="col-md-3 mb-2">
+                    <strong><?= Yii::t('app', 'Type') ?> : </strong>
+                    <?= '<span class="text" style="color:' . $model->moromiType0->color . ';"><b>' . $model->moromiType0->name . '</b> </span>'; ?>
                 </div>
-                <div class="col-md-3">
-                    <strong><?= Yii::t('app', 'Status') ?> : </strong> <?= $model->moromiStatus0->name; ?>
+                <div class="col-md-3 mb-2">
+                    <strong><?= Yii::t('app', 'Status') ?> : </strong>
+                    <?= '<span class="text" style="color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b> </span>'; ?>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <strong><?= Yii::t('app', 'Transfer Date') ?> : </strong> <?= Yii::$app->formatter->asDate($model->transfer_date); ?>
-
+                <div class="col-md-3 mb-2">
+                    <strong><?= Yii::t('app', 'Transfer Date') ?> : </strong> <?= $model->transfer_date ? Yii::$app->formatter->asDate($model->transfer_date) : Yii::t('app', 'None'); ?>
                 </div>
-
-                <div class="col-md-3">
-                    <strong><?= Yii::t('app', 'Tank') ?> : </strong> <?= $model->tankSource0->name; ?>
+                <div class="col-md-3 mb-2">
+                    <strong><?= Yii::t('app', 'Tank') ?> : </strong>
+                    <?= '<span class="text" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b> </span>'; ?>
                     <i class="fa-solid fa-arrow-right-long"></i> <?= $model->tankDestination0->name; ?>
-
                 </div>
-
-                <div class="col-md-6">
+                <div class="col-md-6 mb-2">
                     <strong><?= Yii::t('app', 'Remask') ?> : </strong> <?= $model->remask; ?>
                 </div>
             </div>
-            <hr>
         </div>
 
         <div class="row">
@@ -115,18 +106,17 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                 ?>
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <?php echo $form->field($modelitem, "[{$i}]record_date")->textInput(['maxlength' => true,'type' => 'date']) ?>
+                                        <?php echo $form->field($modelitem, "[{$i}]record_date")->textInput(['maxlength' => true, 'type' => 'date'])
+                                        ?>
+                                        <?php //echo $form->field($modelitem, "[{$i}]record_date")->widget(DatePicker::class, ['options' => ['class' => 'reqItem form-control'],'pluginOptions' => ['format' => 'dd/mm/yyyy','autoclose' => false,'todayHighlight' => true,],]); 
+                                        ?>
+
                                     </div>
                                     <div class="col-md-2">
-                                        <?= $form->field($modelitem, "[{$i}]memo_list")->dropDownList(
-                                            ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'),
-                                            [
-                                                'prompt' => Yii::t('app', 'Select...'),
-                                                'options' => [
-                                                    'required' => true,
-                                                ],
-                                            ]
-                                        ) ?>
+                                        <?php echo $form->field($modelitem, "[{$i}]memo_list")->dropDownList(ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'), ['prompt' => Yii::t('app', 'Select...'), 'options' => ['required' => true,],])
+                                        ?>
+                                        <?php //echo $form->field($modelitem, "[{$i}]memo_list")->widget(Select2::class, ['language' => 'th', 'data' => ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'), 'options' => ['placeholder' => Yii::t('app', 'Select...'), 'class' => 'form-control'], 'pluginOptions' => ['allowClear' => true],]);
+                                        ?>
                                     </div>
 
                                     <div class="col-md-1">
@@ -160,7 +150,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
             <?php DynamicFormWidget::end(); ?>
             <div class="card-footer">
                 <div class="d-grid gap-2">
-                    <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                    <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg']) ?>
                 </div>
             </div>
         </div>

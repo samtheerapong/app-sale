@@ -10,6 +10,8 @@ AppAsset::register($this);
 \hail812\adminlte3\assets\FontAwesomeAsset::register($this);
 \hail812\adminlte3\assets\AdminLteAsset::register($this);
 \hail812\adminlte3\assets\PluginAsset::register($this)->add('sweetalert2');
+
+
 // \wbraganca\dynamicform\DynamicFormWidgetAsset::register($this);
 
 // $bundle = \hail812\adminlte3\assets\PluginAsset::register($this);

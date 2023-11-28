@@ -119,7 +119,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
         <div class="card-footer">
             <div class="d-grid gap-2">
-                <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+                <?= Html::submitButton('<i class="fas fa-save"></i> ' . Yii::t('app', 'Save'), ['class' => 'btn btn-success btn-lg']) ?>
             </div>
         </div>
     </div>

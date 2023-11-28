@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\modules\sauce\models\Moromi $model */
 
-$this->title = $model->code;
+$this->title = $model->batch_no;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Moromi'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -16,16 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div style="display: flex; justify-content: space-between;">
         <p>
-            <?= Html::a('<i class="fas fa-table"></i> ' . Yii::t('app', 'Moromi Record Table'), ['index'], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Moromi Record Card'), ['card'], ['class' => 'btn btn-secondary']) ?>
+            <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary btn-lg']) ?>
+            <?php //echo Html::a('<i class="fas fa-calendar"></i> ' . Yii::t('app', 'Moromi Record Card'), ['card'], ['class' => 'btn btn-secondary btn-lg']) 
+            ?>
         </p>
 
         <p style="text-align: right;">
-            <?= Html::a('<i class="fas fa-list"></i> ' . Yii::t('app', 'Add List of Memo'), ['item', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
-            <?= Html::a('<i class="fas fa-edit"></i> ' . Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+            <?= Html::a('<i class="fas fa-list"></i> ' . Yii::t('app', 'Add List of Memo'), ['item', 'id' => $model->id], ['class' => 'btn btn-primary btn-lg']) ?>
+            <?= Html::a('<i class="fas fa-edit"></i> ' . Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-info btn-lg']) ?>
 
             <?= Html::a('<i class="fas fa-trash"></i> ' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
+                'class' => 'btn btn-danger btn-lg',
                 'data' => [
                     'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                     'method' => 'post',
@@ -42,58 +43,38 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Yii::t('app', 'Moromi') ?>
                 </div>
                 <div class="card-body">
-                    <?= DetailView::widget([
-                        'model' => $model,
-                        'template' => '<tr><th style="width: 200px;">{label}</th><td> {value}</td></tr>',
-                        'attributes' => [
-                            // 'id',
-                            'code',
-                            'batch_no',
-                            'shikomi_date:date',
-                            'transfer_date:date',
-                            [
-                                'attribute' => 'tank_source',
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return
-                                        '<span class="text" style="color:' . $model->tankSource0->color . ';">' . $model->tankSource0->name . '</span>';
-                                },
-                            ],
-                            [
-                                'attribute' => 'tank_destination',
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return
-                                        '<span class="text" style="color:' . $model->tankDestination0->color . ';">' . $model->tankDestination0->name . '</span>';
-                                },
-                            ],
-                            [
-                                'attribute' => 'type_id',
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return
-                                        '<span class="text" style="color:' . $model->moromiType0->color . ';">' . $model->moromiType0->name . '</span>';
-                                },
-                            ],
-                            [
-                                'attribute' => 'remask',
-                                'format' => 'ntext',
-                                'value' => function ($model) {
-                                    return $model->remask ? $model->remask : '';
-                                },
-                            ],
-                            'created_at:date',
-                            [
-                                'attribute' => 'created_by',
-                                'format' => 'html',
-                                'value' => function ($model) {
-                                    return $model->created_by ? $model->createdBy0->thai_name : '';
-                                },
-                            ],
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong><?= Yii::t('app', 'Batch No') ?> : </strong> <?= $model->batch_no; ?>
+                        </div>
+                        <div class="col-md-3">
+                            <strong><?= Yii::t('app', 'Shikomi Date') ?> : </strong> <?= Yii::$app->formatter->asDate($model->shikomi_date); ?>
+                        </div>
+                        <div class="col-md-3">
+                            <strong><?= Yii::t('app', 'Type') ?> : </strong>
+                            <?= '<span class="text" style="color:' . $model->moromiType0->color . ';"><b>' . $model->moromiType0->name . '</b> </span>'; ?>
+                        </div>
+                        <div class="col-md-3">
+                            <strong><?= Yii::t('app', 'Status') ?> : </strong> 
+                            <?= '<span class="text" style="color:' . $model->moromiStatus0->color . ';"><b>' . $model->moromiStatus0->name . '</b> </span>'; ?>
+                            
+                        </div>
+                    </div>
 
-                        ],
-                    ]) ?>
-
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong><?= Yii::t('app', 'Transfer Date') ?> : </strong> <?= $model->transfer_date ? Yii::$app->formatter->asDate($model->transfer_date) : Yii::t('app', 'None'); ?>
+                        </div>
+                        <div class="col-md-3">
+                            <strong><?= Yii::t('app', 'Tank') ?> : </strong> 
+                            <?= '<span class="text" style="color:' . $model->tankSource0->color . ';"><b>' . $model->tankSource0->name . '</b> </span>'; ?>
+                            <i class="fa-solid fa-arrow-right-long"></i> <?= $model->tankDestination0->name; ?>
+                        </div>
+                        <div class="col-md-6">
+                            <strong><?= Yii::t('app', 'Remask') ?> : </strong> <?= $model->remask; ?>
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -110,81 +91,81 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]),
 
                         'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+                            [
+                                'class' => 'yii\grid\SerialColumn',
+                                'contentOptions' => ['class' => 'text-center', 'style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                            ],
                             // 'record_date:date',
                             [
                                 'attribute' => 'record_date',
                                 'format' => 'date',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'headerOptions' => [
+                                    'style' => 'width:150px;'
+                                ],
                                 'value' => function ($model) {
-                                    return
-                                        $model->record_date;
+                                    return $model->record_date;
                                 },
                             ],
                             [
                                 'attribute' => 'memo_list',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
                                 'value' => function ($model) {
-                                    return
-                                        $model->memo->name;
+                                    $name = $model->memo->name;
+                                    $note = $model->note;
+                                    $badge = ($note !== null && $note !== '') ? '<span class="badge badge-warning">' . $note . '</span>' : '';
+                                    return $name . '   ' . $badge;
                                 },
                             ],
-                            // 'ph',
                             [
                                 'attribute' => 'ph',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'headerOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                                'contentOptions' => ['class' => 'text-center'],
                                 'value' => function ($model) {
-                                    return $model->ph ? $model->ph : Yii::t('app', '-');
+                                    return $model->ph ? $model->ph : '-';
                                 },
                             ],
-                            // 'color',
                             [
                                 'attribute' => 'color',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                                 'value' => function ($model) {
-                                    return $model->color ? $model->color : Yii::t('app', '-');
+                                    return $model->color ? $model->color : '-';
                                 },
                             ],
-                            // 'nacl',
                             [
                                 'attribute' => 'nacl',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                                 'value' => function ($model) {
-                                    return $model->nacl ? $model->nacl : Yii::t('app', '-');
+                                    return $model->nacl ? $model->nacl : '-';
                                 },
                             ],
-                            // 'tn',
                             [
                                 'attribute' => 'tn',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                                 'value' => function ($model) {
-                                    return $model->tn ? $model->tn : Yii::t('app', '-');
+                                    return $model->tn ? $model->tn : '-';
                                 },
                             ],
-                            // 'alcohol',
                             [
                                 'attribute' => 'alcohol',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                                 'value' => function ($model) {
-                                    return $model->alcohol ? $model->alcohol : Yii::t('app', '-');
+                                    return $model->alcohol ? $model->alcohol : '-';
                                 },
                             ],
-                            // 'turbidity',
                             [
                                 'attribute' => 'turbidity',
                                 'format' => 'html',
-                                'contentOptions' => ['style' => 'text-align: center;'],
+                                'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                                 'value' => function ($model) {
-                                    return $model->turbidity ? $model->turbidity : Yii::t('app', '-');
+                                    return $model->turbidity ? $model->turbidity : '-';
                                 },
                             ],
-                            'note',
+                            // 'note',
                             // ... Add more columns if needed ...
                         ],
                     ]); ?>

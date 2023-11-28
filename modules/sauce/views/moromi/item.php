@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 <div class="moromi-update">
 
     <p>
-        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), 'javascript:history.back()', ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="fas fa-chevron-left"></i> ' . Yii::t('app', 'Go Back'), ['index'], ['class' => 'btn btn-primary btn-lg']) ?>
     </p>
 
     <?= $this->render('_item', [
