@@ -113,9 +113,9 @@ use yii\helpers\ArrayHelper;
 
                                     </div>
                                     <div class="col-md-2">
-                                        <?php echo $form->field($modelitem, "[{$i}]memo_list")->dropDownList(ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'), ['prompt' => Yii::t('app', 'Select...'), 'options' => ['required' => true,],])
+                                        <?php //echo $form->field($modelitem, "[{$i}]memo_list")->dropDownList(ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'), ['prompt' => Yii::t('app', 'Select...'), 'options' => ['required' => true,],])
                                         ?>
-                                        <?php //echo $form->field($modelitem, "[{$i}]memo_list")->widget(Select2::class, ['language' => 'th', 'data' => ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'), 'options' => ['placeholder' => Yii::t('app', 'Select...'), 'class' => 'form-control'], 'pluginOptions' => ['allowClear' => true],]);
+                                        <?php echo $form->field($modelitem, "[{$i}]memo_list")->widget(Select2::class, ['language' => 'th', 'data' => ArrayHelper::map(MoromiListMemo::find()->all(), 'id', 'name'), 'options' => ['placeholder' => Yii::t('app', 'Select...'), 'class' => 'form-control'], 'pluginOptions' => ['allowClear' => true],]);
                                         ?>
                                     </div>
 
