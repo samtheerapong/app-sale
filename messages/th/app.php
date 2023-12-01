@@ -212,7 +212,7 @@ return [
     'Deadline' => 'กำหนดส่ง',
     'New Deadline' => 'เลื่อนกำหนดส่ง',
     'Payment ID' => 'เงื่อนไขการชำระเงิน',
-    'Total' => 'ยอดขาย',
+    'Total' => 'ยอดรวม',
     'Percent Vat' => 'อัตราภาษี',
     'Discount' => 'ส่วนลด',
     'Grand Total' => 'ยอดสุทธิ',
@@ -230,6 +230,14 @@ return [
     'Sales details' => 'รายการสินค้าที่ขาย',
     'Create Sales details' => 'เพิ่มรายการสินค้าที่ขาย',
     'Postponed' => 'เลื่อน',
+    
+    
+    
+    // It Stocks
+    'It Stocks' => 'สต๊อคอะไหล่ไอที',
+
+
+
 
 
 ];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 28, 2023 at 04:11 AM
+-- Generation Time: Dec 01, 2023 at 09:12 AM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.9
 
@@ -76,6 +76,81 @@ INSERT INTO `departments` (`id`, `code`, `name`, `detail`, `department_head`, `c
 (12, 'IT', 'แผนกไอที (IT)', NULL, 12, '#186F65'),
 (13, 'SA', 'ฝ่ายขาย (Sale)', NULL, 6, '#C70039'),
 (14, 'SP', 'สนับสนุน (Support)', NULL, 9, '#219C90');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `it_stock`
+--
+
+CREATE TABLE `it_stock` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT 'ชื่ออะไหล่',
+  `category` int(11) DEFAULT NULL COMMENT 'หมวดหมู่',
+  `balance` int(11) DEFAULT NULL COMMENT 'ยอดคงเหลือ',
+  `minimum` int(11) DEFAULT NULL COMMENT 'จำนวนต่ำสุด',
+  `photo` text COMMENT 'รูปภาพ',
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `it_stock`
+--
+
+INSERT INTO `it_stock` (`id`, `name`, `category`, `balance`, `minimum`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 'Logitech USB M100R', 1, 0, 1, 'm100r.png', '2022-10-22', '2022-10-22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `it_stock_cat`
+--
+
+CREATE TABLE `it_stock_cat` (
+  `id` int(11) NOT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `detail` text,
+  `color` varchar(45) DEFAULT NULL,
+  `active` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `it_stock_cat`
+--
+
+INSERT INTO `it_stock_cat` (`id`, `code`, `name`, `detail`, `color`, `active`) VALUES
+(1, 'M001', 'Mouse USB', '', '', 1),
+(2, 'M002', 'Mouse Wireless', '', '', 1),
+(3, 'K001', 'Keyboard USB', '', '', 1),
+(4, 'K002', 'Keyboard Wireless', '', '', 1),
+(5, 'P001', 'Power Supply', '', '', 1),
+(6, 'V001', 'VGA Card', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `it_stock_list`
+--
+
+CREATE TABLE `it_stock_list` (
+  `id` int(11) NOT NULL,
+  `stock_id` int(11) DEFAULT NULL COMMENT 'เลขที่สต๊อค',
+  `action_date` date DEFAULT NULL COMMENT 'วันที่',
+  `operator` int(11) DEFAULT NULL COMMENT 'ผู้ดำเนินการ',
+  `receive` int(11) DEFAULT '0' COMMENT 'รับเข้า',
+  `pick_up` int(11) DEFAULT '0' COMMENT 'จ่ายออก',
+  `docs` int(11) DEFAULT NULL,
+  `remask` text COMMENT 'หมายเหตุ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `it_stock_list`
+--
+
+INSERT INTO `it_stock_list` (`id`, `stock_id`, `action_date`, `operator`, `receive`, `pick_up`, `docs`, `remask`) VALUES
+(1, 1, '2023-12-01', 1, 3, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2065,6 +2140,25 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `it_stock`
+--
+ALTER TABLE `it_stock`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_it_stock_it_stock_cat_idx` (`category`);
+
+--
+-- Indexes for table `it_stock_cat`
+--
+ALTER TABLE `it_stock_cat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `it_stock_list`
+--
+ALTER TABLE `it_stock_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `job_status`
 --
 ALTER TABLE `job_status`
@@ -2290,6 +2384,24 @@ ALTER TABLE `departments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `it_stock`
+--
+ALTER TABLE `it_stock`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `it_stock_cat`
+--
+ALTER TABLE `it_stock_cat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `it_stock_list`
+--
+ALTER TABLE `it_stock_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `job_status`
 --
 ALTER TABLE `job_status`
@@ -2486,6 +2598,16 @@ ALTER TABLE `user_rules`
 --
 ALTER TABLE `work_order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `it_stock`
+--
+ALTER TABLE `it_stock`
+  ADD CONSTRAINT `fk_it_stock_it_stock_cat` FOREIGN KEY (`category`) REFERENCES `it_stock_cat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
