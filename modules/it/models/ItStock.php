@@ -68,4 +68,14 @@ class ItStock extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ItStockCat::class, ['id' => 'category']);
     }
+
+    public function CalStock()
+    {
+        $lastRecive = 3;
+        $lastPick = 1;
+
+        $totalStock = $lastRecive - $lastPick;
+
+        return $totalStock;
+    }
 }
