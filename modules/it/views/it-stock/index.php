@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]);
                         },
                     ],
-                    
+
                     [
                         'class' => 'yii\grid\SerialColumn',
                         'contentOptions' => ['style' => 'width:45px;'], //กำหนด ความกว้างของ #
@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'html',
                         'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
-                            $balance = $model->balance;
+                            $balance = $model->CalStock();
                             $minimum = $model->minimum;
 
                             if ($balance !== null && $balance < $minimum) {

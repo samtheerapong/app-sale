@@ -2,6 +2,7 @@
 
 namespace app\modules\it\models;
 
+use app\models\User;
 use Yii;
 
 /**
@@ -53,5 +54,11 @@ class ItStockList extends \yii\db\ActiveRecord
             'docs' => Yii::t('app', 'Docs'),
             'remask' => Yii::t('app', 'หมายเหตุ'),
         ];
+    }
+
+    
+    public function getOperator0()
+    {
+        return $this->hasOne(User::class, ['id' => 'operator']);
     }
 }
