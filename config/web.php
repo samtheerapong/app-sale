@@ -21,6 +21,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        'qc' => [
+            'class' => 'app\modules\qc\Module',
+        ],
         'dos' => [
             'class' => 'app\modules\dos\Module',
         ],

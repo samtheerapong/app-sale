@@ -140,13 +140,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'linkOptions' => ['class' => 'page-link'],
                 ],
                 'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
+                    [
+                        'class' => 'yii\grid\SerialColumn',
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:45px;'], //กำหนด ความกว้างของ #
+                    ],
 
                     [
                         'attribute' => 'categories_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:150px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:150px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:150px;'],
                         'value' => function ($model) {
                             return '<span class="badge" style="background-color:' . $model->categories->color . ';"><b>' . $model->categories->name . '</b></span>';
                         },
@@ -165,8 +168,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'title',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:250px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:250px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:250px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:250px;'],
                         'value' => function ($model) {
                             $truncatedSupplierName = mb_substr($model->title, 0, 22, 'UTF-8');
                             if (mb_strlen($model->title, 'UTF-8') > 22) {
@@ -198,8 +201,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'occupier_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:120px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:120px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="badge" style="background-color:' . $model->occupier->color . ';"><b>' . $model->occupier->name . '</b></span>';
                         },
@@ -217,8 +220,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'attribute' => 'supplier_name',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:250px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:250px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:250px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:250px;'],
                         'format' => 'html',
                         'value' => function ($model) {
                             $truncatedSupplierName = mb_substr($model->supplier_name, 0, 22, 'UTF-8');
@@ -251,8 +254,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'raw_material',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:120px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:120px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:120px;'],
                         'value' => function ($model) {
                             return '<span class="badge" style="background-color:' . $model->rawMaterial->color . ';"><b>' . $model->rawMaterial->name . '</b></span>';
                         },
@@ -271,8 +274,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'types_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:100px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:100px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             return '<span class="badge" style="background-color:' . $model->types->color . ';"><b>' . $model->types->name . '</b></span>';
                         },
@@ -291,8 +294,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'expiration_date',
                         'label' => Yii::t('app', 'Days left'),
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:80px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:80px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:80px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:80px;'],
                         'format' => 'html',
                         'value' => function ($model) {
                             return $model->getDaysToExpirationValue();
@@ -303,8 +306,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status_id',
                         'format' => 'html',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width:100px;'],
-                        'headerOptions' => ['class' => 'text-center','style' => 'width:100px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
+                        'headerOptions' => ['class' => 'text-center', 'style' => 'width:100px;'],
                         'value' => function ($model) {
                             $badge = '<span class="badge badge-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" title="' . $model->status_details . '" style="background-color:'
                                 . $model->status->color . '; color: white;"><b>'
@@ -329,7 +332,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'class' => 'kartik\grid\ActionColumn',
-                        'contentOptions' => ['class' => 'text-center','style' => 'width: 140px;'],
+                        'contentOptions' => ['class' => 'text-center', 'style' => 'width: 140px;'],
                         'buttonOptions' => ['class' => 'btn btn-outline-dark btn-sm'],
                         'template' => '<div class="btn-group btn-group-xs" role="group"> {view} {update} {delete}</div>',
                         'urlCreator' => function ($action, Documents $model, $key, $index, $column) {
