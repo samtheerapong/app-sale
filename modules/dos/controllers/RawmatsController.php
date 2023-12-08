@@ -4,8 +4,8 @@ namespace app\modules\dos\controllers;
 
 use app\modules\dos\models\Rawmats;
 use app\modules\dos\models\RawmatsSearch;
-use common\components\Rule;
-use common\models\User;
+use app\components\Rule;
+use app\models\User;
 use Exception;
 use kartik\mpdf\Pdf;
 use mdm\autonumber\AutoNumber;
@@ -29,74 +29,74 @@ class RawmatsController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'ruleConfig' => [
-                    'class' => Rule::class,
-                ],
-                'only' => ['index', 'view', 'create', 'update', 'delete', 'download', 'configs'],
-                'rules' => [
-                    [
-                        'actions' => ['index'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_USER,
-                            User::ROLE_QA,
-                            User::ROLE_SALE,
-                        ],
-                    ],
-                    [
-                        'actions' => ['view'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_QA,
-                            User::ROLE_SALE,
-                        ],
-                    ],
-                    [
-                        'actions' => ['update', 'create'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_QA
-                        ],
-                    ],
-                    [
-                        'actions' => ['delete', 'configs'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_QA
-                        ],
-                    ],
-                    [
-                        'actions' => ['download'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_QA,
-                            User::ROLE_SALE,
-                        ],
-                    ],
-                ],
-            ],
-        ];
-    }
+    // public function behaviors()
+    // {
+    //     return [
+    //         'verbs' => [
+    //             'class' => VerbFilter::class,
+    //             'actions' => [
+    //                 'delete' => ['post'],
+    //             ],
+    //         ],
+    //         'access' => [
+    //             'class' => AccessControl::class,
+    //             'ruleConfig' => [
+    //                 'class' => Rule::class,
+    //             ],
+    //             'only' => ['index', 'view', 'create', 'update', 'delete', 'download', 'configs'],
+    //             'rules' => [
+    //                 [
+    //                     'actions' => ['index'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_MANAGER,
+    //                         User::ROLE_USER,
+    //                         User::ROLE_QA,
+    //                         User::ROLE_SALE,
+    //                     ],
+    //                 ],
+    //                 [
+    //                     'actions' => ['view'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_MANAGER,
+    //                         User::ROLE_QA,
+    //                         User::ROLE_SALE,
+    //                     ],
+    //                 ],
+    //                 [
+    //                     'actions' => ['update', 'create'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_MANAGER,
+    //                         User::ROLE_QA
+    //                     ],
+    //                 ],
+    //                 [
+    //                     'actions' => ['delete', 'configs'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_QA
+    //                     ],
+    //                 ],
+    //                 [
+    //                     'actions' => ['download'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_MANAGER,
+    //                         User::ROLE_QA,
+    //                         User::ROLE_SALE,
+    //                     ],
+    //                 ],
+    //             ],
+    //         ],
+    //     ];
+    // }
 
 
     /**

@@ -16,12 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="product-category-index">
     <div style="display: flex; justify-content: space-between;">
         <p>
-            <?= Html::a('<i class="fas fa-table"></i> ' . Yii::t('app', 'Products'), ['/qc/products/index'], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('<i class="fas fa-table"></i> ' . Yii::t('app', 'Products'), ['/dos/products/index'], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('<i class="fa fa-plus"></i> ' . Yii::t('app', 'Create Data'), ['create'], ['class' => 'btn btn-danger']) ?>
         </p>
         <p style="text-align: right;">
         <p>
-            <?= Html::a('<i class="fas fa-cog"></i> ' . Yii::t('app', 'Configuration'), ['/qc/products/configs'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('<i class="fas fa-cog"></i> ' . Yii::t('app', 'Configuration'), ['/dos/products/configs'], ['class' => 'btn btn-success']) ?>
         </p>
     </div>
 

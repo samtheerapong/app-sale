@@ -4,8 +4,8 @@ namespace app\modules\dos\controllers;
 
 use app\modules\dos\models\Products;
 use app\modules\dos\models\ProductsSearch;
-use common\components\Rule;
-use common\models\User;
+use app\components\Rule;
+use app\models\User;
 use kartik\mpdf\Pdf;
 
 use Mpdf\Config\ConfigVariables;

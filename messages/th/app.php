@@ -268,6 +268,39 @@ return [
     // It Stocks
     'It Stocks' => 'สต๊อคอะไหล่ไอที',
 
+    'Product Spec' => 'รายละเอียดสินค้า',
+    'Products' => 'รายละเอียดสินค้า',
+    'Uploads' => 'การอัพโหลดเอกสาร',
+    'Product Number' => 'เลขที่ผลิตภัณฑ์',
+    'Category' => 'หมวดหมู่',
+    'Revision' => 'ริวิชั่น',
+    'Revised Date' => 'วันประกาศใช้',
+    'Title' => 'หัวข้อ',
+    'Description' => 'รายละเอียด',
+    'ISO Support' => 'ระบบที่รับรอง',
+    'Product Specification' => 'รายละเอียดสินค้า (Product Specification)',
+    'Spec Expiration' => 'วันหมดอายุ',
+    'Process Flow' => 'กระบวนการ (Process Flow)',
+    'Process Expiration' => 'วันหมดอายุ',
+    'FDA' => 'อย. (อาหารและยา)',
+    'Fda Expiration' => 'วันหมดอายุ',
+    'Nutrition Label' => 'ฉลากโภชนาการ (Nutrition Label)',
+    'Nutrition Expiration' => 'วันหมดอายุ',
+    'Numbers' => 'รหัสเอกสาร',
+    'Product Name' => 'ชื่อสินค้า',
+    'Revision' => 'ริวิชั่น',
+    'Reviesed Date' => 'วันที่แก้ไขเอกสาร',
+    'Product Category' => 'หมวดหมู่',
+    'Product Iso' => 'ระบบที่รับรอง',
+    'Product Status' => 'สถานะ',
+    'Default 10 years' => 'ค่าเริ่มต้น 10 ปี',
+
+    // Raw Material
+    'Raw Material' => 'วัตถุดิบ',
+    'Raw Material Category' => 'ประเภท',
+    'Raw Material Status' => 'สถานะ',
+    'Raw Material Name' => 'ชื่อวัตถุดิบ',
+
 
 
 

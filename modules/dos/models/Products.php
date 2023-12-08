@@ -2,7 +2,7 @@
 
 namespace app\modules\dos\models;
 
-use common\models\User;
+use app\models\User;
 use DateInterval;
 use DateTime;
 use Yii;

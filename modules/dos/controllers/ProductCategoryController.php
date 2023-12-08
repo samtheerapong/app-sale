@@ -2,14 +2,14 @@
 
 namespace app\modules\dos\controllers;
 
-use backend\modules\qc\models\ProductCategory;
-use backend\modules\qc\models\ProductCategorySearch;
+use app\modules\dos\models\ProductCategory;
+use app\modules\dos\models\ProductCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\components\Rule;
-use common\models\User;
+use app\components\Rule;
+use app\models\User;
 /**
  * ProductCategoryController implements the CRUD actions for ProductCategory model.
  */
@@ -18,35 +18,35 @@ class ProductCategoryController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'ruleConfig' => [
-                    'class' => Rule::class,
-                ],
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_QA,
-                        ],
-                    ],
-                ],
-            ],
-        ];
-    }
+    // public function behaviors()
+    // {
+    //     return [
+    //         'verbs' => [
+    //             'class' => VerbFilter::class,
+    //             'actions' => [
+    //                 'delete' => ['post'],
+    //             ],
+    //         ],
+    //         'access' => [
+    //             'class' => AccessControl::class,
+    //             'ruleConfig' => [
+    //                 'class' => Rule::class,
+    //             ],
+    //             'only' => ['index', 'view', 'create', 'update', 'delete'],
+    //             'rules' => [
+    //                 [
+    //                     'actions' => ['index', 'view', 'create', 'update', 'delete'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_MANAGER,
+    //                         User::ROLE_QA,
+    //                     ],
+    //                 ],
+    //             ],
+    //         ],
+    //     ];
+    // }
 
     /**
      * Lists all ProductCategory models.

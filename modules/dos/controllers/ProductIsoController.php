@@ -9,8 +9,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 use yii\filters\AccessControl;
-use common\components\Rule;
-use common\models\User;
+use app\components\Rule;
+use app\models\User;
 /**
  * ProductIsoController implements the CRUD actions for ProductIso model.
  */
@@ -19,35 +19,35 @@ class ProductIsoController extends Controller
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::class,
-                'ruleConfig' => [
-                    'class' => Rule::class,
-                ],
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
-                'rules' => [
-                    [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
-                        'allow' => true,
-                        'roles' => [
-                            User::ROLE_ADMIN,
-                            User::ROLE_MANAGER,
-                            User::ROLE_QA,
-                        ],
-                    ],
-                ],
-            ],
-        ];
-    }
+    // public function behaviors()
+    // {
+    //     return [
+    //         'verbs' => [
+    //             'class' => VerbFilter::class,
+    //             'actions' => [
+    //                 'delete' => ['post'],
+    //             ],
+    //         ],
+    //         'access' => [
+    //             'class' => AccessControl::class,
+    //             'ruleConfig' => [
+    //                 'class' => Rule::class,
+    //             ],
+    //             'only' => ['index', 'view', 'create', 'update', 'delete'],
+    //             'rules' => [
+    //                 [
+    //                     'actions' => ['index', 'view', 'create', 'update', 'delete'],
+    //                     'allow' => true,
+    //                     'roles' => [
+    //                         User::ROLE_ADMIN,
+    //                         User::ROLE_MANAGER,
+    //                         User::ROLE_QA,
+    //                     ],
+    //                 ],
+    //             ],
+    //         ],
+    //     ];
+    // }
 
     /**
      * Lists all ProductIso models.
