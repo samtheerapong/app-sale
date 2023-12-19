@@ -9,7 +9,7 @@ use yii\bootstrap5\LinkPager;
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = Yii::t('app', 'It Stock Lists');
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="it-stock-list-index">
     <div class="card border-info">

@@ -4,9 +4,11 @@ namespace app\modules\it\controllers;
 
 use app\modules\it\models\ItStock;
 use app\modules\it\models\ItStockSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ItStockController implements the CRUD actions for ItStock model.
@@ -69,17 +71,15 @@ class ItStockController extends Controller
     {
         $model = new ItStock();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->photo = $model->uploadPhoto($model, 'photo');
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $model->loadDefaultValues();
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -130,5 +130,18 @@ class ItStockController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function upload()
+    {
+        if (true) {
+            $path = $this->uploadPath() . $this->id . "." . $this->photo->extension;
+            $this->photo->saveAs($path);
+            $this->photo = $this->id . "." . $this->photo->extension;
+            $this->save();
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -3,6 +3,8 @@
 namespace app\modules\it\models;
 
 use Yii;
+use yii\helpers\Url;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "it_stock".
@@ -20,6 +22,10 @@ use Yii;
  */
 class ItStock extends \yii\db\ActiveRecord
 {
+
+    public $upload_foler = 'uploads/it';
+
+
     /**
      * {@inheritdoc}
      */
@@ -35,10 +41,10 @@ class ItStock extends \yii\db\ActiveRecord
     {
         return [
             [['category', 'balance', 'minimum'], 'integer'],
-            [['photo'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
             [['category'], 'exist', 'skipOnError' => true, 'targetClass' => ItStockCat::class, 'targetAttribute' => ['category' => 'id']],
+            [['photo'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -54,6 +60,7 @@ class ItStock extends \yii\db\ActiveRecord
             'balance' => Yii::t('app', 'ยอดคงเหลือ'),
             'minimum' => Yii::t('app', 'จำนวนต่ำสุด'),
             'photo' => Yii::t('app', 'รูปภาพ'),
+            'imageFile' => Yii::t('app', 'รูปภาพ'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
@@ -73,9 +80,36 @@ class ItStock extends \yii\db\ActiveRecord
     {
         $lastRecive = 3;
         $lastPick = 1;
-
         $totalStock = $lastRecive - $lastPick;
-
         return $totalStock;
+    }
+
+    public function uploadPhoto($model, $attribute)
+    {
+        $photo  = UploadedFile::getInstance($model, $attribute);
+        $path = $this->getUploadPath();
+        if ($this->validate() && $photo !== null) {
+
+            $fileName = md5($photo->baseName . time()) . '.' . $photo->extension;
+            if ($photo->saveAs($path . $fileName)) {
+                return $fileName;
+            }
+        }
+        return $model->isNewRecord ? false : $model->getOldAttribute($attribute);
+    }
+
+    public function getUploadPath()
+    {
+        return Yii::getAlias('@webroot') . '/' . $this->upload_foler . '/';
+    }
+
+    public function getUploadUrl()
+    {
+        return Yii::getAlias('@web') . '/' . $this->upload_foler . '/';
+    }
+
+    public function getPhotoViewer()
+    {
+        return empty($this->photo) ? 'https://congtygiaphat104.com/template/Default/img/no.png' : $this->getUploadUrl() . $this->photo;
     }
 }
