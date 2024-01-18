@@ -434,16 +434,16 @@ class DocumentsController extends Controller
         return $this->redirect(['view', 'id' => $model->id]);
     }
 
-    protected function sendMail($recipient, $subject, $templateView, $data = [])
-    {
-        $mailer = Yii::$app->mailer;
-        $message = new Message();
+    // protected function sendMail($recipient, $subject, $templateView, $data = [])
+    // {
+    //     $mailer = Yii::$app->mailer;
+    //     $message = new Message();
 
-        $message->setTo($recipient);
-        $message->setFrom(['northernfood.it@hotmail.com' => 'NFC-DocumentCenter']);
-        $message->setSubject($subject);
-        $message->setHtmlBody($this->renderPartial($templateView, ['data' => $data]));
+    //     $message->setTo($recipient);
+    //     $message->setFrom(['northernfood.it@hotmail.com' => 'NFC-DocumentCenter']);
+    //     $message->setSubject($subject);
+    //     $message->setHtmlBody($this->renderPartial($templateView, ['data' => $data]));
 
-        return $mailer->send($message);
-    }
+    //     return $mailer->send($message);
+    // }
 }

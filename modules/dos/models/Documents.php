@@ -126,6 +126,7 @@ class Documents extends \yii\db\ActiveRecord
             'status_details' => Yii::t('app', 'Status Details'),
             'ref' => Yii::t('app', 'Ref'),
             'docs' => Yii::t('app', 'Docs'),
+            'images' => Yii::t('app', 'รูปภาพ'),
             'expiration' => Yii::t('app', 'Expiration'),
             'document_date' => Yii::t('app', 'Notify Date'),
             // 'notify_date' => Yii::t('app', 'Notify Date'),
@@ -185,17 +186,36 @@ class Documents extends \yii\db\ActiveRecord
             $data = $type === 'docs' ? $this->docs : '';
             $files = Json::decode($data);
             if (is_array($files)) {
-                $docs_file = '<ul>';
+                $docs_file = '<ol>';
                 foreach ($files as $key => $value) {
                     if (strpos($value, '.jpg') !== false || strpos($value, '.jpeg') !== false || strpos($value, '.png') !== false || strpos($value, '.gif') !== false) {
-                        $thumbnail = Html::img(['/documents/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value], ['class' => 'img-thumbnail', 'alt' => 'Image', 'style' => 'width: 150px']);
-                        $fullSize = Html::a($thumbnail, ['/documents/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value], ['target' => '_blank']);
-                        $docs_file .= '<li>' . $fullSize . '</li>';
-                    } else {
-                        $docs_file .= '<li>' . Html::a($value, ['/documents/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value]) . '</li>';
+                        $docs_file .= '<li>' . Html::a($value, ['/dos/documents/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value]) . '</li>';
                     }
                 }
-                $docs_file .= '</ul>';
+                $docs_file .= '</ol>';
+            }
+        }
+
+        return $docs_file;
+    }
+
+    public function listViewImages($type)
+    {
+        $docs_file = '';
+        if (in_array($type, ['docs'])) {
+            $data = $type === 'docs' ? $this->docs : '';
+            $files = Json::decode($data);
+            if (is_array($files)) {
+                $docs_file = '<ol>';
+                foreach ($files as $key => $value) {
+                    if (strpos($value, '.jpg') !== false || strpos($value, '.jpeg') !== false || strpos($value, '.png') !== false || strpos($value, '.gif') !== false) {
+                        $docs_file .= '';
+                        $thumbnail = Html::img(['/dos/documents/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value], ['class' => 'img-thumbnail', 'alt' => 'Image', 'style' => 'width: 300px']);
+                        $fullSize = Html::a($thumbnail, ['/dos/documents/download', 'id' => $this->id, 'file' => $key, 'fullname' => $value], ['target' => '_blank']);
+                        $docs_file .= '<li class="mt-1"' . $fullSize . '</li>';
+                    }
+                }
+                $docs_file .= '</ol>';
             }
         }
 
@@ -225,7 +245,7 @@ class Documents extends \yii\db\ActiveRecord
                     $initial[] = [
                         'caption' => $value,
                         'width'  => '120px',
-                        'url'    => Url::to(['documents/deletefile', 'id' => $this->id, 'fileName' => $key, 'field' => $field]),
+                        'url'    => Url::to(['/dos/documents/deletefile', 'id' => $this->id, 'fileName' => $key, 'field' => $field]),
                         'key'    => $key
                     ];
                 } else {
@@ -342,6 +362,4 @@ class Documents extends \yii\db\ActiveRecord
         }
         curl_close($chOne);
     }
-
-    
 }

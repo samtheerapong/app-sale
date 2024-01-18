@@ -223,6 +223,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'html',
                             'value' => $model->listDownloadFiles('docs')
                         ],
+
+                        [
+                            'attribute' => 'images',
+                            'format' => 'html',
+                            'value' => $model->listViewImages('docs')
+                        ],
                     ],
                 ]) ?>
 

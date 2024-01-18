@@ -139,6 +139,7 @@ use kartik\pdf\PdfJsViewer;
 
                 <div class="col-md-12 mt-2">
                     <?= $form->field($model, 'docs[]')->widget(FileInput::class, [
+                        'name' => 'docs[]',
                         'options' => [
                             'multiple' => true
                         ],
@@ -146,7 +147,7 @@ use kartik\pdf\PdfJsViewer;
                             // 'initialPreview' => $model->listDownloadFiles('docs'),
                             'initialPreview' => $model->initialPreview($model->docs, 'docs', 'file'),
                             'initialPreviewConfig' => $model->initialPreview($model->docs, 'docs', 'config'),
-                            'allowedFileExtensions' => ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'odt', 'ods', 'jpg', 'png', 'jpeg'],
+                            // 'allowedFileExtensions' => ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'odt', 'ods', 'jpg', 'png', 'jpeg'],
                             'showPreview' => true,
                             'showCaption' => true,
                             'showRemove' => true,

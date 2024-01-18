@@ -21,6 +21,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
+        'pdfjs' => [
+            'class' => '\yii2assets\pdfjs\Module',
+        ],
         'qc' => [
             'class' => 'app\modules\qc\Module',
         ],
